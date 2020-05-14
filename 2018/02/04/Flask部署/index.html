@@ -1,0 +1,549 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Flask部署"/>
+
+
+
+
+  <meta name="keywords" content="Flask, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/02/04/Flask部署/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Flask部署 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Flask部署
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-04
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/python/">python</a>
+            
+              <a href="/categories/python/Flask/">Flask</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/02/04/Flask部署/"
+             data-title="Flask部署">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#uWSGI"><span class="toc-text">uWSGI</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#第一个WSGI应用"><span class="toc-text">第一个WSGI应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx配置"><span class="toc-text">Nginx配置</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#运行Flask应用"><span class="toc-text">运行Flask应用</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#setuptools"><span class="toc-text">setuptools</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#打包Flask应用"><span class="toc-text">打包Flask应用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#安装执行文件"><span class="toc-text">安装执行文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Fabric3"><span class="toc-text">Fabric3</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装-1"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Hello-world"><span class="toc-text">Hello world</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#环境变量"><span class="toc-text">环境变量</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#常用API"><span class="toc-text">常用API</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>开发时我们是通过Flask内置得服务器进行调试，但在生成环境我们不应再使用Flask内置服务器而应该用更稳定的服务器接受客户端的请求，Flask应用处理业务。</p>
+<p>Python应用的线上部署离不开<a href="https://zh.wikipedia.org/wiki/Web%E6%9C%8D%E5%8A%A1%E5%99%A8%E7%BD%91%E5%85%B3%E6%8E%A5%E5%8F%A3" target="_blank" rel="noopener">WSGI</a>。</p>
+<blockquote>
+<p>Web服务器网关接口（Python Web Server Gateway Interface，缩写为WSGI）是为Python语言定义的Web服务器和Web应用程序或框架之间的一种简单而通用的接口。</p>
+</blockquote>
+<a id="more"></a>
+<p>简单说它就是Web服务器和Web应用的中间件。<br><img src="http://imglf5.nosdn.127.net/img/Lzg4b1BvbmpvR2dTU25LdG9QUGEra1RqVHVabG9jNWpDTlJ5QWxUaXJXM3hXdFNhUHcwb2F3PT0.jpg?imageView&amp;thumbnail=500x0&amp;quality=96&amp;stripmeta=0&amp;type=jpg" alt=""><br>它的作用是方便Web应用的移植。因为Web应用的框架选择将限制Web服务器的选择。有了WSGI只要Web应用和Web服务器准守WSGI接口规范，就可以随意组合Web应用和Web服务器了。</p>
+<p>现有已经有很多成熟的WSGI容器(<a href="http://gunicorn.org/" target="_blank" rel="noopener">Gunicorn</a>,<a href="http://www.tornadoweb.org/en/stable/" target="_blank" rel="noopener">Tornado</a>,<a href="http://www.gevent.org/" target="_blank" rel="noopener">Gevent</a>)，它提供了Web服务器并实现了WSGI接口，它们可以很方便的于Flask应用对接上。</p>
+<h2 id="uWSGI"><a href="#uWSGI" class="headerlink" title="uWSGI"></a><a href="https://uwsgi-docs.readthedocs.io/en/latest/index.html#" target="_blank" rel="noopener">uWSGI</a></h2><p>uWSGI是一个Web应用服务器，它支持WSGI协议同时也支持自有的uWSGI协议。<br>它的目标为开发服务提供全栈的构建工具。它能作为应用服务器（支持各种编程语言：Python,perl,ruby,PHP等），代理服务器，进程管理器和监视器。这些都使用统一的API和配置风格。<br>在Python应用中一般将它作为应用服务器配合Nginx使用。</p>
+<h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><p>构建uWSGI,你需要Python和一个C编译器。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ yum update</span><br><span class="line">$ yum groupinstall <span class="string">"Development Tools"</span></span><br><span class="line">$ yum install python</span><br><span class="line">$ yum install python-devel</span><br></pre></td></tr></table></figure></p>
+<p>依赖的环境安装好后，就可以通过<code>pip</code>安装<code>uwsgi</code>了。<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pip install uwsgi</span><br></pre></td></tr></table></figure></p>
+<h3 id="第一个WSGI应用"><a href="#第一个WSGI应用" class="headerlink" title="第一个WSGI应用"></a>第一个WSGI应用</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">application</span><span class="params">(env, start_response)</span>:</span></span><br><span class="line">	start_response(<span class="string">'200 ok'</span>, [(<span class="string">'Content-type'</span>,<span class="string">'text/html'</span>)])</span><br><span class="line">	<span class="keyword">return</span> [<span class="string">b"Hellow World"</span>]</span><br></pre></td></tr></table></figure>
+<p>将其保存为 foobar.py。  </p>
+<p>foorbar.py是个符合WSGI接口规范的应用（入口函数默认是 application）。当uWSGI加载foobar.py文件时会自动去查找application函数并在必要时调用它。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> uwsgi --http :9090 --wsgi-file foorbar.py</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 当你有一个前端web服务器（Nginx）时，不要使用<code>--http</code>，使用<code>--http-socket</code>。</p>
+<p><code>--http</code>参数指定HTTP监听地址和端口，<code>--wsgi-file</code>参数指定WSGI应用的程序入口。</p>
+<p>默认情况下uWSGI启动一个单一的进程和一个单一的线程。你可以通过<code>--processes</code>和<code>--threads</code>开启多个进程和线程。<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> uwsgi --http :9090 --wsgi-file foobar.py --master --processes 4 --threads 2 --stats 127.0.0.1:9191</span></span><br></pre></td></tr></table></figure></p>
+<p>上面例子uWSGI启动了4个应用进程，每个进程有2个线程。并启动了一个 <code>--master</code>主进程，用于监控其他进程状态，如果进程死了将它重启。通过<code>--stats 127.0.0.1:9191</code>你听过浏览器访问<code>127.0.0.1:9191</code>获取JSON格式的应用运行信息。<br>uWSGI提供了工具<a href="https://github.com/xrmx/uwsgitop" target="_blank" rel="noopener"><strong>uwsgitop</strong></a> 用于监控应用运行状态，可以通过<code>pip</code>安装它们。  </p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h3><p>uWSGI支持通过配置启动服务器，这样就不需要在命令行输入一串指令。  （<a href="http://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/Options.html" target="_blank" rel="noopener">uWSGI配置上有上百种</a>）<br>uWSGI支持多中配置文件格式：<code>ini</code>,<code>xml</code>,<code>yaml</code>,<code>json</code>。<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">http</span>=:<span class="number">9090</span></span><br><span class="line"><span class="attr">wsgi-file</span>=server.py</span><br><span class="line"><span class="attr">master</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">4</span></span><br><span class="line"><span class="attr">threads</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9191</span></span><br></pre></td></tr></table></figure></p>
+<p>启动服务：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> uwsgi myapp.ini</span></span><br></pre></td></tr></table></figure></p>
+<p>uWSGI中常用的配置项有：</p>
+<ul>
+<li><strong>chdir</strong> =/opt/myapp #指定项目目录</li>
+<li><strong>socket</strong> =xxx #指定uwsgi的客户端将要连接的socket的路径（使用UNIX socket的情况）或者地址（使用网络地址的情况）</li>
+<li><strong>callable</strong> = xxx #指定WSGI 加载应用那个变量调用。默认是:application</li>
+<li><strong>virtualenv</strong> = /xxx/xxx #指定虚拟环境变量。其他指定字段还有：home,venv,pyhome</li>
+<li><strong>uid</strong> = xxx #指定uWSGI服务器运行时的用户id</li>
+<li><strong>gid</strong> = xxx #指定 uWSGI服务器运行时的用户组id</li>
+<li><strong>procname-prefix-spaced</strong> = xxx #指定工作进程名称的前缀</li>
+<li><strong>daemonize</strong> =%(chdir)/xxx.log # 进程在后台运行，并将日志打印到指定文件</li>
+<li><strong>logfile-chmod</strong> =644 # 指定日志文件的权限</li>
+</ul>
+<p>例子：<br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">chdir</span>=/home/git/www/myapp # 指定项目目录</span><br><span class="line"><span class="attr">home</span>=/home/git/www/myapp/.env # 指定python虚拟环境</span><br><span class="line"><span class="attr">wsgi-file</span>=myqpp.py # 指定加载的WSGI文件</span><br><span class="line"><span class="attr">callable</span>=app # 指定uWSGI加载的模块中哪个变量将被调用</span><br><span class="line"><span class="attr">master</span>=<span class="literal">true</span> # 启动主线程</span><br><span class="line"><span class="attr">processes</span>=<span class="number">4</span> # 设置工作进程的数量</span><br><span class="line"><span class="attr">threads</span>=<span class="number">2</span> # 设置每个工作进程的线程数</span><br><span class="line"><span class="attr">socket</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">8888</span> # 指定socket地址</span><br><span class="line"><span class="attr">vacuum</span>=<span class="literal">true</span> # 当服务器退出时自动删除unix socket文件和pid文件</span><br><span class="line"><span class="attr">logfile-chmod</span>=<span class="number">644</span> # 指定日志文件的权限</span><br><span class="line"><span class="attr">daemonize</span>=%(chdir)/myapp.log # 进程在后台运行，并将日志打印到指定文件</span><br><span class="line"><span class="attr">pidfile</span>=%(chdir)/myqpp.pid # 在失去权限前，将主进程pid写到指定的文件</span><br><span class="line"><span class="attr">stats</span>=%(chdir)/uwsgi.status # uwsgi 运行状态文件</span><br><span class="line"><span class="attr">uid</span>=git # uWSGI服务器运行时的用户id</span><br><span class="line"><span class="attr">gid</span>=git # uWSGI服务器运行时的用户组id</span><br><span class="line"><span class="attr">procname-prefix-spaced</span>=myapp # 指定工作进程名称的前缀</span><br></pre></td></tr></table></figure></p>
+<p>uwsgi操作命令：<br><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ uwsgi uwsgi.ini <span class="comment"># 启动uwsgi服务</span></span><br><span class="line">$ uwsgi --stop myqpp.pid <span class="comment"># 停止uwsgi服务</span></span><br><span class="line">$ uwsgi --connect-and-read uwsgi.status <span class="comment"># 查看uwsgi服务状态一天</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Nginx配置"><a href="#Nginx配置" class="headerlink" title="Nginx配置"></a><a href="http://uwsgi-docs-zh.readthedocs.io/zh_CN/latest/Nginx.html" target="_blank" rel="noopener">Nginx配置</a></h3><p>在配置Nginx前需要将 uWSGI配置文件<code>http</code>换为<code>socket</code><br><figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line"><span class="attr">socket</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">3031</span></span><br><span class="line"><span class="attr">wsgi-file</span>=myapp.py</span><br><span class="line"><span class="attr">master</span>=<span class="literal">true</span></span><br><span class="line"><span class="attr">processes</span>=<span class="number">4</span></span><br><span class="line"><span class="attr">threads</span>=<span class="number">2</span></span><br><span class="line"><span class="attr">stats</span>=<span class="number">127.0</span>.<span class="number">0.1</span>:<span class="number">9191</span></span><br></pre></td></tr></table></figure></p>
+<p>Nginx配置如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location / &#123;</span><br><span class="line">    include uwsgi_params;</span><br><span class="line">    uwsgi_pass 127.0.0.1:3031;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<p>通过配置<code>socket=/tmp/uwsgi.sock</code>,启动uWSGI服务器后，它会自动创建一个”/tmp/uwsgi.sock”文件。在Nginx配置中地址指定这文件。这样我们就不用写死端口。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">location /myapp &#123;</span><br><span class="line">    include uwsgi_params;</span><br><span class="line">    uwsgi_pass unix:/tmp/uwsgi.sock;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="运行Flask应用"><a href="#运行Flask应用" class="headerlink" title="运行Flask应用"></a>运行Flask应用</h3><p>将Flask应用集成进去很简单，只需要在uWSGI配置文件<code>callable</code>指向Flask启动变量。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line">app = Flask(__name__)</span><br><span class="line"></span><br><span class="line"><span class="meta">@app.route('/')</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">index</span><span class="params">()</span>:</span></span><br><span class="line">	<span class="keyword">return</span> <span class="string">'&lt;h1&gt;Hello World&lt;/h1&gt;'</span></span><br></pre></td></tr></table></figure></p>
+<figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[uwsgi]</span></span><br><span class="line">...</span><br><span class="line"><span class="attr">callable</span>=app</span><br></pre></td></tr></table></figure>
+<h2 id="setuptools"><a href="#setuptools" class="headerlink" title="setuptools"></a><a href="https://setuptools.readthedocs.io/en/latest/" target="_blank" rel="noopener">setuptools</a></h2><p>setuptools是python应用的打包和分发工具。通过它你可以将你的应用打包成egg包或tar.gz包。<br>将应用打成压缩包后你就可以方便发布和部署。<br><strong>注意：</strong> 如果你的Python2 &gt;= 2.7.9或Python3 &gt;= 3.4从python.org安装成功的，则你已经在系统上安装了 <strong>pip</strong> 和 <strong>setuptools</strong>。 </p>
+<h3 id="打包Flask应用"><a href="#打包Flask应用" class="headerlink" title="打包Flask应用"></a>打包Flask应用</h3><p>setuptools打包文件名为：setup.py。所有打包规则都写在里面。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> setuptools <span class="keyword">import</span> setup，find_packages</span><br><span class="line"><span class="comment">#find_packages（）自动索引可以引入的Python包 可以传递参数指定搜索包的路径。</span></span><br><span class="line"><span class="comment">#用find_packages(‘src’)就表明只在”src”子目录下搜索所有的Python包</span></span><br><span class="line"></span><br><span class="line">setup(</span><br><span class="line">	name=<span class="string">"MyApp"</span>, <span class="comment"># 应用名</span></span><br><span class="line">	version=<span class="string">'1.0'</span>, <span class="comment"># 版本号</span></span><br><span class="line">	packages=find_packages(exclude=[<span class="string">"*.tests"</span>, <span class="string">"*.tests.*"</span>, <span class="string">"tests.*"</span>, <span class="string">"tests"</span>])， <span class="comment"># 引入安装包并排除测试包</span></span><br><span class="line">	include_package_data= <span class="keyword">True</span>, <span class="comment"># 启用清单文件MANIFEST.in 这个文件一般指明非python代码但应用会使用的静态文件</span></span><br><span class="line">	zip_safe=<span class="keyword">False</span>, <span class="comment">#不将应用以zip压缩</span></span><br><span class="line">	exclude_package_date=&#123;<span class="string">''</span>:[<span class="string">'.gitignore'</span>]&#125;， <span class="comment">#排除项目上指定的文件</span></span><br><span class="line">   	install_requires=[    <span class="comment"># 依赖列表</span></span><br><span class="line">       	<span class="string">'Flask&gt;=0.10'</span>,</span><br><span class="line">       	<span class="string">'Flask-SQLAlchemy&gt;=1.5,&lt;=2.1'</span></span><br><span class="line">    	]，</span><br><span class="line"></span><br><span class="line">    author = <span class="string">"Billy He"</span>,</span><br><span class="line">    author_email = <span class="string">"billy@bjhee.com"</span>,</span><br><span class="line">    description = <span class="string">"This is a sample package"</span>,</span><br><span class="line">    license = <span class="string">"MIT"</span>,</span><br><span class="line">    keywords = <span class="string">"hello world example"</span>,</span><br><span class="line">    url = <span class="string">"http://example.com/HelloWorld/"</span>,   <span class="comment"># 项目主页</span></span><br><span class="line">    long_description=__doc__,   <span class="comment"># 从代码中获取文档注释</span></span><br><span class="line">)</span><br></pre></td></tr></table></figure></p>
+<p>MANIFEST.in 文件：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">recursive-include yourapplication/templates *</span><br><span class="line">recursive-include yourapplication/static *</span><br></pre></td></tr></table></figure></p>
+<h3 id="安装执行文件"><a href="#安装执行文件" class="headerlink" title="安装执行文件"></a>安装执行文件</h3><p>创建egg包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python setup.py bdist_egg</span></span><br></pre></td></tr></table></figure></p>
+<p>该命令将在当前目录下<strong>dist</strong> 创建一个egg文件。文件名格式是：<strong>应用-版本号-Python版本.egg</strong><br><strong>注意：</strong> python的egg 是一个包含所有包数据的文件包，类式Java的jar文件，是个工程打包文件，便于安装部署。</p>
+<p>创建tar.gz包<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python setup.py sdist --formats=gztar</span></span><br></pre></td></tr></table></figure></p>
+<p>创建的文件类型是tar.gz</p>
+<p>安装应用<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> python setup.py install</span></span><br></pre></td></tr></table></figure></p>
+<p>将应用安装到当前Python环境的 <strong>site-packages</strong>目录下。这样其他应该就可以像导入标准库一样导入它。 </p>
+<h2 id="Fabric3"><a href="#Fabric3" class="headerlink" title="Fabric3"></a><a href="https://pypi.python.org/pypi/Fabric3" target="_blank" rel="noopener">Fabric3</a></h2><p><a href="http://www.fabfile.org/" target="_blank" rel="noopener">Fabric</a>是一个Python写的SSH任务管理库。它可以实现Python应用的自动打包发布部署。<br>Fabric3是最新的python(2.7或3.4+）版本。它和Fabric无法共存，但保存对Python2的兼容。</p>
+<h3 id="安装-1"><a href="#安装-1" class="headerlink" title="安装"></a>安装</h3><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> pip uninstall Fabric</span></span><br><span class="line"><span class="meta">$</span><span class="bash"> pip install Fabric3</span></span><br></pre></td></tr></table></figure>
+<h3 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a>Hello world</h3><p>Fabric默认会去查找目录下 <strong>fabfile.py</strong> 文件，如果你的配置文件名不是这可以通过 <strong>-f</strong> 传递给 Fabric。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">()</span>:</span></span><br><span class="line">	print(<span class="string">'Hello world!'</span>)</span><br><span class="line">``` </span><br><span class="line">```shell</span><br><span class="line">$ fab hello</span><br><span class="line">Hello world!</span><br><span class="line"></span><br><span class="line">Done.</span><br></pre></td></tr></table></figure></p>
+<p>你也可以向放传递参数：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">hello</span><span class="params">(name=<span class="string">"world"</span>)</span>:</span></span><br><span class="line">	print(<span class="string">"Hello %s!"</span> % name)</span><br></pre></td></tr></table></figure></p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">$</span><span class="bash"> fab hello:name=Fynn</span></span><br><span class="line">Hello Fynn!</span><br><span class="line"></span><br><span class="line">Done.</span><br></pre></td></tr></table></figure>
+<h3 id="环境变量"><a href="#环境变量" class="headerlink" title="环境变量"></a><a href="http://docs.fabfile.org/en/latest/usage/env.html" target="_blank" rel="noopener">环境变量</a></h3><p>Fabric中的<code>env</code>变量是个Python字典，用于设定Fabric中配置值。常用来设置远程服务器域名和SSH账号。</p>
+<ul>
+<li>env.host<ul>
+<li>Default:None</li>
+<li>设定一个域名的字符串</li>
+</ul>
+</li>
+<li>env.hosts<ul>
+<li>Default:[]</li>
+<li>设定一组域名的字符串（域名部分）</li>
+</ul>
+</li>
+<li>env.password<ul>
+<li>Default:None</li>
+<li>设定SSH账户密码</li>
+</ul>
+</li>
+<li>env.passwords<ul>
+<li>Default:{}</li>
+<li>设定一组远程服务器SSH账户密码。key是完整的域名(<a href="http://docs.fabfile.org/en/1.14/usage/execution.html#host-strings" target="_blank" rel="noopener">env.host_string</a>)，value是密码</li>
+</ul>
+</li>
+<li>env.port<ul>
+<li>Default: None</li>
+<li>设定远程服务器端口</li>
+</ul>
+</li>
+</ul>
+<h3 id="常用API"><a href="#常用API" class="headerlink" title="常用API"></a>常用API</h3><ul>
+<li>local: 执行本地命令，例如：<code>local(&#39;ls -la&#39;)</code></li>
+<li>run: 执行远程命令，例如: <code>run(&#39;ls -la&#39;)</code></li>
+<li>lcd: 切换本地目录</li>
+<li>cd: 切换远程目录</li>
+<li>put:上传本地文件到远程主机</li>
+<li>get: 从远程主机下载文件到本地</li>
+<li>reboot: 重启远程主机。reboot()</li>
+<li>sudo: sudo执行远程命令</li>
+<li>@task : 函数装饰器，装饰的函数fab才能调用</li>
+<li>@runs_once : 函数装饰器，装饰的函数只执行一次</li>
+</ul>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a><a href="http://docs.jinkan.org/docs/flask/patterns/fabric.html" target="_blank" rel="noopener">例子</a></h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> fabric.api <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="comment"># 远程服务器登陆使用的用户名</span></span><br><span class="line">env.user = <span class="string">'appuser'</span></span><br><span class="line"><span class="comment"># 需要进行操作的服务器地址</span></span><br><span class="line">env.hosts = [<span class="string">'server1.example.com'</span>, <span class="string">'server2.example.com'</span>]</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">pack</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 以 tar 归档的方式创建一个新的代码分发</span></span><br><span class="line">    local(<span class="string">'python setup.py sdist --formats=gztar'</span>, capture=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">deploy</span><span class="params">()</span>:</span></span><br><span class="line">    <span class="comment"># 之处发布产品的名称和版本</span></span><br><span class="line">    dist = local(<span class="string">'python setup.py --fullname'</span>, capture=<span class="keyword">True</span>).strip()</span><br><span class="line">    <span class="comment"># 将代码归档上传到服务器当中的临时文件夹内</span></span><br><span class="line">    put(<span class="string">'dist/%s.tar.gz'</span> % dist, <span class="string">'/tmp/yourapplication.tar.gz'</span>)</span><br><span class="line">    <span class="comment"># 创建一个文件夹，进入这个文件夹，然后将我们的归档解压到那里</span></span><br><span class="line">    run(<span class="string">'mkdir /tmp/yourapplication'</span>)</span><br><span class="line">    <span class="keyword">with</span> cd(<span class="string">'/tmp/yourapplication'</span>):</span><br><span class="line">        run(<span class="string">'tar xzf /tmp/yourapplication.tar.gz'</span>)</span><br><span class="line">        <span class="comment"># 使用我们虚拟环境下的 Python 解释器安装我们的包</span></span><br><span class="line">        run(<span class="string">'/var/www/yourapplication/env/bin/python setup.py install'</span>)</span><br><span class="line">    <span class="comment"># 现在我们的代码已经部署成功了，可以删除这个文件夹了</span></span><br><span class="line">    run(<span class="string">'rm -rf /tmp/yourapplication /tmp/yourapplication.tar.gz'</span>)</span><br><span class="line">    <span class="comment"># 最终生成 .wsgi 文件，以便于 mod_wsgi 重新加载应用程序</span></span><br><span class="line">    run(<span class="string">'touch /var/www/yourapplication.wsgi'</span>)</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://docs.fabfile.org/en/1.14/index.html" target="_blank" rel="noopener">http://docs.fabfile.org/en/1.14/index.html</a><br><a href="https://uwsgi-docs.readthedocs.io/en/latest/index.html#" target="_blank" rel="noopener">https://uwsgi-docs.readthedocs.io/en/latest/index.html#</a><br><a href="https://henulwj.github.io/2016/04/20/uwsgi-common-use-parameters/" target="_blank" rel="noopener">https://henulwj.github.io/2016/04/20/uwsgi-common-use-parameters/</a><br><a href="http://yansu.org/2013/06/07/learn-python-setuptools-in-detail.html" target="_blank" rel="noopener">http://yansu.org/2013/06/07/learn-python-setuptools-in-detail.html</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/02/04/Flask部署/">https://fynn90.github.io/2018/02/04/Flask部署/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Flask/">Flask</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/04/12/swift语法学习笔记/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Swift语法笔记</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/02/01/PIL入门教程/">
+        <span class="next-text nav-default">PIL入门</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

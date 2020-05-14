@@ -1,0 +1,503 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="PIL入门"/>
+
+
+
+
+  <meta name="keywords" content="PIL, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/02/01/PIL入门教程/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> PIL入门 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          PIL入门
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-02-01
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/python/">python</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/02/01/PIL入门教程/"
+             data-title="PIL入门">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#概念"><span class="toc-text">概念</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#波段"><span class="toc-text">波段</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#模式"><span class="toc-text">模式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#大小"><span class="toc-text">大小</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#坐标体系"><span class="toc-text">坐标体系</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#API"><span class="toc-text">API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Image模块"><span class="toc-text">Image模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL-Image-new-mode-size-color-0-gt-image"><span class="toc-text">PIL.Image.new(mode, size, color=0)=&gt;image</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL-Image-open-fp-mode-’r’-gt-image"><span class="toc-text">PIL.Image.open(fp, mode=’r’)=&gt;image</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL-Image-alpha-composite-im1-im2-gt-image"><span class="toc-text">PIL.Image.alpha_composite(im1, im2)=&gt;image</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Image-copy-gt-Image"><span class="toc-text">Image.copy()=&gt;Image</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Image-crop-box-None-gt-image"><span class="toc-text">Image.crop(box=None)=&gt;image</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageDraw模块"><span class="toc-text">ImageDraw模块</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL-ImageDraw-Draw-image-mode-None-gt-Draw-image"><span class="toc-text">PIL.ImageDraw.Draw(image, mode=None)=&gt; Draw image</span></a><ol class="toc-child"><li class="toc-item toc-level-5"><a class="toc-link" href="#PIL-ImageDraw-ImageDraw-text-xy-text-fill-None-font-None-anchor-None-spacing-0-align-”left”-direction-None-features-None"><span class="toc-text">PIL.ImageDraw.ImageDraw.text(xy, text, fill=None, font=None, anchor=None, spacing=0, align=”left”, direction=None, features=None)</span></a></li><li class="toc-item toc-level-5"><a class="toc-link" href="#PIL-ImageDraw-ImageDraw-textsize-text-font-None-spacing-4-direction-None-features-None"><span class="toc-text">PIL.ImageDraw.ImageDraw.textsize(text, font=None, spacing=4, direction=None, features=None)</span></a></li></ol></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ImageFont"><span class="toc-text">ImageFont</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#PIL-ImageFont-truetype-font-None-size-10-index-0-encoding-’’-layout-engine-None-gt-font"><span class="toc-text">PIL.ImageFont.truetype(font=None, size=10, index=0, encoding=’’, layout_engine=None)=&gt;font</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#图片缩放"><span class="toc-text">图片缩放</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#添加中文水印"><span class="toc-text">添加中文水印</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#图片截取翻转"><span class="toc-text">图片截取翻转</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><code>PIL</code>是<code>Python</code>中长用的图像处理库。但是它更新较慢，现在都是使用它的一个分支<a href="https://pillow.readthedocs.io/en/latest/index.html" target="_blank" rel="noopener"><code>Pillow</code></a>。<br><code>Pillow</code>继承了<code>PIL</code>接口并提供能更多功能。<br><a id="more"></a> </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install Pillow</span><br></pre></td></tr></table></figure>
+<p><code>Pillow</code>和<code>PIL</code>不能共存，在安装<code>Pillow</code>之前请先卸载<code>PIL</code>。最新版本 <code>Pillow</code>版本是5.0.0支持<code>Python</code>版本是2.7，3.4，3.5，3.6。</p>
+<h2 id="概念"><a href="#概念" class="headerlink" title="概念"></a>概念</h2><p><code>Pillow</code>用于处理栅格化的图像，也就是像素矩阵。</p>
+<h3 id="波段"><a href="#波段" class="headerlink" title="波段"></a>波段</h3><p>图像可以由一个或多个波段数据组成。PIL能使你可以在单个图像中存储多个波段，前提是它们都具有相同的尺寸和深度。例如，一个 PNG图像拥有 R（红）,G（蓝）,B（绿）,A（透明度）四个波段值。你可以对每个波段值进行操作，从而改变图片整体样子。通过<a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.Image.getbands" target="_blank" rel="noopener"><code>getbands</code></a>获取波段类型。</p>
+<h3 id="模式"><a href="#模式" class="headerlink" title="模式"></a>模式</h3><p>图像的模式定义图像像素的类型和深度。当前版本支持一下标准的模式：</p>
+<ul>
+<li>1 (1-bit pixels, black and white, stored with one pixel per byte) 黑白二值模式</li>
+<li>L (8-bit pixels, black and white) 黑白灰度模式</li>
+<li>P (8-bit pixels, mapped to any other mode using a colour palette) 调色板（索引）模式</li>
+<li>RGB (3x8-bit pixels, true colour) RGB真彩色</li>
+<li>RGBA (4x8-bit pixels, true colour with transparency mask) RGBA真彩色</li>
+<li>CMYK (4x8-bit pixels, colour separation) CMYK模式，一种套色模式</li>
+<li>YCbCr (3x8-bit pixels, colour video format)</li>
+<li>I (32-bit signed integer pixels) 有符号整数像素</li>
+<li>F (32-bit floating point pixels) 浮点数像素</li>
+</ul>
+<h3 id="大小"><a href="#大小" class="headerlink" title="大小"></a>大小</h3><p>通过<code>image</code>的size属性可以获取图片的大小（两个值得元组（width,height））。</p>
+<h2 id="坐标体系"><a href="#坐标体系" class="headerlink" title="坐标体系"></a>坐标体系</h2><p>PIL使用得是笛卡尔坐标系统。(0,0)在左边顶部，以(0,0)向右延伸是X轴正向而向下延伸是Y轴正向。<br>矩阵通常是个4-源矩阵，例如：800*600像素的图像矩阵元组是(0,0,800,600)。</p>
+<h2 id="API"><a href="#API" class="headerlink" title="API"></a>API</h2><p><code>Pillow</code>拥有十几个模块通过这些模块可以对图片进行：剪辑，反转，合并，添加文字等变化。  </p>
+<h3 id="Image模块"><a href="#Image模块" class="headerlink" title="Image模块"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html" target="_blank" rel="noopener">Image模块</a></h3><p><code>from PIL import Image</code>,Image是<code>Pillow</code>最基础的模块，通过它可以读取或创建一个image实例，有了这image实例你才能对图像进行各种操作。</p>
+<h4 id="PIL-Image-new-mode-size-color-0-gt-image"><a href="#PIL-Image-new-mode-size-color-0-gt-image" class="headerlink" title="PIL.Image.new(mode, size, color=0)=&gt;image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.new" target="_blank" rel="noopener">PIL.Image.new(mode, size, color=0)=&gt;image</a></h4><p>通过Image的new 方法你可以获取一个空白的image图像。你需要确定这个image的模式（mode）、大小（size）,底色(color)</p>
+<h4 id="PIL-Image-open-fp-mode-’r’-gt-image"><a href="#PIL-Image-open-fp-mode-’r’-gt-image" class="headerlink" title="PIL.Image.open(fp, mode=’r’)=&gt;image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.open" target="_blank" rel="noopener">PIL.Image.open(fp, mode=’r’)=&gt;image</a></h4><p>打开并识别给定的图像。你可以获得图像的大小，模式，类型。它不会读取完整的图片信息只是读取文件头。load方法可以获得完整的图片信息。<br>fp可也为一个文件路径或一个文件对象。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line">im = Image.open(<span class="string">'ex1.jpg'</span>)</span><br><span class="line">print(im.size,im.mode,im.format)</span><br><span class="line"><span class="comment"># (600,800),RGB,JPEG</span></span><br></pre></td></tr></table></figure></p>
+<h4 id="PIL-Image-alpha-composite-im1-im2-gt-image"><a href="#PIL-Image-alpha-composite-im1-im2-gt-image" class="headerlink" title="PIL.Image.alpha_composite(im1, im2)=&gt;image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.alpha_composite" target="_blank" rel="noopener">PIL.Image.alpha_composite(im1, im2)=&gt;image</a></h4><p>将im2覆盖在im1上。<br>im1图像必选是RGBA模式，并且im2图像大小和im1一样。</p>
+<h4 id="Image-copy-gt-Image"><a href="#Image-copy-gt-Image" class="headerlink" title="Image.copy()=&gt;Image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.Image.copy" target="_blank" rel="noopener">Image.copy()=&gt;Image</a></h4><p>拷贝一个Image副本，保留原图片。</p>
+<h4 id="Image-crop-box-None-gt-image"><a href="#Image-crop-box-None-gt-image" class="headerlink" title="Image.crop(box=None)=&gt;image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/Image.html#PIL.Image.Image.crop" target="_blank" rel="noopener">Image.crop(box=None)=&gt;image</a></h4><p>传递一个矩阵区域，获取对应的Image。</p>
+<h3 id="ImageDraw模块"><a href="#ImageDraw模块" class="headerlink" title="ImageDraw模块"></a><a href="https://pillow.readthedocs.io/en/latest/reference/ImageDraw.html" target="_blank" rel="noopener">ImageDraw模块</a></h3><p>ImageDraw模块为Image图像提供了2D绘图，你可以使用这个模块创建图像、注释或者润饰已经存在的图像，快速生成用于Web的图形。<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw</span><br><span class="line"></span><br><span class="line">im = Image.open(<span class="string">"hopper.jpg"</span>)</span><br><span class="line"></span><br><span class="line">draw = ImageDraw.Draw(im)</span><br><span class="line">draw.line((<span class="number">0</span>, <span class="number">0</span>) + im.size, fill=<span class="number">128</span>)</span><br><span class="line">draw.line((<span class="number">0</span>, im.size[<span class="number">1</span>], im.size[<span class="number">0</span>], <span class="number">0</span>), fill=<span class="number">128</span>)</span><br><span class="line"><span class="keyword">del</span> draw</span><br><span class="line"></span><br><span class="line"><span class="comment"># write to stdout</span></span><br><span class="line">im.save(sys.stdout, <span class="string">"PNG"</span>)</span><br></pre></td></tr></table></figure></p>
+<h4 id="PIL-ImageDraw-Draw-image-mode-None-gt-Draw-image"><a href="#PIL-ImageDraw-Draw-image-mode-None-gt-Draw-image" class="headerlink" title="PIL.ImageDraw.Draw(image, mode=None)=&gt; Draw image"></a><a href="https://pillow.readthedocs.io/en/latest/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.Draw" target="_blank" rel="noopener">PIL.ImageDraw.Draw(image, mode=None)=&gt; Draw image</a></h4><p>用给定的图像(image)创建一个绘图对象(Draw image)。<br>在这个绘图对象你可以添加文字或贴图。</p>
+<h5 id="PIL-ImageDraw-ImageDraw-text-xy-text-fill-None-font-None-anchor-None-spacing-0-align-”left”-direction-None-features-None"><a href="#PIL-ImageDraw-ImageDraw-text-xy-text-fill-None-font-None-anchor-None-spacing-0-align-”left”-direction-None-features-None" class="headerlink" title="PIL.ImageDraw.ImageDraw.text(xy, text, fill=None, font=None, anchor=None, spacing=0, align=”left”, direction=None, features=None)"></a><a href="https://pillow.readthedocs.io/en/latest/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.text" target="_blank" rel="noopener">PIL.ImageDraw.ImageDraw.text(xy, text, fill=None, font=None, anchor=None, spacing=0, align=”left”, direction=None, features=None)</a></h5><p>在给定的位置上绘制字符串。</p>
+<ul>
+<li><strong>xy</strong> 字符串的坐标</li>
+<li><strong>text</strong> 字符串内容</li>
+<li><strong>fill</strong> 字符串的颜色</li>
+<li><strong>font</strong> 一个<code>ImageFont</code>对象，字符串使用的显示字体。</li>
+<li><strong>align</strong> 字符串对齐方式 ‘left’,’center’,’right’。 </li>
+</ul>
+<h5 id="PIL-ImageDraw-ImageDraw-textsize-text-font-None-spacing-4-direction-None-features-None"><a href="#PIL-ImageDraw-ImageDraw-textsize-text-font-None-spacing-4-direction-None-features-None" class="headerlink" title="PIL.ImageDraw.ImageDraw.textsize(text, font=None, spacing=4, direction=None, features=None)"></a><a href="https://pillow.readthedocs.io/en/5.0.0/reference/ImageDraw.html#PIL.ImageDraw.PIL.ImageDraw.ImageDraw.textsize" target="_blank" rel="noopener">PIL.ImageDraw.ImageDraw.textsize(text, font=None, spacing=4, direction=None, features=None)</a></h5><p>返回字符串所占空间的大小的（w,h）元组。</p>
+<ul>
+<li><strong>text</strong> 字符串内容</li>
+<li><strong>font</strong> 一个<code>ImageFont</code>对象， </li>
+</ul>
+<h3 id="ImageFont"><a href="#ImageFont" class="headerlink" title="ImageFont"></a><a href="https://pillow.readthedocs.io/en/latest/reference/ImageFont.html" target="_blank" rel="noopener">ImageFont</a></h3><p><code>ImageFont</code>模块拥有一个同名的类。根据这个类的方法可以创建一个指定字符串大小和字体的imageFont实例。这个实例传递个<code>PIL.ImageDraw.text()</code>使用。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> ImageFont, ImageDraw</span><br><span class="line"></span><br><span class="line">draw = ImageDraw.Draw(image)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use a bitmap font</span></span><br><span class="line">font = ImageFont.load(<span class="string">"arial.pil"</span>)</span><br><span class="line"></span><br><span class="line">draw.text((<span class="number">10</span>, <span class="number">10</span>), <span class="string">"hello"</span>, font=font)</span><br><span class="line"></span><br><span class="line"><span class="comment"># use a truetype font</span></span><br><span class="line">font = ImageFont.truetype(<span class="string">"arial.ttf"</span>, <span class="number">15</span>)</span><br><span class="line"></span><br><span class="line">draw.text((<span class="number">10</span>, <span class="number">25</span>), <span class="string">"world"</span>, font=font)</span><br></pre></td></tr></table></figure>
+<h4 id="PIL-ImageFont-truetype-font-None-size-10-index-0-encoding-’’-layout-engine-None-gt-font"><a href="#PIL-ImageFont-truetype-font-None-size-10-index-0-encoding-’’-layout-engine-None-gt-font" class="headerlink" title="PIL.ImageFont.truetype(font=None, size=10, index=0, encoding=’’, layout_engine=None)=&gt;font"></a><a href="https://pillow.readthedocs.io/en/5.0.0/reference/ImageFont.html#PIL.ImageFont.truetype" target="_blank" rel="noopener">PIL.ImageFont.truetype(font=None, size=10, index=0, encoding=’’, layout_engine=None)=&gt;font</a></h4><ul>
+<li><strong>font</strong> 载入一个TrueType和OpenType字体文件，创建一个字体对象</li>
+<li><strong>size</strong> 指定字体大小</li>
+</ul>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><h3 id="图片缩放"><a href="#图片缩放" class="headerlink" title="图片缩放"></a>图片缩放</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> os, sys</span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">print(sys.argv[<span class="number">1</span>:])</span><br><span class="line"><span class="keyword">for</span> infile <span class="keyword">in</span> sys.argv[<span class="number">1</span>:]:</span><br><span class="line">    outfile = os.path.splitext(infile)[<span class="number">0</span>] + <span class="string">'.thumbnail'</span>+ os.path.splitext(infile)[<span class="number">1</span>]</span><br><span class="line">    <span class="keyword">if</span> infile != outfile:</span><br><span class="line">        im = Image.open(infile)</span><br><span class="line">        x, y = im.size</span><br><span class="line">        print(os.path.splitext(infile)[<span class="number">0</span>],infile,outfile,x,y)        </span><br><span class="line">        im.thumbnail((x/<span class="number">2</span>, y/<span class="number">2</span>))</span><br><span class="line">        im.save(outfile, im.format) </span><br><span class="line"></span><br><span class="line"><span class="comment"># python thumbnail.py e1.png e2.png e3.png</span></span><br></pre></td></tr></table></figure>
+<p>接受命令行传递进去的图片文字，取得图片名字和大小。按原来50%比例缩放。</p>
+<h3 id="添加中文水印"><a href="#添加中文水印" class="headerlink" title="添加中文水印"></a>添加中文水印</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># -*- coding: UTF-8 -*-</span></span><br><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image, ImageDraw, ImageFont</span><br><span class="line"></span><br><span class="line">font = ImageFont.truetype(<span class="string">'simsun.ttc'</span>,<span class="number">24</span>) <span class="comment"># 创建一个font对象并指定大小</span></span><br><span class="line">base = Image.open(<span class="string">'e3.jpg'</span>).convert(<span class="string">'RGBA'</span>) <span class="comment"># 打开一个图片，并将其转换为RGBA模式</span></span><br><span class="line">txt = Image.new(<span class="string">'RGBA'</span>, base.size, (<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>,<span class="number">0</span>)) <span class="comment">#创建文本image 白底透明</span></span><br><span class="line">text = <span class="string">"你好！"</span></span><br><span class="line">draw = ImageDraw.Draw(txt) <span class="comment"># 创建一个可绘画得image对象</span></span><br><span class="line">draw.text((<span class="number">20</span>, <span class="number">20</span>),text, fill=(<span class="number">255</span>,<span class="number">255</span>,<span class="number">255</span>),font=font) </span><br><span class="line">out = Image.alpha_composite(base, txt)</span><br><span class="line"></span><br><span class="line">out.show()</span><br></pre></td></tr></table></figure>
+<h3 id="图片截取翻转"><a href="#图片截取翻转" class="headerlink" title="图片截取翻转"></a>图片截取翻转</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> PIL <span class="keyword">import</span> Image</span><br><span class="line"></span><br><span class="line">imageFName = <span class="string">'e3.jpg'</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">image_transpose</span><span class="params">(image)</span>:</span> </span><br><span class="line">    xsize, ysize = image.size</span><br><span class="line">    xsizeLeft = xsize//<span class="number">2</span> <span class="comment">#获得一个整数</span></span><br><span class="line"></span><br><span class="line">    boxLeft = (<span class="number">0</span>, <span class="number">0</span>, xsizeLeft, ysize)</span><br><span class="line">    boxRight = (xsizeLeft, <span class="number">0</span>, xsize, ysize)</span><br><span class="line">    boxLeftNew = (<span class="number">0</span>,<span class="number">0</span>,xsizeLeft,ysize)</span><br><span class="line">    boxRightNew = (xsizeLeft, <span class="number">0</span>, xsize, ysize)</span><br><span class="line"></span><br><span class="line">    partLeft = image.crop(boxLeft).transpose(Image.FLIP_LEFT_RIGHT).transpose(Image.ROTATE_180)</span><br><span class="line">    partRight = image.crop(boxRight)</span><br><span class="line"></span><br><span class="line">    image.paste(partRight,boxLeftNew)</span><br><span class="line">    image.paste(partLeft, boxRightNew)</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> image</span><br><span class="line"></span><br><span class="line">avatar = Image.open(imageFName)</span><br><span class="line">avatar = image_transpose(avatar)</span><br><span class="line">avatar.show()</span><br></pre></td></tr></table></figure>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://pillow.readthedocs.io/en/5.0.0/index.html" target="_blank" rel="noopener">https://pillow.readthedocs.io/en/5.0.0/index.html</a><br><a href="https://www.gitbook.com/book/mr-zhao/pil/details" target="_blank" rel="noopener">https://www.gitbook.com/book/mr-zhao/pil/details</a><br><a href="https://liam0205.me/2015/04/22/pil-tutorial-basic-usage/" target="_blank" rel="noopener">https://liam0205.me/2015/04/22/pil-tutorial-basic-usage/</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/02/01/PIL入门教程/">https://fynn90.github.io/2018/02/01/PIL入门教程/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/PIL/">PIL</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/02/04/Flask部署/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Flask部署</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/31/React Native入门手册/">
+        <span class="next-text nav-default">React Native入门</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

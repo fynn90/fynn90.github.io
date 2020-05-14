@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JavaScript操作Excel文件"/>
+
+
+
+
+  <meta name="keywords" content="Script, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/01/18/使用JS操作Excel/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> JavaScript操作Excel文件 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript操作Excel文件
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-01-18
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/Script/">Script</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/01/18/使用JS操作Excel/"
+             data-title="JavaScript操作Excel文件">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#读取xlsx文件"><span class="toc-text">读取xlsx文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#写xlsx文件"><span class="toc-text">写xlsx文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发送excel文件"><span class="toc-text">发送excel文件</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>最近写了一个脚本使用JS读取Excel的数据后进行随机组合排列后再写入Excel文件。使用到了<a href="https://github.com/mgcrea/node-xlsx" target="_blank" rel="noopener"><strong>node-xlsx</strong></a> 库用于操作Excel文件。为什么没有使用大名鼎鼎的<a href="https://github.com/SheetJS/js-xlsx" target="_blank" rel="noopener"><strong>js-xlsx</strong></a>，是因为发现<strong>node-xlsx</strong>其实是依赖于<strong>js-xlsx</strong>的，它对<strong>js-xlsx</strong>接口进行了封装对使用者更友好些，特别是读取Excel文件解析后的数据格式更友好些。<br><a id="more"></a></p>
+<h2 id="读取xlsx文件"><a href="#读取xlsx文件" class="headerlink" title="读取xlsx文件"></a>读取xlsx文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#!/usr/local/bin node</span></span><br><span class="line"><span class="keyword">const</span> xlsx = <span class="built_in">require</span>(<span class="string">"node-xlsx"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> XLSX = path.join(__dirname, <span class="string">'随机名单.xlsx'</span>); <span class="comment">// 获取xlsx文件路径</span></span><br><span class="line"><span class="keyword">let</span> xlsxData = xlsx.parse(fs.readFileSync(XLSX)); <span class="comment">// 解析xlsx文件数据</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/01/18/5c413f5c02ed7.jpeg" alt=""></p>
+<p>读取后的数据是个数组类型，每个数组项代表Excel中的一张表。<code>name</code>是表名，<code>data</code>是表数据。</p>
+<p><img src="https://i.loli.net/2019/01/18/5c41417408226.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/01/18/5c41413715aa2.png" alt=""></p>
+<p>如上图，<code>data</code>数据格式是个数组，每个数组项式是表中的一行数据。</p>
+<p><img src="https://i.loli.net/2019/01/18/5c41424b680d8.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/01/18/5c414256b9d27.png" alt=""></p>
+<p>如上图，如果有单元格合并，解析的数据会留空位置（<code>undefined</code>）对应表格中的被合并的单元格。</p>
+<h2 id="写xlsx文件"><a href="#写xlsx文件" class="headerlink" title="写xlsx文件"></a>写xlsx文件</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> xlsx = <span class="built_in">require</span>(<span class="string">"node-xlsx"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">'path'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> data = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">null</span>, <span class="string">'sheetjs'</span>], [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2014-02-19T14:30Z'</span>), <span class="string">'0.3'</span>], [<span class="string">'baz'</span>, <span class="literal">null</span>, <span class="string">'qux'</span>]];</span><br><span class="line"><span class="keyword">const</span> range = &#123;<span class="attr">s</span>: &#123;<span class="attr">c</span>: <span class="number">0</span>, <span class="attr">r</span>:<span class="number">0</span> &#125;, <span class="attr">e</span>: &#123;<span class="attr">c</span>:<span class="number">0</span>, <span class="attr">r</span>:<span class="number">3</span>&#125;&#125;; <span class="comment">// 合并单元格</span></span><br><span class="line"><span class="keyword">const</span> option = &#123;<span class="string">'!merges'</span>: [ range ]&#125;; <span class="comment">// 配置写入项 !merges表示合并单元格</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> buffer = xlsx.build([&#123;<span class="attr">name</span>: <span class="string">"mySheetName"</span>, <span class="attr">data</span>: data&#125;], option); <span class="comment">// Returns a buffer</span></span><br><span class="line">fs.writeFileSync(path.join(__dirname，<span class="string">'./test.xlsx'</span>), buffer); <span class="comment">// 写入数据</span></span><br></pre></td></tr></table></figure>
+<p>在<strong>js-xlsx</strong>中，一个单元格的对象的位置有<code>{c:C, r:R}</code>表示，<code>c</code>表示列（column）的位置,<code>r</code>表示行(row)位置。</p>
+<p><code>A1</code>的单元格坐标是<code>{c:0,r:0}</code>。</p>
+<p><code>{s:{c:C, r: R}, e: {c:C1, r:R1}}</code>表示单元格区间，<code>s</code>表示起始单元格，<code>e</code>表示最后一个单元格。</p>
+<p><code>{s: {c: 0, r: 0}, e: {c: 0, r: 3}}</code>表示<code>A1:A4</code>单元格区间。</p>
+<h2 id="发送excel文件"><a href="#发送excel文件" class="headerlink" title="发送excel文件"></a>发送excel文件</h2><p>发送excel文件到浏览器端的关键是设置好 header 的 Content-Type 值。</p>
+<p>对于excel，Content-Type有如下两种：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// .xls 文件</span></span><br><span class="line">application/vnd.ms-excel</span><br><span class="line"></span><br><span class="line"><span class="comment">// .xlsx 文件</span></span><br><span class="line">application/vnd.openxmlformats-officedocument.spreadsheetml.sheet</span><br></pre></td></tr></table></figure>
+<p>下面以restify为例写一段demo：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">et restify = <span class="built_in">require</span>(<span class="string">'restify'</span>),</span><br><span class="line">    xlsx = <span class="built_in">require</span>(<span class="string">'node-xlsx'</span>);</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> app = restify.createServer(&#123;</span><br><span class="line">    name: <span class="string">'demo-xlsx'</span>,</span><br><span class="line">    version: <span class="string">'1.0.0'</span></span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 访问 http://127.0.0.1:8001/test，即下载myfile.xlsx文件</span></span><br><span class="line">app.get(<span class="string">'/test'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">req, res, next</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">const</span> data = [[<span class="number">1</span>, <span class="number">2</span>, <span class="number">3</span>], [<span class="literal">true</span>, <span class="literal">false</span>, <span class="literal">null</span>, <span class="string">'sheetjs'</span>], [<span class="string">'foo'</span>, <span class="string">'bar'</span>, <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="string">'2014-02-19T14:30Z'</span>), <span class="string">'0.3'</span>], [<span class="string">'baz'</span>, <span class="literal">null</span>, <span class="string">'qux'</span>]];</span><br><span class="line">    <span class="keyword">return</span> sendExcel(res, data, <span class="string">'sheet表名'</span>, <span class="string">'myfile'</span>);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">app.listen(<span class="number">8001</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log(app.name, <span class="string">'Start listening at %s'</span>, app.url);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * 写入Excel</span></span><br><span class="line"><span class="comment"> * @param res            Response对象</span></span><br><span class="line"><span class="comment"> * @param xlsxData       xlsx数组</span></span><br><span class="line"><span class="comment"> * @param sheetName      excel表名</span></span><br><span class="line"><span class="comment"> * @param xlsxFileName   excel文件名（备注：不要使用中文）</span></span><br><span class="line"><span class="comment"> */</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">sendExcel</span>(<span class="params">res, xlsxData, sheetName, xlsxFileName</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">try</span> &#123;</span><br><span class="line">        <span class="keyword">let</span> buffer = xlsx.build([&#123;<span class="attr">name</span>: sheetName, <span class="attr">data</span>: xlsxData&#125;]);</span><br><span class="line">        <span class="keyword">let</span> xlsxContentType = <span class="string">'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'</span>;  <span class="comment">// For Excel2007 and above .xlsx files</span></span><br><span class="line"></span><br><span class="line">        res.setHeader(<span class="string">'Content-Type'</span>, xlsxContentType);</span><br><span class="line">        res.setHeader(<span class="string">'Content-Disposition'</span>, <span class="string">`attachment; filename=<span class="subst">$&#123;xlsxFileName&#125;</span>.xlsx`</span>);</span><br><span class="line">        res.writeHead(<span class="number">200</span>);</span><br><span class="line">        res.end(buffer);</span><br><span class="line">    &#125; <span class="keyword">catch</span> (err) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'mistake to build excel'</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/01/18/使用JS操作Excel/">https://fynn90.github.io/2019/01/18/使用JS操作Excel/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Script/">Script</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/02/11/Xcode快捷键/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Xcode快捷键</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/01/05/Canvas动画/">
+        <span class="next-text nav-default">Canvas动画</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

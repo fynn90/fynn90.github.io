@@ -1,0 +1,497 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Jest实例教程"/>
+
+
+
+
+  <meta name="keywords" content="Jest, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2017/04/24/Jest实例教程/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Jest实例教程 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Jest实例教程
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-04-24
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Code-Test/">Code Test</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/04/24/Jest实例教程/"
+             data-title="Jest实例教程">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Hello-world"><span class="toc-text">Hello world</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jest-与-Babel-Webpack-一起使用"><span class="toc-text">Jest 与 Babel,Webpack 一起使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jest-与-TypeScript"><span class="toc-text">Jest 与 TypeScript</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Jest全局方法"><span class="toc-text">Jest全局方法</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Describe-name-fn"><span class="toc-text">Describe(name, fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Describe-only-name-fn"><span class="toc-text">Describe.only(name, fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Describe-skip-name-fn"><span class="toc-text">Describe.skip(name, fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test"><span class="toc-text">Test</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-only"><span class="toc-text">Test.only</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Test-skip-name-fn"><span class="toc-text">Test.skip(name, fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#It-name-fn"><span class="toc-text">It(name,fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AfterAll-fn"><span class="toc-text">AfterAll(fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#AfterEach-fn"><span class="toc-text">AfterEach(fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeforeAll-fn"><span class="toc-text">BeforeAll(fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BeforeEach-fn"><span class="toc-text">BeforeEach(fn)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#使用适配器"><span class="toc-text">使用适配器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#通用的Matchers"><span class="toc-text">通用的Matchers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#null、undefined、boolean匹配"><span class="toc-text">null、undefined、boolean匹配</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Numbers"><span class="toc-text">Numbers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stings"><span class="toc-text">Stings</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Arrays"><span class="toc-text">Arrays</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异步测试"><span class="toc-text">异步测试</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Callbacks"><span class="toc-text">Callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promises"><span class="toc-text">Promises</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Async-Await"><span class="toc-text">Async/Await</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Mock-函数"><span class="toc-text">Mock 函数</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#创建Mock函数"><span class="toc-text">创建Mock函数</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mockFn-mock-calls"><span class="toc-text">mockFn.mock.calls</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mockFn-mock-instances"><span class="toc-text">mockFn.mock.instances</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mockFn-mockImplementation-fn"><span class="toc-text">mockFn.mockImplementation(fn)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mockFn-mockImplementationOnce-fn"><span class="toc-text">mockFn.mockImplementationOnce(fn)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Manual-Mocks"><span class="toc-text">Manual Mocks</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考："><span class="toc-text">参考：</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="https://facebook.github.io/jest/" target="_blank" rel="noopener">Jest</a> 是个开源的基于<a href="https://jasmine.github.io/" target="_blank" rel="noopener">Jasmine</a>框架的JavaScrit 单元测试框架。</p>
+<blockquote>
+<p>Jest的目标是减少开始测试一个项目所要花费的是件和认知负荷。</p>
+<ul>
+<li>Jeff Morrison</li>
+</ul>
+</blockquote>
+<p>Jest的特点，易于组织，快速响应，测试快照。<br><a id="more"></a></p>
+<h2 id="Hello-world"><a href="#Hello-world" class="headerlink" title="Hello world"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-hw" target="_blank" rel="noopener">Hello world</a></h2><p>安装 Jest<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i jest -D</span><br></pre></td></tr></table></figure><br>创建 hw.js文件 文件内容如下：<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hw</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">	<span class="keyword">return</span> <span class="string">'Hello World！'</span></span><br><span class="line">&#125;；</span><br><span class="line"><span class="built_in">module</span>.exports = hw;</span><br></pre></td></tr></table></figure><br>创建测试文件 hw.test.js:<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> hw = <span class="built_in">require</span>(<span class="string">'./hw'</span>);</span><br><span class="line">test(<span class="string">'test hw function'</span>,()=&gt;&#123;</span><br><span class="line">	expect(hw()).toBe(<span class="string">"Hello World!"</span>); <span class="comment">//执行hw 方法，将返回值于 toBe中的数值做对比</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<p><img src="http://imglf1.nosdn.127.net/img/Lzg4b1BvbmpvR2dzV0Nqc1ovYkg0SUpWdDhRZDFmbVpDZDhmdGpqVnZqdG0wenI3ck94ZFF3PT0.png?imageView&amp;thumbnail=500x0&amp;quality=96&amp;stripmeta=0&amp;type=jpg" alt=""></p>
+<p>Jest默认会查找 项目文件中后缀为.test.js的文件，进行执行。<br>项目中我们把测试文件 写在 __tests__ 文件夹下。</p>
+<h2 id="Jest-与-Babel-Webpack-一起使用"><a href="#Jest-与-Babel-Webpack-一起使用" class="headerlink" title="Jest 与 Babel,Webpack 一起使用"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-hw" target="_blank" rel="noopener">Jest 与 Babel,Webpack 一起使用</a></h2><p>使用Babel需安装 babel-jest<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i babel-preset-env babel-jest -D</span><br></pre></td></tr></table></figure><br>如果你没有使用Yarn 或者Npm版本低于3，你还需要安装 regenerator-runtime<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i regenerator-runtime -D</span><br></pre></td></tr></table></figure><br>最后需要配置.babelrc文件<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"preset"</span>:[<span class="string">"env"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>当我们用Webpack构建项目时，我们经常将css,字体引入到js文件中，然后通过Webpack打包对这些静态资源进行处理。<br>Jest 无法解析这些静态资源，需要通过Jest配置Mock这些静态资源。<br>Jest 配置如下: package.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"jest"</span>:&#123;</span><br><span class="line">		<span class="attr">"moduleNameMapper"</span>:&#123;</span><br><span class="line">			<span class="attr">"\\.css$"</span>:<span class="string">"&lt;rootDir&gt;/__mock__/styleMock.js"</span></span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> &#123;&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Jest-与-TypeScript"><a href="#Jest-与-TypeScript" class="headerlink" title="Jest 与 TypeScript"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-typescript" target="_blank" rel="noopener">Jest 与 TypeScript</a></h2><p>安装相关依赖包<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i ts-jest @types/jest typescript -D</span><br></pre></td></tr></table></figure><br>配置 package.json<br><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">	<span class="attr">"jest"</span>:&#123;</span><br><span class="line">		<span class="attr">"transform"</span>:&#123;</span><br><span class="line">			<span class="attr">".(ts|tsx)"</span>:<span class="string">"&lt;rootDir&gt;/node_modules/ts-jest/preprocessor.js"</span>,</span><br><span class="line">		</span><br><span class="line">		&#125;,</span><br><span class="line">		<span class="attr">"testRegex"</span>:<span class="string">"(/__tests__/.*|\\.(test|spec))\\.(ts|tsx|js)$"</span>,</span><br><span class="line">		<span class="attr">"moduleFileExtensions"</span>:[<span class="string">"ts"</span>,<span class="string">"tsx"</span>,<span class="string">"js"</span>,<span class="string">"json"</span>]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="Jest全局方法"><a href="#Jest全局方法" class="headerlink" title="Jest全局方法"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-global" target="_blank" rel="noopener">Jest全局方法</a></h2><h3 id="Describe-name-fn"><a href="#Describe-name-fn" class="headerlink" title="Describe(name, fn)"></a>Describe(name, fn)</h3><p>测试套件，一组相关的测试用例。第一个参数是测试套餐的描述，第二个参数是测试用例<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name : <span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line">describe(<span class="string">"my info"</span>, ()=&gt;&#123;</span><br><span class="line">	test(<span class="string">"my name"</span>, ()=&gt;&#123;</span><br><span class="line">		expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">	&#125;);</span><br><span class="line">	test(<span class="string">"my age"</span>, ()=&gt;&#123;</span><br><span class="line">		expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Describe-only-name-fn"><a href="#Describe-only-name-fn" class="headerlink" title="Describe.only(name, fn)"></a>Describe.only(name, fn)</h3><p>当一个file有多个测试套件，但你只想执行其中一个测试套件，可以使用 describe.only<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name : <span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> hw = <span class="function"><span class="params">()</span> =&gt;</span><span class="string">"Hello World!"</span>;</span><br><span class="line">describe(<span class="string">"my info"</span>, ()=&gt;&#123;</span><br><span class="line">	test(<span class="string">"my name"</span>, ()=&gt;&#123;</span><br><span class="line">		expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">	&#125;);</span><br><span class="line">	test(<span class="string">"my age"</span>, ()=&gt;&#123;</span><br><span class="line">		expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">	&#125;)</span><br><span class="line"></span><br><span class="line">&#125;);</span><br><span class="line">describe.only(<span class="string">'hw function test suit'</span>,()=&gt;&#123;</span><br><span class="line">	test(<span class="string">'hw test'</span>,()=&gt;&#123;</span><br><span class="line">		expect(hw()).toBe(<span class="string">"Hello World!"</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Describe-skip-name-fn"><a href="#Describe-skip-name-fn" class="headerlink" title="Describe.skip(name, fn)"></a>Describe.skip(name, fn)</h3><p>一个file中有多个测试套件，如果你想跳过某个测试套件可以使用 describe.skip  </p>
+<h3 id="Test"><a href="#Test" class="headerlink" title="Test"></a>Test</h3><p>测试用例，可以写在 describe测试套件中，也可以单独写在测试套件外面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">   	name : <span class="string">"fynn"</span>,</span><br><span class="line">   	age: <span class="number">27</span></span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">let</span> hw = <span class="function"><span class="params">()</span>=&gt;</span><span class="string">"Hello World!"</span></span><br><span class="line">describe(<span class="string">"my info"</span>,()=&gt;&#123;</span><br><span class="line">   	test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">       	expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">   	&#125;);</span><br><span class="line">   	test(<span class="string">"my age"</span>,()=&gt;&#123;</span><br><span class="line">       	expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">   	&#125;)</span><br><span class="line">&#125;);</span><br><span class="line">test(<span class="string">"hw test"</span>,()=&gt;&#123;</span><br><span class="line">   	expect(hw()).toBe(<span class="string">"Hello World!"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Test-only"><a href="#Test-only" class="headerlink" title="Test.only"></a>Test.only</h3><p>有多个测试用例或测试套件，只想执行其中某一个测试用例时可以用test.only。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name : <span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> hw = <span class="function"><span class="params">()</span>=&gt;</span><span class="string">"Hello World!"</span>;</span><br><span class="line">test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.name).toBe(<span class="string">"fynn"</span>);</span><br><span class="line">&#125;)</span><br><span class="line">test.only(<span class="string">"hw test"</span>,()=&gt;&#123;</span><br><span class="line">	expect(hw()).toBe(<span class="string">"Hello World!"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>    </p>
+<h3 id="Test-skip-name-fn"><a href="#Test-skip-name-fn" class="headerlink" title="Test.skip(name, fn)"></a>Test.skip(name, fn)</h3><p>当有多个测试用例，想跳过某个测试用例可以使用test.skip;</p>
+<h3 id="It-name-fn"><a href="#It-name-fn" class="headerlink" title="It(name,fn)"></a>It(name,fn)</h3><p>用法和test一样，不能嵌套在test中！可以嵌套在describe中<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name : <span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line"><span class="keyword">let</span> hw = <span class="function"><span class="params">()</span>=&gt;</span><span class="string">"Hello World!"</span>;</span><br><span class="line">it(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.name).toBe(<span class="string">"fynn"</span>);</span><br><span class="line">&#125;)</span><br><span class="line">xit(<span class="string">"hw test"</span>,()=&gt;&#123;</span><br><span class="line">	expect(hw()).toBe(<span class="string">"Hello World!"</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>xit 类似与test.skip,跳过这个测试实例。</p>
+<h3 id="AfterAll-fn"><a href="#AfterAll-fn" class="headerlink" title="AfterAll(fn)"></a>AfterAll(fn)</h3><p>当file所有test都执行完毕后，执行afterAll中的方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name :<span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line">test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">&#125;);</span><br><span class="line">test(<span class="string">"my age"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">&#125;);</span><br><span class="line">afterAll(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"执行完所有test!"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="AfterEach-fn"><a href="#AfterEach-fn" class="headerlink" title="AfterEach(fn)"></a>AfterEach(fn)</h3><p>每当一个test执行完后，调用一次afterEach中的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">	name :<span class="string">"fynn"</span>,</span><br><span class="line">	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line">test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">&#125;);</span><br><span class="line">test(<span class="string">"my age"</span>,()=&gt;&#123;</span><br><span class="line">	expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">&#125;);</span><br><span class="line">afterEach(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.log(<span class="string">"执行完一个test!"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="BeforeAll-fn"><a href="#BeforeAll-fn" class="headerlink" title="BeforeAll(fn)"></a>BeforeAll(fn)</h3><p>在所有执行test前先调用beforeAll中的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">   	name :<span class="string">"fynn"</span>,</span><br><span class="line">   	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line">test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">   	expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">&#125;);</span><br><span class="line">test(<span class="string">"my age"</span>,()=&gt;&#123;</span><br><span class="line">   	expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">&#125;);</span><br><span class="line">beforeAll(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">   	<span class="built_in">console</span>.log(<span class="string">"要开始执行test了!"</span>)</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure></p>
+<h3 id="BeforeEach-fn"><a href="#BeforeEach-fn" class="headerlink" title="BeforeEach(fn)"></a>BeforeEach(fn)</h3><p>在每个test执行前都会调用一次beforeEach中的方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> my = &#123;</span><br><span class="line">   	name :<span class="string">"fynn"</span>,</span><br><span class="line">   	age : <span class="number">27</span></span><br><span class="line">&#125;;</span><br><span class="line">test(<span class="string">"my name"</span>,()=&gt;&#123;</span><br><span class="line">   	expect(my.name).toBe(<span class="string">"fynn"</span>)</span><br><span class="line">&#125;);</span><br><span class="line">test(<span class="string">"my age"</span>,()=&gt;&#123;</span><br><span class="line">   	expect(my.age).toBe(<span class="number">27</span>)</span><br><span class="line">&#125;);</span><br><span class="line">beforeEach(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">   	<span class="built_in">console</span>.log(<span class="string">"要开始执行一个test了!"</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="使用适配器"><a href="#使用适配器" class="headerlink" title="使用适配器"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-matcher" target="_blank" rel="noopener">使用适配器</a></h2><p>Jest提供了很多适配器用于比较不同类型的测试值是否正确。  </p>
+<h3 id="通用的Matchers"><a href="#通用的Matchers" class="headerlink" title="通用的Matchers"></a>通用的Matchers</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">"two plus two is four"</span>, ()=&gt;&#123;</span><br><span class="line">	expect(<span class="number">2</span>+<span class="number">2</span>).toBe(<span class="number">4</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure>
+<p>toBe 用来匹配expect值类型number值或string值的返回值。<br>toBe 使用 ‘===’测试值是否相等。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'Object assignment'</span>, ()=&gt;&#123;</span><br><span class="line">	<span class="keyword">const</span> data = &#123;<span class="attr">one</span>:<span class="number">1</span>&#125;;</span><br><span class="line">	data[<span class="string">"two"</span>] = <span class="number">2</span>;</span><br><span class="line">	expect(data).toEqual(&#123;</span><br><span class="line">		one: <span class="number">1</span>,</span><br><span class="line">		two: <span class="number">2</span>	</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>toEqual 用于比较每个数组或对象中每个字段。<br>toEqual 字段值的比较也是用“===”。  </p>
+<h3 id="null、undefined、boolean匹配"><a href="#null、undefined、boolean匹配" class="headerlink" title="null、undefined、boolean匹配"></a>null、undefined、boolean匹配</h3><p>有时候需要测试我们的值是否是 null、undefined、false、true等特殊值。Jest提供这些值的匹配方法。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">toBeNull --- 只匹配 <span class="literal">null</span></span><br><span class="line">toBeUndefined --- 只匹配 <span class="literal">undefined</span></span><br><span class="line">toBeDefined --- 匹配 非<span class="literal">undefined</span>值</span><br><span class="line">toBeTruthy --- 匹配所有 <span class="keyword">if</span>状态是 <span class="literal">true</span>值</span><br><span class="line">toBeFalsy --- 匹配所有<span class="keyword">if</span>状态是<span class="literal">false</span>值  </span><br><span class="line"></span><br><span class="line">test(<span class="string">"null,undefined,boolean"</span>,()=&gt;&#123;</span><br><span class="line">	<span class="keyword">const</span> n = <span class="literal">null</span>;</span><br><span class="line">	<span class="keyword">const</span> u = <span class="literal">undefined</span>;</span><br><span class="line">	<span class="keyword">const</span> t = <span class="string">'str'</span>;</span><br><span class="line">	<span class="keyword">const</span> f = <span class="number">0</span>;</span><br><span class="line">	expect(n).toBeNull();</span><br><span class="line">	expect(u).toBeUndefined();</span><br><span class="line">	expect(t).toBeTruthy();</span><br><span class="line">	expect(n).toBeFalsy();</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Numbers"><a href="#Numbers" class="headerlink" title="Numbers"></a>Numbers</h3><p>Jest提供了数值大小的匹配器<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">toBeGreaterThan --- 大于</span><br><span class="line">toBeGreaterThanOrEqual --- 大于或等于</span><br><span class="line">toBeLessThan --- 小于</span><br><span class="line">toBeLessThanOrEqual --- 小于或等于</span><br><span class="line">toBe --- 等于</span><br><span class="line">toEqual --- 等于</span><br><span class="line"></span><br><span class="line">test(<span class="string">"one plus two"</span>,()=&gt;&#123;</span><br><span class="line">	<span class="keyword">const</span> value = <span class="number">1</span>+<span class="number">2</span>;</span><br><span class="line">	expect(value).toBeGreaterThan(<span class="number">2.5</span>);</span><br><span class="line">	expect(value).toBeGreaterThanOrEqual(<span class="number">3</span>);</span><br><span class="line">	expect(value).toBeLessThan(<span class="number">3.5</span>);</span><br><span class="line">	expect(value).toBeLessThanOrEqual(<span class="number">3</span>);</span><br><span class="line"></span><br><span class="line">	expect(value).toBe(<span class="number">3</span>)</span><br><span class="line">	expect(value).toEqual(<span class="number">3</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>进行浮点型计算时，使用<strong>toBeCloseTo</strong> 进行值的比较<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">"adding floating point numnber"</span>,()=&gt;&#123;</span><br><span class="line">	cosnt value = <span class="number">0.1</span>+<span class="number">0.2</span>;</span><br><span class="line">	expect(value).toBeCloseTo(<span class="number">0.3</span>); <span class="comment">//passed</span></span><br><span class="line">	expect(value).toBe(<span class="number">0.3</span>) <span class="comment">// failed </span></span><br><span class="line">	expect(value).not.toBe(<span class="number">0.3</span>) <span class="comment">// passed</span></span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Stings"><a href="#Stings" class="headerlink" title="Stings"></a>Stings</h3><p>字符串正则表达式匹配器使用<strong>ToMatch</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">"there is no I in team"</span>,()=&gt;&#123;</span><br><span class="line">	expect(<span class="string">'team'</span>).not.toMatch(<span class="regexp">/I/</span>);</span><br><span class="line">&#125;)</span><br><span class="line">test(<span class="string">'but there is a "stop" in Christoph'</span>, ()=&gt;&#123;</span><br><span class="line">	expect(<span class="string">"Christoph"</span>).toMatch(<span class="regexp">/stop/</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>匹配字符串长度使用<strong>toHaveLength</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'"abc" is length'</span>,()=&gt;&#123;</span><br><span class="line">	expect(<span class="string">"abc"</span>).toHaveLength(<span class="number">3</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br><strong>toHaveLength</strong> 也可以匹配object中有 .length属性的值。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">"arr is length"</span>,()=&gt;&#123;</span><br><span class="line">	expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]).toHaveLength(<span class="number">3</span>)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Arrays"><a href="#Arrays" class="headerlink" title="Arrays"></a>Arrays</h3><p>匹配数组中某个值使用<strong>toContain</strong><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> shoppingList=[<span class="string">"diapers"</span>,<span class="string">"kleenex"</span>,<span class="string">"trash bags"</span>,<span class="string">"paper towels"</span>,<span class="string">"beer"</span>];</span><br><span class="line">test(<span class="string">"the shopping list has beer on it"</span>,()=&gt;&#123;</span><br><span class="line">	expect(shoppingList).toContain(<span class="string">'beer'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>匹配某个数组是否是另一个数组的子集使用__expect.arrayContaining(array)<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">"arrayContaining"</span>,()=&gt;&#123;</span><br><span class="line">	<span class="keyword">const</span> expected = [<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">	expect([<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">5</span>,<span class="number">6</span>]).toEqual(expect.arrayContaining(expected))</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="异步测试"><a href="#异步测试" class="headerlink" title="异步测试"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-async" target="_blank" rel="noopener">异步测试</a></h2><p>实际开发中我们经常会进行异步操作，Jest提供了三种进行异步操作测试的方式。  </p>
+<h3 id="Callbacks"><a href="#Callbacks" class="headerlink" title="Callbacks"></a>Callbacks</h3><p>在callback方式中的测试实例第二个执行函数会有个参数<strong>done</strong>,只有当done被调用这个测试实例才算完结。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'the data is peanut butter'</span>,done=&gt;&#123;</span><br><span class="line">	<span class="function"><span class="keyword">function</span> <span class="title">callback</span>(<span class="params">data</span>) </span>&#123;</span><br><span class="line">		expect(data).toBe(<span class="string">'peanut butter'</span>);</span><br><span class="line">		done();</span><br><span class="line">	&#125;</span><br><span class="line">	</span><br><span class="line">	fetchData(callback)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>如果done() 未被调用，这个测试实例就算失败。  </p>
+<h3 id="Promises"><a href="#Promises" class="headerlink" title="Promises"></a>Promises</h3><p>如果你使用promises，在你的测试实例回调函数返回一个promise，Jest会等待这个promise状态变为resolve。如果promise状态变为rejected，这个测试实例会自动变成fail。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'the data is peanut butter'</span>,()=&gt;&#123;</span><br><span class="line">	<span class="keyword">return</span> fetchData().then(<span class="function"><span class="params">data</span>=&gt;</span>&#123;</span><br><span class="line">		expect(data).toBe(<span class="string">'peanut butter'</span>);</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>也可以直接用<strong>resolves</strong>将放回结果进行验证。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'the data is peanut butter'</span>,()=&gt;&#123;</span><br><span class="line">	<span class="keyword">return</span> expect(fetchData()).resolves.toBe(<span class="string">'peanut butter'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h3 id="Async-Await"><a href="#Async-Await" class="headerlink" title="Async/Await"></a>Async/Await</h3><p>使用async 定义测试实例回掉函数，用await等待异步执行。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">test(<span class="string">'the data is peanut butter'</span>,<span class="keyword">async</span> ()=&gt;&#123;</span><br><span class="line">	<span class="keyword">await</span> expect(fetchData()).resolves.toBe(<span class="string">'peanut butter'</span>);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure></p>
+<h2 id="Mock-函数"><a href="#Mock-函数" class="headerlink" title="Mock 函数"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-mock" target="_blank" rel="noopener">Mock 函数</a></h2><p>Mock函数可以记录下一个函数执行的信息（参数，实例对象）。  </p>
+<h3 id="创建Mock函数"><a href="#创建Mock函数" class="headerlink" title="创建Mock函数"></a>创建Mock函数</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.fn();</span><br></pre></td></tr></table></figure>
+<p>mockFn 如果没有传递实例函数，它默认返回 undefined   </p>
+<h3 id="mockFn-mock-calls"><a href="#mockFn-mock-calls" class="headerlink" title="mockFn.mock.calls"></a>mockFn.mock.calls</h3><p>返回MockFn实例对象，实例化传递过的参数，以数组方式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.fn(<span class="function">(<span class="params">a,b</span>)=&gt;</span><span class="string">`<span class="subst">$&#123;a&#125;</span> --- <span class="subst">$&#123;b&#125;</span>`</span>);</span><br><span class="line"><span class="keyword">var</span> f1 = <span class="keyword">new</span> mockFn(<span class="string">'f1-arga'</span>,<span class="string">'f1-argb'</span>)</span><br><span class="line"><span class="keyword">var</span> f2 = <span class="keyword">new</span> mockFn(<span class="string">'f2-arga'</span>,<span class="string">'f2-argb'</span>)</span><br><span class="line"><span class="keyword">var</span> calls = mockFn.mock.calls();</span><br><span class="line"><span class="comment">// calls : [['f1-arga','f1-argb'],['f2-arga','f2-argb']]</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="mockFn-mock-instances"><a href="#mockFn-mock-instances" class="headerlink" title="mockFn.mock.instances"></a>mockFn.mock.instances</h3><p>返回mockFn 实例过的对象，以数组方式。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.fn();</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> a = <span class="keyword">new</span> mockFn();</span><br><span class="line"><span class="keyword">const</span> b = <span class="keyword">new</span> mockFn();</span><br><span class="line"></span><br><span class="line">mockFn.mock.instances[<span class="number">0</span>] === a; <span class="comment">// true</span></span><br><span class="line">mockFn.mock.instances[<span class="number">1</span>] === b; <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="mockFn-mockImplementation-fn"><a href="#mockFn-mockImplementation-fn" class="headerlink" title="mockFn.mockImplementation(fn)"></a>mockFn.mockImplementation(fn)</h3><p>接受一个函数，它会做为mock的实例方法。这个mock还是可以记录对他调用所有使用的参数。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> mockFn = jest.fn().mockImplementation(<span class="function"><span class="params">scalar</span>=&gt;</span><span class="number">42</span>+scalar);</span><br><span class="line"><span class="comment">// or: jest.fn(scalar=&gt;42+scalar);</span></span><br><span class="line"><span class="keyword">const</span> a = mockFn(<span class="number">0</span>);</span><br><span class="line"><span class="keyword">const</span> b = mockFn(<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">a === <span class="number">42</span> <span class="comment">// true</span></span><br><span class="line">b === <span class="number">43</span> <span class="comment">// true</span></span><br><span class="line">mockFn.mock.calls[<span class="number">0</span>][<span class="number">0</span>] === <span class="number">0</span>; <span class="comment">// true</span></span><br><span class="line">mockFn.mock.calls[<span class="number">1</span>][<span class="number">0</span>] === <span class="number">1</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure><br>mockImplementation 也可以用于类的构造函数<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//someClass.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="class"><span class="keyword">class</span> <span class="title">SomeClass</span> </span>&#123; m (a,b) &#123;&#125;&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//OtherModule.test.js</span></span><br><span class="line"><span class="keyword">import</span> SomeClass <span class="keyword">from</span> <span class="string">'./someClass'</span></span><br><span class="line"><span class="keyword">const</span> mMock = jest.fn();</span><br><span class="line">SomeClass.mockImplementation(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="keyword">return</span> &#123;<span class="attr">m</span>:mMock&#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> some = someClass();</span><br><span class="line">some.m(<span class="string">'a'</span>,<span class="string">'b'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'Calls to m:'</span>, mMock.mock.calls)</span><br></pre></td></tr></table></figure><br>mockImplementation 一般用户自定义个月mock实例，替换调引用进来的原实例方法<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// foo.js</span></span><br><span class="line"><span class="keyword">export</span> <span class="function"><span class="keyword">function</span> <span class="title">foo</span> (<span class="params"></span>)</span>&#123;<span class="keyword">return</span> <span class="number">40</span>&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">//test.js</span></span><br><span class="line"><span class="keyword">import</span> foo <span class="keyword">from</span> <span class="string">'./foo'</span></span><br><span class="line">jest.mock(<span class="string">'./foo'</span>)</span><br><span class="line">foo.mockImplementation(<span class="function"><span class="params">()</span>=&gt;</span><span class="number">42</span>);</span><br><span class="line">foo(); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="mockFn-mockImplementationOnce-fn"><a href="#mockFn-mockImplementationOnce-fn" class="headerlink" title="mockFn.mockImplementationOnce(fn)"></a>mockFn.mockImplementationOnce(fn)</h3><p>通过 mockImplementationOnce mock可以接受多个实例方法。当调用mock时，依次调用定义好的实例方法，当调用次数超过 mockImplementationOnce 次数，则返回默认实例方法值，如果没有定义默认实例方法则返回undefined<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> myMockFn = jest.fn()</span><br><span class="line">	.mockImplementationOnce(<span class="function"><span class="params">cb</span>=&gt;</span>cb(<span class="literal">null</span>,<span class="literal">true</span>))</span><br><span class="line">	.mockImplementationOnce(<span class="function"><span class="params">cb</span>=&gt;</span>cb(<span class="literal">null</span>,<span class="literal">false</span>))</span><br><span class="line"></span><br><span class="line">myMockFn(<span class="function">(<span class="params">err, val</span>)=&gt;</span><span class="built_in">console</span>.log(val)); <span class="comment">//true</span></span><br><span class="line">myMockFn(<span class="function">(<span class="params">err, val</span>)=&gt;</span><span class="built_in">console</span>.log(val)); <span class="comment">//false</span></span><br></pre></td></tr></table></figure>    </p>
+<h2 id="Manual-Mocks"><a href="#Manual-Mocks" class="headerlink" title="Manual Mocks"></a><a href="https://github.com/fatefan/Jest-demo/tree/master/demo-manual-mocks" target="_blank" rel="noopener">Manual Mocks</a></h2><p>在开发时我们需要调用后台数据，可以通过创建manual mock模拟后台数据，这样使得测试更容易更快。<br>Manual Mocks模块应写在文件夹__mocks__下，__mocks__ 文件夹应该和被mock的模块放在一起  </p>
+<h3 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">.</span><br><span class="line">├── config</span><br><span class="line">├── __mocks__</span><br><span class="line">│   └── fs.js</span><br><span class="line">├── models</span><br><span class="line">│   ├── __mocks__</span><br><span class="line">│   │   └── user.js</span><br><span class="line">│   └── user.js</span><br><span class="line">├── node_modules</span><br><span class="line">└── views </span><br></pre></td></tr></table></figure>
+<p>__mocks__/user.js mock user.js<br><a href="https://github.com/fatefan/Jest-demo" target="_blank" rel="noopener">例子源码</a></p>
+<hr>
+<h2 id="参考："><a href="#参考：" class="headerlink" title="参考："></a>参考：</h2><p><a href="https://facebook.github.io/jest/docs/getting-started.html" target="_blank" rel="noopener">https://facebook.github.io/jest/docs/getting-started.html</a>  </p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2017/04/24/Jest实例教程/">https://fynn90.github.io/2017/04/24/Jest实例教程/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Jest/">Jest</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/05/17/Test-React-Application/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">React应用测试</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/14/TypeScript实践手册/">
+        <span class="next-text nav-default">TypeScript实践手册</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

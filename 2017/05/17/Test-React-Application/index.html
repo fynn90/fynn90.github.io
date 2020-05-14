@@ -1,0 +1,467 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="React应用测试"/>
+
+
+
+
+  <meta name="keywords" content="Jest, React, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2017/05/17/Test-React-Application/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> React应用测试 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React应用测试
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-05-17
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Code-Test/">Code Test</a>
+            
+              <a href="/categories/Code-Test/React/">React</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/05/17/Test-React-Application/"
+             data-title="React应用测试">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装和配置Jest"><span class="toc-text">安装和配置Jest</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#业务逻辑测试"><span class="toc-text">业务逻辑测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DOM测试-Enzyme"><span class="toc-text">DOM测试 Enzyme</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#shallow"><span class="toc-text">shallow</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#mount"><span class="toc-text">mount</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#render"><span class="toc-text">render</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Events测试"><span class="toc-text">Events测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Snapshot-测试"><span class="toc-text">Snapshot 测试</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>开发人员编写测试单元已经是软件开发很重要的一部分。如果你的代码结构清晰组织良好，你编写测试单元时会觉得很轻松。但是如果你发现单元测试无法下手写时，往往是因为你的代码结构上有问题了，这时你需要重新组织下代码结构了。<br>Jest 是Facebook 开源维护的一款测试React应用的测试框架。Jest 不限于测试React应用，它能够满足前端各种测试需求。<a id="more"></a><br>以Todo做为项目例子，这篇文章将介绍如果对React项目的业务逻辑和组件，DOM,EVENT进行测试。</p>
+<h2 id="安装和配置Jest"><a href="#安装和配置Jest" class="headerlink" title="安装和配置Jest"></a>安装和配置Jest</h2><p>现需要安装Jest和Babel以及可以使两者可以协同工作的模块。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add jest jest-babel babel-preset-env babel-preset-react babel-plugin-transform-object-rest-spread -D</span><br></pre></td></tr></table></figure><br>.babelrc 文件配置内容：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   	&quot;presets&quot;:[[&quot;env&quot;,&#123;&quot;modules&quot;: false&#125;],&quot;react&quot;],</span><br><span class="line">   	&quot;plugins&quot;: [&quot;transform-object-rest-spread&quot;] </span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>项目目录结构<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">|---actions  //Redux 中 actions文件</span><br><span class="line">|	-index.js</span><br><span class="line">|---components // React 组件</span><br><span class="line">|	-AddTodo.js</span><br><span class="line">|	-App.js</span><br><span class="line">|	-Footer.js</span><br><span class="line">|	-Todo.js</span><br><span class="line">|	-TodoList.js</span><br><span class="line">|---__tests__</span><br><span class="line">|---index.js // React入口文件</span><br><span class="line">|---reducers.js // Redux中 reducer</span><br><span class="line">|---.babelrc</span><br><span class="line">|---jest.config.json // Jest 配置文件</span><br><span class="line">|---wepack.config.js</span><br><span class="line">|---package.json</span><br></pre></td></tr></table></figure></p>
+<h2 id="业务逻辑测试"><a href="#业务逻辑测试" class="headerlink" title="业务逻辑测试"></a>业务逻辑测试</h2><p>Reduce中业务逻辑一般放在 reducer，action中。测试文件夹目录结构。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">|---__tests__</span><br><span class="line">|	-actions</span><br><span class="line">|		-index.test.js //action 测试方法</span><br><span class="line">|	-components</span><br><span class="line">|	-reducers.test.js //reducer 测试方法</span><br><span class="line">|---other</span><br></pre></td></tr></table></figure><br>actions/index.test.js 引入需要测试action<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123;addTodo, toggleTodo, setVisibilityFilter&#125; <span class="keyword">from</span> <span class="string">'Actions/index'</span>;</span><br><span class="line"></span><br><span class="line">test(<span class="string">'addTodo action test'</span>,()=&gt;&#123;</span><br><span class="line">   	<span class="keyword">const</span> result = addTodo(<span class="string">'hello'</span>);</span><br><span class="line">   	expect(result).toEqual(&#123;<span class="attr">type</span>:<span class="string">'ADD_TODO'</span>,<span class="attr">text</span>:<span class="string">'hello'</span>&#125;);</span><br><span class="line">&#125;)</span><br></pre></td></tr></table></figure><br>‘Actions/index’是个别名路径，别名的定义是在jest的配置文件’moduleNameMapper’对象中。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">   	&quot;moduleFileExtensions&quot;: [</span><br><span class="line">       	&quot;js&quot;,</span><br><span class="line">       	&quot;jsx&quot;</span><br><span class="line">   	],</span><br><span class="line">   	testRegex&quot;: &quot;(/__tests__/.*|\\.(test|spec))\\.(ts|	tsx|js)$&quot;,</span><br><span class="line">   	&quot;moduleNameMapper&quot;:&#123;</span><br><span class="line">       &quot;Components&quot;:&quot;&lt;rootDir&gt;/components/&quot;,</span><br><span class="line">       &quot;Actions&quot;:&quot;&lt;rootDir&gt;/actions/&quot;</span><br><span class="line">   	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h2 id="DOM测试-Enzyme"><a href="#DOM测试-Enzyme" class="headerlink" title="DOM测试 Enzyme"></a>DOM测试 Enzyme</h2><p>React组件测试推荐使用 Airbnb开源维护的<a href="https://github.com/airbnb/enzyme" target="_blank" rel="noopener">Enzyme</a>。React官方也推荐使用Enzyme进行组件测试。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">npm i enzyme -D</span><br></pre></td></tr></table></figure><br>Enzyme主要有三种渲染方式：shallow、mount、render</p>
+<h3 id="shallow"><a href="#shallow" class="headerlink" title="shallow"></a><a href="http://airbnb.io/enzyme/docs/api/shallow.html" target="_blank" rel="noopener">shallow</a></h3><p>shallow是组件的浅渲染，它只渲染当前组件，如果包含其他组件它并不会渲染。因为只渲染当前组件，所以shallow性能很高，内存占用也少。<br>shallow 返回 ShallowWrapper对象。</p>
+<h3 id="mount"><a href="#mount" class="headerlink" title="mount"></a><a href="http://airbnb.io/enzyme/docs/api/mount.html" target="_blank" rel="noopener">mount</a></h3><p>如果需要渲染当前组件和其子组件就需要用mount。mount还可以测试组件的声明周期。</p>
+<p>mount和shallow渲染结果并不是真正的html的dom树,而是返回一个ReactWrapper对象。ReactWrapper具有丰富的API，可以满足我们各种测试需求。</p>
+<h3 id="render"><a href="#render" class="headerlink" title="render"></a><a href="http://airbnb.io/enzyme/docs/api/render.html" target="_blank" rel="noopener">render</a></h3><p>render是将react组件渲染成静态的HTML结构。它是使用第三方库Cheerio的渲染。<br>render返回一个CheerioWrapper 类似于ReactWrapper和ShallowWrapper。</p>
+<p>TodoList组件DOM测试单元<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; mount &#125; <span class="keyword">from</span> <span class="string">'enzyme'</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> TodoList <span class="keyword">from</span> <span class="string">'TodoList'</span></span><br><span class="line"></span><br><span class="line">test(<span class="string">"&lt;TodoList /&gt;"</span>, () =&gt; &#123;</span><br><span class="line">   	<span class="keyword">const</span> onTodoClick = jest.fn();</span><br><span class="line">   	<span class="keyword">let</span> data = [&#123;<span class="attr">completed</span>: <span class="literal">true</span>,<span class="attr">text</span>:<span class="string">'hello world'</span>&#125;,&#123;<span class="attr">completed</span>: <span class="literal">false</span>,<span class="attr">text</span>:<span class="string">'eat'</span>&#125;];</span><br><span class="line">   	<span class="keyword">const</span> wrapper  = mount(<span class="xml"><span class="tag">&lt;<span class="name">TodoList</span>  <span class="attr">todos</span>=<span class="string">&#123;data&#125;</span> <span class="attr">onTodoClick</span>=<span class="string">&#123;onTodoClick&#125;</span>  /&gt;</span>);</span></span><br><span class="line"><span class="xml">   	const t = [<span class="tag">&lt;<span class="name">li</span> <span class="attr">className</span>=<span class="string">"complete"</span>&gt;</span>hello world<span class="tag">&lt;/<span class="name">li</span>&gt;</span>,<span class="tag">&lt;<span class="name">li</span> <span class="attr">className</span>=<span class="string">"default"</span>&gt;</span>eat<span class="tag">&lt;/<span class="name">li</span>&gt;</span>];</span></span><br><span class="line"><span class="xml">   	expect(wrapper.containsAnyMatchingElements(t)).toEqual(true)    </span></span><br><span class="line"><span class="xml">   	expect(wrapper.find("ul").children()).toHaveLength(2);</span></span><br><span class="line"><span class="xml">&#125;)</span></span><br></pre></td></tr></table></figure><br>因为TodoList组件有子组件，所以要使用mount渲染。<br>模拟了两条数据，先检测子组件渲染是否正常。模拟渲染正常的jsx结构放入数组中，传给containsAnyMatchingElements方法进行检测。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">wrapper.find(<span class="string">"ul"</span>).children()</span><br></pre></td></tr></table></figure><br>最后获取ul节点下的子节点。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">expect(wrapper.find(<span class="string">"ul"</span>).children()).toHaveLength(<span class="number">2</span>);</span><br></pre></td></tr></table></figure><br>判断模拟ul子节点数是否是2条。</p>
+<h2 id="Events测试"><a href="#Events测试" class="headerlink" title="Events测试"></a>Events测试</h2><p>Enzyme中通过simulate可以模拟事件的触发，然后通过Jest的toHaveBeenCalled方法判断事件是否被正确触发。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; shallow, mount &#125; <span class="keyword">from</span> <span class="string">'enzyme'</span></span><br><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> Todo <span class="keyword">from</span> <span class="string">'Todo'</span></span><br><span class="line"></span><br><span class="line">test(<span class="string">'&lt;Todo /&gt; Evnets'</span>,()=&gt;&#123;</span><br><span class="line">   	<span class="keyword">const</span> onTodoClick = jest.fn();</span><br><span class="line">   	<span class="keyword">let</span> data = &#123;<span class="attr">completed</span>: <span class="literal">true</span>,<span class="attr">text</span>:<span class="string">'hello world'</span>&#125;;</span><br><span class="line">   	<span class="keyword">const</span> shallowWrapper = shallow(<span class="xml"><span class="tag">&lt;<span class="name">Todo</span> &#123;<span class="attr">...data</span>&#125; <span class="attr">onClick</span>=<span class="string">&#123;onTodoClick&#125;</span> /&gt;</span>);</span></span><br><span class="line"><span class="xml">   	shallowWrapper.simulate('click',0); //模拟 click事件，并传递一个参数 0</span></span><br><span class="line"><span class="xml">   	expect(onTodoClick).toHaveBeenCalled(0); //检测事件是否被正常触发</span></span><br><span class="line"><span class="xml">&#125;)</span></span><br></pre></td></tr></table></figure><br>Jest提供了多种检测函数Api<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">.toHaveBeenCalledTimes(number) <span class="comment">// 被触发次数</span></span><br><span class="line">.toHaveBeenCalledWith(arg1, arg2, ...) <span class="comment">// 函数触发传递的参数</span></span><br></pre></td></tr></table></figure></p>
+<h2 id="Snapshot-测试"><a href="#Snapshot-测试" class="headerlink" title="Snapshot 测试"></a>Snapshot 测试</h2><p>Snapshot tests是个很有用的测试工具，当你需要确保你的UI的变化没有超出你的预期。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> TodoList <span class="keyword">from</span> <span class="string">'TodoList'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; render &#125; <span class="keyword">from</span> <span class="string">'enzyme'</span>;</span><br><span class="line"><span class="keyword">import</span> toJson <span class="keyword">from</span> <span class="string">'enzyme-to-json'</span>;</span><br><span class="line"></span><br><span class="line">test(<span class="string">'&lt;TodoList /&gt; SnapShot'</span>, ()=&gt;&#123;</span><br><span class="line">   	<span class="keyword">let</span> data = [&#123;<span class="attr">completed</span>: <span class="literal">true</span>,<span class="attr">text</span>:<span class="string">'hello world'</span>&#125;,&#123;<span class="attr">completed</span>: <span class="literal">false</span>,<span class="attr">text</span>:<span class="string">'eat'</span>&#125;];</span><br><span class="line">   	<span class="keyword">const</span> onTodoClick = jest.fn();</span><br><span class="line">   	<span class="keyword">const</span> wrapper = render(<span class="xml"><span class="tag">&lt;<span class="name">TodoList</span>  <span class="attr">todos</span>=<span class="string">&#123;data&#125;</span> <span class="attr">onTodoClick</span>=<span class="string">&#123;onTodoClick&#125;</span>  /&gt;</span>)</span></span><br><span class="line"><span class="xml">   	expect(toJson(wrapper)).toMatchSnapshot();</span></span><br><span class="line"><span class="xml">&#125;)</span></span><br></pre></td></tr></table></figure><br>Jest在测试文件同级目录下会创建一个__snapshots__文件夹保存着组件的快照<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">// Jest Snapshot v1, https://goo.gl/fbAQLP</span><br><span class="line"></span><br><span class="line">exports[`&lt;TodoList /&gt; SnapShot 1`] = `</span><br><span class="line">&lt;ul&gt;</span><br><span class="line"> 		&lt;li</span><br><span class="line">   		class=&quot;complete&quot;</span><br><span class="line"> 		&gt;</span><br><span class="line">   hello world</span><br><span class="line"> 		&lt;/li&gt;</span><br><span class="line"> 		&lt;li</span><br><span class="line">   		class=&quot;default&quot;</span><br><span class="line"> 		&gt;</span><br><span class="line">   		eat</span><br><span class="line"> 		&lt;/li&gt;</span><br><span class="line">&lt;/ul&gt;</span><br><span class="line">`;</span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://auth0.com/blog/testing-react-applications-with-jest/" target="_blank" rel="noopener">https://auth0.com/blog/testing-react-applications-with-jest/</a><br><a href="http://echizen.github.io/tech/2017/02-12-jest-enzyme-method" target="_blank" rel="noopener">http://echizen.github.io/tech/2017/02-12-jest-enzyme-method</a><br><a href="https://facebook.github.io/jest/docs/en/tutorial-react.html#content" target="_blank" rel="noopener">https://facebook.github.io/jest/docs/en/tutorial-react.html#content</a><br><a href="https://www.oschina.net/translate/test-react-components-jest" target="_blank" rel="noopener">https://www.oschina.net/translate/test-react-components-jest</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2017/05/17/Test-React-Application/">https://fynn90.github.io/2017/05/17/Test-React-Application/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Jest/">Jest</a>
+            
+              <a href="/tags/React/">React</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/07/16/PostCSS简易教程/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">PostCSS简易教程</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/04/24/Jest实例教程/">
+        <span class="next-text nav-default">Jest实例教程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

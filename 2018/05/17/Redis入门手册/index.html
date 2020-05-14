@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Redis入门手册"/>
+
+
+
+
+  <meta name="keywords" content="Redis, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/05/17/Redis入门手册/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Redis入门手册 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Redis入门手册
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-05-17
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/DB/">DB</a>
+            
+              <a href="/categories/DB/Redis/">Redis</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/05/17/Redis入门手册/"
+             data-title="Redis入门手册">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-OS"><span class="toc-text">Mac OS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Linux"><span class="toc-text">Linux</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#下载-amp-安装"><span class="toc-text">下载&amp;安装</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#修改redis配置文件"><span class="toc-text">修改redis配置文件</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#将redis加入服务"><span class="toc-text">将redis加入服务</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#注册redis"><span class="toc-text">注册redis</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#启动redis"><span class="toc-text">启动redis</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#命令行"><span class="toc-text">命令行</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#基础配置"><span class="toc-text">基础配置</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#SLOW-LOG"><span class="toc-text">SLOW LOG</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Snapshotting"><span class="toc-text">Snapshotting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#APPEND-ONLY-MODE"><span class="toc-text">APPEND ONLY MODE</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Key-键"><span class="toc-text">Key 键</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#String-字符串"><span class="toc-text">String 字符串</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SET、SETEX、PSETEX"><span class="toc-text">SET、SETEX、PSETEX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSET、MGET"><span class="toc-text">MSET、MGET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#MSETNX"><span class="toc-text">MSETNX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GETSET"><span class="toc-text">GETSET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#APPEND"><span class="toc-text">APPEND</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Hash-哈希表"><span class="toc-text">Hash 哈希表</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#HSET"><span class="toc-text">HSET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HSETNX"><span class="toc-text">HSETNX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HMSET"><span class="toc-text">HMSET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HMGET"><span class="toc-text">HMGET</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#HKEYS"><span class="toc-text">HKEYS</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#List-列表"><span class="toc-text">List(列表)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#LPUSH"><span class="toc-text">LPUSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RPUSH"><span class="toc-text">RPUSH</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LINDEX"><span class="toc-text">LINDEX</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#LRANGE"><span class="toc-text">LRANGE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Set-集合"><span class="toc-text">Set 集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#SADD"><span class="toc-text">SADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SMEMBERS"><span class="toc-text">SMEMBERS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SCARD"><span class="toc-text">SCARD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SDIFF"><span class="toc-text">SDIFF</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SINTER"><span class="toc-text">SINTER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SUNION"><span class="toc-text">SUNION</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SortedSet-有序集合"><span class="toc-text">SortedSet 有序集合</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ZADD"><span class="toc-text">ZADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZRANK"><span class="toc-text">ZRANK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZRANGE"><span class="toc-text">ZRANGE</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZCARD"><span class="toc-text">ZCARD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZCOUNT"><span class="toc-text">ZCOUNT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZREM"><span class="toc-text">ZREM</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZREMRANGEBYRANK"><span class="toc-text">ZREMRANGEBYRANK</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ZREMRANGEBYSCORE"><span class="toc-text">ZREMRANGEBYSCORE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HyperLogLog"><span class="toc-text">HyperLogLog</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#PFADD"><span class="toc-text">PFADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PFCOUNT"><span class="toc-text">PFCOUNT</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PFMERGE"><span class="toc-text">PFMERGE</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GEO-地理位置"><span class="toc-text">GEO 地理位置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOADD"><span class="toc-text">GEOADD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOPOS"><span class="toc-text">GEOPOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEODIST"><span class="toc-text">GEODIST</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUS"><span class="toc-text">GEORADIUS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEORADIUSBYMEMBER"><span class="toc-text">GEORADIUSBYMEMBER</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#GEOHASH"><span class="toc-text">GEOHASH</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><img src="http://www.redis.cn/images/redis-white.png" alt=""></p>
+<p><a href="https://redis.io/" target="_blank" rel="noopener">Redis(REmote DIctionary Serve)</a>是个开源的，内存中的数据结构存储系统，可用于当作数据库、缓存、信息中间件。</p>
+<p>Redis特点：<strong>快</strong>，<strong>安全</strong>，<strong>实用</strong>。<br><a id="more"></a></p>
+<ul>
+<li><strong>快</strong> 每秒可执行大约<code>110000</code>次的设置(<code>SET</code>)操作，每秒大约可执行<code>81000</code>次的读取/获取(<code>GET</code>)操作。因为它将数据保存在内存中仅使用磁盘进行持久化</li>
+<li><strong>安全</strong> 所有操作都是原子性的。确保了数据操作的一致性。</li>
+<li><strong>实用</strong> Redis提供了丰富的数据结构类型（String、Hash、List、Set、SortedSet、HyperLogLog、GEO）。你可以利用这些数据结构做缓存、消息队列（Redis本地支持发布/订阅）、应用程序的短暂数据、共享session</li>
+</ul>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><h3 id="Mac-OS"><a href="#Mac-OS" class="headerlink" title="Mac OS"></a>Mac OS</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install redis</span><br></pre></td></tr></table></figure>
+<p>客户端 <code>/usr/local/bin/redis-server</code> 和<code>/usr/local/bin/redis-cli</code></p>
+<p>配置文件 <code>/usr/local/etc/redis.conf</code></p>
+<h3 id="Linux"><a href="#Linux" class="headerlink" title="Linux"></a>Linux</h3><h4 id="下载-amp-安装"><a href="#下载-amp-安装" class="headerlink" title="下载&amp;安装"></a>下载&amp;安装</h4><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">wget http://download.redis.io/releases/redis-4.0.9.tar.gz <span class="comment"># 下载包</span></span><br><span class="line">tar -xf redis-4.0.9.tar.gz <span class="comment"># 解压</span></span><br><span class="line"><span class="built_in">cd</span> redis-4.0.9</span><br><span class="line">make PREFIX=/application/redis-4.0.9/ install <span class="comment"># 将redis安装到 /application/redis-4.0.9/</span></span><br><span class="line">ln -s /application/redis-4.0.9/ /application/redis/ <span class="comment"># 创建 redis目录软连接</span></span><br><span class="line">ln -s /application/redis/bin/redis-server /usr/bin/redis-server <span class="comment"># redis-server redis服务端</span></span><br><span class="line">ln -s /application/redis/bin/redis-cli /usr/bin/redis-cli <span class="comment"># redis-cli redis客户端</span></span><br><span class="line">cp ./redis.conf /application/redis/conf/6379.conf <span class="comment"># 创建 redis配置文件</span></span><br><span class="line">cp utils/redis_init_script /etc/rc.d/init.d/redis <span class="comment"># 添加进系统自启动</span></span><br></pre></td></tr></table></figure>
+<h4 id="修改redis配置文件"><a href="#修改redis配置文件" class="headerlink" title="修改redis配置文件"></a>修改redis配置文件</h4><p><code>vim /application/redis/conf/6379.conf</code>修改内容如下：</p>
+<ul>
+<li>daemonize no 改为daemonize yes // 后台运行</li>
+<li>pidfile /var/run/redis.pid 改为pidfile /var/run/redis_6379.pid</li>
+<li>注释掉绑定的主机，否则客户端无法连接 #bind 127.0.0.1 // 支持远程访问</li>
+<li>protected-mode yes 改为 protected-mode no</li>
+</ul>
+<h4 id="将redis加入服务"><a href="#将redis加入服务" class="headerlink" title="将redis加入服务"></a>将redis加入服务</h4><p><code>vim /etc/rc.d/init.d/redis</code>修改内容如下：</p>
+<ul>
+<li>在监本第一行后面添加一行内容为：#chkconfig: 2345 80 90</li>
+<li>EXEC改为/usr/bin/redis-server</li>
+<li>CLIEXEC改为/usr/bin/redis-cli</li>
+<li>CONF改为/application/redis/conf/6379.conf</li>
+<li>更改Redis开启的命令，以后台运行的方式执行 <code>$EXEC $CONF  &amp;</code></li>
+</ul>
+<h4 id="注册redis"><a href="#注册redis" class="headerlink" title="注册redis"></a>注册redis</h4><p><code>chkconfig --add redis</code></p>
+<p><code>vi /etc/profile</code> 添加<code>export PATH=$PATH:/application/redis/bin</code></p>
+<p><code>source /etc/profile</code></p>
+<h4 id="启动redis"><a href="#启动redis" class="headerlink" title="启动redis"></a>启动redis</h4><p><code>service redis start</code></p>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="https://redis.io/topics/config" target="_blank" rel="noopener">配置</a></h2><p>Redis的配置文件默认地址是：<code>/usr/local/etc/redis.conf</code> 在上面安装方案中将配置文件放入:<code>/application/redis/conf/6379.conf</code>。</p>
+<p>有两种方式修改Redis配置项：1. 直接修改配置文件。 2. 进入redis-cli，通过命令行修改redis配置项。</p>
+<h3 id="命令行"><a href="#命令行" class="headerlink" title="命令行"></a>命令行</h3><p>进入redis-cli命令行通过<code>CONFIG GET key</code>获取配置项信息，通过<code>CONFIG SET key value</code>设置配置项值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ redis 127.0.0.1:6379&gt; CONFIG GET loglevel <span class="comment"># 获取日志等级</span></span><br><span class="line">$ redis 127.0.0.1:6379&gt; CONFIG GET  <span class="comment"># 查看所有配置项</span></span><br><span class="line">$ redis 127.0.0.1:6379&gt; CONFIG SET loglevel <span class="string">"notice"</span> <span class="comment"># 设置日志等级</span></span><br></pre></td></tr></table></figure>
+<p>并不是所有的配置项都可以通过<code>CONFIG GET/SET</code>配置，而且<code>CONFIG GET/SET</code>配置方法并不会影响配置文件，如果你希望将修改的配置写入配置文件那就需要使用命令：<a href="https://redis.io/commands/config-rewrite" target="_blank" rel="noopener"><code>CONFIG REWRITE</code></a>。</p>
+<h3 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a><a href="https://raw.githubusercontent.com/antirez/redis/4.0/redis.conf" target="_blank" rel="noopener">配置文件</a></h3><h4 id="基础配置"><a href="#基础配置" class="headerlink" title="基础配置"></a>基础配置</h4><ol>
+<li><p><strong>指定内存空间</strong></p>
+<p>如果你需要指定内存大小，可以通过下面的格式：</p>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 1k =&gt; 1000 bytes</span></span><br><span class="line"><span class="comment"># 1kb =&gt; 1024 bytes</span></span><br><span class="line"><span class="comment"># 1m =&gt; 1000000 bytes</span></span><br><span class="line"><span class="comment"># 1mb =&gt; 1024*1024 bytes</span></span><br><span class="line"><span class="comment"># 1g =&gt; 1000000000 bytes</span></span><br><span class="line"><span class="comment"># 1gb =&gt; 1024*1024*1024 bytes</span></span><br></pre></td></tr></table></figure>
+<p>​    内存单位是不区分大小写的，1GB 1Gb 1gB表示同一个大小空间。</p>
+<ol>
+<li><p><strong>后台运行 daemonize</strong></p>
+<p>默认情况下Redis不是后台运行的，如果需要在后台运行需要将<code>daemonize</code>设为<code>yes</code></p>
+</li>
+</ol>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">daemonize</span> <span class="literal">yes</span></span><br></pre></td></tr></table></figure>
+<ol>
+<li><p><strong>pid</strong></p>
+<p>当Redis 开启后台运行，redis默认会把pid文件放在<code>/var/run/redis.pid</code>，你可以配置到其他地址。当运行多个redis 服务时，需要指定不同的pid文件和端口。</p>
+</li>
+<li><p><strong>指定接受主机IP bind</strong></p>
+<p>Redis 默认只接受本机的客户端连接 <code>bind 127.0.0.1</code>。如果将它注释掉它将接受所有客户端请求。</p>
+</li>
+<li><p><strong>指定端口 port</strong></p>
+<p>Redis 默认端口是：6379。<code>port 6379</code></p>
+</li>
+<li><p><strong>客户端连接时的超时时间 timeout</strong></p>
+<p>设置客户端最长的空闲时间，如果超过这个时间客户端没有操作服务端会自动断开该连接。<code>timeout 10</code> 单位是秒。当设置为0时是表示关闭该功能。</p>
+</li>
+<li><p><strong>日志等级 loglevel</strong></p>
+<p>Redis 日志等级分为四个等级：debug（适合开发环境,客户端操作信息都会输出日志）、verbose、notice（适合生产环境）、warning（异常信息）。</p>
+</li>
+<li><p><strong>配置log文件地址 logfile</strong></p>
+<p>Redis 默认日志输出地址是 <code>stdout</code>表示终端输出，如果Redis是后台运行它默认日志输出地址是：<code>/dev/null</code>。</p>
+<p>通过<code>logfile /var/log/redis/redis.log</code>你可以指定Redis 日志输出地址。</p>
+</li>
+<li><p><strong>设置数据库连接数 databases</strong></p>
+<p>Redis 默认连接数据库是0，可以通过<code>select &lt;dbid&gt;</code>指定连接的数据库，数据连接范围应该是：<code>0 - databases</code>。<code>databases 16</code>。</p>
+</li>
+<li><p><strong>同时连接的客户数 maxclients</strong></p>
+<p>设置同时连接客户端的数量：<code>maxclients 128</code>。当超过这个连接时，服务端会拒绝连接，客户端会接受到报错。</p>
+</li>
+</ol>
+<h4 id="SLOW-LOG"><a href="#SLOW-LOG" class="headerlink" title="SLOW LOG"></a>SLOW LOG</h4><ol>
+<li><p><strong>超时连接日志记录 slowlog-log-slower-than </strong></p>
+<p>设定最大的查询命令执行时间，当超过这个时间的命令会被记录日志中。</p>
+</li>
+<li><p><strong>声明超时日志最大长度 slowlog-max-len</strong></p>
+<p>该命令不会限制日志大小，只是声明日志最大长度。</p>
+</li>
+</ol>
+<h4 id="Snapshotting"><a href="#Snapshotting" class="headerlink" title="Snapshotting"></a>Snapshotting</h4><ol>
+<li><p><strong>save</strong></p>
+<p>将数据保存到磁盘中。格式：<code>save &lt;seconds&gt; &lt;changes&gt;</code>。</p>
+<p>在指定时间seconds内有changes次写操作，则将数据保存到磁盘上。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">save</span> <span class="number">900</span> <span class="number">1</span></span><br><span class="line">save <span class="number">300</span> <span class="number">10</span></span><br><span class="line">save <span class="number">60</span> <span class="number">10000</span></span><br></pre></td></tr></table></figure>
+</li>
+<li><p><strong>dbfilename</strong></p>
+<p>定义保存到磁盘上文件名字：<code>dbfilename fileName</code></p>
+</li>
+<li><p><strong>dir</strong></p>
+<p>数据保存在磁盘上的目录：<code>dir ./</code></p>
+</li>
+</ol>
+<h4 id="APPEND-ONLY-MODE"><a href="#APPEND-ONLY-MODE" class="headerlink" title="APPEND ONLY MODE"></a>APPEND ONLY MODE</h4><p>Redis 默认是异步转存数据从内存到磁盘。在大多数时候这个模式没有问题，但在Redis进程挂掉或断电情况下会导致几分钟内写入数据的丢失。</p>
+<p>Append only 提供了一种持久模式，Redis会在#appendonly.aof 文件中添加每一个写操作，这个文件会在Redis启动时被读取来在内存中重新构建数据集。</p>
+<figure class="highlight nginx"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">appendonly</span> <span class="literal">on</span> <span class="comment"># 开启AOF模式</span></span><br><span class="line">appendfilename <span class="string">"appendonly.aof"</span> <span class="comment"># AOF模式保存的文件名</span></span><br><span class="line">appendfsync everysec <span class="comment"># 保存数据策略 </span></span><br><span class="line"><span class="comment"># no /不使用fsync，系统自己将缓存数据刷新至硬盘中，这是最快的方案。 </span></span><br><span class="line"><span class="comment"># always /每次写入操作后更新日志，最慢但是最安全的方式。</span></span><br><span class="line"><span class="comment"># everysec /一秒中执行一次fsync,折中方案</span></span><br></pre></td></tr></table></figure>
+<h2 id="Key-键"><a href="#Key-键" class="headerlink" title="Key 键"></a><a href="http://redisdoc.com/key/index.html" target="_blank" rel="noopener">Key 键</a></h2><p>Redis是极简的key-value模式的数据库。key是value在数据库中的唯一标识符，通过key你可以快速查找到对应的值。</p>
+<p>Redis提供一些方法用于处理key:</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SET name huangz <span class="comment"># 设置一直key为name值为huangz数据</span></span><br><span class="line">redis&gt; EXISTS name <span class="comment"># 判断key为name是否存在</span></span><br><span class="line">(<span class="built_in">integer</span>) 1 <span class="comment"># name key存在</span></span><br><span class="line">redis&gt; DEL name <span class="comment"># 删除key name</span></span><br><span class="line">(<span class="built_in">integer</span>) 1 <span class="comment"># 删除成功</span></span><br><span class="line">redis&gt; EXISTS name</span><br><span class="line">(<span class="built_in">integer</span>) 0 <span class="comment"># name key不存在</span></span><br><span class="line"></span><br><span class="line">redis&gt; SET cache_page <span class="string">"www.google.com"</span> <span class="comment"># 设置 cache_page</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; EXPIRE cache_page 30  <span class="comment"># 设置过期时间为 30 秒 格式：EXPIRE key seconds  为给定 key 设置生存时间，当 key 过期时(生存时间为 0 )，它会被自动删除。</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis&gt; TTL cache_page    <span class="comment"># 查看剩余生存时间 TTL key</span></span><br><span class="line">(<span class="built_in">integer</span>) 23</span><br><span class="line"></span><br><span class="line">redis&gt; SET cache www.google.com</span><br><span class="line">OK</span><br><span class="line">redis&gt; EXPIREAT cache 1355292000     <span class="comment"># 这个 key 将在 2012.12.12 过期 EXPIREAT于EXPIRE类似只是时间参数是 UNIX 时间戳(unix timestamp)</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; MSET one 1 two 2 three 3 four 4  <span class="comment"># 一次设置 4 个 key MSET key value key value...  同时给多个key设置值</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; KEYS *o* <span class="comment">#查找所有符合给定模式 pattern 的 key </span></span><br><span class="line">1) <span class="string">"four"</span></span><br><span class="line">2) <span class="string">"two"</span></span><br><span class="line">3) <span class="string">"one"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SELECT 0  <span class="comment"># redis默认使用数据库 0，为了清晰起见，这里再显式指定一次。</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; SET song <span class="string">"secret base - Zone"</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; MOVE song 1 <span class="comment"># 将 song 移动到数据库 1</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; SET message <span class="string">"hello world"</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; RENAME message greeting <span class="comment">#修改 message key为 greeting 即使greeting存在也会被替换掉</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">redis&gt; SET player <span class="string">"MPlyaer"</span></span><br><span class="line">OK</span><br><span class="line">redis&gt; EXISTS best_player</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line">redis&gt; RENAMENX player best_player <span class="comment"># 修改key 名，只有当新key保存在才会修改成功</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<h2 id="String-字符串"><a href="#String-字符串" class="headerlink" title="String 字符串"></a><a href="http://redisdoc.com/string/index.html" target="_blank" rel="noopener">String 字符串</a></h2><h3 id="SET、SETEX、PSETEX"><a href="#SET、SETEX、PSETEX" class="headerlink" title="SET、SETEX、PSETEX"></a>SET、SETEX、PSETEX</h3><p>设置字符串值。格式：<code>SET key value [EX seconds] [PX milliseconds] [NX|XX]</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis 127.0.0.1:6379&gt; SET key <span class="string">"value"</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; SET key-with-expire-time <span class="string">"hello"</span> EX 10086 <span class="comment"># 等同于 SETEX key-with-expire-time 10086 "hello" 设置key过期秒数</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis 127.0.0.1:6379&gt; SET key-with-pexpire-time <span class="string">"moto"</span> PX 123321 <span class="comment"># 等同于 PSETEX key-with-pexpire-time 123321 "moto" 设置key过期毫秒数</span></span><br><span class="line">OK</span><br></pre></td></tr></table></figure>
+<ul>
+<li><code>EX second</code> ：设置键的过期时间为 <code>second</code> 秒。 <code>SET key value EX second</code> 效果等同于 <code>SETEX key second value</code> 。</li>
+<li><code>PX millisecond</code> ：设置键的过期时间为 <code>millisecond</code> 毫秒。 <code>SET key value PX millisecond</code> 效果等同于 <code>PSETEX key millisecondvalue value</code> 。</li>
+<li><code>NX</code> ：只在键不存在时，才对键进行设置操作。 <code>SET key value NX</code> 效果等同于 <code>SETNX key value</code> 。</li>
+<li><code>XX</code> ：只在键已经存在时，才对键进行设置操作。</li>
+</ul>
+<h3 id="MSET、MGET"><a href="#MSET、MGET" class="headerlink" title="MSET、MGET"></a>MSET、MGET</h3><p>同时设置多个key-value。<code>MSET key value [key value …]</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSET date <span class="string">"2012.3.30"</span> time <span class="string">"11:00 a.m."</span> weather <span class="string">"sunny"</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; MGET date time weather</span><br><span class="line">1) <span class="string">"2012.3.30"</span></span><br><span class="line">2) <span class="string">"11:00 a.m."</span></span><br><span class="line">3) <span class="string">"sunny"</span></span><br></pre></td></tr></table></figure>
+<h3 id="MSETNX"><a href="#MSETNX" class="headerlink" title="MSETNX"></a>MSETNX</h3><p>同时设置一个或多个 <code>key-value</code> 对，当且仅当所有给定 <code>key</code> 都不存在。<code>MSETNX key value [key value …]</code>。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; MSETNX rmdbs <span class="string">"MySQL"</span> nosql <span class="string">"MongoDB"</span> key-value-store <span class="string">"redis"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; MGET rmdbs nosql key-value-store</span><br><span class="line">1) <span class="string">"MySQL"</span></span><br><span class="line">2) <span class="string">"MongoDB"</span></span><br><span class="line">3) <span class="string">"redis"</span></span><br><span class="line"><span class="comment"># MSET 的给定 key 当中有已存在的 key</span></span><br><span class="line"></span><br><span class="line">redis&gt; MSETNX rmdbs <span class="string">"Sqlite"</span> language <span class="string">"python"</span>  <span class="comment"># rmdbs 键已经存在，操作失败</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; EXISTS language   <span class="comment"># 因为 MSET 是原子性操作，language 没有被设置</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; GET rmdbs         <span class="comment"># rmdbs 也没有被修改</span></span><br><span class="line"><span class="string">"MySQL"</span></span><br></pre></td></tr></table></figure>
+<h3 id="GETSET"><a href="#GETSET" class="headerlink" title="GETSET"></a>GETSET</h3><p>将给定 <code>key</code> 的值设为 <code>value</code> ，并返回 <code>key</code> 的旧值(old value)。<code>GETSET key value</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GETSET db mongodb    <span class="comment"># 没有旧值，返回 nil</span></span><br><span class="line">(nil)</span><br><span class="line"></span><br><span class="line">redis&gt; GET db</span><br><span class="line"><span class="string">"mongodb"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GETSET db redis      <span class="comment"># 返回旧值 mongodb</span></span><br><span class="line"><span class="string">"mongodb"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GET db</span><br><span class="line"><span class="string">"redis"</span></span><br></pre></td></tr></table></figure>
+<h3 id="APPEND"><a href="#APPEND" class="headerlink" title="APPEND"></a>APPEND</h3><p>如果 <code>key</code> 已经存在并且是一个字符串， <a href="http://redisdoc.com/string/append.html#append" target="_blank" rel="noopener">APPEND</a> 命令将 <code>value</code> 追加到 <code>key</code> 原来的值的末尾。</p>
+<p>如果 <code>key</code> 不存在， <a href="http://redisdoc.com/string/append.html#append" target="_blank" rel="noopener">APPEND</a> 就简单地将给定 <code>key</code> 设为 <code>value</code> ，就像执行 <code>SET key value</code> 一样。</p>
+<p><code>APPEND key value</code></p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 对不存在的 key 执行 APPEND</span></span><br><span class="line"></span><br><span class="line">redis&gt; EXISTS myphone               <span class="comment"># 确保 myphone 不存在</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; APPEND myphone <span class="string">"nokia"</span>       <span class="comment"># 对不存在的 key 进行 APPEND ，等同于 SET myphone "nokia"</span></span><br><span class="line">(<span class="built_in">integer</span>) 5                         <span class="comment"># 字符长度</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 对已存在的字符串进行 APPEND</span></span><br><span class="line"></span><br><span class="line">redis&gt; APPEND myphone <span class="string">" - 1110"</span>     <span class="comment"># 长度从 5 个字符增加到 12 个字符</span></span><br><span class="line">(<span class="built_in">integer</span>) 12</span><br><span class="line"></span><br><span class="line">redis&gt; GET myphone</span><br><span class="line"><span class="string">"nokia - 1110"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Hash-哈希表"><a href="#Hash-哈希表" class="headerlink" title="Hash 哈希表"></a><a href="http://redisdoc.com/hash/index.html" target="_blank" rel="noopener">Hash 哈希表</a></h2><p>Redis hash 是一个string类型的field和value的映射表，hash特别适合用于存储对象。</p>
+<h3 id="HSET"><a href="#HSET" class="headerlink" title="HSET"></a>HSET</h3><p><code>HSET key field value</code> ­­ 设置 key 指定的哈希集中指定字段的值。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HSET website google <span class="string">"www.g.cn"</span>     <span class="comment"># 设置一个新域</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<h3 id="HSETNX"><a href="#HSETNX" class="headerlink" title="HSETNX"></a>HSETNX</h3><p><code>HSETNX key field value</code>将哈希表 <code>key</code> 中的域 <code>field</code> 的值设置为 <code>value</code> ，当且仅当域 <code>field</code> 不存在。</p>
+<p>若域 <code>field</code> 已经存在，该操作无效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HSETNX nosql key-value-store redis</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; HSETNX nosql key-value-store redis       <span class="comment"># 操作无效，域 key-value-store 已存在</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+<h3 id="HMSET"><a href="#HMSET" class="headerlink" title="HMSET"></a>HMSET</h3><p><code>HMSET key field value [field value ...]</code>同时将多个 <code>field-value</code> (域-值)对设置到哈希表 <code>key</code> 中。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET website google <span class="string">'www.google.com'</span> yahoo <span class="string">'www.yahoo.com'</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; HGET website google</span><br><span class="line"><span class="string">"www.google.com"</span></span><br><span class="line"></span><br><span class="line">redis&gt; HGET website yahoo</span><br><span class="line"><span class="string">"www.yahoo.com"</span></span><br></pre></td></tr></table></figure>
+<h3 id="HMGET"><a href="#HMGET" class="headerlink" title="HMGET"></a>HMGET</h3><p><code>HMGET key field [field ...]</code>返回哈希表 <code>key</code> 中，一个或多个给定域的值。List 列表</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET pet dog <span class="string">"doudou"</span> cat <span class="string">"nounou"</span>    <span class="comment"># 一次设置多个域</span></span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; HMGET pet dog cat fake_pet             <span class="comment"># 返回值的顺序和传入参数的顺序一样</span></span><br><span class="line">1) <span class="string">"doudou"</span></span><br><span class="line">2) <span class="string">"nounou"</span></span><br><span class="line">3) (nil)                                      <span class="comment"># 不存在的域返回nil值</span></span><br></pre></td></tr></table></figure>
+<h3 id="HKEYS"><a href="#HKEYS" class="headerlink" title="HKEYS"></a>HKEYS</h3><p><code>HKEYS key</code>返回哈希表 <code>key</code> 中的所有域。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; HMSET website google www.google.com yahoo www.yahoo.com</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; HKEYS website</span><br><span class="line">1) <span class="string">"google"</span></span><br><span class="line">2) <span class="string">"yahoo"</span></span><br></pre></td></tr></table></figure>
+<h2 id="List-列表"><a href="#List-列表" class="headerlink" title="List(列表)"></a><a href="http://redisdoc.com/list/index.html" target="_blank" rel="noopener">List(列表)</a></h2><p>字符串列表管理方式。</p>
+<h3 id="LPUSH"><a href="#LPUSH" class="headerlink" title="LPUSH"></a>LPUSH</h3><p><code>LPUSH key value [value ...]</code>将一个或多个值 <code>value</code> 插入到列表 <code>key</code> 的表头。</p>
+<p>如果有多个 <code>value</code> 值，那么各个 <code>value</code> 值按从左到右的顺序依次插入到表头： 比如说，对空列表 <code>mylist</code> 执行命令 <code>LPUSH mylist a b c</code>，列表的值将是 <code>c b a</code> ，这等同于原子性地执行 <code>LPUSH mylist a</code> 、 <code>LPUSH mylist b</code> 和 <code>LPUSH mylist c</code> 三个命令。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; LPUSH languages python</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入重复元素</span></span><br><span class="line"></span><br><span class="line">redis&gt; LPUSH languages python</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; LRANGE languages 0 -1     <span class="comment"># 列表允许重复元素</span></span><br><span class="line">1) <span class="string">"python"</span></span><br><span class="line">2) <span class="string">"python"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 加入多个元素</span></span><br><span class="line"></span><br><span class="line">redis&gt; LPUSH mylist a b c</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; LRANGE mylist 0 -1</span><br><span class="line">1) <span class="string">"c"</span></span><br><span class="line">2) <span class="string">"b"</span></span><br><span class="line">3) <span class="string">"a"</span></span><br></pre></td></tr></table></figure>
+<h3 id="RPUSH"><a href="#RPUSH" class="headerlink" title="RPUSH"></a>RPUSH</h3><p><code>RPUSH key value [value ...]</code>将一个或多个值 <code>value</code> 插入到列表 <code>key</code> 的表尾(最右边)。</p>
+<p>如果有多个 <code>value</code> 值，那么各个 <code>value</code> 值按从左到右的顺序依次插入到表尾：比如对一个空列表 <code>mylist</code> 执行 <code>RPUSH mylist a b c</code> ，得出的结果列表为 <code>a b c</code> ，等同于执行命令 <code>RPUSH mylist a</code> 、 <code>RPUSH mylist b</code> 、 <code>RPUSH mylist c</code> 。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加多个元素</span></span><br><span class="line"></span><br><span class="line">redis&gt; RPUSH mylist a b c</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; LRANGE mylist 0 -1</span><br><span class="line">1) <span class="string">"a"</span></span><br><span class="line">2) <span class="string">"b"</span></span><br><span class="line">3) <span class="string">"c"</span></span><br></pre></td></tr></table></figure>
+<h3 id="LINDEX"><a href="#LINDEX" class="headerlink" title="LINDEX"></a>LINDEX</h3><p><code>LINDEX key index</code>返回列表 <code>key</code> 中，下标为 <code>index</code> 的元素。</p>
+<p>下标(index)参数 <code>start</code> 和 <code>stop</code> 都以 <code>0</code> 为底，也就是说，以 <code>0</code> 表示列表的第一个元素，以 <code>1</code> 表示列表的第二个元素，以此类推。</p>
+<p>你也可以使用负数下标，以 <code>-1</code> 表示列表的最后一个元素， <code>-2</code> 表示列表的倒数第二个元素，以此类推。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; LPUSH mylist <span class="string">"World"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; LPUSH mylist <span class="string">"Hello"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; LINDEX mylist 0</span><br><span class="line"><span class="string">"Hello"</span></span><br><span class="line"></span><br><span class="line">redis&gt; LINDEX mylist -1</span><br><span class="line"><span class="string">"World"</span></span><br><span class="line"></span><br><span class="line">redis&gt; LINDEX mylist 3        <span class="comment"># index不在 mylist 的区间范围内</span></span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<h3 id="LRANGE"><a href="#LRANGE" class="headerlink" title="LRANGE"></a>LRANGE</h3><p><code>LRANGE key start stop</code>返回列表 <code>key</code> 中指定区间内的元素，区间以偏移量 <code>start</code> 和 <code>stop</code> 指定。</p>
+<p>下标(index)参数 <code>start</code> 和 <code>stop</code> 都以 <code>0</code> 为底，也就是说，以 <code>0</code> 表示列表的第一个元素，以 <code>1</code> 表示列表的第二个元素，以此类推。</p>
+<p>你也可以使用负数下标，以 <code>-1</code> 表示列表的最后一个元素， <code>-2</code> 表示列表的倒数第二个元素，以此类推。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; RPUSH fp-language <span class="string">'lisp'</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; LRANGE fp-language 0 0</span><br><span class="line">1) <span class="string">"lisp"</span></span><br><span class="line"></span><br><span class="line">redis&gt; RPUSH fp-language <span class="string">'scheme'</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; LRANGE fp-language 0 1</span><br><span class="line">1) <span class="string">"lisp"</span></span><br><span class="line">2) <span class="string">"scheme"</span></span><br></pre></td></tr></table></figure>
+<h2 id="Set-集合"><a href="#Set-集合" class="headerlink" title="Set 集合"></a><a href="http://redisdoc.com/set/index.html" target="_blank" rel="noopener">Set 集合</a></h2><p>Set 就是一个集合,集合的概念就是一堆不重复值的组合。</p>
+<h3 id="SADD"><a href="#SADD" class="headerlink" title="SADD"></a>SADD</h3><p><code>SADD key member [member ...]</code>将一个或多个 <code>member</code> 元素加入到集合 <code>key</code> 当中，已经存在于集合的 <code>member</code> 元素将被忽略。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加单个元素</span></span><br><span class="line">redis&gt; SADD bbs <span class="string">"discuz.net"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加重复元素</span></span><br><span class="line">redis&gt; SADD bbs <span class="string">"discuz.net"</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加多个元素</span></span><br><span class="line">redis&gt; SADD bbs <span class="string">"tianya.cn"</span> <span class="string">"groups.google.com"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; SMEMBERS bbs</span><br><span class="line">1) <span class="string">"discuz.net"</span></span><br><span class="line">2) <span class="string">"groups.google.com"</span></span><br><span class="line">3) <span class="string">"tianya.cn"</span></span><br></pre></td></tr></table></figure>
+<h3 id="SMEMBERS"><a href="#SMEMBERS" class="headerlink" title="SMEMBERS"></a>SMEMBERS</h3><p><code>SMEMBERS key</code>返回集合 <code>key</code> 中的所有成员。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 非空集合</span></span><br><span class="line"></span><br><span class="line">redis&gt; SADD language Ruby Python Clojure</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; SMEMBERS language</span><br><span class="line">1) <span class="string">"Python"</span></span><br><span class="line">2) <span class="string">"Ruby"</span></span><br><span class="line">3) <span class="string">"Clojure"</span></span><br></pre></td></tr></table></figure>
+<h3 id="SCARD"><a href="#SCARD" class="headerlink" title="SCARD"></a>SCARD</h3><p><code>SCARD key</code>返回集合 <code>key</code> 的基数(集合中元素的数量)。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SADD tool pc printer phone</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; SCARD tool   <span class="comment"># 非空集合</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; DEL tool</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; SCARD tool   <span class="comment"># 空集合</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+<h3 id="SDIFF"><a href="#SDIFF" class="headerlink" title="SDIFF"></a>SDIFF</h3><p><code>SDIFF key [key ...]</code>返回一个集合的全部成员，该集合是所有给定集合之间的差集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SMEMBERS peter<span class="string">'s_movies</span></span><br><span class="line"><span class="string">1) "bet man"</span></span><br><span class="line"><span class="string">2) "start war"</span></span><br><span class="line"><span class="string">3) "2012"</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">redis&gt; SMEMBERS joe'</span>s_movies</span><br><span class="line">1) <span class="string">"hi, lady"</span></span><br><span class="line">2) <span class="string">"Fast Five"</span></span><br><span class="line">3) <span class="string">"2012"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SDIFF peter<span class="string">'s_movies joe'</span>s_movies</span><br><span class="line">1) <span class="string">"bet man"</span></span><br><span class="line">2) <span class="string">"start war"</span></span><br></pre></td></tr></table></figure>
+<h3 id="SINTER"><a href="#SINTER" class="headerlink" title="SINTER"></a>SINTER</h3><p><code>SINTER key [key ...]</code>返回一个集合的全部成员，该集合是所有给定集合的交集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SMEMBERS group_1</span><br><span class="line">1) <span class="string">"LI LEI"</span></span><br><span class="line">2) <span class="string">"TOM"</span></span><br><span class="line">3) <span class="string">"JACK"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SMEMBERS group_2</span><br><span class="line">1) <span class="string">"HAN MEIMEI"</span></span><br><span class="line">2) <span class="string">"JACK"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SINTER group_1 group_2</span><br><span class="line">1) <span class="string">"JACK"</span></span><br></pre></td></tr></table></figure>
+<h3 id="SUNION"><a href="#SUNION" class="headerlink" title="SUNION"></a>SUNION</h3><p><code>SUNION key [key ...]</code>返回一个集合的全部成员，该集合是所有给定集合的并集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; SMEMBERS songs</span><br><span class="line">1) <span class="string">"Billie Jean"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SMEMBERS my_songs</span><br><span class="line">1) <span class="string">"Believe Me"</span></span><br><span class="line"></span><br><span class="line">redis&gt; SUNION songs my_songs</span><br><span class="line">1) <span class="string">"Billie Jean"</span></span><br><span class="line">2) <span class="string">"Believe Me"</span></span><br></pre></td></tr></table></figure>
+<h2 id="SortedSet-有序集合"><a href="#SortedSet-有序集合" class="headerlink" title="SortedSet 有序集合"></a><a href="http://redisdoc.com/sorted_set/index.html" target="_blank" rel="noopener">SortedSet 有序集合</a></h2><p>Redis 有序集合和集合一样也是string类型元素的集合,且不允许重复的成员。</p>
+<p>不同的是每个元素都会关联一个double类型的分数。redis正是通过分数来为集合中的成员进行从小到大的排序。</p>
+<p>有序集合的成员是唯一的,但分数(score)却可以重复。</p>
+<h3 id="ZADD"><a href="#ZADD" class="headerlink" title="ZADD"></a>ZADD</h3><p><code>ZADD key score member [[score member] [score member] ...]</code></p>
+<p>将一个或多个 <code>member</code> 元素及其 <code>score</code> 值加入到有序集 <code>key</code> 当中。</p>
+<p>如果某个 <code>member</code> 已经是有序集的成员，那么更新这个 <code>member</code> 的 <code>score</code> 值，并通过重新插入这个 <code>member</code> 元素，来保证该 <code>member</code> 在正确的位置上。</p>
+<p><code>score</code> 值可以是整数值或双精度浮点数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 添加单个元素</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZADD page_rank 10 google.com</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加多个元素</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZADD page_rank 9 baidu.com 8 bing.com</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES</span><br><span class="line">1) <span class="string">"bing.com"</span></span><br><span class="line">2) <span class="string">"8"</span></span><br><span class="line">3) <span class="string">"baidu.com"</span></span><br><span class="line">4) <span class="string">"9"</span></span><br><span class="line">5) <span class="string">"google.com"</span></span><br><span class="line">6) <span class="string">"10"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加已存在元素，且 score 值不变</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZADD page_rank 10 google.com</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES  <span class="comment"># 没有改变</span></span><br><span class="line">1) <span class="string">"bing.com"</span></span><br><span class="line">2) <span class="string">"8"</span></span><br><span class="line">3) <span class="string">"baidu.com"</span></span><br><span class="line">4) <span class="string">"9"</span></span><br><span class="line">5) <span class="string">"google.com"</span></span><br><span class="line">6) <span class="string">"10"</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 添加已存在元素，但是改变 score 值</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZADD page_rank 6 bing.com</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES  <span class="comment"># bing.com 元素的 score 值被改变</span></span><br><span class="line">1) <span class="string">"bing.com"</span></span><br><span class="line">2) <span class="string">"6"</span></span><br><span class="line">3) <span class="string">"baidu.com"</span></span><br><span class="line">4) <span class="string">"9"</span></span><br><span class="line">5) <span class="string">"google.com"</span></span><br><span class="line">6) <span class="string">"10"</span></span><br></pre></td></tr></table></figure>
+<h3 id="ZRANK"><a href="#ZRANK" class="headerlink" title="ZRANK"></a>ZRANK</h3><p><code>ZRANK key member</code>返回有序集 <code>key</code> 中成员 <code>member</code> 的排名。其中有序集成员按 <code>score</code> 值递增(从小到大)顺序排列。</p>
+ <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZRANGE salary 0 -1 WITHSCORES        <span class="comment"># 显示所有成员及其 score 值</span></span><br><span class="line">1) <span class="string">"peter"</span></span><br><span class="line">2) <span class="string">"3500"</span></span><br><span class="line">3) <span class="string">"tom"</span></span><br><span class="line">4) <span class="string">"4000"</span></span><br><span class="line">5) <span class="string">"jack"</span></span><br><span class="line">6) <span class="string">"5000"</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZRANK salary tom                     <span class="comment"># 显示 tom 的薪水排名，第二</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br></pre></td></tr></table></figure>
+<h3 id="ZRANGE"><a href="#ZRANGE" class="headerlink" title="ZRANGE"></a>ZRANGE</h3><p><code>ZRANGE key start stop [WITHSCORES]</code>返回有序集 <code>key</code> 中，指定区间内的成员。</p>
+<p>其中成员的位置按 <code>score</code> 值递增(从小到大)来排序。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">redis &gt; ZRANGE salary 0 -1 WITHSCORES             <span class="comment"># 显示整个有序集成员</span></span><br><span class="line">1) <span class="string">"jack"</span></span><br><span class="line">2) <span class="string">"3500"</span></span><br><span class="line">3) <span class="string">"tom"</span></span><br><span class="line">4) <span class="string">"5000"</span></span><br><span class="line">5) <span class="string">"boss"</span></span><br><span class="line">6) <span class="string">"10086"</span></span><br><span class="line"></span><br><span class="line">redis &gt; ZRANGE salary 1 2 WITHSCORES              <span class="comment"># 显示有序集下标区间 1 至 2 的成员</span></span><br><span class="line">1) <span class="string">"tom"</span></span><br><span class="line">2) <span class="string">"5000"</span></span><br><span class="line">3) <span class="string">"boss"</span></span><br><span class="line">4) <span class="string">"10086"</span></span><br><span class="line"></span><br><span class="line">redis &gt; ZRANGE salary 0 200000 WITHSCORES         <span class="comment"># 测试 end 下标超出最大下标时的情况</span></span><br><span class="line">1) <span class="string">"jack"</span></span><br><span class="line">2) <span class="string">"3500"</span></span><br><span class="line">3) <span class="string">"tom"</span></span><br><span class="line">4) <span class="string">"5000"</span></span><br><span class="line">5) <span class="string">"boss"</span></span><br><span class="line">6) <span class="string">"10086"</span></span><br><span class="line"></span><br><span class="line">redis &gt; ZRANGE salary 200000 3000000 WITHSCORES   <span class="comment"># 测试当给定区间不存在于有序集时的情况</span></span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="ZCARD"><a href="#ZCARD" class="headerlink" title="ZCARD"></a>ZCARD</h3><p><code>ZCARD key</code>返回有序集 <code>key</code> 的基数。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis &gt; ZADD salary 2000 tom    <span class="comment"># 添加一个成员</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis &gt; ZCARD salary</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis &gt; ZADD salary 5000 jack   <span class="comment"># 再添加一个成员</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis &gt; ZCARD salary</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis &gt; EXISTS non_exists_key   <span class="comment"># 对不存在的 key 进行 ZCARD 操作</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis &gt; ZCARD non_exists_key</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+<h3 id="ZCOUNT"><a href="#ZCOUNT" class="headerlink" title="ZCOUNT"></a>ZCOUNT</h3><p><code>ZCOUNT key min max</code>返回有序集 <code>key</code> 中， <code>score</code> 值在 <code>min</code> 和 <code>max</code> 之间(默认包括 <code>score</code> 值等于 <code>min</code> 或 <code>max</code> )的成员的数量。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZRANGE salary 0 -1 WITHSCORES    <span class="comment"># 测试数据</span></span><br><span class="line">1) <span class="string">"jack"</span></span><br><span class="line">2) <span class="string">"2000"</span></span><br><span class="line">3) <span class="string">"peter"</span></span><br><span class="line">4) <span class="string">"3500"</span></span><br><span class="line">5) <span class="string">"tom"</span></span><br><span class="line">6) <span class="string">"5000"</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZCOUNT salary 2000 5000          <span class="comment"># 计算薪水在 2000-5000 之间的人数</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; ZCOUNT salary 3000 5000          <span class="comment"># 计算薪水在 3000-5000 之间的人数</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br></pre></td></tr></table></figure>
+<h3 id="ZREM"><a href="#ZREM" class="headerlink" title="ZREM"></a>ZREM</h3><p><code>ZREM key member [member ...]</code>移除有序集 <code>key</code> 中的一个或多个成员，不存在的成员将被忽略。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment"># 测试数据</span></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES</span><br><span class="line">1) <span class="string">"bing.com"</span></span><br><span class="line">2) <span class="string">"8"</span></span><br><span class="line">3) <span class="string">"baidu.com"</span></span><br><span class="line">4) <span class="string">"9"</span></span><br><span class="line">5) <span class="string">"google.com"</span></span><br><span class="line">6) <span class="string">"10"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除单个元素</span></span><br><span class="line">redis&gt; ZREM page_rank google.com</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES</span><br><span class="line">1) <span class="string">"bing.com"</span></span><br><span class="line">2) <span class="string">"8"</span></span><br><span class="line">3) <span class="string">"baidu.com"</span></span><br><span class="line">4) <span class="string">"9"</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除多个元素</span></span><br><span class="line">redis&gt; ZREM page_rank baidu.com bing.com</span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE page_rank 0 -1 WITHSCORES</span><br><span class="line">(empty list or <span class="built_in">set</span>)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment"># 移除不存在元素</span></span><br><span class="line">redis&gt; ZREM page_rank non-exists-element</span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br></pre></td></tr></table></figure>
+<h3 id="ZREMRANGEBYRANK"><a href="#ZREMRANGEBYRANK" class="headerlink" title="ZREMRANGEBYRANK"></a>ZREMRANGEBYRANK</h3><p><code>ZREMRANGEBYRANK key start stop</code>移除有序集 <code>key</code> 中，指定排名(rank)区间内的所有成员。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZADD salary 2000 jack</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis&gt; ZADD salary 5000 tom</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line">redis&gt; ZADD salary 3500 peter</span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; ZREMRANGEBYRANK salary 0 1       <span class="comment"># 移除下标 0 至 1 区间内的成员</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE salary 0 -1 WITHSCORES    <span class="comment"># 有序集只剩下一个成员</span></span><br><span class="line">1) <span class="string">"tom"</span></span><br><span class="line">2) <span class="string">"5000"</span></span><br></pre></td></tr></table></figure>
+<h3 id="ZREMRANGEBYSCORE"><a href="#ZREMRANGEBYSCORE" class="headerlink" title="ZREMRANGEBYSCORE"></a>ZREMRANGEBYSCORE</h3><p><code>ZREMRANGEBYSCORE key min max</code>移除有序集 <code>key</code> 中，所有 <code>score</code> 值介于 <code>min</code> 和 <code>max</code> 之间(包括等于 <code>min</code> 或 <code>max</code> )的成员。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; ZRANGE salary 0 -1 WITHSCORES          <span class="comment"># 显示有序集内所有成员及其 score 值</span></span><br><span class="line">1) <span class="string">"tom"</span></span><br><span class="line">2) <span class="string">"2000"</span></span><br><span class="line">3) <span class="string">"peter"</span></span><br><span class="line">4) <span class="string">"3500"</span></span><br><span class="line">5) <span class="string">"jack"</span></span><br><span class="line">6) <span class="string">"5000"</span></span><br><span class="line"></span><br><span class="line">redis&gt; ZREMRANGEBYSCORE salary 1500 3500      <span class="comment"># 移除所有薪水在 1500 到 3500 内的员工</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; ZRANGE salary 0 -1 WITHSCORES          <span class="comment"># 剩下的有序集成员</span></span><br><span class="line">1) <span class="string">"jack"</span></span><br><span class="line">2) <span class="string">"5000"</span></span><br></pre></td></tr></table></figure>
+<h2 id="HyperLogLog"><a href="#HyperLogLog" class="headerlink" title="HyperLogLog"></a><a href="http://redisdoc.com/hyperloglog/index.html" target="_blank" rel="noopener">HyperLogLog</a></h2><p>Redis 在 2.8.9 版本添加了 HyperLogLog 结构。Redis HyperLogLog 是用来做基数统计的算法，HyperLogLog 的优点是，在输入元素的数量或者体积非常非常大时，计算基数所需的空间总是固定 的、并且是很小的。</p>
+<h3 id="PFADD"><a href="#PFADD" class="headerlink" title="PFADD"></a>PFADD</h3><p><code>PFADD key element [element ...]</code>将任意数量的元素添加到指定的 HyperLogLog 里面。</p>
+<ul>
+<li><p><strong>返回值：</strong></p>
+<p>整数回复： 如果 HyperLogLog 的内部储存被修改了， 那么返回 1 ， 否则返回 0 。</p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; PFADD  databases  <span class="string">"Redis"</span>  <span class="string">"MongoDB"</span>  <span class="string">"MySQL"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; PFADD  databases  <span class="string">"Redis"</span>    <span class="comment"># Redis 已经存在，不必对估计数量进行更新</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases    <span class="comment"># 元素估计数量没有变化</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; PFADD  databases  <span class="string">"PostgreSQL"</span>    <span class="comment"># 添加一个不存在的元素</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases    <span class="comment"># 估计数量增一</span></span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h3 id="PFCOUNT"><a href="#PFCOUNT" class="headerlink" title="PFCOUNT"></a>PFCOUNT</h3><p><code>PFCOUNT key [key ...]</code>当 <a href="http://redisdoc.com/hyperloglog/pfcount.html#pfcount" target="_blank" rel="noopener">PFCOUNT</a> 命令作用于单个键时， 返回储存在给定键的 HyperLogLog 的近似基数， 如果键不存在， 那么返回 <code>0</code> 。</p>
+<p>当 <a href="http://redisdoc.com/hyperloglog/pfcount.html#pfcount" target="_blank" rel="noopener">PFCOUNT</a> 命令作用于多个键时， 返回所有给定 HyperLogLog 的并集的近似基数， 这个近似基数是通过将所有给定 HyperLogLog 合并至一个临时 HyperLogLog 来计算得出的。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; PFADD  databases  <span class="string">"Redis"</span>  <span class="string">"MongoDB"</span>  <span class="string">"MySQL"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases</span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; PFADD  databases  <span class="string">"Redis"</span>    <span class="comment"># Redis 已经存在，不必对估计数量进行更新</span></span><br><span class="line">(<span class="built_in">integer</span>) 0</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases    <span class="comment"># 元素估计数量没有变化</span></span><br><span class="line">(<span class="built_in">integer</span>) 3</span><br><span class="line"></span><br><span class="line">redis&gt; PFADD  databases  <span class="string">"PostgreSQL"</span>    <span class="comment"># 添加一个不存在的元素</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases    <span class="comment"># 估计数量增一</span></span><br><span class="line">4</span><br></pre></td></tr></table></figure>
+<h3 id="PFMERGE"><a href="#PFMERGE" class="headerlink" title="PFMERGE"></a>PFMERGE</h3><p><code>PFMERGE destkey sourcekey [sourcekey ...]</code>将多个 HyperLogLog 合并（merge）为一个 HyperLogLog ， 合并后的 HyperLogLog 的基数接近于所有输入 HyperLogLog 的可见集合（observed set）的并集。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; PFADD  nosql  <span class="string">"Redis"</span>  <span class="string">"MongoDB"</span>  <span class="string">"Memcached"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFADD  RDBMS  <span class="string">"MySQL"</span> <span class="string">"MSSQL"</span> <span class="string">"PostgreSQL"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; PFMERGE  databases  nosql  RDBMS</span><br><span class="line">OK</span><br><span class="line"></span><br><span class="line">redis&gt; PFCOUNT  databases</span><br><span class="line">(<span class="built_in">integer</span>) 6</span><br></pre></td></tr></table></figure>
+<h2 id="GEO-地理位置"><a href="#GEO-地理位置" class="headerlink" title="GEO 地理位置"></a><a href="http://redisdoc.com/geo/index.html" target="_blank" rel="noopener">GEO 地理位置</a></h2><p>Redis &gt;= 3.2.0 版后添加的用于保存经纬度的数据结构。</p>
+<h3 id="GEOADD"><a href="#GEOADD" class="headerlink" title="GEOADD"></a>GEOADD</h3><p><code>GEOADD key longitude latitude member [longitude latitude member ...]</code></p>
+<p>将给定的空间元素（纬度、经度、名字）添加到指定的键里面。 这些数据会以有序集合的形式被储存在键里面， 从而使得像 <code>GEORADIUS</code>和 <code>GEORADIUSBYMEMBER</code> 这样的命令可以在之后通过位置查询取得这些元素。</p>
+<p><code>GEOADD</code> 命令以标准的 <code>x,y</code> 格式接受参数， 所以用户必须先输入经度， 然后再输入纬度。 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEODIST Sicily Palermo Catania</span><br><span class="line"><span class="string">"166274.15156960039"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUS Sicily 15 37 100 km</span><br><span class="line">1) <span class="string">"Catania"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUS Sicily 15 37 200 km</span><br><span class="line">1) <span class="string">"Palermo"</span></span><br><span class="line">2) <span class="string">"Catania"</span></span><br></pre></td></tr></table></figure>
+<h3 id="GEOPOS"><a href="#GEOPOS" class="headerlink" title="GEOPOS"></a>GEOPOS</h3><p><code>GEOPOS key member [member ...]</code>从键里面返回所有给定位置元素的位置（经度和纬度）。</p>
+<p>因为 <code>GEOPOS</code> 命令接受可变数量的位置元素作为输入， 所以即使用户只给定了一个位置元素， 命令也会返回数组回复。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEOPOS Sicily Palermo Catania NonExisting</span><br><span class="line">1) 1) <span class="string">"13.361389338970184"</span></span><br><span class="line">   2) <span class="string">"38.115556395496299"</span></span><br><span class="line">2) 1) <span class="string">"15.087267458438873"</span></span><br><span class="line">   2) <span class="string">"37.50266842333162"</span></span><br><span class="line">3) (nil)</span><br></pre></td></tr></table></figure>
+<h3 id="GEODIST"><a href="#GEODIST" class="headerlink" title="GEODIST"></a>GEODIST</h3><p><code>GEODIST key member1 member2 [unit]</code>返回两个给定位置之间的距离。</p>
+<p>如果两个位置之间的其中一个不存在， 那么命令返回空值。</p>
+<p>指定单位的参数 <code>unit</code> 必须是以下单位的其中一个：</p>
+<ul>
+<li><code>m</code> 表示单位为米。</li>
+<li><code>km</code> 表示单位为千米。</li>
+<li><code>mi</code> 表示单位为英里。</li>
+<li><code>ft</code> 表示单位为英尺。</li>
+</ul>
+<p>如果用户没有显式地指定单位参数， 那么 <code>GEODIST</code> 默认使用米作为单位。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEODIST Sicily Palermo Catania</span><br><span class="line"><span class="string">"166274.15156960039"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEODIST Sicily Palermo Catania km</span><br><span class="line"><span class="string">"166.27415156960038"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEODIST Sicily Palermo Catania mi</span><br><span class="line"><span class="string">"103.31822459492736"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEODIST Sicily Foo Bar</span><br><span class="line">(nil)</span><br></pre></td></tr></table></figure>
+<h3 id="GEORADIUS"><a href="#GEORADIUS" class="headerlink" title="GEORADIUS"></a>GEORADIUS</h3><p><code>GEORADIUS key longitude latitude radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [ASC|DESC] [COUNT count]</code></p>
+<p>以给定的经纬度为中心， 返回键包含的位置元素当中， 与中心的距离不超过给定最大距离的所有位置元素。</p>
+<p>范围可以使用以下其中一个单位：</p>
+<ul>
+<li><code>m</code> 表示单位为米。</li>
+<li><code>km</code> 表示单位为千米。</li>
+<li><code>mi</code> 表示单位为英里。</li>
+<li><code>ft</code> 表示单位为英尺。</li>
+</ul>
+<p>在给定以下可选项时， 命令会返回额外的信息：</p>
+<ul>
+<li><code>WITHDIST</code> ： 在返回位置元素的同时， 将位置元素与中心之间的距离也一并返回。 距离的单位和用户给定的范围单位保持一致。</li>
+<li><code>WITHCOORD</code> ： 将位置元素的经度和维度也一并返回。</li>
+<li><code>WITHHASH</code> ： 以 52 位有符号整数的形式， 返回位置元素经过原始 geohash 编码的有序集合分值。 这个选项主要用于底层应用或者调试， 实际中的作用并不大。</li>
+</ul>
+<p>命令默认返回未排序的位置元素。 通过以下两个参数， 用户可以指定被返回位置元素的排序方式：</p>
+<ul>
+<li><code>ASC</code> ： 根据中心的位置， 按照从近到远的方式返回位置元素。</li>
+<li><code>DESC</code> ： 根据中心的位置， 按照从远到近的方式返回位置元素。</li>
+</ul>
+<p>在默认情况下， <code>GEORADIUS</code> 命令会返回所有匹配的位置元素。 虽然用户可以使用 <code>COUNT &lt;count&gt;</code> 选项去获取前 N 个匹配元素， 但是因为命令在内部可能会需要对所有被匹配的元素进行处理， 所以在对一个非常大的区域进行搜索时， 即使只使用 <code>COUNT</code> 选项去获取少量元素， 命令的执行速度也可能会非常慢。 但是从另一方面来说， 使用 <code>COUNT</code> 选项去减少需要返回的元素数量， 对于减少带宽来说仍然是非常有用的。</p>
+<ul>
+<li><p><strong>返回值：</strong></p>
+<p><code>GEORADIUS</code> 命令返回一个数组， 具体来说：在没有给定任何 <code>WITH</code> 选项的情况下， 命令只会返回一个像 <code>[&quot;New York&quot;,&quot;Milan&quot;,&quot;Paris&quot;]</code> 这样的线性（linear）列表。在指定了 <code>WITHCOORD</code> 、 <code>WITHDIST</code> 、 <code>WITHHASH</code> 等选项的情况下， 命令返回一个二层嵌套数组， 内层的每个子数组就表示一个元素。在返回嵌套数组时， 子数组的第一个元素总是位置元素的名字。 </p>
+<p>至于额外的信息， 则会作为子数组的后续元素， 按照以下顺序被返回：以浮点数格式返回的中心与位置元素之间的距离， 单位与用户指定范围时的单位一致。geohash 整数。由两个元素组成的坐标，分别为经度和纬度。     </p>
+<p>举个例子， <code>GEORADIUS Sicily 15 37 200 km withcoord withdist</code> 这样的命令返回的每个子数组都是类似以下格式的：<code>[&quot;Palermo&quot;,&quot;190.4424&quot;,[&quot;13.361389338970184&quot;,&quot;38.115556395496299&quot;]]</code> </p>
+</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUS Sicily 15 37 200 km WITHDIST</span><br><span class="line">1) 1) <span class="string">"Palermo"</span></span><br><span class="line">   2) <span class="string">"190.4424"</span></span><br><span class="line">2) 1) <span class="string">"Catania"</span></span><br><span class="line">   2) <span class="string">"56.4413"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUS Sicily 15 37 200 km WITHCOORD</span><br><span class="line">1) 1) <span class="string">"Palermo"</span></span><br><span class="line">   2) 1) <span class="string">"13.361389338970184"</span></span><br><span class="line">      2) <span class="string">"38.115556395496299"</span></span><br><span class="line">2) 1) <span class="string">"Catania"</span></span><br><span class="line">   2) 1) <span class="string">"15.087267458438873"</span></span><br><span class="line">      2) <span class="string">"37.50266842333162"</span></span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUS Sicily 15 37 200 km WITHDIST WITHCOORD</span><br><span class="line">1) 1) <span class="string">"Palermo"</span></span><br><span class="line">   2) <span class="string">"190.4424"</span></span><br><span class="line">   3) 1) <span class="string">"13.361389338970184"</span></span><br><span class="line">      2) <span class="string">"38.115556395496299"</span></span><br><span class="line">2) 1) <span class="string">"Catania"</span></span><br><span class="line">   2) <span class="string">"56.4413"</span></span><br><span class="line">   3) 1) <span class="string">"15.087267458438873"</span></span><br><span class="line">      2) <span class="string">"37.50266842333162"</span></span><br></pre></td></tr></table></figure>
+<h3 id="GEORADIUSBYMEMBER"><a href="#GEORADIUSBYMEMBER" class="headerlink" title="GEORADIUSBYMEMBER"></a>GEORADIUSBYMEMBER</h3><p><code>GEORADIUSBYMEMBER key member radius m|km|ft|mi [WITHCOORD] [WITHDIST] [WITHHASH] [ASC|DESC] [COUNT count]</code></p>
+<p>这个命令和 <code>GEORADIUS</code> 命令一样， 都可以找出位于指定范围内的元素， 但是 <code>GEORADIUSBYMEMBER</code> 的中心点是由给定的位置元素决定的， 而不是像 <code>GEORADIUS</code> 那样， 使用输入的经度和纬度来决定中心点。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.583333 37.316667 <span class="string">"Agrigento"</span></span><br><span class="line">(<span class="built_in">integer</span>) 1</span><br><span class="line"></span><br><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEORADIUSBYMEMBER Sicily Agrigento 100 km</span><br><span class="line">1) <span class="string">"Agrigento"</span></span><br><span class="line">2) <span class="string">"Palermo"</span></span><br></pre></td></tr></table></figure>
+<h3 id="GEOHASH"><a href="#GEOHASH" class="headerlink" title="GEOHASH"></a>GEOHASH</h3><p><code>GEOHASH key member [member ...]</code>返回一个或多个位置元素的 <a href="https://en.wikipedia.org/wiki/Geohash" target="_blank" rel="noopener">Geohash</a> 表示。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">redis&gt; GEOADD Sicily 13.361389 38.115556 <span class="string">"Palermo"</span> 15.087269 37.502669 <span class="string">"Catania"</span></span><br><span class="line">(<span class="built_in">integer</span>) 2</span><br><span class="line"></span><br><span class="line">redis&gt; GEOHASH Sicily Palermo Catania</span><br><span class="line">1) <span class="string">"sqc8b49rny0"</span></span><br><span class="line">2) <span class="string">"sqdtr74hyu0"</span></span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/05/17/Redis入门手册/">https://fynn90.github.io/2018/05/17/Redis入门手册/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Redis/">Redis</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/06/14/Shell脚本入门/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Shell脚本入门</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/05/14/shadowsocks安装/">
+        <span class="next-text nav-default">shadowsocks安装</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

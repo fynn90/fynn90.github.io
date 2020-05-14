@@ -1,0 +1,469 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="TypeScript中的interface和type"/>
+
+
+
+
+  <meta name="keywords" content="interface、type, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/06/22/Typescript中interface、type/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> TypeScript中的interface和type - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          TypeScript中的interface和type
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-06-22
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/TypeScript/">TypeScript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/06/22/Typescript中interface、type/"
+             data-title="TypeScript中的interface和type">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Objects-Functions"><span class="toc-text">Objects / Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Types"><span class="toc-text">Other Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extends"><span class="toc-text">Extends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implements"><span class="toc-text">Implements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaration-merging"><span class="toc-text">Declaration merging</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>Typescript的本质就是Javasript,只是提供了Javascript目前没有的一些特性.它并不是一门新的编程语言.它和Dart、Cofferscript这些可以转换成Javascript语言是不同的.</p>
+<p>Typescript和Javacript最大的不同点就是它的类型系统.围绕类型系统,Typescript提供了:interface和type来声明一个值的类型.</p>
+<p>interface和type初看起来没啥区别,官方给的解释是:</p>
+<blockquote>
+<p>Unlike an interface declaration, which always introduces a named object type, <strong>a type alias declaration</strong> can introduce a name for any kind of type, including primitive, union, and intersection types.</p>
+</blockquote>
+<a id="more"></a>
+<p>type是给一种类型(原型,方法,对象等)起个别名,interface 是定义一种数据类型.</p>
+<p>type和interface功能上没太大的区别,只是在语法上有些不同.</p>
+<h2 id="Objects-Functions"><a href="#Objects-Functions" class="headerlink" title="Objects / Functions"></a>Objects / Functions</h2><p>它们都可以描述函数和对象类型,只是语法不同</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> SetPoint &#123;</span><br><span class="line">  (x: <span class="built_in">number</span>, y: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// type alias</span></span><br><span class="line"><span class="keyword">type</span> Point = &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SetPoint = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
+<h2 id="Other-Types"><a href="#Other-Types" class="headerlink" title="Other Types"></a>Other Types</h2><p>type可以给一种类型,起个别名.interface做不到这个.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// primitive</span></span><br><span class="line"><span class="keyword">type</span> Name = <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> PartialPointY = &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// union</span></span><br><span class="line"><span class="keyword">type</span> PartialPoint = PartialPointX | PartialPointY;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tuple</span></span><br><span class="line"><span class="keyword">type</span> Data = [<span class="built_in">number</span>, <span class="built_in">string</span>];</span><br></pre></td></tr></table></figure>
+<h2 id="Extends"><a href="#Extends" class="headerlink" title="Extends"></a>Extends</h2><p>interface 和 type支持自身的继承,和互相的继承.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Type alias extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type alias extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; y: <span class="built_in">number</span>; &#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="Implements"><a href="#Implements" class="headerlink" title="Implements"></a>Implements</h2><p>class可以实现interface 和 type,它们用法是一样的.但是class 和interface对类型的要求是静止非动态的.联合类型(union)的值是动态的.所以 type定义的 union值 class是无法实现的.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> SomePoint <span class="keyword">implements</span> Point &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Point2 = &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> SomePoint2 <span class="keyword">implements</span> Point2 &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PartialPoint = &#123; x: <span class="built_in">number</span>; &#125; | &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">FIXME:</span> can not implement a union type</span></span><br><span class="line"><span class="keyword">class</span> SomePartialPoint <span class="keyword">implements</span> PartialPoint &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="Declaration-merging"><a href="#Declaration-merging" class="headerlink" title="Declaration merging"></a>Declaration merging</h2><p>一个interface可以定义多次,它们值默认是合并的.一个type是不支持多次定义的.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// These two declarations become:</span></span><br><span class="line"><span class="comment">// interface Point &#123; x: number; y: number; &#125;</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> point: Point = &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/06/22/Typescript中interface、type/">https://fynn90.github.io/2019/06/22/Typescript中interface、type/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/interface、type/">interface、type</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/17/Node.JS自动打包部署脚本/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Node.JS自动打包部署脚本</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/06/03/Dart最佳实践/">
+        <span class="next-text nav-default">Dart最佳实践</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

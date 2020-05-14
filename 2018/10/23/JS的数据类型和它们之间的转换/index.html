@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JavaScript的数据类型和它们之间的转换"/>
+
+
+
+
+  <meta name="keywords" content="JavaScript, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/10/23/JS的数据类型和它们之间的转换/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> JavaScript的数据类型和它们之间的转换 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript的数据类型和它们之间的转换
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-10-23
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/10/23/JS的数据类型和它们之间的转换/"
+             data-title="JavaScript的数据类型和它们之间的转换">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#数组"><span class="toc-text">数组</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#字符串"><span class="toc-text">字符串</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#数字"><span class="toc-text">数字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#类型转换"><span class="toc-text">类型转换</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#toString-NaN"><span class="toc-text">toString</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#toNumber"><span class="toc-text">toNumber</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ToBoolean"><span class="toc-text">ToBoolean</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#其它奇怪的转换"><span class="toc-text">其它奇怪的转换</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#～"><span class="toc-text">～</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#parseInt"><span class="toc-text">parseInt</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#和-amp-amp"><span class="toc-text">|| 和 &amp;&amp;</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>JavaScript是个动态语言，它的变量是没有类型的，但变量代表的值是有类型的。不同的类型值使得变量拥有特定的能力。</p>
+<p>JavaScript内置7种数据类型：</p>
+<ul>
+<li><code>null</code> — 空值</li>
+<li><code>undefined</code> — 未定义</li>
+<li><code>boolean</code> — 布尔值</li>
+<li><code>number</code> — 数字</li>
+<li><code>string</code> —字符串</li>
+<li><code>object</code> — 对象</li>
+<li><code>symbol</code> — 符号</li>
+</ul>
+<p>注意：数组和方法都属于<code>object</code>。</p>
+<p>通过 <code>typeof</code>可以获得一个变量的值类型。<br><a id="more"></a><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typeof</span> <span class="literal">undefined</span>     === <span class="string">"undefined"</span>; <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">true</span>          === <span class="string">"boolean"</span>;   <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="number">42</span>            === <span class="string">"number"</span>;    <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="string">"42"</span>          === <span class="string">"string"</span>;    <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> &#123; <span class="attr">life</span>: <span class="number">42</span> &#125;  === <span class="string">"object"</span>;    <span class="comment">// true</span></span><br><span class="line"><span class="keyword">typeof</span> <span class="built_in">Symbol</span>()      === <span class="string">"symbol"</span>;    <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> <span class="literal">null</span> === <span class="string">"object"</span>; <span class="comment">// true</span></span><br></pre></td></tr></table></figure></p>
+<p><code>null</code>值类型是<code>object</code>这是个JS语言的bug。完整验证一个值类型是否是<code>null</code>可以用：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">(!a &amp;&amp; <span class="keyword">typeof</span> a === <span class="string">"object"</span>); <span class="comment">// true</span></span><br></pre></td></tr></table></figure>
+<p>函数对象的 <code>length</code> 属性是其声明的参数的个数。</p>
+<h2 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h2><p>JavaScript的数组可以保存任何类型的值，可以是<strong>字符串</strong> 、<strong>数字</strong>、<strong>对象</strong>、<strong>数组</strong>。</p>
+<p>JavaScript中的数组的索引可以不是数字，字符串也是可以的。但它不算数组的长度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"></span><br><span class="line">a[<span class="number">0</span>] = <span class="number">1</span>;</span><br><span class="line">a[<span class="string">"foobar"</span>] = <span class="number">2</span>;</span><br><span class="line"></span><br><span class="line">a.length;       <span class="comment">// 1</span></span><br><span class="line">a[<span class="string">"foobar"</span>];    <span class="comment">// 2</span></span><br><span class="line">a.foobar;       <span class="comment">// 2</span></span><br></pre></td></tr></table></figure>
+<p>如果索引是可以转换成十进制数字的类型，它会被当作数字索引处理。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [];</span><br><span class="line"></span><br><span class="line">a[<span class="string">"13"</span>] = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line">a.length; <span class="comment">// 14</span></span><br></pre></td></tr></table></figure>
+<p>JavaScript中有一些类数组（一组通过数字索引的值），例如一些 DOM 查询操作会返回 DOM 元素列表，它们并非真正意义上的数组，但十分类似。可以通过<code>var arr = Array.prototype.slice.call( arguments );</code>或ES6中的<code>var arr = Array.from( arguments );</code>。</p>
+<h2 id="字符串"><a href="#字符串" class="headerlink" title="字符串"></a>字符串</h2><p>JavaScript中的字符串看起来和数组很相像，它也可以通过索引下标取具体位置的字符（IE可能不兼容），它拥有<code>length</code>属性和<code>indexOf()</code>、<code>concat()</code>方法。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = [<span class="string">"f"</span>,<span class="string">"o"</span>,<span class="string">"o"</span>];</span><br><span class="line">a.length;                           <span class="comment">// 3</span></span><br><span class="line">b.length;                           <span class="comment">// 3</span></span><br><span class="line"></span><br><span class="line">a.indexOf( <span class="string">"o"</span> );                   <span class="comment">// 1</span></span><br><span class="line">b.indexOf( <span class="string">"o"</span> );                   <span class="comment">// 1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = a.concat( <span class="string">"bar"</span> );          <span class="comment">// "foobar"</span></span><br><span class="line"><span class="keyword">var</span> d = b.concat( [<span class="string">"b"</span>,<span class="string">"a"</span>,<span class="string">"r"</span>] );  <span class="comment">// ["f","o","o","b","a","r"]</span></span><br><span class="line"></span><br><span class="line">a === c;                            <span class="comment">// false</span></span><br><span class="line">b === d;                            <span class="comment">// false</span></span><br><span class="line"></span><br><span class="line">a;                                  <span class="comment">// "foo"</span></span><br><span class="line">b;                                  <span class="comment">// ["f","o","o"]</span></span><br><span class="line"></span><br><span class="line">a[<span class="number">1</span>] = <span class="string">"O"</span>;</span><br><span class="line">b[<span class="number">1</span>] = <span class="string">"O"</span>;</span><br><span class="line"></span><br><span class="line">a; <span class="comment">// "foo" 字符串是不可变的</span></span><br><span class="line">b; <span class="comment">// ["f","O","o"]</span></span><br><span class="line"><span class="comment">// 字符串不可变是指字符串的成员函数不会改变其原始值，而是创建并返回一个新的字符串。</span></span><br><span class="line">c = a.toUpperCase(); </span><br><span class="line">a === c;    <span class="comment">// false</span></span><br><span class="line">a;          <span class="comment">// "foo"</span></span><br><span class="line">c;          <span class="comment">// "FOO"</span></span><br><span class="line"></span><br><span class="line">b.push( <span class="string">"!"</span> );</span><br><span class="line">b;          <span class="comment">// ["f","O","o","!"]</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//许多数组函数用来处理字符串很方便。虽然字符串没有这些函数，但可以通过“借用”数组的非变更方法来处理字符串：</span></span><br><span class="line">a.join;         <span class="comment">// undefined</span></span><br><span class="line">a.map;          <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="built_in">Array</span>.prototype.join.call( a, <span class="string">"-"</span> );</span><br><span class="line"><span class="keyword">var</span> d = <span class="built_in">Array</span>.prototype.map.call( a, <span class="function"><span class="keyword">function</span>(<span class="params">v</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> v.toUpperCase() + <span class="string">"."</span>;</span><br><span class="line">&#125; ).join( <span class="string">""</span> );</span><br><span class="line"></span><br><span class="line">c;              <span class="comment">// "f-o-o"</span></span><br><span class="line">d;              <span class="comment">// "F.O.O."</span></span><br></pre></td></tr></table></figure>
+<p> 不建议把字符串当做数组使用，因为字符串在JavaScript是不可变的。它是保存在内存栈中，这些值在内存分配时有固定的大小。而数组在内存中是引用类型，它的值保存在堆内存中，它的大小是不固定的。</p>
+<p>如果需要经常使用数组的方法，就不如开始就定义为数组最后通过<code>join(&#39;&#39;)</code>转换成字符串。</p>
+<h2 id="数字"><a href="#数字" class="headerlink" title="数字"></a>数字</h2><p>JavaScript中数字包括，整数和带小数的十进制数。如果整数为是0，着可以省略。</p>
+<p>通过<code>tofixed(..)</code>你可以指定小数部分显示的位数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">42.59</span>;</span><br><span class="line"></span><br><span class="line">a.toFixed( <span class="number">0</span> ); <span class="comment">// "43"</span></span><br><span class="line">a.toFixed( <span class="number">1</span> ); <span class="comment">// "42.6"</span></span><br><span class="line">a.toFixed( <span class="number">2</span> ); <span class="comment">// "42.59"</span></span><br><span class="line">a.toFixed( <span class="number">3</span> ); <span class="comment">// "42.590"</span></span><br><span class="line">a.toFixed( <span class="number">4</span> ); <span class="comment">// "42.5900"</span></span><br></pre></td></tr></table></figure>
+<p>通过 <code>toPrecision(..)</code>方法用来指定<strong>有效数位</strong>的显示位数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">42.59</span>;</span><br><span class="line"></span><br><span class="line">a.toPrecision( <span class="number">1</span> ); <span class="comment">// "4e+1"</span></span><br><span class="line">a.toPrecision( <span class="number">2</span> ); <span class="comment">// "43"</span></span><br><span class="line">a.toPrecision( <span class="number">3</span> ); <span class="comment">// "42.6"</span></span><br><span class="line">a.toPrecision( <span class="number">4</span> ); <span class="comment">// "42.59"</span></span><br><span class="line">a.toPrecision( <span class="number">5</span> ); <span class="comment">// "42.590"</span></span><br><span class="line">a.toPrecision( <span class="number">6</span> ); <span class="comment">// "42.5900"</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> <code>42.toFixed(3)</code> 是无效语法，因为 <code>.</code> 被视为常量 <code>42.</code> 的一部分（如前所述），所以没有 <code>.</code> 属性访问运算符来调用 <code>tofixed</code> 方法。</p>
+<p><code>42..toFixed(3)</code> 则没有问题，因为第一个 <code>.</code> 被视为 <code>number</code> 的一部分，第二个 <code>.</code> 是属性访问运算符。</p>
+<p>ES6中提供了<code>Number.isInteger(..)</code>用于判断一个数字是否是整数：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>.isInteger( <span class="number">42</span> );     <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isInteger( <span class="number">42.000</span> ); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isInteger( <span class="number">42.3</span> );   <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>它的polyfill版本是：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Number</span>.isInteger) &#123;</span><br><span class="line">    <span class="built_in">Number</span>.isInteger = <span class="function"><span class="keyword">function</span>(<span class="params">num</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="keyword">typeof</span> num == <span class="string">"number"</span> &amp;&amp; num % <span class="number">1</span> == <span class="number">0</span>;</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p><code>NaN</code>是JavaScript中很特殊的一个值，它表示的意思是：不是数字的数字。它与自己都不相等。一般在两种无法进行转换的值类型进行计算时会出现它。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">2</span> / <span class="string">"foo"</span>;      <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">typeof</span> a === <span class="string">"number"</span>;  <span class="comment">// true</span></span><br><span class="line">a == <span class="literal">NaN</span>;   <span class="comment">// false</span></span><br><span class="line">a === <span class="literal">NaN</span>;  <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p>ES6 开始我们可以使用工具函数 <code>Number.isNaN(..)</code>检测一个值是否是<code>NaN</code>。ES6 之前的浏览器的 polyfill 如下：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> (!<span class="built_in">Number</span>.isNaN) &#123;</span><br><span class="line">    <span class="built_in">Number</span>.isNaN = <span class="function"><span class="keyword">function</span>(<span class="params">n</span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> (</span><br><span class="line">            <span class="keyword">typeof</span> n === <span class="string">"number"</span> &amp;&amp;</span><br><span class="line">            <span class="built_in">window</span>.isNaN( n )</span><br><span class="line">        );</span><br><span class="line">    &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">2</span> / <span class="string">"foo"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"foo"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>.isNaN( a ); <span class="comment">// true</span></span><br><span class="line"><span class="built_in">Number</span>.isNaN( b ); <span class="comment">// false——好！</span></span><br></pre></td></tr></table></figure>
+<h2 id="类型转换"><a href="#类型转换" class="headerlink" title="类型转换"></a>类型转换</h2><h3 id="toString-NaN"><a href="#toString-NaN" class="headerlink" title="toString"></a>toString</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/** 数字转换成 字符串 **/</span></span><br><span class="line"><span class="keyword">var</span> s =<span class="number">28</span>;</span><br><span class="line">s+<span class="string">''</span> <span class="comment">// '28' string</span></span><br><span class="line"><span class="keyword">var</span> s1 = <span class="number">28</span>;</span><br><span class="line"><span class="built_in">String</span>(s1) <span class="comment">// '28' string</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">String</span>(s1) <span class="comment">// '28' Object  new String() 会做一次封装操作，返回的是个对象</span></span><br><span class="line">s1.toSting() <span class="comment">// '28' string</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(<span class="number">28</span>) <span class="comment">// '28' string</span></span><br></pre></td></tr></table></figure>
+<p>对于普通对象而言，转换成字符串是调用内部的<code>toString()</code>方法，如果没有被定义则返回内部的<code>[[class]]</code>的值。</p>
+<p>数组的默认 <code>toString()</code> 方法经过了重新定义，将所有单元字符串化以后再用 <code>&quot;,&quot;</code> 连接起来：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>];</span><br><span class="line">a.toString(); <span class="comment">// "1,2,3"  和调用join()效果一样</span></span><br></pre></td></tr></table></figure>
+<p>工具函数 <code>JSON.stringify(..)</code> 在将 JSON 对象序列化为字符串时也用到了 <code>ToString</code>。非字符串的基本类型转换它和直接调用<code>toSting()</code>没啥区别。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify( <span class="number">42</span> );   <span class="comment">// "42"</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="string">"42"</span> ); <span class="comment">// ""42"" （含有双引号的字符串）</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="literal">null</span> ); <span class="comment">// "null"</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="literal">true</span> ); <span class="comment">// "true"</span></span><br></pre></td></tr></table></figure>
+<p><code>JSON.stringify(..)</code> 在对象中遇到 <code>undefined</code>、<code>function</code> 和 <code>symbol</code> 时会自动将其忽略，在数组中则会返回 <code>null</code>（以保证单元位置不变）。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">JSON</span>.stringify( <span class="literal">undefined</span> );      <span class="comment">// undefined</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify( <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; );   <span class="comment">// undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify(</span><br><span class="line">   [<span class="number">1</span>,<span class="literal">undefined</span>,<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;,<span class="number">4</span>]</span><br><span class="line">);                                <span class="comment">// "[1,null,null,4]"</span></span><br><span class="line"><span class="built_in">JSON</span>.stringify(</span><br><span class="line">   &#123; <span class="attr">a</span>:<span class="number">2</span>, <span class="attr">b</span>:<span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125; &#125;</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>如果对象中定义了<code>toJSON()</code>方法，<code>JSON.stringify()</code>会去执行该方法进行序列话。这样就可以避免循环引用的对象执行<code>JSON.Stringify()</code>方法时报错。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> o = &#123; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    b: <span class="number">42</span>,</span><br><span class="line">    c: o,</span><br><span class="line">    d: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 在a中创建一个循环引用</span></span><br><span class="line">o.e = a;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 循环引用在这里会产生错误</span></span><br><span class="line"><span class="comment">// JSON.stringify( a );</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 自定义的JSON序列化</span></span><br><span class="line">a.toJSON = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 序列化仅包含b</span></span><br><span class="line">    <span class="keyword">return</span> &#123; <span class="attr">b</span>: <span class="keyword">this</span>.b &#125;;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify( a ); <span class="comment">// "&#123;"b":42&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>我们可以向 <code>JSON.stringify(..)</code> 传递一个可选参数 replacer，它可以是数组或者函数，用来指定对象序列化过程中哪些属性应该被处理，哪些应该被排除，和 <code>toJSON()</code> 很像。</p>
+<p>如果 replacer 是一个数组，那么它必须是一个字符串数组，其中包含序列化要处理的对象的属性名称，除此之外其他的属性则被忽略。</p>
+<p>如果 replacer 是一个函数，它会对对象本身调用一次，然后对对象中的每个属性各调用一次，每次传递两个参数，键和值。如果要忽略某个键就返回 <code>undefined</code>，否则返回指定的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    b: <span class="number">42</span>,</span><br><span class="line">    c: <span class="string">"42"</span>,</span><br><span class="line">    d: [<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>]</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify( a, [<span class="string">"b"</span>,<span class="string">"c"</span>] ); <span class="comment">// "&#123;"b":42,"c":"42"&#125;"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">JSON</span>.stringify( a, <span class="function"><span class="keyword">function</span>(<span class="params">k,v</span>)</span>&#123;</span><br><span class="line">    <span class="keyword">if</span> (k !== <span class="string">"c"</span>) <span class="keyword">return</span> v;</span><br><span class="line">&#125; );</span><br><span class="line"><span class="comment">// "&#123;"b":42,"d":[1,2,3]&#125;"</span></span><br></pre></td></tr></table></figure>
+<p>(1) 字符串、数字、布尔值和 <code>null</code> 的 <code>JSON.stringify(..)</code> 规则与 <code>ToString</code> 基本相同。</p>
+<p>(2) 如果传递给 <code>JSON.stringify(..)</code> 的对象中定义了 <code>toJSON()</code> 方法，那么该方法会在字符串化前调用，以便将对象转换为安全的 JSON 值。</p>
+<h3 id="toNumber"><a href="#toNumber" class="headerlink" title="toNumber"></a>toNumber</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Number</span>(<span class="literal">true</span>) <span class="comment">// 1</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">false</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">undefined</span>) <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="literal">null</span>) <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>(<span class="string">'ggg'</span>) <span class="comment">// NaN</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = <span class="string">"3.14"</span>;</span><br><span class="line"><span class="keyword">var</span> d = +c;</span><br><span class="line">d <span class="comment">// 3.14 number</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> timestamp = +<span class="keyword">new</span> <span class="built_in">Date</span>(); <span class="comment">// 获取当前时间戳 Date.now();</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="string">"42"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"42px"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>( a );    <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">parseInt</span>( a );  <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>( b );    <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>( b );  <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+<p>对于对象转换成数字，JavaScript会将如果有并且返回基本类型值，就使用该值进行强制类型转换。如果没有就使用 <code>toString()</code> 的返回值（如果存在）来进行强制类型转换。</p>
+<p>如果 <code>valueOf()</code> 和 <code>toString()</code> 均不返回基本类型值，会产生 <code>TypeError</code> 错误。</p>
+<p>从 ES5 开始，使用 <code>Object.create(null)</code> 创建的对象 <code>[[Prototype]]</code> 属性为 <code>null</code>，并且没有 <code>valueOf()</code> 和 <code>toString()</code> 方法，因此无法进行强制类型转换。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = &#123;</span><br><span class="line">    valueOf: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"42"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> b = &#123;</span><br><span class="line">    toString: <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"42"</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> c = [<span class="number">4</span>,<span class="number">2</span>];</span><br><span class="line">c.toString = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="keyword">this</span>.join( <span class="string">""</span> ); <span class="comment">// "42"</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>( a ); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">Number</span>( b ); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">Number</span>( c ); <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">Number</span>( <span class="string">""</span> ); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>( [] ); <span class="comment">// 0</span></span><br><span class="line"><span class="built_in">Number</span>( [ <span class="string">"abc"</span> ] ); <span class="comment">// NaN</span></span><br></pre></td></tr></table></figure>
+<h3 id="ToBoolean"><a href="#ToBoolean" class="headerlink" title="ToBoolean"></a>ToBoolean</h3><p>假值：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">!!<span class="literal">undefined</span> <span class="comment">// false</span></span><br><span class="line">!!<span class="literal">null</span> <span class="comment">// false</span></span><br><span class="line">!!+<span class="number">0</span> <span class="comment">// false</span></span><br><span class="line">!!<span class="number">-0</span> <span class="comment">// false</span></span><br><span class="line">!!<span class="literal">NaN</span> <span class="comment">// false</span></span><br><span class="line">!!<span class="string">''</span> <span class="comment">// false</span></span><br><span class="line">!!<span class="literal">false</span> <span class="comment">// false</span></span><br></pre></td></tr></table></figure>
+<p><strong>注意：</strong> 经过<code>new Boolean()</code>封装后，上面的假植会变成真值。理论上出了价值之外的值都将是真值。</p>
+<h3 id="其它奇怪的转换"><a href="#其它奇怪的转换" class="headerlink" title="其它奇怪的转换"></a>其它奇怪的转换</h3><h4 id="～"><a href="#～" class="headerlink" title="～"></a>～</h4><p><code>~</code>字位操作“非”，用于字符反转。</p>
+<p><code>~x</code>当会<code>x</code>将类型转换成数字类型，最后进行<code>-(x+1)</code>。如果<code>x</code>不能转换成正常的数字类型，就会报错。</p>
+<p>而<code>-1</code>的在JavaSript是个很常见的数字。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"Hello World"</span>;</span><br><span class="line"></span><br><span class="line">~a.indexOf( <span class="string">"lo"</span> );         <span class="comment">// -4   &lt;-- 真值!</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (~a.indexOf( <span class="string">"lo"</span> )) &#123;   <span class="comment">// true</span></span><br><span class="line">    <span class="comment">// 找到匹配！</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">~a.indexOf( <span class="string">"ol"</span> );         <span class="comment">// 0    &lt;-- 假值!</span></span><br><span class="line">!~a.indexOf( <span class="string">"ol"</span> );        <span class="comment">// true</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (!~a.indexOf( <span class="string">"ol"</span> )) &#123;  <span class="comment">// true</span></span><br><span class="line">    <span class="comment">// 没有找到匹配！</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h4 id="parseInt"><a href="#parseInt" class="headerlink" title="parseInt"></a>parseInt</h4><p>解析字符串中的数字和将字符串强制类型转换为数字的返回结果都是数字。但解析和转换两者之间还是有明显的差别。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="string">"42"</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"42px"</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>( a );    <span class="comment">// 42</span></span><br><span class="line"><span class="built_in">parseInt</span>( a );  <span class="comment">// 42</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">Number</span>( b );    <span class="comment">// NaN</span></span><br><span class="line"><span class="built_in">parseInt</span>( b );  <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
+<p>解析<strong>允许</strong>字符串中含有非数字字符，解析按从左到右的顺序，如果遇到非数字字符就停止。而转换<strong>不允许</strong>出现非数字字符，否则会失败并返回 <code>NaN</code>。</p>
+<h4 id="和-amp-amp"><a href="#和-amp-amp" class="headerlink" title="|| 和 &amp;&amp;"></a>|| 和 &amp;&amp;</h4><p><code>&amp;&amp;</code> 和 <code>||</code> 运算符的返回值并不一定是布尔类型，而是两个操作数其中一个的值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = <span class="number">42</span>;</span><br><span class="line"><span class="keyword">var</span> b = <span class="string">"abc"</span>;</span><br><span class="line"><span class="keyword">var</span> c = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line">a || b;     <span class="comment">// 42</span></span><br><span class="line">a &amp;&amp; b;     <span class="comment">// "abc"</span></span><br><span class="line"></span><br><span class="line">c || b;     <span class="comment">// "abc"</span></span><br><span class="line">c &amp;&amp; b;     <span class="comment">// null</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">foo</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="built_in">console</span>.log( a );</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> a = <span class="number">42</span>;</span><br><span class="line"></span><br><span class="line">a &amp;&amp; foo(); <span class="comment">// 42 foo() 只有在条件判断 a 通过时才会被调用。如果条件判断未通过，a &amp;&amp; foo() 就会戛然终止（也叫作“短路”，short circuiting），foo() 不会被调用。</span></span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://www.ituring.com.cn/book/1563" target="_blank" rel="noopener">你不知道的JavaScript（中卷）</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/10/23/JS的数据类型和它们之间的转换/">https://fynn90.github.io/2018/10/23/JS的数据类型和它们之间的转换/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/JavaScript/">JavaScript</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/10/26/git操纵技巧（merge,alias）/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Git使用技巧（merge,alias）</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/10/07/管理多个小程序/">
+        <span class="next-text nav-default">管理多个小程序</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

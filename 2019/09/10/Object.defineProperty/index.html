@@ -1,0 +1,531 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Object.defineProperty"/>
+
+
+
+
+  <meta name="keywords" content="Object.definePropery, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/09/10/Object.defineProperty/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Object.defineProperty - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Object.defineProperty
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-09-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/09/10/Object.defineProperty/"
+             data-title="Object.defineProperty">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#语法"><span class="toc-text">语法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#属性描述符"><span class="toc-text">属性描述符</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据描述符-Attributes-of-a-Data-Property"><span class="toc-text">数据描述符(Attributes of a Data Property)</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#存取描述符"><span class="toc-text">存取描述符</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#例子-1"><span class="toc-text">例子</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Vue的数据更新实现"><span class="toc-text">Vue的数据更新实现</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><code>Object.defineProperty</code>可以用来给<code>Object</code>增加新的属性或更新已有属性,并返回该<code>Object</code>.</p>
+<p><code>Object.defineProperty</code>并不单单只是让我们手动给<code>Object</code>添加或修改属性值,它最大的特点是我们可以给对象单个属性值添加属性描述符(PropertyDescriptor).</p>
+<p>属性描述符可以给当前对象属性添加额外的一些功能,例如:是否可以被修改、是否可以被枚举、捕获该属性的值的变化和读取.</p>
+<p><em>注意: 冻结一个对象属性操作可以用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" target="_blank" rel="noopener"><code>Object.freeze()</code></a></em></p>
+<p><em>注意: 可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" target="_blank" rel="noopener">Object.defineProperties</a>批量给对象添加或修改属性描述符</em></p>
+<a id="more"></a>
+<h2 id="语法"><a href="#语法" class="headerlink" title="语法"></a>语法</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Object</span>.defineProperty (O,P,Attributes)</span><br><span class="line"><span class="comment">// O 必须是个Object,否则JS解释器会抛出 TypeError exception 错误</span></span><br><span class="line"><span class="comment">// P 应该是个字符串或Symbol, 如果都不是 JS引擎会 取它的toString()方法值作为 对象的key</span></span><br><span class="line"><span class="comment">// Attributes 就是 属性描述符类型的对象,通过它定义了该属性的行为</span></span><br></pre></td></tr></table></figure>
+<p><code>Object.defineProperty</code>是ES5新增的方法,所以IE8以下的浏览器是不支持的(Edge都用 Chromium了,谁还用IE8)</p>
+<h2 id="属性描述符"><a href="#属性描述符" class="headerlink" title="属性描述符"></a>属性描述符</h2><p><code>Object.defineProperty</code>属性描述符有两种类型:<strong>数据描述符</strong>(Attributes of a Data Property) 和<strong>存取描述符</strong>(Attributes of an Accessor Property),<strong>一个属性只能用一种属性描述符进行定义</strong>.</p>
+<p><strong>数据描述符</strong>和<strong>存取描述符</strong>都是有四种属性组成,它们之间是有相同的属性的.</p>
+<h3 id="数据描述符-Attributes-of-a-Data-Property"><a href="#数据描述符-Attributes-of-a-Data-Property" class="headerlink" title="数据描述符(Attributes of a Data Property)"></a>数据描述符(Attributes of a Data Property)</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>value</td>
+<td>任何有效的<a href="https://tc39.es/ecma262/#sec-ecmascript-language-types" target="_blank" rel="noopener">ECMAScript language type</a>.例如: 字符串,数字,对象,函数等. 默认值是 <em>undefined</em></td>
+<td>当前定义的对象属性值</td>
+</tr>
+<tr>
+<td>writable</td>
+<td>Boolean.默认值是 <em>false</em></td>
+<td>声明当前定义的属性是否可以被修改.如果是 false则表示不能被修改</td>
+</tr>
+<tr>
+<td>enumerable</td>
+<td>Boolean.默认值是 <em>false</em></td>
+<td>声明当前定义的属性是否出现在对象的枚举中.如果是 false则表示不会被枚举.</td>
+</tr>
+<tr>
+<td>configurable</td>
+<td>Boolean.默认值是 <em>false</em></td>
+<td>声明当前定义的属性能否从对象中删除、能否改变当前属性的<em>属性描述符</em>.如果是 false,则以上行为都不能!</td>
+</tr>
+</tbody>
+</table>
+<h4 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj1 = <span class="built_in">Object</span>.defineProperty(&#123;&#125;,<span class="string">'key'</span>, &#123;  <span class="attr">enumerable</span>: <span class="literal">false</span>, <span class="attr">configurable</span>: <span class="literal">false</span>, <span class="attr">writable</span>: <span class="literal">false</span>, <span class="attr">value</span>: <span class="number">1</span>&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(obj1.key); <span class="comment">// 1</span></span><br><span class="line">obj1.key = <span class="number">2</span>; <span class="comment">// 赋值无效, 因为 writable是 false</span></span><br><span class="line"><span class="built_in">console</span>.log(obj1.key); <span class="comment">// 1</span></span><br></pre></td></tr></table></figure>
+<h3 id="存取描述符"><a href="#存取描述符" class="headerlink" title="存取描述符"></a>存取描述符</h3><table>
+<thead>
+<tr>
+<th>属性名</th>
+<th>数据类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>get</td>
+<td>function object 或 undefined. 默认值 <em>undefined</em></td>
+<td>当访问该属性的时候,该方法会被执行.该方法不会有参数传入,但可以获得this对象.</td>
+</tr>
+<tr>
+<td>set</td>
+<td>function object 或 undefined. 默认值 <em>undefined</em></td>
+<td>当给该属性赋值的时候,该方法会被执行.新的属性值会作为函数参数传入.set不是必须,但它会影响到get方法的取值.</td>
+</tr>
+<tr>
+<td>enumerable</td>
+<td>Boolean.默认值是 <em>false</em></td>
+<td>声明当前定义的属性是否出现在对象的枚举中.如果是 false则表示不会被枚举.</td>
+</tr>
+<tr>
+<td>configurable</td>
+<td>Boolean.默认值是 <em>false</em></td>
+<td>声明当前定义的属性能否从对象中删除、能否改变当前属性的<em>属性描述符</em>.如果是 false,则以上行为都不能!</td>
+</tr>
+</tbody>
+</table>
+<h4 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h4><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> obj2 = <span class="built_in">Object</span>.defineProperty(&#123;&#125;, <span class="string">'key'</span>, &#123;<span class="string">'enumerable'</span>: <span class="literal">true</span>,<span class="string">'configurable'</span>: <span class="literal">true</span>, get() &#123;<span class="keyword">return</span> <span class="keyword">this</span>.value&#125;&#125;);</span><br><span class="line">obj2.key = <span class="number">1</span>;</span><br><span class="line"><span class="built_in">console</span>.log(obj2.key); <span class="comment">// undefined 因为没有设置 setter方法</span></span><br></pre></td></tr></table></figure>
+<p><code>Object.defineProperty</code>第一个参数是可以接受任何Object类型的.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Archiver</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> temperature = <span class="literal">null</span>;</span><br><span class="line">  <span class="keyword">var</span> archive = [];</span><br><span class="line"></span><br><span class="line">  <span class="built_in">Object</span>.defineProperty(<span class="keyword">this</span>, <span class="string">'temperature'</span>, &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">'get!'</span>);</span><br><span class="line">      <span class="keyword">return</span> temperature;</span><br><span class="line">    &#125;,</span><br><span class="line">    set: <span class="function"><span class="keyword">function</span>(<span class="params">value</span>) </span>&#123;</span><br><span class="line">      temperature = value;</span><br><span class="line">      archive.push(&#123; <span class="attr">val</span>: temperature &#125;);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;);</span><br><span class="line"></span><br><span class="line">  <span class="keyword">this</span>.getArchive = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> archive; &#125;;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> arc = <span class="keyword">new</span> Archiver();</span><br><span class="line">arc.temperature; <span class="comment">// 'get!'</span></span><br><span class="line">arc.temperature = <span class="number">11</span>;</span><br><span class="line">arc.temperature = <span class="number">13</span>;</span><br><span class="line">arc.getArchive(); <span class="comment">// [&#123; val: 11 &#125;, &#123; val: 13 &#125;]</span></span><br></pre></td></tr></table></figure>
+<h2 id="Vue的数据更新实现"><a href="#Vue的数据更新实现" class="headerlink" title="Vue的数据更新实现"></a>Vue的数据更新实现</h2><p>Vue.2x在数据和界面同步的实现上,就是用<code>Object.defineProperty</code>实现的.Vue.2x会将 data属性中定义的对象数据遍历一遍,通过<code>Object.defineProperty</code>包装一下,以获得监听数据变化的能力.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"utf-8"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"myapp"</span>&gt;</span>      </span><br><span class="line"><span class="tag">&lt;<span class="name">input</span> <span class="attr">v-model</span>=<span class="string">"message"</span> /&gt;</span><span class="tag">&lt;<span class="name">br</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">span</span> <span class="attr">v-bind</span>=<span class="string">"message"</span>&gt;</span><span class="tag">&lt;/<span class="name">span</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> model = &#123;<span class="attr">message</span>: <span class="string">""</span>  &#125;;</span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> models = myapp.querySelectorAll(<span class="string">"[v-model=message]"</span>);</span></span><br><span class="line"><span class="javascript"><span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; models.length; i++) &#123;</span></span><br><span class="line"><span class="javascript">	models[i].onkeyup = <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		model[<span class="keyword">this</span>.getAttribute(<span class="string">"v-model"</span>)] = <span class="keyword">this</span>.value; </span></span><br><span class="line"><span class="undefined">	&#125; </span></span><br><span class="line"><span class="undefined">&#125;</span></span><br><span class="line"><span class="javascript"><span class="comment">// 观察者模式 / 钩子函数  // defineProperty 来定义一个对象的某个属性</span></span></span><br><span class="line"><span class="javascript"><span class="built_in">Object</span>.defineProperty(model, <span class="string">"message"</span>, &#123;</span></span><br><span class="line"><span class="javascript">	set: <span class="function"><span class="keyword">function</span>(<span class="params">newValue</span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> binds = myapp.querySelectorAll(<span class="string">"[v-bind=message]"</span>);</span></span><br><span class="line"><span class="javascript">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; binds.length; i++) &#123;</span></span><br><span class="line"><span class="undefined">			binds[i].innerHTML = newValue; </span></span><br><span class="line"><span class="undefined">		&#125;;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">var</span> models = myapp.querySelectorAll(<span class="string">"[v-model=message]"</span>);</span></span><br><span class="line"><span class="javascript">		<span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; models.length; i++) &#123;</span></span><br><span class="line"><span class="undefined">			models[i].value = newValue; </span></span><br><span class="line"><span class="undefined">		&#125;;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">this</span>.value = newValue;</span></span><br><span class="line"><span class="undefined">  &#125;, </span></span><br><span class="line"><span class="javascript">  get: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span></span><br><span class="line"><span class="javascript">		<span class="keyword">return</span> <span class="keyword">this</span>.value; </span></span><br><span class="line"><span class="undefined">  &#125;</span></span><br><span class="line"><span class="undefined">&#125;)</span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<p><a href="https://jsfiddle.net/Fan_90/zt34bfka/10/" target="_blank" rel="noopener">上面👆代码运行效果</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty</a></p>
+<p><a href="https://tc39.es/ecma262/#sec-object.defineproperty" target="_blank" rel="noopener">https://tc39.es/ecma262/#sec-object.defineproperty</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/09/10/Object.defineProperty/">https://fynn90.github.io/2019/09/10/Object.defineProperty/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Object-definePropery/">Object.definePropery</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/09/13/JS_Proxy_and_Reflect/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Proxy、Reflect</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/09/09/window.requestAnimationFrame/">
+        <span class="next-text nav-default">requestAnimationFrame</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="mxGraph介绍"/>
+
+
+
+
+  <meta name="keywords" content="mxGraph, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2020/05/10/mxGraph介绍/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> mxGraph介绍 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          mxGraph介绍
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-05-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2020/05/10/mxGraph介绍/"
+             data-title="mxGraph介绍">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#mxGraph是什么"><span class="toc-text">mxGraph是什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mxGraph可以做什么"><span class="toc-text">mxGraph可以做什么</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mxGraph特点"><span class="toc-text">mxGraph特点</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#mxGraph和Theia对比"><span class="toc-text">mxGraph和Theia对比</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h1 id="mxGraph是什么"><a href="#mxGraph是什么" class="headerlink" title="mxGraph是什么"></a>mxGraph是什么</h1><blockquote>
+<p>mxGraph是一个JavaScript图表库，可以快速创建交互式图形和图表应用程序，这些应用程序可以在其供应商支持的任何主流浏览器中本地运行。</p>
+</blockquote>
+<p><a href="https://jgraph.github.io/mxgraph/" target="_blank" rel="noopener">mxGraph</a>是用JS编写,通过SVG和HTML进行绘图的渲染,没有依赖其他项目.</p>
+<p>mxGraph在2005年创建，作为商业项目一直持续到2016年，2016年创建者以Apache 2.0开源协议在<a href="https://github.com/jgraph/mxgraph" target="_blank" rel="noopener">GitHub</a>上公布源码。</p>
+<p>但到现在还有维护更新,流行的免费绘图平台<a href="https://www.draw.io/" target="_blank" rel="noopener">draw.io</a>是基于mxGraph开发.</p>
+<p>mxGraph支持目前所有主流的浏览器: (IE11, Chrome 43+,Firefox 45+,Safari 10, Edge 31+)</p>
+<p>⚠️mxGraph提供图形关系视图绘制接口,业务场景中的功能需要自己调用接口实现.</p>
+<p>draw.io是个图形绘制平台,提供了一套完整的图形绘制功能.<br><a id="more"></a></p>
+<h1 id="mxGraph可以做什么"><a href="#mxGraph可以做什么" class="headerlink" title="mxGraph可以做什么"></a>mxGraph可以做什么</h1><p>mxGraph可用于绘制: 过程图、工作流和BPM的可视化图表、流程图、交通或水流量、 数据库和WWW的可视化、网络和电信显示、映射应用和地理信息系统、UML图、电子线路、金融、 超大规模集成电路和社会网络、数据挖掘、生化、生态循环、实体和因果关系和组织图表。</p>
+<p>总结一句话:适用于图形可视化、图形交互、图形布局、图形分析. 条形图、饼图、甘特图不适用于mxGraph.</p>
+<p><img src="https://pic.downk.cc/item/5eb8cf0ec2a9a83be5923f62.png" alt=""></p>
+<p><a href="https://jgraph.github.io/mxgraph/javascript/examples/editors/layouteditor.html" target="_blank" rel="noopener">BPM流程图</a>👆</p>
+<p><img src="https://pic.downk.cc/item/5eb8cf0ec2a9a83be5923f65.png" alt=""></p>
+<p><a href="https://jgraph.github.io/mxgraph/javascript/examples/editors/diagrameditor.html" target="_blank" rel="noopener">绘图编辑器</a>👆</p>
+<p><img src="https://pic.downk.cc/item/5eb8cf0ec2a9a83be5923f68.png" alt=""></p>
+<p><a href="https://jgraph.github.io/mxgraph/javascript/examples/schema.html" target="_blank" rel="noopener">数据库结构编辑器</a>👆</p>
+<h1 id="mxGraph特点"><a href="#mxGraph特点" class="headerlink" title="mxGraph特点"></a>mxGraph特点</h1><p><strong>优点</strong></p>
+<ul>
+<li>提供丰富的<a href="https://jgraph.github.io/mxgraph/docs/js-api/files/index-txt.html" target="_blank" rel="noopener">api</a>,满足业务场景.</li>
+<li>提供了图形应用中常用到的功能.(导航器、智能布局、鼠标右键定制).</li>
+<li>功能强大稳定,兼容性好. draw.io绘图应用基于mxGraph开发.</li>
+<li>官方提供了90个DEMO例子供参考学习.</li>
+<li>完全开源,Apache 2.0开源协议.没有商用风险.</li>
+</ul>
+<p><strong>缺点</strong></p>
+<ul>
+<li>接口文档不够友好,上手有一定的难度.(目前没有官方的中文文档)</li>
+</ul>
+<h1 id="mxGraph和Theia对比"><a href="#mxGraph和Theia对比" class="headerlink" title="mxGraph和Theia对比"></a>mxGraph和Theia对比</h1><p><strong>Theia</strong> Web端的IDE平台,用来方便程序员快速开发自己的程序.不限制程序员适用的语言和工具库.</p>
+<p><strong>mxGraph</strong> 图形关系开发工具. 提供稳定和丰富的接口帮助程序员根据业务场景开发图形关系应用.限定开发语言为JavaScript.</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2020/05/10/mxGraph介绍/">https://fynn90.github.io/2020/05/10/mxGraph介绍/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/mxGraph/">mxGraph</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2019/10/11/算法知识学习图谱/">
+        <span class="next-text nav-default">算法知识学习图谱</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

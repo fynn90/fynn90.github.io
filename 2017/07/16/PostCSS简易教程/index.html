@@ -1,0 +1,471 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="PostCSS简易教程"/>
+
+
+
+
+  <meta name="keywords" content="PostCSS, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2017/07/16/PostCSS简易教程/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> PostCSS简易教程 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          PostCSS简易教程
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-07-16
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/CSS/">CSS</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/07/16/PostCSS简易教程/"
+             data-title="PostCSS简易教程">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#使用"><span class="toc-text">使用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#插件"><span class="toc-text">插件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#postcss-cssnext"><span class="toc-text">postcss-cssnext</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#custom-properties-amp-var"><span class="toc-text">custom properties &amp; var()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#custom-properties-set-amp-apply"><span class="toc-text">custom properties set &amp; apply</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#custom-selectors-（-custom-selector）"><span class="toc-text">custom selectors （@custom-selector）</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#nesting"><span class="toc-text">nesting</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#CSS-Module"><span class="toc-text">CSS Module</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#webpack"><span class="toc-text">webpack</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#cssnano"><span class="toc-text">cssnano</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#postcss-pxtorem"><span class="toc-text">postcss-pxtorem</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#postcss-url"><span class="toc-text">postcss-url</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>PostCSS is a tool for transforming CSS with JS plugins. These plugins can support variables and mixins, transpile future CSS syntax, inline images, and more</p>
+</blockquote>
+<p><img src="https://www.smashingmagazine.com/wp-content/uploads/2015/12/post-css-opt.png" alt=""><br><a href="http://postcss.org/" target="_blank" rel="noopener">PostCSS</a>是个平台，在这个平台上你可以找到各种对CSS进行编译转换的插件。通过使用插件你可以达到CSS预编译器的效果。但PostCSS的用途不是只是一个CSS预处理器，它是个CSS生态系统。<br><a id="more"></a></p>
+<h2 id="使用"><a href="#使用" class="headerlink" title="使用"></a>使用</h2><p>PostCSS可以很容易于现代构建工具结合，我们以webpack为例子。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-loader webpack css-loader style-loader extract-text-webpack-plugin -D</span><br></pre></td></tr></table></figure><br>webpack.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">module: &#123;</span><br><span class="line">	rules: [</span><br><span class="line">		&#123;</span><br><span class="line">			test:/\.postcss$/,</span><br><span class="line">			use:ExtractTextPlugin.extract(&#123;</span><br><span class="line">				fallback:&apos;style-loader&apos;,</span><br><span class="line">				use:[&apos;css-loader&apos;,&apos;postcss-loader&apos;]</span><br><span class="line">			&#125;),</span><br><span class="line">			exclude: /node_modules/</span><br><span class="line">		&#125;</span><br><span class="line">	]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure><br>postcss.config.js – postcss配置文件。<br>完成对CSS各种转换依赖的是postcss各种插件。我们可以在postcss.config.js定义我们需要使用的插件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">   		plugins: &#123;</span><br><span class="line">       		&apos;autoprefixer&apos;: &#123;</span><br><span class="line">           			browsers: [&quot;Android 4.1&quot;, &quot;iOS 7.1&quot;, &quot;Chrome &gt; 31&quot;, &quot;ff &gt; 31&quot;]</span><br><span class="line">     	  		&#125;</span><br><span class="line">   		&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+<h2 id="插件"><a href="#插件" class="headerlink" title="插件"></a>插件</h2><p>PostCSS上面各种强大的插件，使得它无所不能。它可以支持你在代码中使用未来CSS语法，就像Babel支持你写未来JS一样。你还可以用它来压缩，debug代码。</p>
+<h3 id="postcss-cssnext"><a href="#postcss-cssnext" class="headerlink" title="postcss-cssnext"></a>postcss-cssnext</h3><blockquote>
+<p>Discover the future of CSS</p>
+</blockquote>
+<p>加载postcss-cssnext插件，你就可以使用CSS4语法了。  </p>
+<h4 id="custom-properties-amp-var"><a href="#custom-properties-amp-var" class="headerlink" title="custom properties &amp; var()"></a>custom properties &amp; var()</h4><p>在<strong>:root</strong>选择器内定义变量，在其它选择器中该变量使用。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">：root &#123;</span><br><span class="line">	--defaultSize: 14px;</span><br><span class="line">&#125;</span><br><span class="line">div &#123;</span><br><span class="line">	font-size: var(--defaultSize); // 将要使用的变量放入 var()中。</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+<h4 id="custom-properties-set-amp-apply"><a href="#custom-properties-set-amp-apply" class="headerlink" title="custom properties set &amp; apply"></a>custom properties set &amp; apply</h4><p>在<strong>:root</strong>选择器内定义一段css代码，然后在其他选择器中使用这段代码。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">：root &#123;</span><br><span class="line">	--vertical-middle: &#123;</span><br><span class="line">		position: absolute;</span><br><span class="line">		top: 50%;</span><br><span class="line">		left: 50%;</span><br><span class="line">		transform: translate(-50%, -50%);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">.module &#123;</span><br><span class="line">	@apply --vertical-middle;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+<h4 id="custom-selectors-（-custom-selector）"><a href="#custom-selectors-（-custom-selector）" class="headerlink" title="custom selectors （@custom-selector）"></a>custom selectors （@custom-selector）</h4><p>你可以创建自己的选择器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">@custom-selector :--button button, .btn;</span><br><span class="line">@custom-selector :--enter :hover, :focus;</span><br><span class="line">:--button &#123;</span><br><span class="line"> 		padding: 10px;</span><br><span class="line"> 		background-color: red;</span><br><span class="line">&#125;</span><br><span class="line">:--button:--enter &#123;</span><br><span class="line"> 		background-color: pink;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>        </p>
+<h4 id="nesting"><a href="#nesting" class="headerlink" title="nesting"></a>nesting</h4><p>嵌套选择器<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">a &#123;</span><br><span class="line">	font-size: var(--fontSize);</span><br><span class="line">	/* 直接嵌套 ‘&amp;’ 嵌套选择符 它代表父级规则*/</span><br><span class="line">	&amp; span &#123;</span><br><span class="line">		color: white;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/* @nest 嵌套选择符声明 使用了@nest符号的选择器声明中必须包含嵌套选择器 */</span><br><span class="line">	@nest span &amp; &#123;</span><br><span class="line">		color: blue;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	/* media query automatic nesting */</span><br><span class="line">	@media (min-width: 30em) &#123;</span><br><span class="line">		color: yellow;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">.foo &#123;</span><br><span class="line">	color: red;</span><br><span class="line">	@nest .bar &#123;</span><br><span class="line">		color: blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">/* Invalid because there’s no nesting selector */</span><br><span class="line"></span><br><span class="line">.foo &#123;</span><br><span class="line">	color: red;</span><br><span class="line">	@nest &amp; .bar, .baz &#123;</span><br><span class="line">		color: blue;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+<h3 id="CSS-Module"><a href="#CSS-Module" class="headerlink" title="CSS Module"></a>CSS Module</h3><p>CSS Module使我们不用担心样式的Class名会冲突。在组件话开发中，我们不同组件之间有名字一样的Class，这样可能会造成样式错乱。CSS Module可以解决这个问题。</p>
+<h4 id="webpack"><a href="#webpack" class="headerlink" title="webpack"></a>webpack</h4><p>css-loader 自带 CSS Module功能配置方式如下：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">rules: [</span><br><span class="line">	&#123;</span><br><span class="line">		test:/\.postcss$/,</span><br><span class="line">		use:ExtractTextPlugin.extract(&#123;</span><br><span class="line">			fallback:&apos;style-loader&apos;,</span><br><span class="line">			use:[</span><br><span class="line">				&#123;</span><br><span class="line">					loader:&apos;css-loader&apos;,</span><br><span class="line">					options:&#123;</span><br><span class="line">						modules: true</span><br><span class="line">					&#125;</span><br><span class="line">				&#125;,</span><br><span class="line">				&apos;postcss-loader&apos;</span><br><span class="line">			]</span><br><span class="line">		&#125;),</span><br><span class="line">		exclude: /node_modules/</span><br><span class="line">	&#125;</span><br><span class="line">]</span><br></pre></td></tr></table></figure><br>以React为例:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">import React, &#123;Component&#125; from &apos;react&apos;;</span><br><span class="line">import &#123;render&#125; from &apos;react-dom&apos;;</span><br><span class="line">import style from &apos;./style.postcss&apos;</span><br><span class="line">class HelloWorld extends Component &#123;</span><br><span class="line">	render () &#123;</span><br><span class="line">		return (&lt;h1 className=&#123;style.hw&#125;&gt;Hello World!&lt;/h1&gt;)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line">render(&lt;Hw/&gt;,document.getElementById(&apos;app&apos;));</span><br></pre></td></tr></table></figure><br>结果：<br><img src="http://imglf0.nosdn.127.net/img/Lzg4b1BvbmpvR2h6NC92VlJTU1psMlpZcTUxQ0t3ZkpLVnU2QlFtVWU0S3MwRUcwNVI0MXFBPT0.jpg?imageView&amp;thumbnail=500x0&amp;quality=96&amp;stripmeta=0&amp;type=jpg" alt="&#39;DOM 结果&#39;"></p>
+<h3 id="cssnano"><a href="#cssnano" class="headerlink" title="cssnano"></a>cssnano</h3><p>css代码压缩插件。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">	</span><br><span class="line">yarn add postcss-cli cssnano</span><br></pre></td></tr></table></figure><br>postcss.config.js:<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">	plugins: [</span><br><span class="line">		require(&apos;cssnano&apos;)(&#123;</span><br><span class="line">			preset: &apos;default&apos;,</span><br><span class="line">		&#125;),</span><br><span class="line">	],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure><br>webpack加载器css-loader集成了cssnano，只需把配置项 options.minimize 变为true。</p>
+<h3 id="postcss-pxtorem"><a href="#postcss-pxtorem" class="headerlink" title="postcss-pxtorem"></a>postcss-pxtorem</h3><p>将‘px’转换为 ‘rem’;<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-pxtorem</span><br></pre></td></tr></table></figure><br>postcss.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">	plugins:&#123;</span><br><span class="line">		&apos;postcss-pxtorem&apos;:&#123;</span><br><span class="line">			rootValue: 16,  //根元素的font-size大小。</span><br><span class="line">			unitPrecision ： 6，//rem小数点最长位数。</span><br><span class="line">			propList： [&apos;font-size&apos;,&apos;line-height&apos;], //需要进行转换的选择器</span><br><span class="line">			selectorBlackList： [/^html$/,/^body$/],//不进行转换的选择器 </span><br><span class="line">			replace: true, //是否替换 px字段值，</span><br><span class="line">			mediaQuery：false， //是否替换 媒体查下的条件</span><br><span class="line">			minPixelValue： 0 // 转换的最小值</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+<h3 id="postcss-url"><a href="#postcss-url" class="headerlink" title="postcss-url"></a>postcss-url</h3><p>对样式文件的图片进行处理。添加路径,base64,复制。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">yarn add postcss-url</span><br></pre></td></tr></table></figure><br>postcss.config.js<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">module.exports = &#123;</span><br><span class="line">	plugins: &#123;</span><br><span class="line">		&apos;postcss-url&apos;:&#123;</span><br><span class="line">			url: &apos;inline&apos;, //将图片转换为base64</span><br><span class="line">		&#125;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>    </p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2017/07/16/PostCSS简易教程/">https://fynn90.github.io/2017/07/16/PostCSS简易教程/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/PostCSS/">PostCSS</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/07/18/Javascript单元测试/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript Code Test</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/05/17/Test-React-Application/">
+        <span class="next-text nav-default">React应用测试</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Proxy、Reflect"/>
+
+
+
+
+  <meta name="keywords" content="Proxy, Reflect, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/09/13/JS_Proxy_and_Reflect/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Proxy、Reflect - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Proxy、Reflect
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-09-13
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/09/13/JS_Proxy_and_Reflect/"
+             data-title="Proxy、Reflect">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Proxy"><span class="toc-text">Proxy</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#handler"><span class="toc-text">handler</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#示例"><span class="toc-text">示例</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Proxy-revocable-target-handler"><span class="toc-text">Proxy.revocable(target, handler)</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Reflect"><span class="toc-text">Reflect</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#方法"><span class="toc-text">方法</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>从<a href="https://tc39.es/ecma262/#sec-reflection" target="_blank" rel="noopener">ECMAScript2015</a>开始,JavaScript新增了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">Proxy</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">Reflect</a>对象.通过这两个对象你可以拦截并自定义语言原来的操作行为(例如:属性查找、赋值、枚举、函数调用等).借助这两个对象你可以在JavaScript进行元级别进行编程(<a href="[https://zh.wikipedia.org/wiki/%E5%85%83%E7%BC%96%E7%A8%8B](https://zh.wikipedia.org/wiki/元编程">元编程</a>)).</p>
+<a id="more"></a>
+<h2 id="Proxy"><a href="#Proxy" class="headerlink" title="Proxy"></a>Proxy</h2><p><code>Proxy</code>对象用于定义基本操作的自定义行为(如属性查找、赋值、枚举、函数调用等).</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, handler);</span><br><span class="line"><span class="comment">// target 需要被包装的目标对象（可以是任何类型的对象，包括原生数组，函数，甚至另一个Proxy）</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// handler 对象是一个占位符对象，它包含Proxy的捕获器.其属性是当执行一个操作时定义代理的行为的函数</span></span><br><span class="line"><span class="comment">// 开发者可以在 handler中自定义JS对象中13种行为</span></span><br><span class="line"><span class="comment">// handler必须是个Object,否则JS引擎会抛 TypeError错误</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// p 是返回一个新对象</span></span><br></pre></td></tr></table></figure>
+<p><code>Proxy</code>和<code>defineProperty</code>,写法上很类似.<code>defineProperty</code>不能对数组进行包装,并且它只有[setter]和[getter]两种对象行为自定义.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> handler = &#123;</span><br><span class="line">    get: <span class="function"><span class="keyword">function</span>(<span class="params">target, name</span>)</span>&#123;</span><br><span class="line">        <span class="keyword">return</span> name <span class="keyword">in</span> target ? target[name] : <span class="number">37</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;&#125;, handler);</span><br><span class="line"></span><br><span class="line">p.a = <span class="number">1</span>;</span><br><span class="line">p.b = <span class="literal">undefined</span>;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(p.a, p.b);    <span class="comment">// 1, undefined</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="string">'c'</span> <span class="keyword">in</span> p, p.c);    <span class="comment">// false, 37</span></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="comment">// 无代理</span></span><br><span class="line"><span class="keyword">let</span> target = &#123;&#125;;</span><br><span class="line"><span class="keyword">let</span> p = <span class="keyword">new</span> <span class="built_in">Proxy</span>(target, &#123;&#125;);</span><br><span class="line"></span><br><span class="line">p.a = <span class="number">37</span>;   <span class="comment">// 操作转发到目标</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(target.a);    <span class="comment">// 37. 操作已经被正确地转发</span></span><br></pre></td></tr></table></figure>
+<p><img src="https://i.loli.net/2019/09/14/QNm1tkSbliCL2IY.png" alt="截屏2019-09-1415.10.13.png"></p>
+<h3 id="handler"><a href="#handler" class="headerlink" title="handler"></a>handler</h3><table>
+<thead>
+<tr>
+<th><strong>方法</strong></th>
+<th><strong>拦截方法</strong></th>
+<th><strong>Invariants</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getPrototypeOf" target="_blank" rel="noopener"><code>handler.getPrototypeOf()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank" rel="noopener"><code>Object.getPrototypeOf()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getPrototypeOf" target="_blank" rel="noopener"><code>Reflect.getPrototypeOf()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/proto" target="_blank" rel="noopener"><code>__proto__</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isPrototypeOf" target="_blank" rel="noopener"><code>Object.prototype.isPrototypeOf()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/instanceof" target="_blank" rel="noopener"><code>instanceof</code></a></td>
+<td><code>getPrototypeOf</code>方法一定返回一个对象或<code>null</code>. 如果 <code>target</code> 不可扩展，<code>Object.getPrototypeOf(proxy)</code> 必须返回和 <code>Object.getPrototypeOf(target)</code>一样的值。</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/setPrototypeOf" target="_blank" rel="noopener"><code>handler.setPrototypeOf()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf" target="_blank" rel="noopener"><code>Object.setPrototypeOf()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf" target="_blank" rel="noopener"><code>Reflect.setPrototypeOf()</code></a></td>
+<td>如果 <code>target</code> 不可扩展，<code>prototype</code> 参数必须与<code>Object.getPrototypeOf(target)</code>的值相同。</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/isExtensible" target="_blank" rel="noopener"><code>handler.isExtensible()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible" target="_blank" rel="noopener"><code>Object.isExtensible()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/isExtensible" target="_blank" rel="noopener"><code>Reflect.isExtensible()</code></a></td>
+<td><code>Object.isExtensible(proxy)</code> 必须返回和<code>Object.isExtensible(target)</code>一样的值。</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/preventExtensions" target="_blank" rel="noopener"><code>handler.preventExtensions()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions" target="_blank" rel="noopener"><code>Object.preventExtensions()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/preventExtensions" target="_blank" rel="noopener"><code>Reflect.preventExtensions()</code></a></td>
+<td>如果<code>Object.isExtensible(proxy)</code> 值为 <code>false，Object.preventExtensions(proxy)</code> 只返回<code>true。</code></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/getOwnPropertyDescriptor" target="_blank" rel="noopener"><code>handler.getOwnPropertyDescriptor()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor" target="_blank" rel="noopener"><code>Object.getOwnPropertyDescriptor()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor" target="_blank" rel="noopener"><code>Reflect.getOwnPropertyDescriptor()</code></a></td>
+<td><code>getOwnPropertyDescripton</code> 只能返回对象或者<code>undefined</code>.</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/defineProperty" target="_blank" rel="noopener"><code>handler.defineProperty()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener"><code>Object.defineProperty()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty" target="_blank" rel="noopener"><code>Reflect.defineProperty()</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/has" target="_blank" rel="noopener"><code>handler.has()</code></a></td>
+<td><code>in</code>符的使用:<code>foo in proxy</code><br><code>Object.create(proxy)</code><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has" target="_blank" rel="noopener"><code>Reflect.has()</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/get" target="_blank" rel="noopener"><code>handler.get()</code></a></td>
+<td>获取对象属性值<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set" target="_blank" rel="noopener"><code>Reflect.set()</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/set" target="_blank" rel="noopener"><code>handler.set()</code></a></td>
+<td>给对象属性赋值<br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set" target="_blank" rel="noopener"><code>Reflect.set()</code></a></td>
+<td></td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/deleteProperty" target="_blank" rel="noopener"><code>handler.deleteProperty()</code></a></td>
+<td>删除对象属性<code>delete obj.foo</code><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/deleteProperty" target="_blank" rel="noopener"><code>Reflect.deleteProperty()</code></a></td>
+<td>如果目标属性在对象是不可配置属性(configurable is false),则该属性不能删除</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/ownKeys" target="_blank" rel="noopener"><code>handler.ownKeys()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames" target="_blank" rel="noopener"><code>Object.getOwnPropertyNames()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols" target="_blank" rel="noopener"><code>Object.getOwnPropertySymbols()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener"><code>Object.keys()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys" target="_blank" rel="noopener"><code>Reflect.ownKeys()</code></a></td>
+<td>返回值是个列表<br>列表中的值是字符串类型或Symbol类型<br>列表包含对象所有不可配置的属性<br>如果目标对象不可以扩展,则列表只含有它自身的属性,不会含有其他属性</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/apply" target="_blank" rel="noopener"><code>handler.apply()</code></a></td>
+<td><code>proxy(..args)</code><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener"><code>Function.prototype.apply()</code></a> and <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/call" target="_blank" rel="noopener"><code>Function.prototype.call()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/apply" target="_blank" rel="noopener"><code>Reflect.apply()</code></a></td>
+<td><code>handler.apply()</code>不包含有不变量</td>
+</tr>
+<tr>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/handler/construct" target="_blank" rel="noopener"><code>handler.construct()</code></a></td>
+<td><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyNames" target="_blank" rel="noopener"><code>Object.getOwnPropertyNames()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertySymbols" target="_blank" rel="noopener"><code>Object.getOwnPropertySymbols()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener"><code>Object.keys()</code></a><br><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys" target="_blank" rel="noopener"><code>Reflect.ownKeys()</code></a></td>
+<td>结果一定是一个<code>Object</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="示例"><a href="#示例" class="headerlink" title="示例"></a>示例</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">let</span> products = <span class="keyword">new</span> <span class="built_in">Proxy</span>(&#123;</span><br><span class="line">  browsers: [<span class="string">'Internet Explorer'</span>, <span class="string">'Netscape'</span>]</span><br><span class="line">&#125;,</span><br><span class="line">&#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params">obj, prop</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 附加属性</span></span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'latestBrowser'</span>) &#123;</span><br><span class="line">      <span class="keyword">return</span> obj.browsers[obj.browsers.length - <span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 缺省行为是返回属性值</span></span><br><span class="line">    <span class="keyword">return</span> obj[prop];</span><br><span class="line">  &#125;,</span><br><span class="line">  set: <span class="function"><span class="keyword">function</span>(<span class="params">obj, prop, value</span>) </span>&#123;</span><br><span class="line">    <span class="comment">// 附加属性</span></span><br><span class="line">    <span class="keyword">if</span> (prop === <span class="string">'latestBrowser'</span>) &#123;</span><br><span class="line">      obj.browsers.push(value);</span><br><span class="line">      <span class="keyword">return</span>;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 如果不是数组则进行转换</span></span><br><span class="line">    <span class="keyword">if</span> (<span class="keyword">typeof</span> value === <span class="string">'string'</span>) &#123;</span><br><span class="line">      value = [value];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// 缺省行为是保存属性值</span></span><br><span class="line">    obj[prop] = value;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(products.browsers); <span class="comment">// ['Internet Explorer', 'Netscape']</span></span><br><span class="line">products.browsers = <span class="string">'Firefox'</span>; <span class="comment">// ?传入一个 string (错误地)</span></span><br><span class="line"><span class="built_in">console</span>.log(products.browsers); <span class="comment">// ['Firefox'] &lt;- ?没问题, ?得到的是一个 array</span></span><br><span class="line"></span><br><span class="line">products.latestBrowser = <span class="string">'Chrome'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(products.browsers); <span class="comment">// ['Firefox', 'Chrome']</span></span><br><span class="line"><span class="built_in">console</span>.log(products.latestBrowser); <span class="comment">// 'Chrome'</span></span><br></pre></td></tr></table></figure>
+<h3 id="Proxy-revocable-target-handler"><a href="#Proxy-revocable-target-handler" class="headerlink" title="Proxy.revocable(target, handler)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy/revocable" target="_blank" rel="noopener">Proxy.revocable(target, handler)</a></h3><p><code>Proxy.revocable(target, handler)</code> 方法可以用来创建一个可撤销的代理对象。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> &#123;proxy, revoke&#125; = <span class="built_in">Proxy</span>.revocable(&#123;&#125;, &#123;</span><br><span class="line">  get: <span class="function"><span class="keyword">function</span>(<span class="params">target, name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">"[["</span> + name + <span class="string">"]]"</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="built_in">console</span>.log(proxy.foo); <span class="comment">// "[[foo]]"</span></span><br><span class="line"></span><br><span class="line">revoke();</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(proxy.foo); <span class="comment">// TypeError is thrown</span></span><br><span class="line">proxy.foo = <span class="number">1</span>           <span class="comment">// TypeError again</span></span><br><span class="line"><span class="keyword">delete</span> proxy.foo;       <span class="comment">// still TypeError</span></span><br><span class="line"><span class="keyword">typeof</span> proxy            <span class="comment">// "object", typeof doesn't trigger any trap</span></span><br></pre></td></tr></table></figure>
+<h2 id="Reflect"><a href="#Reflect" class="headerlink" title="Reflect"></a>Reflect</h2><p><code>Reflect</code>是一个内置的对象，它提供拦截 JavaScript 操作的方法。这些方法和<code>Proxy</code>中handler方法一模一样的.都是有十三种handler方法.</p>
+<p><code>Reflect</code>不是构造函数,不能在用<code>new</code>运算符也不能作为函数调用它.<code>Reflect</code>的所有方法和属性都是静态的.</p>
+<p><code>Reflect</code>存在的几个目的:</p>
+<ol>
+<li>将<code>Object</code>对象的一些明显属于语言内部的方法（比如<code>Object.defineProperty</code>），放到<code>Reflect</code>对象上。现阶段，某些方法同时在<code>Object</code>和<code>Reflect</code>对象上部署，未来的新方法将只部署在<code>Reflect</code>对象上。也就是说，从<code>Reflect</code>对象上可以拿到语言内部的方法。</li>
+<li>修改某些<code>Object</code>方法的返回结果，让其变得更合理。比如，<code>Object.defineProperty(obj, name, desc)</code>在无法定义属性时，会抛出一个错误，而<code>Reflect.defineProperty(obj, name, desc)</code>则会返回<code>false</code>。</li>
+<li>让<code>Object</code>操作都变成函数行为。某些<code>Object</code>操作是命令式，比如<code>name in obj</code>和<code>delete obj[name]</code>，而<code>Reflect.has(obj, name)</code>和<code>Reflect.deleteProperty(obj, name)</code>让它们变成了函数行为。</li>
+<li><code>Reflect</code>对象的方法与<code>Proxy</code>对象的方法一一对应，只要是<code>Proxy</code>对象的方法，就能在<code>Reflect</code>对象上找到对应的方法。这就让<code>Proxy</code>对象可以方便地调用对应的<code>Reflect</code>方法，完成默认行为，作为修改行为的基础。也就是说，不管<code>Proxy</code>怎么修改默认行为，你总可以在<code>Reflect</code>上获取默认行为。</li>
+</ol>
+<h3 id="方法"><a href="#方法" class="headerlink" title="方法"></a>方法</h3><ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/apply" target="_blank" rel="noopener"><code>Reflect.apply(target, thisArgument, argumentsList)</code></a> 对一个函数进行调用操作，同时可以传入一个数组作为调用参数。和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Function/apply" target="_blank" rel="noopener"><code>Function.prototype.apply()</code></a> 功能类似。</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/construct" target="_blank" rel="noopener"><code>Reflect.construct(target, argumentsList[, newTarget])</code></a> 对构造函数进行 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/new" target="_blank" rel="noopener"><code>new</code> </a>操作，相当于执行 <code>new target(...args)</code>。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/defineProperty" target="_blank" rel="noopener"><code>Reflect.defineProperty(target, propertyKey, attributes)</code></a>和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperty" target="_blank" rel="noopener"><code>Object.defineProperty()</code></a> 类似。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/deleteProperty" target="_blank" rel="noopener"><code>Reflect.deleteProperty(target, propertyKey)</code></a>作为函数的<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/delete" target="_blank" rel="noopener"><code>delete</code></a>操作符，相当于执行 <code>delete target[name]</code>。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/get" target="_blank" rel="noopener"><code>Reflect.get(target, propertyKey[, receiver])</code></a>获取对象身上某个属性的值，类似于 <code>target[name]。</code></p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getOwnPropertyDescriptor" target="_blank" rel="noopener"><code>Reflect.getOwnPropertyDescriptor(target, propertyKey)</code></a>类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getOwnPropertyDescriptor" target="_blank" rel="noopener"><code>Object.getOwnPropertyDescriptor()</code></a>。</p>
+</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/getPrototypeOf" target="_blank" rel="noopener"><code>Reflect.getPrototypeOf(target)</code></a>类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/getPrototypeOf" target="_blank" rel="noopener"><code>Object.getPrototypeOf()</code></a>。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/has" target="_blank" rel="noopener"><code>Reflect.has(target, propertyKey)</code></a>判断一个对象是否存在某个属性，和 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Operators/in" target="_blank" rel="noopener"><code>in</code> 运算符</a> 的功能完全相同。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/isExtensible" target="_blank" rel="noopener"><code>Reflect.isExtensible(target)</code></a>类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/isExtensible" target="_blank" rel="noopener"><code>Object.isExtensible()</code></a>.</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/ownKeys" target="_blank" rel="noopener"><code>Reflect.ownKeys(target)</code></a>返回一个包含所有自身属性（不包含继承属性）的数组。(类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/keys" target="_blank" rel="noopener"><code>Object.keys()</code></a>, 但不会受<code>enumerable影响</code>).</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/preventExtensions" target="_blank" rel="noopener"><code>Reflect.preventExtensions(target)</code></a>类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/preventExtensions" target="_blank" rel="noopener"><code>Object.preventExtensions()</code></a>。返回一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Boolean" target="_blank" rel="noopener"><code>Boolean</code></a>。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/set" target="_blank" rel="noopener"><code>Reflect.set(target, propertyKey, value[, receiver])</code></a>将值分配给属性的函数。返回一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Boolean" target="_blank" rel="noopener"><code>Boolean</code></a>，如果更新成功，则返回<code>true</code>。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect/setPrototypeOf" target="_blank" rel="noopener"><code>Reflect.setPrototypeOf(target, prototype)</code></a>类似于 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/setPrototypeOf" target="_blank" rel="noopener"><code>Object.setPrototypeOf()</code></a>。</li>
+</ul>
+<p><img src="https://i.loli.net/2019/09/14/GSX1CoZHVr6hxwt.png" alt="截屏2019-09-1415.11.47.png"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://tc39.es/ecma262/#sec-reflection" target="_blank" rel="noopener">https://tc39.es/ecma262/#sec-reflection</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Meta_programming" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Guide/Meta_programming</a></p>
+<p><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/proxy" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/proxy</a></p>
+<p><a href="http://es6.ruanyifeng.com/#docs/reflect" target="_blank" rel="noopener">http://es6.ruanyifeng.com/#docs/reflect</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/09/13/JS_Proxy_and_Reflect/">https://fynn90.github.io/2019/09/13/JS_Proxy_and_Reflect/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Proxy/">Proxy</a>
+            
+              <a href="/tags/Reflect/">Reflect</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/09/18/十大经典排序算法(上)/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">十大经典排序算法(上)</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/09/10/Object.defineProperty/">
+        <span class="next-text nav-default">Object.defineProperty</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

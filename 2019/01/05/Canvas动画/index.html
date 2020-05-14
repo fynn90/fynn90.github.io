@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Canvas动画"/>
+
+
+
+
+  <meta name="keywords" content="Canvas, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/01/05/Canvas动画/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Canvas动画 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Canvas动画
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-01-05
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/Canvas/">Canvas</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/01/05/Canvas动画/"
+             data-title="Canvas动画">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#连续动画"><span class="toc-text">连续动画</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#交互动画"><span class="toc-text">交互动画</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations" target="_blank" rel="noopener">Canvas动画</a>的原理就是利用JavaScript连续的重绘图形，形成动图的效果。</p>
+<p>主要会使用到的技术点有：</p>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setInterval" target="_blank" rel="noopener"><strong>setInterval</strong></a> 定时执行某个函数，实现连续绘制图形。</li>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener"><strong>setTimeout</strong></a> 一定时候后执行某个函数，可以实现连续的绘制图形。</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener"><strong>requestAnimationFrame</strong></a> 告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。</p>
+</li>
+<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/clearRect" target="_blank" rel="noopener"><strong>clearRect</strong></a> 设置指定矩形区域内（以 点 <em>(x, y)</em> 为起点，范围是<em>(width, height)</em> ）所有像素变成透明，并擦除之前绘制的所有内容的方法。清除画布内容。</p>
+</li>
+<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save" target="_blank" rel="noopener"><strong>save</strong></a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/restore" target="_blank" rel="noopener"><strong>restore</strong></a> 保存当前画布状态和恢复到最近的保存状态的方法。</li>
+</ul>
+<blockquote>
+<p>下面的例子，采用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener"><code>window.requestAnimationFrame()</code></a>实现动画效果。这个方法提供了更加平缓并更加有效率的方式来执行动画，当系统准备好了重绘条件的时候，才调用绘制动画帧。一般每秒钟回调函数执行60次，也有可能会被降低。想要了解更多关于动画循环的信息，尤其是游戏，可以在<a href="https://developer.mozilla.org/zh-CN/docs/Games" target="_blank" rel="noopener">Game development zone</a> 参考这篇文章 <a href="https://developer.mozilla.org/zh-CN/docs/Games/Anatomy" target="_blank" rel="noopener">Anatomy of a video game</a>。</p>
+</blockquote>
+<a id="more"></a>
+<h2 id="连续动画"><a href="#连续动画" class="headerlink" title="连续动画"></a>连续动画</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> sun = <span class="keyword">new</span> Image();</span><br><span class="line"><span class="keyword">var</span> moon = <span class="keyword">new</span> Image();</span><br><span class="line"><span class="keyword">var</span> earth = <span class="keyword">new</span> Image();</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">init</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">  sun.src = <span class="string">'https://mdn.mozillademos.org/files/1456/Canvas_sun.png'</span>;</span><br><span class="line">  moon.src = <span class="string">'https://mdn.mozillademos.org/files/1443/Canvas_moon.png'</span>;</span><br><span class="line">  earth.src = <span class="string">'https://mdn.mozillademos.org/files/1429/Canvas_earth.png'</span>;</span><br><span class="line">  <span class="built_in">window</span>.requestAnimationFrame(draw);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line"></span><br><span class="line">  ctx.globalCompositeOperation = <span class="string">'destination-over'</span>;</span><br><span class="line">  ctx.clearRect(<span class="number">0</span>,<span class="number">0</span>,<span class="number">300</span>,<span class="number">300</span>); <span class="comment">// clear canvas</span></span><br><span class="line"></span><br><span class="line">  ctx.fillStyle = <span class="string">'rgba(0,0,0,0.4)'</span>;</span><br><span class="line">  ctx.strokeStyle = <span class="string">'rgba(0,153,255,0.4)'</span>;</span><br><span class="line">  ctx.save();</span><br><span class="line">  ctx.translate(<span class="number">150</span>,<span class="number">150</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Earth</span></span><br><span class="line">  <span class="keyword">var</span> time = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line">  ctx.rotate( ((<span class="number">2</span>*<span class="built_in">Math</span>.PI)/<span class="number">60</span>)*time.getSeconds() + ((<span class="number">2</span>*<span class="built_in">Math</span>.PI)/<span class="number">60000</span>)*time.getMilliseconds() );</span><br><span class="line">  ctx.translate(<span class="number">105</span>,<span class="number">0</span>);</span><br><span class="line">  ctx.fillRect(<span class="number">0</span>,<span class="number">-12</span>,<span class="number">50</span>,<span class="number">24</span>); <span class="comment">// Shadow</span></span><br><span class="line">  ctx.drawImage(earth,<span class="number">-12</span>,<span class="number">-12</span>);</span><br><span class="line"></span><br><span class="line">  <span class="comment">// Moon</span></span><br><span class="line">  ctx.save();</span><br><span class="line">  ctx.rotate( ((<span class="number">2</span>*<span class="built_in">Math</span>.PI)/<span class="number">6</span>)*time.getSeconds() + ((<span class="number">2</span>*<span class="built_in">Math</span>.PI)/<span class="number">6000</span>)*time.getMilliseconds() );</span><br><span class="line">  ctx.translate(<span class="number">0</span>,<span class="number">28.5</span>);</span><br><span class="line">  ctx.drawImage(moon,<span class="number">-3.5</span>,<span class="number">-3.5</span>);</span><br><span class="line">  ctx.restore();</span><br><span class="line"></span><br><span class="line">  ctx.restore();</span><br><span class="line">  </span><br><span class="line">  ctx.beginPath();</span><br><span class="line">  ctx.arc(<span class="number">150</span>,<span class="number">150</span>,<span class="number">105</span>,<span class="number">0</span>,<span class="built_in">Math</span>.PI*<span class="number">2</span>,<span class="literal">false</span>); <span class="comment">// Earth orbit</span></span><br><span class="line">  ctx.stroke();</span><br><span class="line"> </span><br><span class="line">  ctx.drawImage(sun,<span class="number">0</span>,<span class="number">0</span>,<span class="number">300</span>,<span class="number">300</span>);</span><br><span class="line"></span><br><span class="line">  <span class="built_in">window</span>.requestAnimationFrame(draw);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">init();</span><br></pre></td></tr></table></figure>
+<p><img src="http://imglf3.nosdn0.126.net/img/Lzg4b1BvbmpvR2lQcFJibnQ2dVF0K2h4cW9yMVpVTms3R2hkOXV1MTFLTFBTcWNOS2pwK0FRPT0.gif" alt=""></p>
+<h2 id="交互动画"><a href="#交互动画" class="headerlink" title="交互动画"></a>交互动画</h2><p>可以通过JavaScript监听事件（<a href="https://developer.mozilla.org/en-US/docs/Web/API/EventTarget/addEventListener" target="_blank" rel="noopener"><code>addEventListener</code></a>）改编绘制内容。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>);</span><br><span class="line"><span class="keyword">var</span> raf;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> ball = &#123;</span><br><span class="line">  x: <span class="number">100</span>,</span><br><span class="line">  y: <span class="number">100</span>,</span><br><span class="line">  vx: <span class="number">5</span>,</span><br><span class="line">  vy: <span class="number">2</span>,</span><br><span class="line">  radius: <span class="number">25</span>,</span><br><span class="line">  color: <span class="string">'blue'</span>,</span><br><span class="line">  draw: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    ctx.beginPath();</span><br><span class="line">    ctx.arc(<span class="keyword">this</span>.x, <span class="keyword">this</span>.y, <span class="keyword">this</span>.radius, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>);</span><br><span class="line">    ctx.closePath();</span><br><span class="line">    ctx.fillStyle = <span class="keyword">this</span>.color;</span><br><span class="line">    ctx.fill();</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  ctx.clearRect(<span class="number">0</span>,<span class="number">0</span>, canvas.width, canvas.height);</span><br><span class="line">  ball.draw();</span><br><span class="line">  ball.x += ball.vx;</span><br><span class="line">  ball.y += ball.vy;</span><br><span class="line">  raf = <span class="built_in">window</span>.requestAnimationFrame(draw);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">canvas.addEventListener(<span class="string">'mouseover'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  raf = <span class="built_in">window</span>.requestAnimationFrame(draw);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">canvas.addEventListener(<span class="string">'mouseout'</span>, <span class="function"><span class="keyword">function</span>(<span class="params">e</span>)</span>&#123;</span><br><span class="line">  <span class="built_in">window</span>.cancelAnimationFrame(raf);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">ball.draw();</span><br></pre></td></tr></table></figure>
+<p><img src="http://imglf3.nosdn0.126.net/img/Lzg4b1BvbmpvR2lQcFJibnQ2dVF0MUtXU0dtT0VwQVhIczlBdVRNdUxOdVBmcDdyVlJjeUpRPT0.gif" alt=""></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/01/05/Canvas动画/">https://fynn90.github.io/2019/01/05/Canvas动画/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Canvas/">Canvas</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/01/18/使用JS操作Excel/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript操作Excel文件</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/01/04/贝塞尔曲线/">
+        <span class="next-text nav-default">贝塞尔曲线</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

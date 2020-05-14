@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Node.JS自动打包部署脚本"/>
+
+
+
+
+  <meta name="keywords" content="TypeScript, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/07/17/Node.JS自动打包部署脚本/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Node.JS自动打包部署脚本 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Node.JS自动打包部署脚本
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-07-17
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/TypeScript/">TypeScript</a>
+            
+              <a href="/categories/TypeScript/Node-js/">Node.js</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/07/17/Node.JS自动打包部署脚本/"
+             data-title="Node.JS自动打包部署脚本">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#目录结构"><span class="toc-text">目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#index-ts"><span class="toc-text">index.ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#ssh-ts"><span class="toc-text">ssh.ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#zip-ts"><span class="toc-text">zip.ts</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#server-json"><span class="toc-text">server.json</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>前端工程化的一个基础能力就是自动部署前端打包后的代码到服务器.基于node和typecript写了一个自动部署的脚步.</p>
+<p>脚本的逻辑是先将目录打包压缩包,再通过SSH上传到服务器,最后解压和备份.<a href="https://github.com/fynn90/node-deploy-script" target="_blank" rel="noopener">源码地址</a></p>
+<p><img src="https://i.loli.net/2019/07/17/5d2ef632b8e1f76645.png" alt="图片"><br><a id="more"></a></p>
+<h2 id="目录结构"><a href="#目录结构" class="headerlink" title="目录结构"></a>目录结构</h2><ul>
+<li>deploy<ul>
+<li>index.ts — 项目启动目录</li>
+<li>server.json — 配置项目</li>
+<li>ssh.ts — 处理 ssh 脚本</li>
+<li>zip — 处理 目录压缩脚本</li>
+</ul>
+</li>
+</ul>
+<h2 id="index-ts"><a href="#index-ts" class="headerlink" title="index.ts"></a>index.ts</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> sr = <span class="built_in">require</span>(<span class="string">"./server.json"</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; zipFile &#125; = <span class="built_in">require</span>(<span class="string">"./zip.ts"</span>);</span><br><span class="line"><span class="keyword">const</span> &#123; uploadFile &#125; = <span class="built_in">require</span>(<span class="string">"./ssh.ts"</span>);</span><br><span class="line"><span class="keyword">const</span> d = <span class="keyword">new</span> <span class="built_in">Date</span>();</span><br><span class="line"></span><br><span class="line"><span class="comment">// 当前时间</span></span><br><span class="line"><span class="keyword">const</span> time = d.getFullYear() + <span class="string">"_"</span> + (d.getMonth() + <span class="number">1</span>) + <span class="string">"_"</span> + d.getDate() + <span class="string">"_"</span> + d.getHours() + <span class="string">"_"</span> + d.getMinutes();</span><br><span class="line"><span class="comment">// ssh2 配置项</span></span><br><span class="line"><span class="keyword">const</span> SSHConfig = &#123;</span><br><span class="line">  host: sr.host,</span><br><span class="line">  username: sr.username,</span><br><span class="line">  password: sr.password,</span><br><span class="line">  port: sr.port</span><br><span class="line">&#125;;</span><br><span class="line"><span class="comment">// 压缩包文件名</span></span><br><span class="line"><span class="keyword">const</span> zipFileName = <span class="string">"V"</span> + time + <span class="string">".zip"</span>;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">deploy</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"开始部署 🙊!"</span>);</span><br><span class="line">  zipFile(zipFileName, sr.localDir)</span><br><span class="line">    .then(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"压缩包📦 生成成功!"</span>);</span><br><span class="line">      uploadFile(SSHConfig, __dirname, sr.path, zipFileName);</span><br><span class="line">    &#125;)</span><br><span class="line">    .catch(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">      <span class="built_in">console</span>.error(<span class="string">"压缩包📦 生成失败!"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;</span><br><span class="line">deploy();</span><br></pre></td></tr></table></figure>
+<h2 id="ssh-ts"><a href="#ssh-ts" class="headerlink" title="ssh.ts"></a>ssh.ts</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; SFTPStream, SSH2Stream &#125; <span class="keyword">from</span> <span class="string">"ssh2-streams"</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> path = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> Client = <span class="built_in">require</span>(<span class="string">"ssh2"</span>).Client;</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"><span class="keyword">interface</span> SSHConfig &#123;</span><br><span class="line">  host: <span class="built_in">string</span>;</span><br><span class="line">  port: <span class="built_in">number</span>;</span><br><span class="line">  username: <span class="built_in">string</span>;</span><br><span class="line">  password: <span class="built_in">string</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">exports.uploadFile = <span class="function"><span class="keyword">function</span>(<span class="params">config: SSHConfig, localPath: <span class="built_in">string</span>, remotePath: <span class="built_in">string</span>, fileName: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> local = path.join(localPath, fileName);</span><br><span class="line">  <span class="keyword">const</span> remote = remotePath+<span class="string">'/'</span>+fileName;</span><br><span class="line">  <span class="keyword">var</span> shellList = [</span><br><span class="line">    <span class="string">`cd <span class="subst">$&#123;remotePath&#125;</span>\n`</span>, <span class="comment">// 进入服务器远程目录</span></span><br><span class="line">    <span class="string">`unzip -ol <span class="subst">$&#123;fileName&#125;</span>\n`</span>, <span class="comment">// 解压</span></span><br><span class="line">    <span class="string">"rm -rf backup.zip\n"</span>, <span class="comment">// 删除上个备份包</span></span><br><span class="line">    <span class="string">`mv <span class="subst">$&#123;fileName&#125;</span> backup.zip\n`</span>, <span class="comment">// 备份</span></span><br><span class="line">    <span class="string">"exit\n"</span> <span class="comment">// 退出</span></span><br><span class="line">  ];</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"准备上传⏫文件!"</span>);</span><br><span class="line">  <span class="keyword">const</span> conn = <span class="keyword">new</span> Client();</span><br><span class="line">  conn</span><br><span class="line">    .on(<span class="string">"ready"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"服务器连接成功!"</span>);</span><br><span class="line">      conn.sftp(<span class="function">(<span class="params">err: <span class="built_in">any</span>, sftp: SFTPStream</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">"开始上传文件!"</span>);</span><br><span class="line">        <span class="keyword">if</span> (err) <span class="keyword">return</span>;</span><br><span class="line">        sftp.fastPut(local, remote, &#123;&#125;, <span class="function"><span class="keyword">function</span>(<span class="params">err: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">          <span class="keyword">if</span> (err) &#123;</span><br><span class="line">            <span class="built_in">console</span>.error(err);</span><br><span class="line">            <span class="keyword">return</span>;</span><br><span class="line">          &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">            conn.shell(<span class="function"><span class="keyword">function</span>(<span class="params">err: <span class="built_in">any</span>, stream: SSH2Stream</span>) </span>&#123;</span><br><span class="line">              stream</span><br><span class="line">                .on(<span class="string">"close"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"文件上传成功!"</span>);</span><br><span class="line">                  conn.end();</span><br><span class="line">                  fs.unlink(local, <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">                    <span class="built_in">console</span>.log(<span class="string">"已部署到测试服务器"</span>);</span><br><span class="line">                  &#125;);</span><br><span class="line">                &#125;)</span><br><span class="line">                .on(<span class="string">"data"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">data: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">                  <span class="built_in">console</span>.log(<span class="string">"OUTPUT: "</span> + data);</span><br><span class="line">                &#125;);</span><br><span class="line">              stream.end(shellList.join(<span class="string">""</span>));</span><br><span class="line">            &#125;);</span><br><span class="line">          &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">      &#125;);</span><br><span class="line">    &#125;)</span><br><span class="line">    .connect(config);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="zip-ts"><a href="#zip-ts" class="headerlink" title="zip.ts"></a>zip.ts</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> pt = <span class="built_in">require</span>(<span class="string">"path"</span>);</span><br><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">"fs"</span>);</span><br><span class="line"><span class="keyword">const</span> archiver = <span class="built_in">require</span>(<span class="string">"archiver"</span>);</span><br><span class="line"></span><br><span class="line">exports.zipFile = <span class="function"><span class="keyword">function</span>(<span class="params">fileName: <span class="built_in">string</span>, localPath: <span class="built_in">string</span></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">"zip"</span>, fileName, localPath);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`压缩包<span class="subst">$&#123;fileName&#125;</span> 生成中……`</span>);</span><br><span class="line">    <span class="keyword">const</span> output = fs.createWriteStream(pt.join(__dirname, fileName));</span><br><span class="line">    <span class="keyword">var</span> archive = archiver(<span class="string">"zip"</span>, &#123;</span><br><span class="line">      zlib: &#123; level: <span class="number">9</span> &#125;</span><br><span class="line">    &#125;);</span><br><span class="line">    output.on(<span class="string">"close"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">`压缩包<span class="subst">$&#123;fileName&#125;</span> 生成成功!`</span>);</span><br><span class="line">      resolve(&#123; success: <span class="literal">true</span> &#125;);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    output.on(<span class="string">"end"</span>, <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.log(<span class="string">"Data has been drained"</span>);</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    archive.on(<span class="string">"warning"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.error(err);</span><br><span class="line">      <span class="keyword">if</span> (err.code === <span class="string">"ENOENT"</span>) &#123;</span><br><span class="line">        <span class="comment">// log warning</span></span><br><span class="line">        <span class="built_in">console</span>.warn(err);</span><br><span class="line">      &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">        <span class="comment">// throw error</span></span><br><span class="line">        reject(<span class="keyword">new</span> <span class="built_in">Error</span>(err));</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    archive.on(<span class="string">"error"</span>, <span class="function"><span class="keyword">function</span>(<span class="params">err: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">      <span class="built_in">console</span>.error(err);</span><br><span class="line">      reject(<span class="keyword">new</span> <span class="built_in">Error</span>(err));</span><br><span class="line">    &#125;);</span><br><span class="line"></span><br><span class="line">    archive.pipe(output);</span><br><span class="line"></span><br><span class="line">    archive.directory(localPath, <span class="literal">false</span>);</span><br><span class="line">    archive.finalize();</span><br><span class="line">  &#125;);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<h2 id="server-json"><a href="#server-json" class="headerlink" title="server.json"></a>server.json</h2><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"host"</span>: <span class="string">"192.168.1.22"</span>,</span><br><span class="line">  <span class="attr">"username"</span>: <span class="string">"front"</span>,</span><br><span class="line">  <span class="attr">"password"</span>: <span class="string">"front"</span>,</span><br><span class="line">  <span class="attr">"path"</span>: <span class="string">"/data/mmj/boss"</span>,</span><br><span class="line">  <span class="attr">"port"</span>: <span class="number">22</span>,</span><br><span class="line">  <span class="attr">"localDir"</span>: <span class="string">"dist/"</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/07/17/Node.JS自动打包部署脚本/">https://fynn90.github.io/2019/07/17/Node.JS自动打包部署脚本/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/TypeScript/">TypeScript</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/07/27/设计模式-策略模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">设计模式-策略模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/06/22/Typescript中interface、type/">
+        <span class="next-text nav-default">TypeScript中的interface和type</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="设计模式-代理模式"/>
+
+
+
+
+  <meta name="keywords" content="设计模式-代理模式, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/08/04/设计模式-代理模式/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> 设计模式-代理模式 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          设计模式-代理模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-04
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/设计模式/">设计模式</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/08/04/设计模式-代理模式/"
+             data-title="设计模式-代理模式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#保护代理"><span class="toc-text">保护代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#虚拟代理"><span class="toc-text">虚拟代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存代理"><span class="toc-text">缓存代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#高阶函数动态创建缓存代理"><span class="toc-text">高阶函数动态创建缓存代理</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>代理模式:通过一个中间对象,控制对真实想要调用对象的访问.</p>
+</blockquote>
+<p>代理模式的用途:</p>
+<ol>
+<li>代理将接受的信息 加工处理后传给本体,还可以控制本体接受数据的速率.</li>
+<li>代理帮助缓存本体已经处理过的数据.</li>
+<li>代理校验是否有权限访问本体.</li>
+</ol>
+<a id="more"></a>
+<p>在前端场景常见的代理模式有:</p>
+<pre><code>1. 保护代理: 代理校验访问本体权限,帮本体过滤信息.
+ 2. 虚拟代理: 代理在本体可以接受信息的时候传递信息给它.
+ 3. 缓存代理: 缓存处理过的数据,当再次请求时不需要给本体处理.
+</code></pre><h2 id="保护代理"><a href="#保护代理" class="headerlink" title="保护代理"></a>保护代理</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 代理, 校验用户访问权限</span></span><br><span class="line"><span class="keyword">class</span> ProxyDoor &#123;</span><br><span class="line">  door:&#123;<span class="keyword">new</span>(): Door&#125;;</span><br><span class="line">  <span class="keyword">constructor</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.door = <span class="keyword">new</span> Door;</span><br><span class="line">  &#125;</span><br><span class="line">	open(pw:<span class="built_in">string</span>) &#123;</span><br><span class="line">    <span class="keyword">if</span>(<span class="keyword">this</span>.authenticate(pw)) &#123;</span><br><span class="line">      <span class="keyword">return</span> <span class="keyword">this</span>.door.open();</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">     	<span class="keyword">return</span> &#123;status: <span class="literal">false</span>,msg: <span class="string">'开门密码错误!'</span>&#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;;</span><br><span class="line">	authenticate(pw: <span class="built_in">string</span>) &#123;</span><br><span class="line">    <span class="keyword">return</span> pw === <span class="string">'passsord'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 本体</span></span><br><span class="line"><span class="keyword">class</span> Door &#123;</span><br><span class="line">  <span class="keyword">constructor</span> (<span class="params"></span>) &#123;&#125;</span><br><span class="line">  open() &#123;</span><br><span class="line">    <span class="keyword">return</span> &#123;</span><br><span class="line">      status: <span class="literal">true</span>,</span><br><span class="line">      msg: <span class="string">'门🚪已打开!'</span></span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="虚拟代理"><a href="#虚拟代理" class="headerlink" title="虚拟代理"></a>虚拟代理</h2> <figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> LoadImage &#123;</span><br><span class="line">  imageNode: HTMLElement;</span><br><span class="line">  <span class="keyword">constructor</span> (<span class="params"></span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.imageNode = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">    <span class="built_in">document</span>.body.appendChil(imageNode);</span><br><span class="line">  &#125;</span><br><span class="line">  setSrc (src: <span class="built_in">string</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.imageNode.src = src</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> ProxyLoadImage &#123;</span><br><span class="line">  img: Image;</span><br><span class="line">  loadImage: &#123;<span class="keyword">new</span>(): LoadImage&#125;;</span><br><span class="line">  <span class="keyword">constructor</span> (<span class="params"></span>) &#123;</span><br><span class="line">    self = <span class="keyword">this</span>;</span><br><span class="line">    self.img = <span class="keyword">new</span> Image;</span><br><span class="line">    self.loadImage = <span class="keyword">new</span> LoadImage()</span><br><span class="line">    self.img.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">			self.loadImage.setSrc(<span class="keyword">this</span>.src)</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  setSrc(src: <span class="built_in">string</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.loadImage(<span class="string">'./img/xxx.png'</span>);</span><br><span class="line">    <span class="keyword">this</span>.img.src = src;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面👆这段代码,是前端中最常见的图片预加载.当真实图片没加载完成时,在图片位置上先用本地的小图当占位符.</p>
+<p>图片预加载不用代理模式也可以很简单的实现,为什么要用代理模式呢.是因为,面向对象设计原则之一是: 单一职责原则.</p>
+<p>单一职责原则:一个类(方法,对象),只有一个因素会引起它的变化.</p>
+<p>如果一个类(方法,对象)自身有多个因素会导致它变化,说明它承担的职责太多,这些职责耦合在一起.并不利于它的维护和扩展.</p>
+<p>上面的代码中,将预加载和展示图片分离开来.代理负责预加载,本体只负责展示图像.这样代码更清晰,灵活.</p>
+<h2 id="缓存代理"><a href="#缓存代理" class="headerlink" title="缓存代理"></a>缓存代理</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mult</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++) &#123;</span><br><span class="line">    a =a * <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"> proxMult = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> catchValue: &#123;[key:<span class="built_in">string</span>]: <span class="built_in">number</span>&#125;= &#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">let</span> key = <span class="built_in">Array</span>.prototype.join.call(<span class="built_in">arguments</span>,<span class="string">','</span>);</span><br><span class="line">    <span class="keyword">if</span> (key <span class="keyword">in</span> catchValue) &#123;</span><br><span class="line">      <span class="keyword">return</span> catchValue[key];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> catchValue[key] = mult.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)()</span><br></pre></td></tr></table></figure>
+<p>缓存代理一般用于缓存已经计算过的结果.用内存换取数度.</p>
+<p>缓存代理也经常用于缓存请求过的Ajax请求结果.</p>
+<h2 id="高阶函数动态创建缓存代理"><a href="#高阶函数动态创建缓存代理" class="headerlink" title="高阶函数动态创建缓存代理"></a>高阶函数动态创建缓存代理</h2><p>可以通过高阶函数,写个创建缓存代理工厂,为各种计算模式创建缓存代理.</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 创建缓存代理 工厂</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">createProxyFactory</span> (<span class="params">fn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> catchValue: &#123;[key: <span class="built_in">string</span>]: <span class="built_in">any</span>&#125;;</span><br><span class="line">  <span class="keyword">return</span> <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> key = <span class="built_in">Array</span>.propotype.join.call(<span class="built_in">arguments</span>, <span class="string">','</span>);</span><br><span class="line">    <span class="keyword">if</span> (catchValue[key]) &#123;</span><br><span class="line">      <span class="keyword">return</span> catchValue[key];</span><br><span class="line">    &#125; <span class="keyword">else</span> &#123;</span><br><span class="line">      <span class="keyword">return</span> catchValue[key] = fn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 乘法计算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">mult</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++) &#123;</span><br><span class="line">    a =a * <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">// 加法计算</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">plus</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> a = <span class="number">1</span>;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, l = <span class="built_in">arguments</span>.length; i &lt; l; i++) &#123;</span><br><span class="line">    a =a + <span class="built_in">arguments</span>[i];</span><br><span class="line">  &#125;;</span><br><span class="line">  <span class="keyword">return</span> a;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> proxyMult = createProxyFactory(mult);</span><br><span class="line"><span class="keyword">var</span> proxyPlus = createProxyFactory(plus);</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/08/04/设计模式-代理模式/">https://fynn90.github.io/2019/08/04/设计模式-代理模式/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/设计模式-代理模式/">设计模式-代理模式</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/08/06/设计模式-发布_订阅模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">设计模式-发布-订阅模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/07/27/设计模式-策略模式/">
+        <span class="next-text nav-default">设计模式-策略模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

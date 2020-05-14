@@ -1,0 +1,654 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Git使用技巧"/>
+
+
+
+
+  <meta name="keywords" content="Git, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/06/23/git使用技巧/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Git使用技巧 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Git使用技巧
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-06-23
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Git/">Git</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/06/23/git使用技巧/"
+             data-title="Git使用技巧">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#打标签"><span class="toc-text">打标签</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#储藏与清理"><span class="toc-text">储藏与清理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#查看提交日志"><span class="toc-text">查看提交日志</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#撤销"><span class="toc-text">撤销</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#合并-commit"><span class="toc-text">合并 commit</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#撤销缓存和还原修改的文件"><span class="toc-text">撤销缓存和还原修改的文件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#回滚"><span class="toc-text">回滚</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#删除最后一次远程提交"><span class="toc-text">删除最后一次远程提交</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#回滚到某次提交"><span class="toc-text">回滚到某次提交</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改远程仓库地址"><span class="toc-text">修改远程仓库地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#给已有项目添加git"><span class="toc-text">给已有项目添加git</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#中文乱码"><span class="toc-text">中文乱码</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#删除已经被跟踪文件或目录"><span class="toc-text">删除已经被跟踪文件或目录</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Git-命令图谱"><span class="toc-text">Git 命令图谱</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="https://git-scm.com" target="_blank" rel="noopener"><strong>Git</strong></a>是开发中常用的分布式代码管理工具，它是<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" target="_blank" rel="noopener"><strong>Linus</strong></a>为管理Linux内核代码而设计开发的。</p>
+<p><img src="https://git-scm.com/images/logo@2x.png" alt=""></p>
+<a id="more"></a>
+<p>本文介绍几个在使用Git管理代码中会遇到的情况。</p>
+<h2 id="打标签"><a href="#打标签" class="headerlink" title="打标签"></a><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%89%93%E6%A0%87%E7%AD%BE" target="_blank" rel="noopener">打标签</a></h2><p>在项目开发中当一期的需求开发完成后，我们应该将开发分支的代码合并到主分支上去，并在主分支上打标签说明这期需求的内容功能点。这样方便日后查看版本变更路径或从指定版本中拉取代码另外开发。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">$ git tag <span class="comment">#查看所有标签</span></span><br><span class="line">v0.1</span><br><span class="line">v1.0</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$ tag -l <span class="string">'v1.8.*'</span> <span class="comment"># 查看所有 v1.8.xxx 分支</span></span><br><span class="line">v1.8.0</span><br><span class="line">v1.8.1</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">$ git tag -a v1.9.0 -m <span class="string">'my version 1.9'</span> <span class="comment"># 创建标签并备注</span></span><br><span class="line">$ git show v1.9.0 <span class="comment">#查看 标签v1.9.0信息</span></span><br><span class="line"></span><br><span class="line">$ git push origin v1.9.0 <span class="comment"># 将标签v1.9.0提交到远程服务器</span></span><br><span class="line">$ git push origin --tags <span class="comment"># 将所有标签提交到远程服务器</span></span><br><span class="line">$ git push origin --delete tag v1.9.0 <span class="comment"># 删除远程服务器 标签</span></span><br><span class="line">$ git checkout -b version1.8.5 v1.8.5 <span class="comment">#从标签v1.8.5拉除一个新分支version1.8.5</span></span><br></pre></td></tr></table></figure>
+<p>在开发中如果你忘记打标签了希望补打，可以先找到需要打标签那次提交的commitID，通过commitID补打标签。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br><span class="line">15027957951b64cf874c3557a0f3547bd83b3ff6 Merge branch <span class="string">'experiment'</span></span><br><span class="line">a6b4c97498bd301d84096da251c98a07c7723e65 beginning write support</span><br><span class="line">0d52aaab4479697da7686c15f77a3d64d9165190 one more thing</span><br><span class="line">6d52a271eda8725415634dd79daabbc4d9b6008e Merge branch <span class="string">'experiment'</span></span><br><span class="line">0b7434d86859cc7b8c3d5e1dddfed66ff742fcbc added a commit <span class="keyword">function</span></span><br><span class="line">4682c3261057305bdd616e23b64b0857d832627b added a todo file</span><br><span class="line">166ae0c4d3f420721acbb115cc33848dfcc2121a started write support</span><br><span class="line">9fceb02d0ae598e95dc970b74767f19372d61af8 updated rakefile</span><br><span class="line">964f16d36dfccde844893cac5b347e7b3d44abbc commit the todo</span><br><span class="line">8a5cbc430f1a9c3d00faaeffd07798508422908a updated readme</span><br><span class="line"></span><br><span class="line">$ git tag -a v1.2 9fceb02</span><br></pre></td></tr></table></figure>
+<h2 id="储藏与清理"><a href="#储藏与清理" class="headerlink" title="储藏与清理"></a><a href="https://git-scm.com/book/zh/v2/Git-%E5%B7%A5%E5%85%B7-%E5%82%A8%E8%97%8F%E4%B8%8E%E6%B8%85%E7%90%86" target="_blank" rel="noopener">储藏与清理</a></h2><p>在日常开发过程中，我们正在在develop分支开发进行的需求，现网突然有个紧急BUG需要修改。这时你需要停下手头的开发切换分支进行Fix。而你开发并没有完成，为了保持版本的清晰性你可以将现有的分支上修改的代码<strong>储藏</strong>起来，切换到主分支Fix完后再取出储藏的代码继续开发。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line">$ git status <span class="comment">#查看当前分支 改动情况</span></span><br><span class="line">On branch master</span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">        modified:   package.json</span><br><span class="line"></span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        test.md</span><br><span class="line"></span><br><span class="line">no changes added to commit (use <span class="string">"git add"</span> and/or <span class="string">"git commit -a"</span>)</span><br><span class="line"></span><br><span class="line">$ git stash <span class="comment"># 储藏变动的文件 到栈中</span></span><br><span class="line">$ git stash list <span class="comment"># 查看储藏的 代码</span></span><br><span class="line">stash@&#123;0&#125;: WIP on master: 8aa5ad2 Git Demo</span><br><span class="line">$ git status <span class="comment"># git stash 默认值储藏已经被跟踪的文件，如果文件没被跟踪并不会被储藏</span></span><br><span class="line">On branch master</span><br><span class="line">Untracked files:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to include <span class="keyword">in</span> what will be committed)</span><br><span class="line"></span><br><span class="line">        test.md</span><br><span class="line"></span><br><span class="line">nothing added to commit but untracked files present (use <span class="string">"git add"</span> to track)</span><br><span class="line"></span><br><span class="line">$ git stash pop <span class="comment"># 取出最近被储藏的文件并删除该栈</span></span><br><span class="line">$ git stash -u <span class="comment"># 无论文件是否被跟踪只要有变化都将 储藏到栈中</span></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">nothing to commit, working tree clean</span><br></pre></td></tr></table></figure>
+<p>当有多个储藏的栈时，你可以通过<code>git stash apply stash@{x}</code>来指定取出储藏的文件。删除某个储藏的栈命令是<code>git stash drop stash@{x}</code>。</p>
+<p>看发过程中如果我们希望移除调未被跟踪的文件可以通过<code>git clean</code>命令</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git clean -d -f -n <span class="comment">#-d -f 表强制移除未被跟踪的文件以及空的子目录 -n 表示演示会移除的信息但不会真的移除，如果你没有加 -n 则会真的进行移除操作</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># clean 默认是不会移除 在 .gitignore中声明的忽略文件，如果你希望忽略文件也被移除可以添加参数 -x</span></span><br><span class="line">$ git clean -d -x -f</span><br></pre></td></tr></table></figure>
+<h2 id="查看提交日志"><a href="#查看提交日志" class="headerlink" title="查看提交日志"></a><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%9F%A5%E7%9C%8B%E6%8F%90%E4%BA%A4%E5%8E%86%E5%8F%B2" target="_blank" rel="noopener">查看提交日志</a></h2><p><code>git log</code>是我们经常会用的命令，Git提供了多种查下方式方便我们使用。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> <span class="comment"># 列出所有 提交日志，会按照新旧顺序显示出来。先得信息包括唯一的commitID，提交日期，提交人员和备注。</span></span><br><span class="line">$ git <span class="built_in">log</span> -p <span class="comment"># 显示每次提交，仓库变化的不同点。</span></span><br><span class="line">$ git <span class="built_in">log</span> -p -2 <span class="comment">#显示最近两次提交，仓库变化的不同点。</span></span><br><span class="line">$ git <span class="built_in">log</span> --pretty=oneline <span class="comment"># 只显示每次提交的 commitID和备注</span></span><br><span class="line">$ git <span class="built_in">log</span> --<span class="built_in">stat</span> <span class="comment">#每次提交的简略的统计信息</span></span><br></pre></td></tr></table></figure>
+<p>通过<code>$ git log --pretty=format</code>可以定制日志显示的格式。例如：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=format:<span class="string">"%h - %an, %ar : %s"</span></span><br><span class="line">ca82a6d - Scott Chacon, 6 years ago : changed the version number</span><br><span class="line">085bb3b - Scott Chacon, 6 years ago : removed unnecessary <span class="built_in">test</span></span><br><span class="line">a11bef0 - Scott Chacon, 6 years ago : first commit</span><br></pre></td></tr></table></figure>
+<p><code>format</code>常用的选项有:</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>%H</td>
+<td>提交对象（commit）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%h</td>
+<td>提交对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%T</td>
+<td>树对象（tree）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%t</td>
+<td>树对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%P</td>
+<td>父对象（parent）的完整哈希字串</td>
+</tr>
+<tr>
+<td>%p</td>
+<td>父对象的简短哈希字串</td>
+</tr>
+<tr>
+<td>%an</td>
+<td>作者（author）的名字</td>
+</tr>
+<tr>
+<td>%ae</td>
+<td>作者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%ad</td>
+<td>作者修订日期（可以用 –date= 选项定制格式）</td>
+</tr>
+<tr>
+<td>%ar</td>
+<td>作者修订日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td>%cn</td>
+<td>提交者（committer）的名字</td>
+</tr>
+<tr>
+<td>%ce</td>
+<td>提交者的电子邮件地址</td>
+</tr>
+<tr>
+<td>%cd</td>
+<td>提交日期</td>
+</tr>
+<tr>
+<td>%cr</td>
+<td>提交日期，按多久以前的方式显示</td>
+</tr>
+<tr>
+<td>%s</td>
+<td>提交日期，按多久以前的方式显示</td>
+</tr>
+</tbody>
+</table>
+<p><code>--pretty</code>的<code>oneline</code>或<code>format</code>于<code>log</code>选项中的<code>--graph</code>结合使用时尤其有用。这个选项添加了一些ASCC字符串用来形象的展示了分支和合并的历史。</p>
+<p><code>git log</code>拥有一些自己的选项：</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-p</td>
+<td>按补丁格式显示每个更新之间的差异</td>
+</tr>
+<tr>
+<td>–stat</td>
+<td>显示每次更新的文件修改统计信息</td>
+</tr>
+<tr>
+<td>–shortstat</td>
+<td>只显示 –stat 中最后的行数修改添加移除统计</td>
+</tr>
+<tr>
+<td>–name-only</td>
+<td>仅在提交信息后显示已修改的文件清单</td>
+</tr>
+<tr>
+<td>–name-status</td>
+<td>显示新增、修改、删除的文件清单</td>
+</tr>
+<tr>
+<td>–abbrev-commit</td>
+<td>仅显示 SHA-1 的前几个字符，而非所有的 40 个字符</td>
+</tr>
+<tr>
+<td>–relative-date</td>
+<td>使用较短的相对时间显示（比如，“2 weeks ago”）</td>
+</tr>
+<tr>
+<td>–graph</td>
+<td>显示 ASCII 图形表示的分支合并历史</td>
+</tr>
+<tr>
+<td>–pretty</td>
+<td>使用其他格式显示历史提交信息</td>
+</tr>
+</tbody>
+</table>
+<p><code>git log</code>还提供了一些过滤显示条件的选项，例如：<code>git log --author=fynn90</code>命令只显示作者<strong>fynn90</strong>的提交记录，结合<code>--pretty=format</code>可以自定义显示的数据和格式。</p>
+<p>常用的过滤日志显示选项有:</p>
+<table>
+<thead>
+<tr>
+<th>选项</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>-(n)</td>
+<td>仅显示最近的 n 条提交</td>
+</tr>
+<tr>
+<td>–since, –after</td>
+<td>仅显示指定时间之后的提交</td>
+</tr>
+<tr>
+<td>–until, –before</td>
+<td>仅显示指定时间之前的提交</td>
+</tr>
+<tr>
+<td>–author</td>
+<td>仅显示指定作者相关的提交</td>
+</tr>
+<tr>
+<td>–committer</td>
+<td>仅显示指定提交者相关的提交</td>
+</tr>
+<tr>
+<td>–grep</td>
+<td>仅显示含指定关键字的提交</td>
+</tr>
+<tr>
+<td>-S</td>
+<td>仅显示添加或移除了某个关键字的提交</td>
+</tr>
+</tbody>
+</table>
+<p><strong>例子：</strong>如果要查看 Git 仓库中，2008 年 10 月期间，Junio Hamano 提交的但未合并的测试文件，可以用下面的查询命令 </p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=<span class="string">"%h - %s"</span> --author=gitster --since=<span class="string">"2008-10-01"</span> \</span><br><span class="line">   --before=<span class="string">"2008-11-01"</span> --no-merges -- t/</span><br><span class="line">5610e3b - Fix testcase failure when extended attributes are <span class="keyword">in</span> use</span><br><span class="line">acd3b9e - Enhance hold_lock_file_for_&#123;update,append&#125;() API</span><br><span class="line">f563754 - demonstrate breakage of detached checkout with symbolic link HEAD</span><br><span class="line">d1a43f2 - reset --hard/<span class="built_in">read</span>-tree --reset -u: remove unmerged new paths</span><br><span class="line">51a94af - Fix <span class="string">"checkout --track -b newbranch"</span> on detached HEAD</span><br><span class="line">b0ad11e - pull: allow <span class="string">"git pull origin <span class="variable">$something</span>:<span class="variable">$current_branch</span>"</span> into an unborn branch</span><br></pre></td></tr></table></figure>
+<h2 id="撤销"><a href="#撤销" class="headerlink" title="撤销"></a><a href="https://git-scm.com/book/zh/v2/Git-%E5%9F%BA%E7%A1%80-%E6%92%A4%E6%B6%88%E6%93%8D%E4%BD%9C" target="_blank" rel="noopener">撤销</a></h2><p>在日常开发中我们会完成一次<code>commit</code>后在<code>push</code>到远程服务器之前又向对文件进行修改，这时我们就需要对仓库进行<strong>撤销操作</strong>。</p>
+<h3 id="合并-commit"><a href="#合并-commit" class="headerlink" title="合并 commit"></a>合并 commit</h3><p>commit后，发现还有文件没有添加，可以通过<code>commit --amend</code>合并commit</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git commit -m <span class="string">'initial commit'</span></span><br><span class="line">$ git add forgotten_file</span><br><span class="line">$ git commit --amend</span><br></pre></td></tr></table></figure>
+<h3 id="撤销缓存和还原修改的文件"><a href="#撤销缓存和还原修改的文件" class="headerlink" title="撤销缓存和还原修改的文件"></a>撤销缓存和还原修改的文件</h3><p>当你将两个有改动的文件通过<code>add</code>添加到暂存区后，想将一个文件从暂存区移除掉并还原修改的文件。：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br></pre></td><td class="code"><pre><span class="line">$ git add *</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br><span class="line">    modified:   CONTRIBUTING.md</span><br><span class="line">$ git reset HEAD CONTRIBUTING.md <span class="comment"># 将文件从暂存区移除</span></span><br><span class="line">Unstaged changes after reset:</span><br><span class="line">M	CONTRIBUTING.md</span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br><span class="line"></span><br><span class="line">Changes not staged <span class="keyword">for</span> commit:</span><br><span class="line">  (use <span class="string">"git add &lt;file&gt;..."</span> to update what will be committed)</span><br><span class="line">  (use <span class="string">"git checkout -- &lt;file&gt;..."</span> to discard changes <span class="keyword">in</span> working directory)</span><br><span class="line"></span><br><span class="line">    modified:   CONTRIBUTING.md</span><br><span class="line">$ git checkout -- CONTRIBUTING.md <span class="comment"># 撤销对文件的修改</span></span><br><span class="line">$ git status</span><br><span class="line">On branch master</span><br><span class="line">Changes to be committed:</span><br><span class="line">  (use <span class="string">"git reset HEAD &lt;file&gt;..."</span> to unstage)</span><br><span class="line"></span><br><span class="line">    renamed:    README.md -&gt; README</span><br></pre></td></tr></table></figure>
+<h2 id="回滚"><a href="#回滚" class="headerlink" title="回滚"></a>回滚</h2><p>如果通过<code>git push</code>推送到远程仓库，我们希望还原操作，这个操作叫做”回滚”！</p>
+<h3 id="删除最后一次远程提交"><a href="#删除最后一次远程提交" class="headerlink" title="删除最后一次远程提交"></a>删除最后一次远程提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">$ git revert HEAD <span class="comment"># 通过 revert</span></span><br><span class="line">$ git push origin master</span><br><span class="line"></span><br><span class="line">$ git reset --hard HEAD^ <span class="comment"># 通过 reset</span></span><br><span class="line">$ git push origin master -f</span><br></pre></td></tr></table></figure>
+<p><code>revert</code>和<code>reset</code>区别：</p>
+<ul>
+<li>revert是放弃指定提交的修改，但是会生成一次新的提交，需要填写提交注释，以前的历史记录都在；</li>
+<li>reset是指将HEAD指针指到指定提交，历史记录中不会出现放弃的提交记录。</li>
+</ul>
+<h3 id="回滚到某次提交"><a href="#回滚到某次提交" class="headerlink" title="回滚到某次提交"></a>回滚到某次提交</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ git <span class="built_in">log</span> --pretty=oneline</span><br><span class="line">$ git revert commitID</span><br><span class="line">$ git reset --hard commitID</span><br></pre></td></tr></table></figure>
+<h2 id="修改远程仓库地址"><a href="#修改远程仓库地址" class="headerlink" title="修改远程仓库地址"></a>修改远程仓库地址</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git remote rm origin // 删除现有地址</span><br><span class="line">$ git remote add origin [url] // 添加新地址</span><br></pre></td></tr></table></figure>
+<h2 id="给已有项目添加git"><a href="#给已有项目添加git" class="headerlink" title="给已有项目添加git"></a>给已有项目添加git</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ git init // git 项目初始化</span><br><span class="line">$ git add . //</span><br><span class="line">$ git commit -m <span class="string">'xxx'</span></span><br><span class="line">$ git remote add origin git@xxxxx</span><br><span class="line">$ git pull --rebase origin master // 如果远程库不为空 必须这一步,如果是空的 可以不执行</span><br><span class="line">$ git push origin master</span><br></pre></td></tr></table></figure>
+<h2 id="中文乱码"><a href="#中文乱码" class="headerlink" title="中文乱码"></a>中文乱码</h2><p>在Mac下git显示中文字符会出现乱码，可以通过下面命令解决：</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">$ git config --global core.quotepath <span class="literal">false</span></span><br><span class="line">$ git config --global gui.encoding utf-8 // 设置git gui的界面编码</span><br><span class="line">$ git config --global i18n.commitencoding utf-8 // commit <span class="built_in">log</span> 提交时使用 utf-8 编码</span><br><span class="line">$ git config --global i18n.logoutputencoding gbk // git <span class="built_in">log</span> 时将 utf-8 编码转换成 gbk 编码，解决Msys bash中git <span class="built_in">log</span> 乱码</span><br></pre></td></tr></table></figure>
+<h2 id="删除已经被跟踪文件或目录"><a href="#删除已经被跟踪文件或目录" class="headerlink" title="删除已经被跟踪文件或目录"></a>删除已经被跟踪文件或目录</h2><p>不想被跟踪的文件、目录需要写入.gitignore文件中.如果你想将某个已经被跟踪的文件、目录添加到.gitignore文件中,git还是会跟踪它.</p>
+<p>这时你需要告诉 git 不再跟踪它</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">git rm --cached 文件名</span><br><span class="line">git rm --cached -r 目录</span><br></pre></td></tr></table></figure>
+<p>执行完以上步骤之后，再去执行正常的git status, git add, git commit命令即可。把刚才的操作提交到仓库中即可。</p>
+<h2 id="Git-命令图谱"><a href="#Git-命令图谱" class="headerlink" title="Git 命令图谱"></a>Git 命令图谱</h2><p><img src="https://i.loli.net/2019/09/07/BNnzY6Q8kf2O3b1.png" alt="37923f2478edc5709b36562b26c9e008.png"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://git-scm.com/book/zh/v2" target="_blank" rel="noopener">https://git-scm.com/book/zh/v2</a></p>
+<p><a href="https://blog.csdn.net/ligang2585116/article/details/71094887" target="_blank" rel="noopener">https://blog.csdn.net/ligang2585116/article/details/71094887</a></p>
+<p><a href="https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/undoing-things" target="_blank" rel="noopener">https://www.git-tower.com/learn/git/ebook/cn/command-line/advanced-topics/undoing-things</a></p>
+<p><a href="https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert-%E7%9A%84%E9%80%89%E6%8B%A9" target="_blank" rel="noopener">https://github.com/geeeeeeeeek/git-recipes/wiki/5.2-%E4%BB%A3%E7%A0%81%E5%9B%9E%E6%BB%9A%EF%BC%9AReset%E3%80%81Checkout%E3%80%81Revert-%E7%9A%84%E9%80%89%E6%8B%A9</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/06/23/git使用技巧/">https://fynn90.github.io/2018/06/23/git使用技巧/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Git/">Git</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/08/02/webpack4配置指南/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Webpack4配置指南</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/06/14/Shell脚本入门/">
+        <span class="next-text nav-default">Shell脚本入门</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

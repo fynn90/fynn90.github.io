@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="React Native入门"/>
+
+
+
+
+  <meta name="keywords" content="React, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/01/31/React Native入门手册/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> React Native入门 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          React Native入门
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-31
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/React/">React</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/01/31/React Native入门手册/"
+             data-title="React Native入门">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#基础"><span class="toc-text">基础</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#数据状态"><span class="toc-text">数据状态</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#样式"><span class="toc-text">样式</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#网络请求"><span class="toc-text">网络请求</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#通用组件"><span class="toc-text">通用组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Text-Input"><span class="toc-text">Text Input</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ScrollView"><span class="toc-text">ScrollView</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#FlatList"><span class="toc-text">FlatList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#SectionList"><span class="toc-text">SectionList</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#View"><span class="toc-text">View</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#StyleSheet"><span class="toc-text">StyleSheet</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Button"><span class="toc-text">Button</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Picker"><span class="toc-text">Picker</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WebView"><span class="toc-text">WebView</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS组件和API"><span class="toc-text">iOS组件和API</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#AlertIOS"><span class="toc-text">AlertIOS</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DatePickerIOS"><span class="toc-text">DatePickerIOS </span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Android组件"><span class="toc-text">Android组件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#DatePickerAndroid"><span class="toc-text">DatePickerAndroid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimePickerAndroid"><span class="toc-text">TimePickerAndroid</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ViewPagerAndroid"><span class="toc-text">ViewPagerAndroid</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="https://facebook.github.io/react-native/" target="_blank" rel="noopener">React Native</a>是Facebook推出用JavaScript开发iOS和Android应用框架，它跟Cordova和Titanium等用JavaScript创建原生应用的框架有本质的不同，React Native通过编译出来的包就是个原生应用而不是嵌入Web的hybrid应用。所有它的性能比其它开发原生应用的JavaScript框架高出很多。</p>
+<blockquote>
+<p>Build native mobile apps using JavaScript and React</p>
+</blockquote>
+<p>React Native实现一套机制用于JS层于原生模块层通信。（<a href="http://blog.cnbang.net/tech/2698/" target="_blank" rel="noopener">详细介绍文章</a>）<br><a id="more"></a> </p>
+<p>React Native 优缺点<br><strong>优点：</strong></p>
+<ul>
+<li>使用React思想涉足移动端开发，提高原生开发效率。</li>
+<li>能够利用JavaScript特性进行免安装快速更新。</li>
+<li>相对于其它Hybird框架性能更好。</li>
+</ul>
+<p><strong>缺点：</strong></p>
+<ul>
+<li>React Native无法做到只用JavaScript开发原生应用！开发必须要有原生应用开发的经验</li>
+<li>性能无法达到原生应用。</li>
+<li>学习门槛高，学习成本大。Web开发者需要了解原生开发细节，原生开发者需要理解React开发思想。</li>
+</ul>
+<p>本文只介绍React Native开发涉及到前端部分！因为博主完全不懂原生应用开发 :)</p>
+<h2 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h2><p>React Native沿袭了 React组件化开发思想，UI开发方式和数据管理方式和React一样。</p>
+<h3 id="数据状态"><a href="#数据状态" class="headerlink" title="数据状态"></a>数据状态</h3><p>React Native中有两种方式用于控制数据：<code>props</code>和<code>state</code>。<br><code>props</code>是在父组件中指定，而且一经指定就无法更改。而<code>state</code>是在组件初始化构造函数<code>constructor</code>中声明的。在组件的生命周期和方法内可以通过<code>setState</code>方法改变它的值。</p>
+<p>创建一个组件显示父组件传递的信息：<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Greeting</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	render () &#123;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;Text&gt;&#123;<span class="keyword">this</span>.props.name&#125;!<span class="xml"><span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">		)</span><br><span class="line">	&#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">LotsOfGreetings</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render () &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">alignItems</span>: <span class="string">'center'</span>&#125;&#125; &gt;</span><br><span class="line">        &lt;Greeting name=<span class="string">'Rexxar'</span> /&gt;</span><br><span class="line">        &lt;Greeting name=<span class="string">'Jaina'</span> /&gt;</span><br><span class="line">        &lt;Greeting name=<span class="string">'Valeera'</span> /&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">AppRegistry.registerComponent('ProjectName', ()=&gt;LotsOfGreetings);</span></span><br></pre></td></tr></table></figure></p>
+<p>创建一个组件，每个1秒钟就闪屏一次。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Blink</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">	<span class="keyword">constructor</span> (props) &#123;</span><br><span class="line">		<span class="keyword">super</span>(props);</span><br><span class="line">		<span class="keyword">this</span>.state = &#123;<span class="attr">isShowingText</span>: <span class="literal">true</span>&#125;;</span><br><span class="line">		</span><br><span class="line">		setInterval( <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">			<span class="keyword">this</span>.setState(<span class="function"><span class="params">previousState</span> =&gt;</span> &#123;</span><br><span class="line">				<span class="keyword">return</span> &#123;<span class="attr">isShowingText</span>: !previousState.isShowingText&#125;;</span><br><span class="line">			&#125;)</span><br><span class="line">		&#125;, <span class="number">1000</span>)</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	render () &#123;</span><br><span class="line">		<span class="keyword">let</span> display = <span class="keyword">this</span>.state.isShowingText ? <span class="keyword">this</span>.props.text : <span class="string">' '</span>;</span><br><span class="line">		<span class="keyword">return</span> (</span><br><span class="line">			&lt;Text&gt;&#123;display&#125;&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">		)</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">export default class BlinkApp extends Component &#123;</span></span><br><span class="line"><span class="regexp">	render () &#123;</span></span><br><span class="line"><span class="regexp">		return (</span></span><br><span class="line"><span class="regexp">			&lt;View&gt;</span></span><br><span class="line"><span class="regexp">				&lt;Blink text='I love to bink' /</span>&gt;</span><br><span class="line">				&lt;Blink text=<span class="string">'Yes blinking is so great'</span> /&gt;</span><br><span class="line">				&lt;Blink text=<span class="string">'Why did they ever take this out of HTML'</span> /&gt;</span><br><span class="line">				&lt;Blink text=<span class="string">'Look at me look at me look at me'</span> /&gt;</span><br><span class="line">			&lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">		)</span></span><br><span class="line"><span class="regexp">	&#125;</span></span><br><span class="line"><span class="regexp">&#125;;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">AppRegistry.registerComponent('ProjectName', () =&gt; BlinkApp);</span></span><br></pre></td></tr></table></figure></p>
+<p>在构建复杂的应用时，使用<code>setState</code>更新数据并不是明智的选择。对于复杂的数据业务，应该使用数据管理器控制数据的流向。<a href="https://redux.js.org/index.html" target="_blank" rel="noopener">Redux</a>是目前流行的数据管理框架。</p>
+<h3 id="样式"><a href="#样式" class="headerlink" title="样式"></a>样式</h3><p>React Native中可以通过JavaScript来写样式，语法类似于CSS只是属性名使用的是驼峰命名法。例如：<code>background-color</code>改为<code>backgroundColor</code>。  </p>
+<p>通过<code>StyleSheet.create</code>集中定义组件的样式（类似将样式写在<code>&lt;style&gt;&lt;/style&gt;</code>）。将<code>StyleSheet.create</code>中定义的样式赋予组件上的<code>style</code>属性。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">LotsOfStyles</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View&gt;</span><br><span class="line">        &lt;Text style=&#123;styles.red&#125;&gt;just red&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Text style=&#123;styles.bigblue&#125;&gt;just bigblue&lt;/</span>Text&gt;</span><br><span class="line">        &lt;Text style=&#123;[styles.bigblue, styles.red]&#125;&gt;bigblue, then red&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">        &lt;Text style=&#123;[styles.red, styles.bigblue]&#125;&gt;red, then bigblue&lt;/</span>Text&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const styles = StyleSheet.create(&#123;</span></span><br><span class="line"><span class="regexp">  bigblue: &#123;</span></span><br><span class="line"><span class="regexp">    color: 'blue',</span></span><br><span class="line"><span class="regexp">    fontWeight: 'bold',</span></span><br><span class="line"><span class="regexp">    fontSize: 30,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  red: &#123;</span></span><br><span class="line"><span class="regexp">    color: 'red',</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;);</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">AppRegistry.registerComponent('LotsOfStyles', () =&gt; LotsOfStyles);</span></span><br></pre></td></tr></table></figure>
+<p>如上所示，如果<code>style</code>有多个值应该将它们用如一个数组中。</p>
+<p>React Native中使用flexbox布局页面，它的语法和Web的CSS基本一致，它们不同点是，<code>flexDirection</code>的默认值是<code>column</code>而不是<code>row</code>。而<code>flex</code>只能指定一个数字。<br>React Native中组件设计的尺寸方式是指定固定的<code>width</code>和<code>height</code>。而它们都是没有单位的，它们于设备像素密度无关的逻辑像素点，在不用尺寸的屏幕上都显示成一样的大小。</p>
+<h3 id="网络请求"><a href="#网络请求" class="headerlink" title="网络请求"></a>网络请求</h3><p>React Native提供了和Web标准一致的<a href="https://developer.mozilla.org/en-US/docs/Web/API/Fetch_API" target="_blank" rel="noopener">Fetch API</a>用于网络请求数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'https://mywebsite.com/endpoint'</span>,&#123;</span><br><span class="line">	method: <span class="string">'POST'</span>,</span><br><span class="line">	headers: &#123;</span><br><span class="line">		<span class="string">'Accept'</span>: <span class="string">'application/json'</span>,</span><br><span class="line">		<span class="string">'Content-Type'</span>: <span class="string">'application/json'</span></span><br><span class="line">	&#125;,</span><br><span class="line">	body: <span class="built_in">JSON</span>.stringify(&#123;</span><br><span class="line">		firstParam: <span class="string">'yourValue'</span>,</span><br><span class="line">		secondParam: <span class="string">'yourOtherValue'</span>,</span><br><span class="line">	&#125;)</span><br><span class="line">&#125;).then( <span class="function"><span class="params">response</span> =&gt;</span> response.json())</span><br><span class="line">.then( <span class="function"><span class="params">responseJson</span> =&gt;</span> &#123;</span><br><span class="line">	<span class="keyword">return</span> responseJson.movies;</span><br><span class="line">&#125;).catch ( <span class="function"><span class="params">error</span>=&gt;</span>&#123;</span><br><span class="line">	<span class="built_in">console</span>.error(error);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>提交数据的格式关键取决于 <strong>headers</strong> 中的 <strong>Content-Type</strong>。不同的 <strong>Content-Type</strong> 对应的body的格式也有区别。是使用传统的 <strong>application/x-www-form-urlencoded</strong> 还是目前流行的 <strong>application/json</strong>需要前后端沟通好。 </p>
+<p>React Native也支持<a href="https://developer.mozilla.org/en-US/docs/Web/API/WebSocket" target="_blank" rel="noopener">WebSocket</a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> ws = <span class="keyword">new</span> WebSocket(<span class="string">'ws://host.com/path'</span>);</span><br><span class="line"></span><br><span class="line">ws.onopen = <span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 打开一个连接</span></span><br><span class="line"></span><br><span class="line">  ws.send(<span class="string">'something'</span>); <span class="comment">// 发送一个消息</span></span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onmessage = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 接收到了一个消息</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.data);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onerror = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 发生了一个错误</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.message);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">ws.onclose = <span class="function">(<span class="params">e</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// 连接被关闭了</span></span><br><span class="line">  <span class="built_in">console</span>.log(e.code, e.reason);</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure></p>
+<h2 id="通用组件"><a href="#通用组件" class="headerlink" title="通用组件"></a>通用组件</h2><h3 id="Text-Input"><a href="#Text-Input" class="headerlink" title="Text Input"></a><a href="https://facebook.github.io/react-native/docs/textinput.html" target="_blank" rel="noopener">Text Input</a></h3><p><code>TextInput</code> 键盘输入文本的基本组件。通过给<code>onChangeText</code>属性赋予方法，每当输入框文本变化时会触发该绑定的方法。而通过给<code>onSubmitEditing</code>属性赋予方法，当用户点击提交按钮是会触发该方法。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, Text, TextInput, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">PizzaTranslator</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123;<span class="attr">text</span>: <span class="string">''</span>&#125;;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;&#123;<span class="attr">padding</span>: <span class="number">10</span>&#125;&#125;&gt;</span><br><span class="line">        &lt;TextInput</span><br><span class="line">          style=&#123;&#123;<span class="attr">height</span>: <span class="number">40</span>&#125;&#125;</span><br><span class="line">          placeholder=<span class="string">"Type here to translate!"</span></span><br><span class="line">          onChangeText=&#123;(text) =&gt; <span class="keyword">this</span>.setState(&#123;text&#125;)&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">        &lt;Text style=&#123;&#123;<span class="attr">padding</span>: <span class="number">10</span>, <span class="attr">fontSize</span>: <span class="number">42</span>&#125;&#125;&gt;</span><br><span class="line">          &#123;<span class="keyword">this</span>.state.text.split(<span class="string">' '</span>).map(<span class="function">(<span class="params">word</span>) =&gt;</span> word &amp;&amp; <span class="string">'🍕'</span>).join(<span class="string">' '</span>)&#125;</span><br><span class="line">        &lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// skip this line if using Create React Native App</span></span><br><span class="line">AppRegistry.registerComponent(<span class="string">'AwesomeProject'</span>, () =&gt; PizzaTranslator);</span><br></pre></td></tr></table></figure></p>
+<p><code>TextInput</code>组件属性支持还自动获取焦点（autoFocus）、自动大小写(autoCapitalize)、多种不同的键盘(keyboardType)</p>
+<h3 id="ScrollView"><a href="#ScrollView" class="headerlink" title="ScrollView"></a><a href="https://facebook.github.io/react-native/docs/using-a-scrollview.html" target="_blank" rel="noopener">ScrollView</a></h3><p><code>ScrollView</code>是个通用的滑动容器，其中可以放置多个组件和视图，但是它适合列表数量不多且固定的滑动。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, ScrollView, Image, Text &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">IScrolledDownAndWhatHappenedNextShockedMe</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">      <span class="keyword">return</span> (</span><br><span class="line">        &lt;ScrollView&gt;</span><br><span class="line">          &lt;Text style=&#123;&#123;<span class="attr">fontSize</span>:<span class="number">96</span>&#125;&#125;&gt;Scroll me plz&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">          &lt;Image source=&#123;require('/</span>react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;If you like&lt;/Text&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Text style=&#123;&#123;fontSize:96&#125;&#125;&gt;Scrolling down&lt;/Text&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">          &lt;Image source=&#123;require('</span>/react-native/img/favicon.png<span class="string">')&#125; /&gt;</span></span><br><span class="line"><span class="string">        &lt;/ScrollView&gt;</span></span><br><span class="line"><span class="string">    );</span></span><br><span class="line"><span class="string">  &#125;</span></span><br><span class="line"><span class="string">&#125;</span></span><br><span class="line"><span class="string"></span></span><br><span class="line"><span class="string">// skip these lines if using Create React Native App</span></span><br><span class="line"><span class="string">AppRegistry.registerComponent(</span></span><br><span class="line"><span class="string">  '</span>AwesomeProject<span class="string">',</span></span><br><span class="line"><span class="string">  () =&gt; IScrolledDownAndWhatHappenedNextShockedMe);</span></span><br></pre></td></tr></table></figure></p>
+<p><code>ScrollViews</code>通过配置<code>pagingEnabled</code>属性支持滑动切换页面。</p>
+<h3 id="FlatList"><a href="#FlatList" class="headerlink" title="FlatList"></a><a href="https://facebook.github.io/react-native/docs/flatlist.html" target="_blank" rel="noopener">FlatList</a></h3><p><code>FlatList</code>高性能的列表组件，支持下面这些常用的功能：</p>
+<ul>
+<li>完全跨平台</li>
+<li>支持水平布局模式</li>
+<li>行组件显示或隐藏时可配置回掉事件</li>
+<li>支持单独的头部组件</li>
+<li>支持单独的尾部组件</li>
+<li>支持自定义行间分割线</li>
+<li>支持上拉加载</li>
+<li>支持跳转到指定行</li>
+</ul>
+<p><code>FlatList</code>组件有两必定义属性<code>data</code>和<code>renderItem</code>。<code>data</code>是列表的源数据。<code>renderItem</code>从源数据取一项用于定义好格式的组件渲染。<br><figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, FlatList, StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">FlatListBasics</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;FlatList</span><br><span class="line">          data=&#123;[</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Devin'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Jackson'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'James'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Joel'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'John'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Jillian'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Jimmy'</span>&#125;,</span><br><span class="line">            &#123;<span class="attr">key</span>: <span class="string">'Julie'</span>&#125;,</span><br><span class="line">          ]&#125;</span><br><span class="line">          renderItem=&#123;(&#123;item&#125;) =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.item&#125;</span>&gt;</span>&#123;item.key&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const styles = StyleSheet.create(&#123;</span></span><br><span class="line"><span class="regexp">  container: &#123;</span></span><br><span class="line"><span class="regexp">   flex: 1,</span></span><br><span class="line"><span class="regexp">   paddingTop: 22</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  item: &#123;</span></span><br><span class="line"><span class="regexp">    padding: 10,</span></span><br><span class="line"><span class="regexp">    fontSize: 18,</span></span><br><span class="line"><span class="regexp">    height: 44,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ skip this line if using Create React Native App</span></span><br><span class="line"><span class="regexp">AppRegistry.registerComponent('AwesomeProject', () =&gt; FlatListBasics);</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="SectionList"><a href="#SectionList" class="headerlink" title="SectionList"></a><a href="https://facebook.github.io/react-native/docs/sectionlist.html" target="_blank" rel="noopener">SectionList</a></h3><p>高性能的分组(section)列表组件，支持下面这些常用的功能：</p>
+<ul>
+<li>完全跨平台</li>
+<li>支持水平布局模式</li>
+<li>行组件显示或隐藏时可配置回调事件</li>
+<li>支持单独头部组件</li>
+<li>支持单独尾部组件</li>
+<li>支持自定义行间分隔线</li>
+<li>支持下拉刷新</li>
+<li>支持上拉刷新</li>
+</ul>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; AppRegistry, SectionList, StyleSheet, Text, View &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">SectionListBasics</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;SectionList</span><br><span class="line">          sections=&#123;[</span><br><span class="line">            &#123;<span class="attr">title</span>: <span class="string">'D'</span>, <span class="attr">data</span>: [<span class="string">'Devin'</span>]&#125;,</span><br><span class="line">            &#123;<span class="attr">title</span>: <span class="string">'J'</span>, <span class="attr">data</span>: [<span class="string">'Jackson'</span>, <span class="string">'James'</span>, <span class="string">'Jillian'</span>, <span class="string">'Jimmy'</span>, <span class="string">'Joel'</span>, <span class="string">'John'</span>, <span class="string">'Julie'</span>]&#125;,</span><br><span class="line">          ]&#125;</span><br><span class="line">          renderItem=&#123;(&#123;item&#125;) =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.item&#125;</span>&gt;</span>&#123;item&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>&#125;</span><br><span class="line">          renderSectionHeader=&#123;(&#123;section&#125;) =&gt; <span class="xml"><span class="tag">&lt;<span class="name">Text</span> <span class="attr">style</span>=<span class="string">&#123;styles.sectionHeader&#125;</span>&gt;</span>&#123;section.title&#125;<span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span>&#125;</span><br><span class="line">          keyExtractor=&#123;(item, index) =&gt; index&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const styles = StyleSheet.create(&#123;</span></span><br><span class="line"><span class="regexp">  container: &#123;</span></span><br><span class="line"><span class="regexp">   flex: 1,</span></span><br><span class="line"><span class="regexp">   paddingTop: 22</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  sectionHeader: &#123;</span></span><br><span class="line"><span class="regexp">    paddingTop: 2,</span></span><br><span class="line"><span class="regexp">    paddingLeft: 10,</span></span><br><span class="line"><span class="regexp">    paddingRight: 10,</span></span><br><span class="line"><span class="regexp">    paddingBottom: 2,</span></span><br><span class="line"><span class="regexp">    fontSize: 14,</span></span><br><span class="line"><span class="regexp">    fontWeight: 'bold',</span></span><br><span class="line"><span class="regexp">    backgroundColor: 'rgba(247,247,247,1.0)',</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  item: &#123;</span></span><br><span class="line"><span class="regexp">    padding: 10,</span></span><br><span class="line"><span class="regexp">    fontSize: 18,</span></span><br><span class="line"><span class="regexp">    height: 44,</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">/</span><span class="regexp">/ skip this line if using Create React Native App</span></span><br><span class="line"><span class="regexp">AppRegistry.registerComponent('AwesomeProject', () =&gt; SectionListBasics);</span></span><br></pre></td></tr></table></figure>
+<p><code>SectionList</code>用于需要分组展示的数据。</p>
+<h3 id="View"><a href="#View" class="headerlink" title="View"></a><a href="https://facebook.github.io/react-native/docs/view.html" target="_blank" rel="noopener">View</a></h3><p><code>View</code>是React Native中最基础的组件。它通常用于界面的布局(<a href="https://facebook.github.io/react-native/docs/flexbox.html" target="_blank" rel="noopener"><code>flexbox</code></a>,<a href="https://facebook.github.io/react-native/docs/style.html" target="_blank" rel="noopener"><code>style</code></a>)，和绑定<a href="https://facebook.github.io/react-native/docs/handling-touches.html" target="_blank" rel="noopener"><code>touch</code></a>。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">ViewColoredBoxesWithText</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View</span><br><span class="line">        style=&#123;&#123;</span><br><span class="line">          flexDirection: <span class="string">'row'</span>,</span><br><span class="line">          height: <span class="number">100</span>,</span><br><span class="line">          padding: <span class="number">20</span>,</span><br><span class="line">        &#125;&#125;&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">backgroundColor</span>: <span class="string">'blue'</span>, <span class="attr">flex</span>: <span class="number">0.3</span>&#125;&#125; /&gt;</span><br><span class="line">        &lt;View style=&#123;&#123;<span class="attr">backgroundColor</span>: <span class="string">'red'</span>, <span class="attr">flex</span>: <span class="number">0.5</span>&#125;&#125; /&gt;</span><br><span class="line">        &lt;Text&gt;Hello World!<span class="xml"><span class="tag">&lt;/<span class="name">Text</span>&gt;</span></span></span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    );</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="StyleSheet"><a href="#StyleSheet" class="headerlink" title="StyleSheet"></a><a href="https://facebook.github.io/react-native/docs/stylesheet.html" target="_blank" rel="noopener">StyleSheet</a></h3><p><code>StyleSheet</code>是对CSS的StyleSheets 的抽象。它用于创建样式规则赋予一个变量分配给节点上。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> styles = StyleSheet.create(&#123;</span><br><span class="line">  container: &#123;</span><br><span class="line">    borderRadius: <span class="number">4</span>,</span><br><span class="line">    borderWidth: <span class="number">0.5</span>,</span><br><span class="line">    borderColor: <span class="string">'#d6d7da'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  title: &#123;</span><br><span class="line">    fontSize: <span class="number">19</span>,</span><br><span class="line">    fontWeight: <span class="string">'bold'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  activeTitle: &#123;</span><br><span class="line">    color: <span class="string">'red'</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">&lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">  &lt;Text style=&#123;[styles.title, <span class="keyword">this</span>.props.isActive &amp;&amp; styles.activeTitle]&#125; /&gt;</span><br><span class="line">&lt;<span class="regexp">/View&gt;</span></span><br></pre></td></tr></table></figure></p>
+<h3 id="Button"><a href="#Button" class="headerlink" title="Button"></a><a href="https://facebook.github.io/react-native/docs/button.html#onpress" target="_blank" rel="noopener">Button</a></h3><p><code>Button</code>按钮的基础组件能够很好的在各个平台上展示，支持有限的自定义。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> &#123; Button &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line">...</span><br><span class="line"></span><br><span class="line">&lt;Button</span><br><span class="line">  onPress=&#123;onPressLearnMore&#125;</span><br><span class="line">  title=<span class="string">"Learn More"</span></span><br><span class="line">  color=<span class="string">"#841584"</span></span><br><span class="line">  accessibilityLabel=<span class="string">"Learn more about this purple button"</span></span><br><span class="line">/&gt;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>onPress</strong> 当用户触摸时触发方法。</li>
+<li><strong>title</strong> 按钮中展示的文字。</li>
+<li><strong>accessibilityLabel</strong> 无障碍显示的文字。</li>
+<li><strong>color</strong> 设置iOS文本颜色，设置Android背景颜色。 </li>
+<li><strong>disabled</strong> 如果为true，则组件无法点击。</li>
+<li><strong>testID</strong> 用于端对端测试 </li>
+</ul>
+<h3 id="Picker"><a href="#Picker" class="headerlink" title="Picker"></a><a href="https://facebook.github.io/react-native/docs/picker.html" target="_blank" rel="noopener">Picker</a></h3><p><code>Picker</code>选择器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">&lt;Picker</span><br><span class="line">  selectedValue=&#123;<span class="keyword">this</span>.state.language&#125;</span><br><span class="line">  onValueChange=&#123;(itemValue, itemIndex) =&gt; <span class="keyword">this</span>.setState(&#123;<span class="attr">language</span>: itemValue&#125;)&#125;&gt;</span><br><span class="line">  &lt;Picker.Item label=<span class="string">"Java"</span> value=<span class="string">"java"</span> /&gt;</span><br><span class="line">  &lt;Picker.Item label=<span class="string">"JavaScript"</span> value=<span class="string">"js"</span> /&gt;</span><br><span class="line">&lt;<span class="regexp">/Picker&gt;</span></span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>onValueChange</strong> 当数据变化时触发的方法。这个方法有两个参数<ul>
+<li>itemValue 选中的item的值。</li>
+<li>itemPosition 被选中item的序号</li>
+</ul>
+</li>
+<li><strong>selectedValue</strong>  默认选中的item。</li>
+<li><strong>mode</strong> 选择器的模式。有两种：<em>dialog</em>  和 <em>dropdown</em>  默认是 <em>dialog</em> 。（Android）</li>
+</ul>
+<h3 id="WebView"><a href="#WebView" class="headerlink" title="WebView"></a><a href="https://facebook.github.io/react-native/docs/webview.html" target="_blank" rel="noopener">WebView</a></h3><p><code>WebView</code>渲染web页面<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; WebView &#125; <span class="keyword">from</span> <span class="string">'react-native'</span>;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">MyWeb</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;WebView</span><br><span class="line">        source=&#123;&#123;<span class="attr">uri</span>: <span class="string">'https://github.com/facebook/react-native'</span>&#125;&#125;</span><br><span class="line">        style=&#123;&#123;<span class="attr">marginTop</span>: <span class="number">20</span>&#125;&#125;</span><br><span class="line">      /&gt;</span><br><span class="line">    );</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<ul>
+<li><strong>source</strong> 加载静态的 html 或 uri在WebView中。</li>
+<li><strong>style</strong> 设置组件样式。 </li>
+</ul>
+<h2 id="iOS组件和API"><a href="#iOS组件和API" class="headerlink" title="iOS组件和API"></a>iOS组件和API</h2><h3 id="AlertIOS"><a href="#AlertIOS" class="headerlink" title="AlertIOS"></a><a href="https://facebook.github.io/react-native/docs/alertios.html" target="_blank" rel="noopener">AlertIOS</a></h3><p><code>AlertIOS</code>创建iOS消息提示框。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">AlertIOS.alert(</span><br><span class="line"> <span class="string">'Sync Complete'</span>,</span><br><span class="line"> <span class="string">'All your data are belong to us.'</span></span><br><span class="line">);</span><br><span class="line"></span><br><span class="line">AlertIOS.prompt(</span><br><span class="line">  <span class="string">'Enter a value'</span>,</span><br><span class="line">  <span class="literal">null</span>,</span><br><span class="line">  text =&gt; <span class="built_in">console</span>.log(<span class="string">"You entered "</span>+text)</span><br><span class="line">);</span><br></pre></td></tr></table></figure></p>
+<h3 id="DatePickerIOS"><a href="#DatePickerIOS" class="headerlink" title="DatePickerIOS "></a><a href="https://facebook.github.io/react-native/docs/datepickerios.html" target="_blank" rel="noopener">DatePickerIOS </a></h3><p><code>DatePickerIOS</code>iOS平台上选中日期和时间组件。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React, &#123; Component &#125; <span class="keyword">from</span> <span class="string">'react'</span></span><br><span class="line"><span class="keyword">import</span> &#123;</span><br><span class="line">  DatePickerIOS,</span><br><span class="line">  View,</span><br><span class="line">  StyleSheet,</span><br><span class="line">&#125; <span class="keyword">from</span> <span class="string">'react-native'</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">default</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> <span class="keyword">extends</span> <span class="title">Component</span> </span>&#123;</span><br><span class="line">  <span class="keyword">constructor</span>(props) &#123;</span><br><span class="line">    <span class="keyword">super</span>(props);</span><br><span class="line">    <span class="keyword">this</span>.state = &#123; <span class="attr">chosenDate</span>: <span class="keyword">new</span> <span class="built_in">Date</span>() &#125;;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">this</span>.setDate = <span class="keyword">this</span>.setDate.bind(<span class="keyword">this</span>);</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  setDate(newDate) &#123;</span><br><span class="line">    <span class="keyword">this</span>.setState(&#123;<span class="attr">chosenDate</span>: newDate&#125;)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  render() &#123;</span><br><span class="line">    <span class="keyword">return</span> (</span><br><span class="line">      &lt;View style=&#123;styles.container&#125;&gt;</span><br><span class="line">        &lt;DatePickerIOS</span><br><span class="line">          date=&#123;<span class="keyword">this</span>.state.chosenDate&#125;</span><br><span class="line">          onDateChange=&#123;<span class="keyword">this</span>.setDate&#125;</span><br><span class="line">        /&gt;</span><br><span class="line">      &lt;<span class="regexp">/View&gt;</span></span><br><span class="line"><span class="regexp">    )</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">const styles = StyleSheet.create(&#123;</span></span><br><span class="line"><span class="regexp">  container: &#123;</span></span><br><span class="line"><span class="regexp">    flex: 1,</span></span><br><span class="line"><span class="regexp">    justifyContent: 'center'</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">&#125;)</span></span><br></pre></td></tr></table></figure></p>
+<p>这个组件上你必须定义<code>onDateChang</code>回调方法和<code>date</code>初始化数据。</p>
+<h2 id="Android组件"><a href="#Android组件" class="headerlink" title="Android组件"></a>Android组件</h2><h3 id="DatePickerAndroid"><a href="#DatePickerAndroid" class="headerlink" title="DatePickerAndroid"></a><a href="https://facebook.github.io/react-native/docs/datepickerandroid.html" target="_blank" rel="noopener">DatePickerAndroid</a></h3><p><code>DatePickerAndroid</code>使用标准的Android日期选择器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;action, year, month, day&#125; = <span class="keyword">await</span> DatePickerAndroid.open(&#123;</span><br><span class="line">    <span class="comment">// Use `new Date()` for current date.</span></span><br><span class="line">    <span class="comment">// May 25 2020. Month 0 is January.</span></span><br><span class="line">    date: <span class="keyword">new</span> <span class="built_in">Date</span>(<span class="number">2020</span>, <span class="number">4</span>, <span class="number">25</span>)</span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">if</span> (action !== DatePickerAndroid.dismissedAction) &#123;</span><br><span class="line">    <span class="comment">// Selected year, month (0-11), day</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (&#123;code, message&#125;) &#123;</span><br><span class="line">  <span class="built_in">console</span>.warn(<span class="string">'Cannot open date picker'</span>, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="TimePickerAndroid"><a href="#TimePickerAndroid" class="headerlink" title="TimePickerAndroid"></a><a href="https://facebook.github.io/react-native/docs/timepickerandroid.html" target="_blank" rel="noopener">TimePickerAndroid</a></h3><p><code>TimePickerAndroid</code>使用标准的Android时间选中器。<br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> &#123;action, hour, minute&#125; = <span class="keyword">await</span> TimePickerAndroid.open(&#123;</span><br><span class="line">    hour: <span class="number">14</span>,</span><br><span class="line">    minute: <span class="number">0</span>,</span><br><span class="line">    is24Hour: <span class="literal">false</span>, <span class="comment">// Will display '2 PM'</span></span><br><span class="line">  &#125;);</span><br><span class="line">  <span class="keyword">if</span> (action !== TimePickerAndroid.dismissedAction) &#123;</span><br><span class="line">    <span class="comment">// Selected hour (0-23), minute (0-59)</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125; <span class="keyword">catch</span> (&#123;code, message&#125;) &#123;</span><br><span class="line">  <span class="built_in">console</span>.warn(<span class="string">'Cannot open time picker'</span>, message);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></p>
+<h3 id="ViewPagerAndroid"><a href="#ViewPagerAndroid" class="headerlink" title="ViewPagerAndroid"></a><a href="https://facebook.github.io/react-native/docs/viewpagerandroid.html" target="_blank" rel="noopener">ViewPagerAndroid</a></h3><p><code>ViewPagerAndroid</code>容器运行左右翻动子视图。每个子视图是独立且会沾满<code>ViewPagerAndroid</code><br><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">render: <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> (</span><br><span class="line">    &lt;ViewPagerAndroid</span><br><span class="line">      style=&#123;styles.viewPager&#125;</span><br><span class="line">      initialPage=&#123;<span class="number">0</span>&#125;&gt;</span><br><span class="line">      &lt;View style=&#123;styles.pageStyle&#125; key=<span class="string">"1"</span>&gt;</span><br><span class="line">        &lt;Text&gt;First page&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">      &lt;View style=&#123;styles.pageStyle&#125; key=<span class="string">"2"</span>&gt;</span><br><span class="line">        &lt;Text&gt;Second page&lt;<span class="regexp">/Text&gt;</span></span><br><span class="line"><span class="regexp">      &lt;/</span>View&gt;</span><br><span class="line">    &lt;<span class="regexp">/ViewPagerAndroid&gt;</span></span><br><span class="line"><span class="regexp">  );</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">...</span></span><br><span class="line"><span class="regexp"></span></span><br><span class="line"><span class="regexp">var styles = &#123;</span></span><br><span class="line"><span class="regexp">  ...</span></span><br><span class="line"><span class="regexp">  viewPager: &#123;</span></span><br><span class="line"><span class="regexp">    flex: 1</span></span><br><span class="line"><span class="regexp">  &#125;,</span></span><br><span class="line"><span class="regexp">  pageStyle: &#123;</span></span><br><span class="line"><span class="regexp">    alignItems: 'center',</span></span><br><span class="line"><span class="regexp">    padding: 20,</span></span><br><span class="line"><span class="regexp">  &#125;</span></span><br><span class="line"><span class="regexp">&#125;</span></span><br></pre></td></tr></table></figure></p>
+<hr>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://facebook.github.io/react-native/docs/getting-started.html" target="_blank" rel="noopener">https://facebook.github.io/react-native/docs/getting-started.html</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/01/31/React Native入门手册/">https://fynn90.github.io/2018/01/31/React Native入门手册/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/React/">React</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/02/01/PIL入门教程/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">PIL入门</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/01/18/Service Worker入门指南/">
+        <span class="next-text nav-default">Service Worker入门指南</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

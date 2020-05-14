@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Flask-SQLAlchemy"/>
+
+
+
+
+  <meta name="keywords" content="Flask, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2017/12/12/Flask-SQLAlchemy/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Flask-SQLAlchemy - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Flask-SQLAlchemy
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-12-12
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/python/">python</a>
+            
+              <a href="/categories/python/Flask/">Flask</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/12/12/Flask-SQLAlchemy/"
+             data-title="Flask-SQLAlchemy">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#声明模型"><span class="toc-text">声明模型</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一对多关系"><span class="toc-text">一对多关系</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#db-relationship"><span class="toc-text">db.relationship()</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#CRUD"><span class="toc-text">CRUD</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Create"><span class="toc-text">Create</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Retrieve"><span class="toc-text">Retrieve</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Update"><span class="toc-text">Update</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Delete"><span class="toc-text">Delete</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="http://www.sqlalchemy.org/" target="_blank" rel="noopener">SQLAlchemy</a>是一个ORM(对象关系映射)。基于对目标数据库的原生SQL的抽象，提供了一串和数据库引擎一致的API。这一列表中包括MySQL，PostgreSQL，和SQLite。这使得在你的模型和数据库间交换数据变得轻松愉快，同时也使得诸如换掉数据库引擎和迁移数据库模式等其他事情变得没那么繁琐。</p>
+<p><a href="http://flask-sqlalchemy.pocoo.org/2.3/" target="_blank" rel="noopener">Flask-SQLAIchemy</a>是<code>Flask</code>使用<code>SQLAlchemy</code>插件。它为SQLAlchemy设置了许多合理的配置。它也内置一些session管理，这样你就不用在应用代码处理一些基础的事务。<br><a id="more"></a> </p>
+<h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">pip install -u flask_sqlalchemy pymysql</span><br></pre></td></tr></table></figure>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="http://flask-sqlalchemy.pocoo.org/2.3/config/" target="_blank" rel="noopener">配置</a></h2><p>在<code>Flask</code>应用启动前，需要给<code>Flask-SQLAlchemy</code>加载一些配置项已定义它的行为规则。<br>有些配置在Flask引擎创建后就不能修改，所以你应该在一个应用创建前将这些配置项加载进Flask-SQLAlchemy。</p>
+<p>一般我们将这些数据库配置项放在<code>instance</code>文件夹中，在初始化时需要加上<code>instance_relative_config</code>。例如：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"></span><br><span class="line"><span class="keyword">from</span> flask <span class="keyword">import</span> Flask</span><br><span class="line"><span class="keyword">from</span> flask_sqlalchemy <span class="keyword">import</span> SQLAlchemy</span><br><span class="line"></span><br><span class="line">app = Flask(__name__, instance_relative_config=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line">app.config.from_object(<span class="string">'config'</span>)</span><br><span class="line">app.config.from_pyfile(<span class="string">'config.py'</span>)</span><br><span class="line"></span><br><span class="line">db = SQLAlchemy(app)</span><br></pre></td></tr></table></figure>
+<p><strong>instance/config.py：</strong></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line">SQLALCHEMY_DATABASE_URI = <span class="string">"mysql+pymysql://username:password@server/db"</span>  <span class="comment">#用于连接数据的数据库</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_ECHO = <span class="string">"True"</span> <span class="comment">#如果设置成 True，SQLAlchemy 将会记录所有 发到标准输出(stderr)的语句，这对调试很有帮助。</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_POOL_SIZE = <span class="number">10</span> <span class="comment"># 数据库连接池的大小。默认是数据库引擎的默认值 （通常是 5）。</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_TRACK_MODIFICATIONS = <span class="keyword">True</span></span><br><span class="line"></span><br><span class="line">SQLALCHEMY_POOL_TIMEOUT = <span class="number">100</span> <span class="comment"># 指定数据库连接池的超时时间（秒）。默认是10</span></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+<h2 id="声明模型"><a href="#声明模型" class="headerlink" title="声明模型"></a><a href="http://flask-sqlalchemy.pocoo.org/2.3/models/" target="_blank" rel="noopener">声明模型</a></h2><p><code>Flask-SQLAlchemy</code>中的模型就是继承了<code>db.Model</code>的子类，最后它会转为数据库的<code>table</code>。<code>SQLAlchemy</code>会根据你在模型类提供的信息进行适当的<code>mapper()</code>调用。</p>
+<p>有一些声明在<code>SQLAlchemy</code>上是必选的，但是在<code>Flask-SQLAlchemy</code>上是可选的。比如表名是自动地为你设置好多的，除非你想覆盖他。<code>Flask-SQLAlchemy</code>会将类名转换为小写，会将<code>CamelCase</code>驼峰命名方式转为<code>camel_case</code>。如果你想自定义表名可以在<code>class</code>中设置<code>__tablename__</code>属性值。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    username = db.Column(db.String(<span class="number">80</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line">    email = db.Column(db.String(<span class="number">120</span>), unique=<span class="keyword">True</span>, nullable=<span class="keyword">False</span>)</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">def</span> <span class="title">__repr__</span><span class="params">(self)</span>:</span></span><br><span class="line">        <span class="keyword">return</span> <span class="string">'&lt;User %r&gt;'</span> % self.username</span><br></pre></td></tr></table></figure>
+<p>通过<a href="http://docs.sqlalchemy.org/en/latest/core/metadata.html#sqlalchemy.schema.Column" target="_blank" rel="noopener"><code>Column</code></a>定义表中字段规则。  </p>
+<ul>
+<li>id - 变量名就是字段名。  </li>
+<li>db.Integer - 第一个参数是字段类型。</li>
+<li>primary_key=True - 设置为主键，如果有多个主键将变成联合主键。</li>
+<li>unique=True - 字段值是唯一的</li>
+<li>nullable=False - 字段值不能为空</li>
+</ul>
+<table>
+<thead>
+<tr>
+<th style="text-align:center">类型</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:center">Integer</td>
+<td>一个整数</td>
+</tr>
+<tr>
+<td style="text-align:center">String (size)</td>
+<td>有长度限制的字符串</td>
+</tr>
+<tr>
+<td style="text-align:center">Text</td>
+<td>一些较长的 unicode 文本</td>
+</tr>
+<tr>
+<td style="text-align:center">DateTime</td>
+<td>表示为 Python datetime 对象的 时间和日期</td>
+</tr>
+<tr>
+<td style="text-align:center">Float</td>
+<td>存储浮点值</td>
+</tr>
+<tr>
+<td style="text-align:center">Boolean</td>
+<td>存储布尔值</td>
+</tr>
+<tr>
+<td style="text-align:center">PickleType</td>
+<td>存储为一个持久化的 Python 对象</td>
+</tr>
+<tr>
+<td style="text-align:center">LargeBinary</td>
+<td>存储一个任意大的二进制数据</td>
+</tr>
+</tbody>
+</table>
+<h3 id="一对多关系"><a href="#一对多关系" class="headerlink" title="一对多关系"></a>一对多关系</h3><p><code>Flask-SQLAlchemy</code>中不同表关联处理和定义是通过<a href="http://docs.sqlalchemy.org/en/latest/orm/relationship_api.html#sqlalchemy.orm.relationship" target="_blank" rel="noopener"><code>relationshop()</code></a>方法来实现。<br>如果是要关联外键需要通过<a href="http://docs.sqlalchemy.org/en/latest/core/constraints.html#sqlalchemy.schema.ForeignKey" target="_blank" rel="noopener"><code>ForeignKey</code></a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  </span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Person</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String(<span class="number">50</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line">    addresses = db.relationship(<span class="string">'Address'</span>, backref=<span class="string">'person'</span>, lazy=<span class="keyword">True</span>)</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Address</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    email = db.Column(db.String(<span class="number">120</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line">    person_id = db.Column(db.Integer, db.ForeignKey(<span class="string">'person.id'</span>),</span><br><span class="line">        nullable=<span class="keyword">False</span>)</span><br></pre></td></tr></table></figure>
+<h3 id="db-relationship"><a href="#db-relationship" class="headerlink" title="db.relationship()"></a><a href="http://docs.sqlalchemy.org/en/latest/orm/relationship_api.html#sqlalchemy.orm.relationship" target="_blank" rel="noopener">db.relationship()</a></h3><p>提供两个类之间关系的映射。第一个参数是映射的类名，这个类可以是当时还没创建的。</p>
+<ul>
+<li>backref -  是一个在 Address 类上声明新属性的简单方法。你可以使用 <code>my_address.person</code> 来获取使用该地址(address)的人(person)。</li>
+<li>lazy - 决定了 SQLAlchemy 什么时候从数据库中加载数据<ul>
+<li>‘select’/True  (默认值) 就是说 SQLAlchemy 会使用一个标准的 select 语句必要时一次加载数据。</li>
+<li>‘joinded’/False 告诉 SQLAlchemy 使用 JOIN 语句作为父级在同一查询中来加载关系。</li>
+<li>‘subquery’  类似 ‘joined’ ，但是 SQLAlchemy 会使用子查询。</li>
+<li>‘dynamic’ 在有多条数据的时候是特别有用的。不是直接加载这些数据，SQLAlchemy 会返回一个查询对象，在加载数据前您可以过滤（提取）它们。</li>
+</ul>
+</li>
+</ul>
+<p>通过<code>backref()</code>函数定义<code>backref</code>字段查询方式：<br><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">User</span><span class="params">(db.Model)</span>:</span></span><br><span class="line">    id = db.Column(db.Integer, primary_key=<span class="keyword">True</span>)</span><br><span class="line">    name = db.Column(db.String(<span class="number">50</span>), nullable=<span class="keyword">False</span>)</span><br><span class="line">    addresses = db.relationship(<span class="string">'Address'</span>, lazy=<span class="string">'select'</span>,</span><br><span class="line">        backref=db.backref(<span class="string">'person'</span>, lazy=<span class="string">'joined'</span>))</span><br></pre></td></tr></table></figure></p>
+<h2 id="CRUD"><a href="#CRUD" class="headerlink" title="CRUD"></a>CRUD</h2><p>当创建了模型类，我们在交互式的Python shell中导入db对象并且调用<code>SQLAlchemy.create_all()</code>方法来创建表和数据库：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; from yourapplication import db</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; db.create_all()</span></span><br></pre></td></tr></table></figure><br>有了库和表我们就可以进行CRUD(Create,Retrieve,Update,Delete)操作。</p>
+<h3 id="Create"><a href="#Create" class="headerlink" title="Create"></a>Create</h3><p>添加数据分为三步：</p>
+<ul>
+<li>根据模型类创建一个Python对象</li>
+<li>将对象添加到会话中</li>
+<li>提交会话</li>
+</ul>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; from yourapp import User</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; me = User(<span class="string">'admin'</span>, <span class="string">'admin@example.com'</span>)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; db.session.add(me)</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; db.session.commit()</span></span><br></pre></td></tr></table></figure>
+<p>在对象添加到会话之前（调用db.session.add()），你可以放弃改变。当添加到会话后，会向数据库发送<code>INSERT</code>声明，但因为事务没有正式提交你还获取不到<code>ID</code>返回。</p>
+<h3 id="Retrieve"><a href="#Retrieve" class="headerlink" title="Retrieve"></a>Retrieve</h3><p><code>Flask-SQLAlchemy</code>为每个模型类提供了<a href="http://flask-sqlalchemy.pocoo.org/2.3/api/#flask_sqlalchemy.Model.query" target="_blank" rel="noopener"><code>query</code></a>属性用于查询。<code>query</code>其实是个对象里面提供了丰富的查询过滤的方法。</p>
+<table>
+<thead>
+<tr>
+<th style="text-align:left">id</th>
+<th style="text-align:left">username</th>
+<th style="text-align:left">email</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align:left">1</td>
+<td style="text-align:left">admin</td>
+<td style="text-align:left"><a href="mailto:admin@example.com" target="_blank" rel="noopener">admin@example.com</a></td>
+</tr>
+<tr>
+<td style="text-align:left">2</td>
+<td style="text-align:left">peter</td>
+<td style="text-align:left"><a href="mailto:peter@example.org" target="_blank" rel="noopener">peter@example.org</a></td>
+</tr>
+<tr>
+<td style="text-align:left">3</td>
+<td style="text-align:left">guest</td>
+<td style="text-align:left"><a href="mailto:guest@example.com" target="_blank" rel="noopener">guest@example.com</a></td>
+</tr>
+</tbody>
+</table>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; peter = User.query.filter_by(username=<span class="string">'peter'</span>).first()</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; peter.id</span></span><br><span class="line">2</span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; peter.email</span></span><br><span class="line">u'peter@example.org</span><br></pre></td></tr></table></figure>
+<p>判断用户名是否存在：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; missing = User.query.filter_by(username=<span class="string">'missing'</span>).first()</span></span><br><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; missing is None</span></span><br><span class="line">True</span><br></pre></td></tr></table></figure>
+<p>通过模糊条件信息查询用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; User.query.filter(User.email.endswith(<span class="string">'@example.com'</span>)).all()</span></span><br><span class="line">[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;]</span><br></pre></td></tr></table></figure>
+<p>通过批量条件查询用户</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; User.query.filter(User.id.in_([<span class="string">'23'</span>,<span class="string">'25'</span>])).all()</span></span><br><span class="line">[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;]</span><br></pre></td></tr></table></figure>
+<p>排序根据用户名：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; User.query.order_by(User.username).all()</span></span><br><span class="line">[&lt;User u'admin'&gt;, &lt;User u'guest'&gt;, &lt;User u'peter'&gt;]</span><br></pre></td></tr></table></figure>
+<p>限制查询:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; User.query.limit(1).all()</span></span><br><span class="line">[&lt;User u'admin'&gt;]</span><br></pre></td></tr></table></figure>
+<p>根据主键查询:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&gt;</span><span class="bash">&gt;&gt; User.query.get(1)</span></span><br><span class="line">&lt;User u'admin'&gt;</span><br></pre></td></tr></table></figure>
+<p>在视图中查询，我们可用<code>get_or_404()</code>代替<code>get()</code>，用<code>first_or_404()</code>代替<code>first()</code>方法。它会解析404错误代替返回<code>None</code>:</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">@app.route('/user/&lt;username&gt;')</span><br><span class="line">def show_user(username):</span><br><span class="line">    user = User.query.filter_by(username=username).first_or_404()</span><br><span class="line">    return render_template('show_user.html', user=user)</span><br></pre></td></tr></table></figure>
+<h3 id="Update"><a href="#Update" class="headerlink" title="Update"></a>Update</h3><p>更新数据前，先根据条件取的对象在手动修改提交。例如：</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">admin = User.query.filter_by(username='admin').first()</span><br><span class="line">admin.email = 'my_new_email@example.com'</span><br><span class="line">db.session.commit()</span><br><span class="line"></span><br><span class="line">user = User.query.get(5)</span><br><span class="line">user.name = 'New Name'</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+<h3 id="Delete"><a href="#Delete" class="headerlink" title="Delete"></a>Delete</h3><p>删除很简单，先查询对的到对象然后用<code>delete()</code>删除。</p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">admin = User.query.filter_by(username='admin').first()</span><br><span class="line">db.session.delete(admin)</span><br><span class="line">db.session.commit()</span><br></pre></td></tr></table></figure>
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2017/12/12/Flask-SQLAlchemy/">https://fynn90.github.io/2017/12/12/Flask-SQLAlchemy/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Flask/">Flask</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2017/12/15/python-logging /">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Python-Logging</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2017/12/09/Flask介绍/">
+        <span class="next-text nav-default">Flask介绍</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

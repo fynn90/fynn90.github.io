@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="Charles抓包配置"/>
+
+
+
+
+  <meta name="keywords" content="Charles, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/02/14/Charles抓包配置/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> Charles抓包配置 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          Charles抓包配置
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-02-14
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/macOS/">macOS</a>
+            
+              <a href="/categories/macOS/Charles/">Charles</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/02/14/Charles抓包配置/"
+             data-title="Charles抓包配置">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP配置"><span class="toc-text">HTTP配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac、Mobile-Device安装SSL证书"><span class="toc-text">Mac、Mobile Device安装SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用SSL代理"><span class="toc-text">启用SSL代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改-Charles端口号"><span class="toc-text">修改 Charles端口号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 是macOS上很好用的一款抓包应用程序，通过设置代理服务，你可以很轻松的抓取通讯设备上的HTTP/HTTPS数据包。</p>
+<p><img src="https://i.loli.net/2019/02/14/5c650ff584ea9.png" alt=""></p>
+<a id="more"></a>
+<h2 id="HTTP配置"><a href="#HTTP配置" class="headerlink" title="HTTP配置"></a>HTTP配置</h2><p><strong>Charles</strong> 默认的端口号是<code>8888</code>，在手机端设置网络代理，将服务器主机名指向运行<strong>Charles</strong>设备的<strong>IP</strong>，端口号设置为<strong>8888</strong>。</p>
+<p><img src="https://i.loli.net/2019/02/14/5c650df743ed6.jpeg" alt=""></p>
+<p>如上图所示。配置完后，就可以在<strong>Charles</strong>看到设备上所有的HTTP/HTTPS包了。</p>
+<h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS请求是加密的，如果不做些配置抓取的包是无法打开查看的。<strong>Charles</strong>提供了几步简单配置方式可以让我们查看到HTTPS包信息。</p>
+<h3 id="Mac、Mobile-Device安装SSL证书"><a href="#Mac、Mobile-Device安装SSL证书" class="headerlink" title="Mac、Mobile Device安装SSL证书"></a>Mac、Mobile Device安装SSL证书</h3><p><img src="https://i.loli.net/2019/02/14/5c6519ebcba30.png" alt=""></p>
+<p>如上图操作，<strong>Install Charles Root Certificate</strong> 是在Mac上安装 SSL证书。</p>
+<p>SSL证书安装好后，需要更改下权限。</p>
+<p><img src="https://i.loli.net/2019/02/14/5c651d2002cbd.png" alt=""></p>
+<p>安装<strong>Mobile Device</strong> 端的SSL操作步骤点击<strong>Install Charles Root Certificat on a Mobile Device or Remote Browser</strong> </p>
+<p><img src="https://i.loli.net/2019/02/14/5c651e645ec88.png" alt=""></p>
+<p><strong>注意</strong> 在链接了 <strong>Charles</strong>的后再打开<code>https://chls.pro/ssl</code>。如果是iOS设备，需要设置 使用证书。</p>
+<h3 id="启用SSL代理"><a href="#启用SSL代理" class="headerlink" title="启用SSL代理"></a>启用SSL代理</h3><p>最后一步，启用<strong>Charles</strong> SSL代理服务，设置路径是：<code>Proxy-&gt;SSL Proxying Settings</code></p>
+<p><img src="https://i.loli.net/2019/02/14/5c6529c928b36.jpeg" alt=""></p>
+<p>进行如上图设置，点击OK即可。</p>
+<h2 id="修改-Charles端口号"><a href="#修改-Charles端口号" class="headerlink" title="修改 Charles端口号"></a>修改 Charles端口号</h2><p><code>Proxy -&gt; Proxy Settings -&gt; Proxies</code></p>
+<h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
+<li>如果在抓取HTTPS包的时候，请确保运行<strong>Charles</strong>设备没有使用VPN或代理工具。</li>
+</ol>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/02/14/Charles抓包配置/">https://fynn90.github.io/2019/02/14/Charles抓包配置/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Charles/">Charles</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/03/27/JavaScript中面向对象编程方式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">JavaScript中面向对象编程方式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/02/11/Xcode快捷键/">
+        <span class="next-text nav-default">Xcode快捷键</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

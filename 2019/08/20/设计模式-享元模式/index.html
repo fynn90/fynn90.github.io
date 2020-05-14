@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="设计模式-享元模式"/>
+
+
+
+
+  <meta name="keywords" content="设计模式-享元模式, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/08/20/设计模式-享元模式/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> 设计模式-享元模式 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          设计模式-享元模式
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/设计模式/">设计模式</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/08/20/设计模式-享元模式/"
+             data-title="设计模式-享元模式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#例子"><span class="toc-text">例子</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#适用范围"><span class="toc-text">适用范围</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#对象池"><span class="toc-text">对象池</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#例子-1"><span class="toc-text">例子</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p>享元模式(Flyweight)是一种软件设计模式.是通过将类似的对象进行共享,达到最小化内存的使用对象.</p>
+<p>享元模式要求将对象的属性划分为内部状态(不会改变属性)和外部状态(会动态变化的属性).享元模式的目标是尽量减少共享对象的数量.它的关键点是划分内部状态和外部状态.</p>
+<p>享元模式特点:</p>
+<ul>
+<li>内部状态存储于对象内部</li>
+<li>内部状态可以被一些对象共享</li>
+<li>内部状态独立于具体的场景,通常不会变化</li>
+<li>外部状态取决于具体的场景,并根据场景而变化,外部状态不会被共享.</li>
+</ul>
+<p><strong>注意:</strong> 享元模式是一种用时间换空间的优化模式.<br><a id="more"></a></p>
+<h2 id="例子"><a href="#例子" class="headerlink" title="例子"></a>例子</h2><p>PC端的文件上传组件.文件上传有多种方式,相同的方式可以通过一个对象来完成,而不用根据调用次数创建多个类型相同的对象.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 上传类型工厂方法, 享元模式内部状态对象</span></span><br><span class="line"><span class="keyword">var</span> UploadFactory = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> createFlyWeightObjs = &#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">		create (upload) &#123;</span><br><span class="line">      <span class="keyword">if</span> (createdFlyWeightObjs[uploadType]) &#123;</span><br><span class="line">        <span class="keyword">return</span> createdFlyWeightObjs[uploadType];</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="keyword">return</span> createdFlyWeightObjs[uploadType] = <span class="keyword">new</span> Upload(uploadType);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> Upload = <span class="function"><span class="keyword">function</span> (<span class="params">uploadType</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">this</span>.uploadType = uploadType</span><br><span class="line">&#125;</span><br><span class="line">Upload.prototype.delFile = <span class="function"><span class="keyword">function</span> (<span class="params">id</span>) </span>&#123;</span><br><span class="line">  uploadManager.setExternalState(id, <span class="keyword">this</span>);</span><br><span class="line">  <span class="keyword">this</span>.dom.parentNode.removeChild(<span class="keyword">this</span>.dom);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// 上传方式 方法 </span></span><br><span class="line"><span class="keyword">var</span> uploadManager = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> uploadDatabase = &#123;&#125;;</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    add (id, uploadType, fileName, fileSize) &#123;</span><br><span class="line">      <span class="keyword">var</span> flyWeightObj = UploadFactory.create(uploadType);</span><br><span class="line">      dom.innerHTML = <span class="string">`&lt;span&gt;文件件名词: <span class="subst">$&#123;fileName&#125;</span>,文件大小:<span class="subst">$&#123;fileSize&#125;</span>&lt;/span&gt;`</span>+</span><br><span class="line">        <span class="string">`&lt;button class="delFile"&gt;删除&lt;/button&gt;`</span>;</span><br><span class="line">      dom.querySelector(<span class="string">'.delFile'</span>).onclick = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        flyWeightObj.delFile(id);</span><br><span class="line">      &#125;</span><br><span class="line">      <span class="built_in">document</span>.body.applendChild(dom);</span><br><span class="line">      uploadDatabase[id] = &#123;</span><br><span class="line">				fileName,</span><br><span class="line">        fileSize,</span><br><span class="line">        dom</span><br><span class="line">      &#125;;</span><br><span class="line">      <span class="keyword">return</span> flyWeightObj;</span><br><span class="line">    &#125;,</span><br><span class="line">    setExternalState (id, flyWeightObj) &#123;</span><br><span class="line">      <span class="keyword">var</span> uploadData = uploadDatabase[id];</span><br><span class="line">      <span class="keyword">for</span>(<span class="keyword">let</span> i <span class="keyword">in</span> uploadData) &#123;</span><br><span class="line">        flyWeightObj[i] = uploadData[i];</span><br><span class="line">      &#125;</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;)();</span><br><span class="line"></span><br><span class="line"><span class="built_in">window</span>.startUpload = <span class="function"><span class="keyword">function</span> (<span class="params">uploadType, files</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">for</span>(<span class="keyword">let</span> i = <span class="number">0</span>, file; file = files[i++]) &#123;</span><br><span class="line">    <span class="keyword">var</span> uploadObj = uploadManage.add(++id, uploadType, file.fileName, file.fileSize);</span><br><span class="line">  &#125;)</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">startUpload(<span class="string">'plugin'</span>, [&#123;<span class="attr">fileName</span>: <span class="string">'1.text'</span>,<span class="attr">fileSize</span>: <span class="number">1000</span>&#125;,&#123;<span class="attr">fileName</span>: <span class="string">'2.png'</span>, <span class="attr">fileSize</span>: <span class="number">1900</span>&#125;])</span><br><span class="line"></span><br><span class="line">startUpload(<span class="string">'flash'</span>, [&#123;<span class="attr">fileName</span>: <span class="string">'3.text'</span>,<span class="attr">fileSize</span>: <span class="number">1000</span>&#125;,&#123;<span class="attr">fileName</span>: <span class="string">'4.png'</span>, <span class="attr">fileSize</span>: <span class="number">1900</span>&#125;])</span><br></pre></td></tr></table></figure>
+<h2 id="适用范围"><a href="#适用范围" class="headerlink" title="适用范围"></a>适用范围</h2><ul>
+<li>一个程序中使用大量相似的对象</li>
+<li>由于使用了大量对象,造成很大的内存开销</li>
+<li>对象的大多数状态都可以变为外部状态</li>
+<li>剥离出对象的外部状态之后,可以用相对较少的共享对象取代大量的对象.</li>
+</ul>
+<h2 id="对象池"><a href="#对象池" class="headerlink" title="对象池"></a>对象池</h2><p>对象池模式(object pool pattern)和享元模式有些相识.都是将共享对象节省创建对象的开销.</p>
+<p>不同的是,对象池是将已经创建的对象集中在一起,当有地方需要的时候,从它这里获取对象使用.当对象使用完成后,再归还给对象池.</p>
+<blockquote>
+<p><strong>对象池</strong>（英语：object pool pattern）是一种<a href="https://zh.wikipedia.org/wiki/设计模式_(计算机" target="_blank" rel="noopener">设计模式</a>)。一个<strong>对象池</strong>包含一组已经初始化过且可以使用的对象，而可以在有需求时创建和销毁对象。池的用户可以从池子中取得对象，对其进行操作处理，并在不需要时归还给池子而非直接销毁它。这是一种特殊的工厂对象。</p>
+</blockquote>
+<h2 id="例子-1"><a href="#例子-1" class="headerlink" title="例子"></a>例子</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> objectPoolFactory = <span class="function"><span class="keyword">function</span> (<span class="params">createObjFn</span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> objectPool = [];</span><br><span class="line">  <span class="keyword">return</span> &#123;</span><br><span class="line">    create () &#123;</span><br><span class="line">      <span class="keyword">var</span> obj = objectPool.length === <span class="number">0</span>? createObjFn.apply(<span class="keyword">this</span>, <span class="built_in">arguments</span>): objectPool.shift();</span><br><span class="line">      <span class="keyword">return</span> obj</span><br><span class="line">    &#125;,</span><br><span class="line">    recover (obj) &#123;</span><br><span class="line">      objectPool.push(obj);</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iframeFactory = objectPoolFactory(<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> iframe = <span class="built_in">document</span>.createElement(<span class="string">'iframe'</span>);</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(iframe);</span><br><span class="line">  </span><br><span class="line">  iframe.onload = <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">    iframe.onload = <span class="literal">null</span>; <span class="comment">// 防止 iframe 重复加载的bug</span></span><br><span class="line">    iframeFactory.recover(iframe); <span class="comment">// iframe 加载完成之后回收节点</span></span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> iframe;</span><br><span class="line">&#125;);</span><br><span class="line"><span class="keyword">var</span> iframe1 = iframeFactory.create();</span><br><span class="line">iframe1.src = <span class="string">'http://google.com'</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> iframe2 = iframeFactory.create();</span><br><span class="line">iframe1.src = <span class="string">'http://facebook.com'</span>;</span><br><span class="line"></span><br><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">var</span> iframe2 = iframeFactory.create();</span><br><span class="line">	iframe1.src = <span class="string">'http://youtube.com'</span>;</span><br><span class="line">&#125;, <span class="number">1000</span>)</span><br></pre></td></tr></table></figure>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/08/20/设计模式-享元模式/">https://fynn90.github.io/2019/08/20/设计模式-享元模式/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/设计模式-享元模式/">设计模式-享元模式</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/08/22/设计模式-中介者模式/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">设计模式-中介者模式</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/08/19/设计模式-模板方法模式/">
+        <span class="next-text nav-default">设计模式-模板方法模式</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
