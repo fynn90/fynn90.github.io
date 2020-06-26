@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="HTTP缓存机制"/>
+
+
+
+
+  <meta name="keywords" content="HTTP, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2019/05/23/Http缓存机制/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> HTTP缓存机制 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          HTTP缓存机制
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-05-23
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/网络/">网络</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/05/23/Http缓存机制/"
+             data-title="HTTP缓存机制">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#强制缓存"><span class="toc-text">强制缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Expires"><span class="toc-text">Expires</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-Control-mx-age-s-max-age"><span class="toc-text">Cache-Control: mx-age/s-max-age</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#mx-age"><span class="toc-text">mx-age</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#s-max-age"><span class="toc-text">s-max-age</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#协商缓存"><span class="toc-text">协商缓存</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#ETag-If-None-Match"><span class="toc-text">ETag/If-None-Match</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Last-Modified-If-Modified-Since"><span class="toc-text">Last-Modified/If-Modified-Since</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缓存策略"><span class="toc-text">缓存策略</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Cache-Control"><span class="toc-text">Cache-Control</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Vary"><span class="toc-text">Vary</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p>缓存是一种保存资源副本并在下次请求时直接使用该副本的技术.</p>
+</blockquote>
+<p>Web 缓存能够减少延迟与网络阻塞，进而减少显示某个资源所用的时间。借助 HTTP 缓存，Web 站点变得更具有响应性。</p>
+<p>缓存技术有: 网关缓存、CDN、方向代理缓存、负载均衡器等部署在服务器端的缓存技术.</p>
+<p>HTTP缓存是浏览器和服务器协同工作完成的一种机制.它可以帮助Web应用更开始的响应用户的行为.</p>
+<p>而在HTTP缓存中只能存储GET请求的响应,对于其他类型的响应无能为力.</p>
+<a id="more"></a>
+<p>HTTP的缓存策略通过在请求头中做一些设定完成的.</p>
+<p>HTTP缓存方式分为强制缓存和协商缓存</p>
+<p><img src="https://pic.downk.cc/item/5ef5b73f14195aa594b2c2f4.jpg" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5ef5b73f14195aa594b2c2f7.jpg" alt=""></p>
+<h2 id="强制缓存"><a href="#强制缓存" class="headerlink" title="强制缓存"></a>强制缓存</h2><p>强制缓存, 如果浏览器发现请求资源的日期未过期则直接取本地缓存的副本. 不向服务器发起请求.</p>
+<h3 id="Expires"><a href="#Expires" class="headerlink" title="Expires"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Expires" target="_blank" rel="noopener">Expires</a></h3><p><code>Expires</code> 响应头包含日期/时间， 即在此时候之后，响应过期。</p>
+<p>无效的日期，比如 0, 代表着过去的日期，即该资源已经过期。</p>
+<p>如果在<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control" target="_blank" rel="noopener"><code>Cache-Control</code></a>响应头设置了 “max-age” 或者 “s-max-age” 指令，那么 <code>Expires</code> 头会被忽略。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">Expires: &lt;http-date&gt;</span><br><span class="line">Expires: Wed, 21 Oct 2015 07:28:00 GMT</span><br></pre></td></tr></table></figure>
+<h3 id="Cache-Control-mx-age-s-max-age"><a href="#Cache-Control-mx-age-s-max-age" class="headerlink" title="Cache-Control: mx-age/s-max-age"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control" target="_blank" rel="noopener">Cache-Control: mx-age/s-max-age</a></h3><p><code>Cahce-Control</code>的配置指令有很多种,和强制缓存相关的指令有 <code>mx-age</code>和<code>s-max=age</code></p>
+<h4 id="mx-age"><a href="#mx-age" class="headerlink" title="mx-age"></a>mx-age</h4><p><code>Cache-Control: max-age=&lt;seconds&gt;</code></p>
+<p>设置缓存存储的最大周期，超过这个时间缓存被认为过期(单位秒)。与<code>Expires</code>相反，时间是相对于请求的时间。</p>
+<h4 id="s-max-age"><a href="#s-max-age" class="headerlink" title="s-max-age"></a>s-max-age</h4><p><code>s-maxage=&lt;seconds&gt;</code>覆盖<code>max-age</code>或者<code>Expires</code>头，但是仅适用于共享缓存(比如各个代理)，私有缓存会忽略它。</p>
+<h2 id="协商缓存"><a href="#协商缓存" class="headerlink" title="协商缓存"></a>协商缓存</h2><p>协商缓存,浏览器会向服务器发送请求用来验证本地资源是否过期,服务器会校验客户端资源是否过期,如果未过期则返回304,响应不包含body.否则服务器返回200并且响应体包含body.</p>
+<h3 id="ETag-If-None-Match"><a href="#ETag-If-None-Match" class="headerlink" title="ETag/If-None-Match"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/ETag" target="_blank" rel="noopener">ETag</a>/<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-None-Match" target="_blank" rel="noopener">If-None-Match</a></h3><p><code>ETag</code><strong>HTTP响应头是资源</strong>的特定版本的标识符。如果给定URL中的资源更改，则一定要生成新的Etag值。 因此Etags类似于指纹，也可能被某些服务器用于跟踪。 比较etags能快速确定此资源是否变化，但也可能被跟踪服务器永久存留。</p>
+<p>浏览器在第一次请求资源时.服务器会将资源反回,并将<code>ETag=xxxxx</code>一起返回个浏览器,浏览器在第二次请求相同资源时候,在请求头部设定<code>if-None-Match=ETag的值</code>. </p>
+<p>服务器会拿资源最新的ETag值和浏览器传的if-None-Match做对比,如果一样则返回304,否则返回最新的资源和最新ETag值.</p>
+<h3 id="Last-Modified-If-Modified-Since"><a href="#Last-Modified-If-Modified-Since" class="headerlink" title="Last-Modified/If-Modified-Since"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Last-Modified" target="_blank" rel="noopener">Last-Modified</a>/<a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Modified-Since" target="_blank" rel="noopener">If-Modified-Since</a></h3><p>The <strong><code>Last-Modified</code></strong> 是一个<strong>响应首部</strong>，其中包含源头服务器认定的资源做出修改的日期及时间。 它通常被用作一个验证器来判断接收到的或者存储的资源是否彼此一致。由于精确度比  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/ETag" target="_blank" rel="noopener"><code>ETag</code></a> 要低，所以这是一个备用机制。包含有  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Modified-Since" target="_blank" rel="noopener"><code>If-Modified-Since</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Unmodified-Since" target="_blank" rel="noopener"><code>If-Unmodified-Since</code></a> 首部的条件请求会使用这个字段。</p>
+<p><strong><code>If-Modified-Since</code></strong> 是一个条件式<strong>请求首部</strong>，服务器只在所请求的资源在给定的日期时间之后对内容进行过修改的情况下才会将资源返回，状态码为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/200" target="_blank" rel="noopener"><code>200</code></a> 。如果请求的资源从那时起未经修改，那么返回一个不带有消息主体的 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Status/304" target="_blank" rel="noopener"><code>304</code></a> 响应，而在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Last-Modified" target="_blank" rel="noopener"><code>Last-Modified</code></a> 首部中会带有上次修改时间。 不同于  <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-Unmodified-Since" target="_blank" rel="noopener"><code>If-Unmodified-Since</code></a>, <code>If-Modified-Since</code> 只可以用在 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/GET" target="_blank" rel="noopener"><code>GET</code></a> 或 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Methods/HEAD" target="_blank" rel="noopener"><code>HEAD</code></a> 请求中。</p>
+<p>当与 <a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/If-None-Match" target="_blank" rel="noopener"><code>If-None-Match</code></a> 一同出现时，它（<strong><code>If-Modified-Since</code></strong>）会被忽略掉，除非服务器不支持 <code>If-None-Match</code>。</p>
+<h2 id="缓存策略"><a href="#缓存策略" class="headerlink" title="缓存策略"></a>缓存策略</h2><p>除了/定缓存是否过期方式外, 还可以设定缓存的策略</p>
+<h3 id="Cache-Control"><a href="#Cache-Control" class="headerlink" title="Cache-Control"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Cache-Control" target="_blank" rel="noopener">Cache-Control</a></h3><p><code>Cache-Control</code> 通用消息头字段，被用于在http请求和响应中，通过指定指令来实现缓存机制。缓存指令是单向的，这意味着在请求中设置的指令，不一定被包含在响应中。</p>
+<p>指令不区分大小写，并且具有可选参数，可以用令牌或者带引号的字符串语法。多个指令以逗号分隔。</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">max-age：用来设置资源（representations）可以被缓存多长时间，单位为秒；</span><br><span class="line">s-maxage：和max-age是一样的，不过它只针对代理服务器缓存而言；</span><br><span class="line">public：指示响应可被任何缓存区缓存；</span><br><span class="line">private：只能针对个人用户，而不能被代理服务器缓存；</span><br><span class="line">no-cache：强制客户端直接向服务器发送请求,也就是说每次请求都必须向服务器发送。服务器接收到     请求，然后判断资源是否变更，是则返回新内容，否则返回304，未变更。这个很容易让人产生误解，使人误     以为是响应不被缓存。实际上Cache-Control:no-cache是会被缓存的，只不过每次在向客户端（浏览器）提供响应数据时，缓存都要向服务器评估缓存响应的有效性。</span><br><span class="line">no-store：禁止一切缓存（这个才是响应不被缓存的意思）。</span><br></pre></td></tr></table></figure>
+<h3 id="Vary"><a href="#Vary" class="headerlink" title="Vary"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/HTTP/Headers/Vary" target="_blank" rel="noopener">Vary</a></h3><p><code>Vary</code>是一个HTTP响应头部信息，它决定了对于未来的一个请求头，应该用一个缓存的回复(response)还是向源服务器请求一个新的回复。它被服务器用来表明在 <a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Content_negotiation" target="_blank" rel="noopener">content negotiation</a> algorithm（内容协商算法）中选择一个资源代表的时候应该使用哪些头部信息（headers）.</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">Vary: *</span><br><span class="line">Vary: &lt;header-name&gt;, &lt;header-name&gt;, ...</span><br><span class="line"></span><br><span class="line">Vary: User-Agent</span><br><span class="line">哪种情况下使用 Vary: 对于User-Agent 头部信息，例如你提供给移动端的内容是不同的，可用防止你客户端误使用了用于桌面端的缓存。</span><br></pre></td></tr></table></figure>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5ccfccaff265da03ab233bf5" target="_blank" rel="noopener">https://juejin.im/post/5ccfccaff265da03ab233bf5</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2019/05/23/Http缓存机制/">https://fynn90.github.io/2019/05/23/Http缓存机制/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/HTTP/">HTTP</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2019/06/02/Dart语言/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Dart语言</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2019/05/06/Linux用户和权限管理/">
+        <span class="next-text nav-default">Linux用户和权限管理</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
