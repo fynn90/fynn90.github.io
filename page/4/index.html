@@ -205,6 +205,64 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2018/01/11/PM2实用手册/">PM2实用手册</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-01-11
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Node-js/">Node.js</a>
+            
+              <a href="/categories/Node-js/PM2/">PM2</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/01/11/PM2实用手册/"
+             data-title="PM2实用手册">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><img src="https://raw.githubusercontent.com/unitech/pm2/master/pres/pm2.20d3ef.png" alt=""><br><a href="http://pm2.keymetrics.io/" target="_blank" rel="noopener">PM2</a>是Node.js生成环境中的进程管理工具，自带负载均衡功能。<br>它支持特性有：文件配置、集群模式、热加载、日志管理、系统监控、支持Docker、 启动脚本…等。<br>
+          <div class="read-more">
+            <a href="/2018/01/11/PM2实用手册/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2018/01/07/MySQL基础操作手册/">MySQL基础操作指南</a>
         
       </h1>
@@ -1279,146 +1337,6 @@
           <div class="read-more">
             <a href="/2017/05/17/Test-React-Application/" class="read-more-link">阅读更多</a>
           </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2017/05/10/Typescript中的class/">TypeScript中的class</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2017-05-10
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/TypeScript/">TypeScript</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2017/05/10/Typescript中的class/"
-             data-title="TypeScript中的class">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-
-        
-          <p>在<a href="https://es6.ruanyifeng.com/#docs/class" target="_blank" rel="noopener">ES6中</a> Javascript迎来了 <code>class</code>, 虽然它只是原型链的一种变种写法.它也很大的改变了Javascript世界中的编码方式.Typescript的<code>class</code>完全兼容ES6中的<code>class</code>, 并提供了一些特殊的能力.</p>
-<h2 id="基础概念介绍"><a href="#基础概念介绍" class="headerlink" title="基础概念介绍"></a>基础概念介绍</h2><p>虽然 JavaScript 中有类的概念，但是可能大多数 JavaScript 程序员并不是非常熟悉类，这里对类相关的概念做一个简单的介绍。</p>
-<ul>
-<li>类（Class）：定义了一件事物的抽象特点，包含它的属性和方法</li>
-<li>对象（Object）：类的实例，通过 <code>new</code> 生成</li>
-<li>面向对象（OOP）的三大特性：封装、继承、多态</li>
-<li>封装（Encapsulation）：将对数据的操作细节隐藏起来，只暴露对外的接口。外界调用端不需要（也不可能）知道细节，就能通过对外提供的接口来访问该对象，同时也保证了外界无法任意更改对象内部的数据</li>
-<li>继承（Inheritance）：子类继承父类，子类除了拥有父类的所有特性外，还有一些更具体的特性</li>
-<li>多态（Polymorphism）：由继承而产生了相关的不同的类，对同一个方法可以有不同的响应。比如 <code>Cat</code> 和 <code>Dog</code> 都继承自 <code>Animal</code>，但是分别实现了自己的 <code>eat</code> 方法。此时针对某一个实例，我们无需了解它是 <code>Cat</code> 还是 <code>Dog</code>，就可以直接调用 <code>eat</code> 方法，程序会自动判断出来应该如何执行 <code>eat</code></li>
-<li>存取器（getter &amp; setter）：用以改变属性的读取和赋值行为</li>
-<li>修饰符（Modifiers）：修饰符是一些关键字，用于限定成员或类型的性质。比如 <code>public</code> 表示公有属性或方法</li>
-<li>抽象类（Abstract Class）：抽象类是供其他类继承的基类，抽象类不允许被实例化。抽象类中的抽象方法必须在子类中被实现</li>
-<li>接口（Interfaces）：不同类之间公有的属性或方法，可以抽象成一个接口。接口可以被类实现（implements）。一个类只能继承自另一个类，但是可以实现多个接口</li>
-</ul>
-<h2 id="类的定义"><a href="#类的定义" class="headerlink" title="类的定义"></a>类的定义</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">    <span class="keyword">public</span> name;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">        <span class="keyword">this</span>.name = name;</span><br><span class="line">    &#125;</span><br><span class="line">    sayHi() &#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`My name is <span class="subst">$&#123;this.name&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.sayHi()); <span class="comment">// My name is Jack</span></span><br></pre></td></tr></table></figure>
-<p><code>class</code>关键字定义类名,首字母推荐大写.</p>
-<p><code>constructor</code>是类的构造器,在实例化类的时候自动调用该方法.</p>
-<p>在类体中可以定义,类的属性(<code>name</code>)和方法(<code>sayHi</code>)</p>
-<h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name); <span class="comment">// 调用父类的 constructor(name) 必须调用</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Meow, '</span> + <span class="keyword">super</span>.sayHi(); <span class="comment">// 调用父类的 sayHi()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> Cat(<span class="string">'Tom'</span>); <span class="comment">// Tom</span></span><br><span class="line"><span class="built_in">console</span>.log(c.sayHi()); <span class="comment">// Meow, My name is Tom</span></span><br></pre></td></tr></table></figure>
-<p>使用 <code>extends</code> 关键字实现继承，子类中使用 <code>super</code> 关键字来调用父类的构造函数和方法。</p>
-<p>Typescript中一个类只能继承一个父类.</p>
-<p>子类包含了一个构造函数，它<em>必须</em>调用<code>super()</code>，它会执行基类的构造函数。 而且，在构造函数里访问<code>this</code>的属性之前，我们<em>一定</em>要调用<code>super()</code>。 这个是TypeScript强制执行的一条重要规则。</p>
-<h2 id="静态"><a href="#静态" class="headerlink" title="静态"></a>静态</h2><p>TypeScript 的类支持 <code>static</code> 属性，这会被所有这个类的实例共享。一个自然的地方来放置（和访问）它们就是类本身</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">static</span> num = <span class="number">42</span>;</span><br><span class="line">  <span class="keyword">static</span> isAnimal(a) &#123;</span><br><span class="line">    <span class="keyword">return</span> a <span class="keyword">instanceof</span> Animal;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line">Animal.isAnimal(a); <span class="comment">// true</span></span><br><span class="line">a.isAnimal(a); <span class="comment">// TypeError: a.isAnimal is not a function</span></span><br><span class="line"><span class="built_in">console</span>.log(Animal.num); <span class="comment">// 42</span></span><br></pre></td></tr></table></figure>
-<p>你可以定义静态的<strong>方法</strong>和<strong>属性</strong>.它们是直接通过类名来方法调用,这些静态方法和属性是所有该类实例共享的.</p>
-<h2 id="存取器"><a href="#存取器" class="headerlink" title="存取器"></a>存取器</h2><p>TypeScript支持通过getters/setters来截取对对象成员的访问。 它能帮助你有效的控制对对象成员的访问。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">get</span> name() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Jack'</span>;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">set</span> name(value) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'setter: '</span> + value);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Kitty'</span>); <span class="comment">// setter: Kitty</span></span><br><span class="line">a.name = <span class="string">'Tom'</span>; <span class="comment">// setter: Tom</span></span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">// Jack</span></span><br></pre></td></tr></table></figure>
-<p><code>get</code>和<code>set</code>在前端架构设计中会非常有用.</p>
-<h2 id="访问修饰符"><a href="#访问修饰符" class="headerlink" title="访问修饰符"></a>访问修饰符</h2><p>TypeScript 支持访问修饰符 <code>public</code>、<code>private</code> 和 <code>protected</code>，它们决定了一个 <code>class</code> 成员的可访问性，如下所示：</p>
-<table>
-<thead>
-<tr>
-<th>可访问在</th>
-<th><code>public</code></th>
-<th><code>protected</code></th>
-<th><code>private</code></th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>类</td>
-<td>是</td>
-<td>是</td>
-<td>是</td>
-</tr>
-<tr>
-<td>类的孩子</td>
-<td>是</td>
-<td>是</td>
-<td>否</td>
-</tr>
-<tr>
-<td>类的实例</td>
-<td>是</td>
-<td>否</td>
-<td>否</td>
-</tr>
-</tbody>
-</table>
-<p>如果访问修饰符没有被指定，那么它就为 <code>public</code>，以最接近于 JavaScript 的原生意义 。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">// Jack</span></span><br><span class="line">a.name = <span class="string">'Tom'</span>;</span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">// Tom</span></span><br></pre></td></tr></table></figure>
-<p>上面👆的例子中，<code>name</code> 被设置为了 <code>public</code>，所以直接访问实例的 <code>name</code> 属性是允许的。</p>
-<p>很多时候，我们希望有的属性是无法直接存取的，这时候就可以用 <code>private</code> 了：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">private</span> name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">// Jack</span></span><br><span class="line">a.name = <span class="string">'Tom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(9,13): error TS2341: Property 'name' is private and only accessible within class 'Animal'.</span></span><br><span class="line"><span class="comment">// index.ts(10,1): error TS2341: Property 'name' is private and only accessible within class 'Animal'.</span></span><br></pre></td></tr></table></figure>
-<p>⚠️需要注意的是，TypeScript 编译之后的代码中，并没有限制 <code>private</code> 属性在外部的可访问性。</p>
-<p>上面的例子编译后的代码是：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> Animal = (<span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">Animal</span>(<span class="params">name</span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">return</span> Animal;</span><br><span class="line">&#125;)();</span><br><span class="line"><span class="keyword">var</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.name);</span><br><span class="line">a.name = <span class="string">'Tom'</span>;</span><br></pre></td></tr></table></figure>
-<p>使用 <code>private</code> 修饰的属性或方法，在子类中也是不允许访问的</p>
-<h3 id="private"><a href="#private" class="headerlink" title="private"></a>private</h3><p>当构造函数修饰为 <code>private</code> 时，该类不允许被继承或者实例化：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> name;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(7,19): TS2675: Cannot extend a class 'Animal'. Class constructor is marked as private.</span></span><br><span class="line"><span class="comment">// index.ts(13,9): TS2673: Constructor of class 'Animal' is private and only accessible within the class declaration.</span></span><br></pre></td></tr></table></figure>
-<h3 id="protected"><a href="#protected" class="headerlink" title="protected"></a>protected</h3><p><code>protected</code>修饰符与<code>private</code>修饰符的行为很相似，但有一点不同，<code>protected</code>成员在派生类中仍然可以访问。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">protected</span> name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name);</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p>当构造函数修饰为 <code>protected</code> 时，该类只允许被继承：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> name;</span><br><span class="line">  <span class="keyword">protected</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(13,9): TS2674: Constructor of class 'Animal' is protected and only accessible within the class declaration.</span></span><br></pre></td></tr></table></figure>
-<h2 id="抽象类"><a href="#抽象类" class="headerlink" title="抽象类"></a>抽象类</h2><p><code>abstract</code> 可以看成一个访问修饰符。它可以在 <code>class</code> 上也可以在类的成员上。拥有一个 <code>abstract</code> 修饰符主要意味着这个功能<em>不能直接被调用</em>而子类必须提供它。</p>
-<ul>
-<li><code>abstract</code> 的<strong>类</strong>不能直接被实例化。用户必须创造一些 <code>class</code> 来继承<code>abstract class</code>。</li>
-<li><code>abstract</code> 的<strong>成员</strong>不能直接被访问，而且子类必须提供这个功能。</li>
-</ul>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> sayHi();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(9,11): error TS2511: Cannot create an instance of the abstract class 'Animal'.</span></span><br></pre></td></tr></table></figure>
-<p>抽象类中的抽象方法必须被子类实现：</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">abstract</span> <span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">abstract</span> sayHi();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">public</span> sayHi() &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">`Meow, My name is <span class="subst">$&#123;this.name&#125;</span>`</span>);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> cat = <span class="keyword">new</span> Cat(<span class="string">'Tom'</span>);</span><br></pre></td></tr></table></figure>
-<h2 id="参数属性"><a href="#参数属性" class="headerlink" title="参数属性"></a>参数属性</h2><p>有的时候我们需要给一个属性在实例化的时候立刻赋值.<em>参数属性</em>可以方便地让我们在一个地方定义并初始化一个成员。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">    <span class="keyword">constructor</span>(<span class="params"><span class="keyword">private</span> name: <span class="built_in">string</span></span>) &#123; &#125;</span><br><span class="line">    move(distanceInMeters: <span class="built_in">number</span>) &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">`<span class="subst">$&#123;this.name&#125;</span> moved <span class="subst">$&#123;distanceInMeters&#125;</span>m.`</span>);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="readonly"><a href="#readonly" class="headerlink" title="readonly"></a>readonly</h2><p>只读属性关键字，只允许出现在属性声明或索引签名或构造函数中。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  readonly name;</span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">this</span>.name = name;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> a = <span class="keyword">new</span> Animal(<span class="string">'Jack'</span>);</span><br><span class="line"><span class="built_in">console</span>.log(a.name); <span class="comment">// Jack</span></span><br><span class="line">a.name = <span class="string">'Tom'</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// index.ts(10,3): TS2540: Cannot assign to 'name' because it is a read-only property.</span></span><br></pre></td></tr></table></figure>
-<p>注意如果 <code>readonly</code> 和其他访问修饰符同时存在的话，需要写在其后面。</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Animal &#123;</span><br><span class="line">  <span class="comment">// public readonly name;</span></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">constructor</span>(<span class="params"><span class="keyword">public</span> readonly name</span>) &#123;</span><br><span class="line">    <span class="comment">// this.name = name;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<h2 id="单例模式"><a href="#单例模式" class="headerlink" title="单例模式"></a>单例模式</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Singleton &#123;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">static</span> instance: Singleton;</span><br><span class="line">  <span class="keyword">private</span> <span class="keyword">constructor</span>(<span class="params"></span>) &#123;</span><br><span class="line">    <span class="comment">// ..</span></span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  <span class="keyword">public</span> <span class="keyword">static</span> getInstance() &#123;</span><br><span class="line">    <span class="keyword">if</span> (!Singleton.instance) &#123;</span><br><span class="line">      Singleton.instance = <span class="keyword">new</span> Singleton();</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="keyword">return</span> Singleton.instance;</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  someMethod() &#123;&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> someThing = <span class="keyword">new</span> Singleton(); <span class="comment">// Error: constructor of 'singleton' is private</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instacne = Singleton.getInstance(); <span class="comment">// do some thing with the instance</span></span><br></pre></td></tr></table></figure>
-
         
       
     </div>
