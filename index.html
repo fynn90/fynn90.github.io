@@ -791,7 +791,7 @@
 <p>原因有三个:</p>
 <ol>
 <li><code>setTimeout\setInterval</code>并不和JS在一个线程上,虽然你可以模拟浏览器刷新频率(1000/60),但如果JS线程执行时间较长,JS出超过这个时间去保存有<code>setTimeout\setInterval</code>回调的队列中拿回调执行.这个时候页面会出现卡顿的情况.</li>
-<li>在一些浏览器中,运行有<code>setTimeout\setInterval</code>的脚本的页面,即使当前未被打开,定时器脚本依然是在后天运行的.这就浪费了计算机资源.</li>
+<li>在一些浏览器中,运行有<code>setTimeout\setInterval</code>的脚本的页面,即使当前未被打开,定时器脚本依然是在后台运行的.这就浪费了计算机资源.</li>
 <li>并不是所有的浏览器都是每秒60帧频率,所以<code>setTimeout\setInterval</code>的定时时间需要适配设备.</li>
 </ol>
 <p>用<code>requestAnimationFrame</code>就不会有上面这三个问题!</p>
