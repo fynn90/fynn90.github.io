@@ -262,6 +262,7 @@
 <p><code>class</code>关键字定义类名,首字母推荐大写.</p>
 <p><code>constructor</code>是类的构造器,在实例化类的时候自动调用该方法.</p>
 <p>在类体中可以定义,类的属性(<code>name</code>)和方法(<code>sayHi</code>)</p>
+<a id="more"></a>
 <h2 id="类的继承"><a href="#类的继承" class="headerlink" title="类的继承"></a>类的继承</h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">class</span> Cat <span class="keyword">extends</span> Animal &#123;</span><br><span class="line">  <span class="keyword">constructor</span>(<span class="params">name</span>) &#123;</span><br><span class="line">    <span class="keyword">super</span>(name); <span class="comment">// 调用父类的 constructor(name) 必须调用</span></span><br><span class="line">    <span class="built_in">console</span>.log(<span class="keyword">this</span>.name);</span><br><span class="line">  &#125;</span><br><span class="line">  sayHi() &#123;</span><br><span class="line">    <span class="keyword">return</span> <span class="string">'Meow, '</span> + <span class="keyword">super</span>.sayHi(); <span class="comment">// 调用父类的 sayHi()</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> c = <span class="keyword">new</span> Cat(<span class="string">'Tom'</span>); <span class="comment">// Tom</span></span><br><span class="line"><span class="built_in">console</span>.log(c.sayHi()); <span class="comment">// Meow, My name is Tom</span></span><br></pre></td></tr></table></figure>
 <p>使用 <code>extends</code> 关键字实现继承，子类中使用 <code>super</code> 关键字来调用父类的构造函数和方法。</p>
 <p>Typescript中一个类只能继承一个父类.</p>
@@ -401,8 +402,8 @@
       </a>
     
     
-      <a class="next" href="/2017/04/24/Jest实例教程/">
-        <span class="next-text nav-default">Jest实例教程</span>
+      <a class="next" href="/2017/05/03/Typescript中的泛型/">
+        <span class="next-text nav-default">TypeScript中的泛型</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
