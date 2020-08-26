@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JavaScript中的Promise和Async/Await"/>
+
+
+
+
+  <meta name="keywords" content="Promise, Async/Await, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2018/12/12/Javascript中的await和Promise/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> JavaScript中的Promise和Async/Await - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JavaScript中的Promise和Async/Await
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2018-12-12
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2018/12/12/Javascript中的await和Promise/"
+             data-title="JavaScript中的Promise和Async/Await">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Promise"><span class="toc-text">Promise</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise原型"><span class="toc-text">Promise原型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-prototype-constructor"><span class="toc-text">Promise.prototype.constructor</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-prototype-catch-onRejected"><span class="toc-text">Promise.prototype.catch(onRejected)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-prototype-then-onFulfilled-onRejected"><span class="toc-text">Promise.prototype.then(onFulfilled, onRejected)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-prototype-finally-onFinally"><span class="toc-text">Promise.prototype.finally(onFinally)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Promise方法"><span class="toc-text">Promise方法</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-all-iterable"><span class="toc-text">Promise.all(iterable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-allSettled-iterable"><span class="toc-text">Promise.allSettled(iterable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-any-iterable"><span class="toc-text">Promise.any(iterable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-race-iterable"><span class="toc-text">Promise.race(iterable)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-reject-reason"><span class="toc-text">Promise.reject(reason)</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#Promise-resolve-value"><span class="toc-text">Promise.resolve(value)</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#手写-Promise"><span class="toc-text">手写 Promise</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#async-await"><span class="toc-text">async/await</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#async"><span class="toc-text">async</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#await"><span class="toc-text">await</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#利用async-await重写Promise"><span class="toc-text">利用async/await重写Promise</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async-await处理异常"><span class="toc-text">async/await处理异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#async-await的缺陷"><span class="toc-text">async/await的缺陷</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><code>Promise</code>是ES6,<code>async/await</code>是ES7确定的ECMA标准.目前最新的 Chrome浏览器和Typescript已经支持.</p>
+<p><code>Promise</code>和<code>async/await</code>极大的改善了JS的编码体验.本文将介绍它们使用方式和注意事项.</p>
+<h2 id="Promise"><a href="#Promise" class="headerlink" title="Promise"></a><a href="https://developer.mozilla.org/zh-CN/docs/learn/JavaScript/异步/Promises语法" target="_blank" rel="noopener"><code>Promise</code></a></h2><blockquote>
+<p><strong>Promise</strong> 对象用于表示一个异步操作的最终完成 (或失败), 及其结果值.</p>
+</blockquote>
+<p>它的基础语法:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>( <span class="function"><span class="keyword">function</span>(<span class="params">resolve, reject</span>) </span>&#123;...&#125; <span class="comment">/* executor */</span>  );</span><br></pre></td></tr></table></figure>
+<a id="more"></a>
+<p><code>Promise</code>基本的使用方式是用它构建一个<code>Promise</code>实例. 它接受一个函数作为参数,参数默认会传递两个值:<code>reslove</code>和<code>reject</code>.这个两个参数是用来修改<code>Promise</code>的状态.</p>
+<p><code>Promise</code>只有三种状态:</p>
+<ul>
+<li><em>pending</em>: 初始状态，既不是成功，也不是失败状态。</li>
+<li><em>fulfilled</em>: 意味着操作成功完成。</li>
+<li><em>rejected</em>: 意味着操作失败。</li>
+</ul>
+<p>⚠️fulfilled经常被 resolve代替.</p>
+<p>pending 状态的 Promise 对象可能会变为fulfilled 状态并传递一个值给相应的状态处理方法，也可能变为失败状态（rejected）并传递失败信息。当其中任一种情况出现时，Promise 对象的 <code>then</code> 方法绑定的处理方法（handlers ）就会被调用（then方法包含两个参数：onfulfilled 和 onrejected，它们都是 Function 类型。当Promise状态为<em>fulfilled</em>时，调用 then 的 onfulfilled 方法，当Promise状态为<em>rejected</em>时，调用 then 的 onrejected 方法， 所以在异步操作的完成和绑定处理方法之间不存在竞争）。</p>
+<p><code>Promise</code>状态转换过程如下:</p>
+<p><img src="https://pic.downk.cc/item/5f44e17d160a154a67438cac.png" alt=""></p>
+<p>⚠️ <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="_blank" rel="noopener"><code>Promise.prototype.then</code></a> 、<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" target="_blank" rel="noopener"><code>Promise.prototype.catch</code></a> 方法返回promise 对象， 所以它们可以被链式调用。</p>
+<p><strong>一个实例后的<code>Promise</code>可以通过<code>Promise.prototype.then</code>或<code>Promise.prototype.catch</code>获取到异步执行的结果</strong></p>
+<h3 id="Promise原型"><a href="#Promise原型" class="headerlink" title="Promise原型"></a><code>Promise原型</code></h3><h4 id="Promise-prototype-constructor"><a href="#Promise-prototype-constructor" class="headerlink" title="Promise.prototype.constructor"></a>Promise.prototype.constructor</h4><p> 返回被创建的实例函数.  默认为 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise" target="_blank" rel="noopener"><code>Promise</code></a> 函数.</p>
+<h4 id="Promise-prototype-catch-onRejected"><a href="#Promise-prototype-catch-onRejected" class="headerlink" title="Promise.prototype.catch(onRejected)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/catch" target="_blank" rel="noopener"><code>Promise.prototype.catch(onRejected)</code></a></h4><p>添加一个拒绝(rejection) 回调到当前 promise, 返回一个新的promise。当这个回调函数被调用，新 promise 将以它的返回值来resolve，否则如果当前promise 进入fulfilled状态，则以当前promise的完成结果作为新promise的完成结果.</p>
+<h4 id="Promise-prototype-then-onFulfilled-onRejected"><a href="#Promise-prototype-then-onFulfilled-onRejected" class="headerlink" title="Promise.prototype.then(onFulfilled, onRejected)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/then" target="_blank" rel="noopener"><code>Promise.prototype.then(onFulfilled, onRejected)</code></a></h4><p>添加解决(fulfillment)和拒绝(rejection)回调到当前 promise, 返回一个新的 promise, 将以回调的返回值来resolve.</p>
+<h4 id="Promise-prototype-finally-onFinally"><a href="#Promise-prototype-finally-onFinally" class="headerlink" title="Promise.prototype.finally(onFinally)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/finally" target="_blank" rel="noopener"><code>Promise.prototype.finally(onFinally)</code></a></h4><p>添加一个事件处理回调于当前promise对象，并且在原promise对象解析完毕后，返回一个新的promise对象。回调会在当前promise运行完毕后被调用，无论当前promise的状态是完成(fulfilled)还是失败(rejected)</p>
+<h3 id="Promise方法"><a href="#Promise方法" class="headerlink" title="Promise方法"></a><code>Promise方法</code></h3><h4 id="Promise-all-iterable"><a href="#Promise-all-iterable" class="headerlink" title="Promise.all(iterable)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/all" target="_blank" rel="noopener"><code>Promise.all(iterable)</code></a></h4><p><code>Promise.all()</code>方法用于将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.all([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>Promise.all()</code>方法接受一个数组作为参数，<code>p1</code>、<code>p2</code>、<code>p3</code>都是 Promise 实例，如果不是，就会先<code>Promise.resolve</code>方法，将参数转为 Promise 实例，再进一步处理。另外，<code>Promise.all()</code>方法的参数可以不是数组，但必须具有 Iterator 接口，且返回的每个成员都是 Promise 实例。</p>
+<p><code>p</code>的状态由<code>p1</code>、<code>p2</code>、<code>p3</code>决定，分成两种情况。</p>
+<p>（1）只有<code>p1</code>、<code>p2</code>、<code>p3</code>的状态都变成<code>fulfilled</code>，<code>p</code>的状态才会变成<code>fulfilled</code>，此时<code>p1</code>、<code>p2</code>、<code>p3</code>的返回值组成一个数组，传递给<code>p</code>的回调函数。</p>
+<p>（2）只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个被<code>rejected</code>，<code>p</code>的状态就变成<code>rejected</code>，此时第一个被<code>reject</code>的实例的返回值，会传递给<code>p</code>的回调函数。</p>
+<h4 id="Promise-allSettled-iterable"><a href="#Promise-allSettled-iterable" class="headerlink" title="Promise.allSettled(iterable)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/allSettled" target="_blank" rel="noopener"><code>Promise.allSettled(iterable)</code></a></h4><p><code>Promise.allSettled()</code>方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。只有等到所有这些参数实例都返回结果，不管是<code>fulfilled</code>还是<code>rejected</code>，包装实例才会结束。返回一个promise，该promise在所有promise完成后完成。并带有一个对象数组，每个对象对应每个promise的结果。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promises = [</span><br><span class="line">  fetch(<span class="string">'/api-1'</span>),</span><br><span class="line">  fetch(<span class="string">'/api-2'</span>),</span><br><span class="line">  fetch(<span class="string">'/api-3'</span>),</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="keyword">await</span> <span class="built_in">Promise</span>.allSettled(promises);</span><br><span class="line">removeLoadingIndicator();</span><br></pre></td></tr></table></figure>
+<p>上面代码对服务器发出三个请求，等到三个请求都结束，不管请求成功还是失败，加载的滚动图标就会消失。</p>
+<h4 id="Promise-any-iterable"><a href="#Promise-any-iterable" class="headerlink" title="Promise.any(iterable)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/any" target="_blank" rel="noopener"><code>Promise.any(iterable)</code></a></h4><p>Promise.any()<code>方法接受一组 Promise 实例作为参数，包装成一个新的 Promise 实例。只要参数实例有一个变成</code>fulfilled<code>状态，包装实例就会变成</code>fulfilled<code>状态；如果所有参数实例都变成</code>rejected<code>状态，包装实例就会变成</code>rejected`状态。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> promises = [</span><br><span class="line">  fetch(<span class="string">'/endpoint-a'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="string">'a'</span>),</span><br><span class="line">  fetch(<span class="string">'/endpoint-b'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="string">'b'</span>),</span><br><span class="line">  fetch(<span class="string">'/endpoint-c'</span>).then(<span class="function"><span class="params">()</span> =&gt;</span> <span class="string">'c'</span>),</span><br><span class="line">];</span><br><span class="line"><span class="keyword">try</span> &#123;</span><br><span class="line">  <span class="keyword">const</span> first = <span class="keyword">await</span> <span class="built_in">Promise</span>.any(promises);</span><br><span class="line">  <span class="built_in">console</span>.log(first);</span><br><span class="line">&#125; <span class="keyword">catch</span> (error) &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(error);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面代码中，<code>Promise.any()</code>方法的参数数组包含三个 Promise 操作。其中只要有一个变成<code>fulfilled</code>，<code>Promise.any()</code>返回的 Promise 对象就变成<code>fulfilled</code>。如果所有三个操作都变成<code>rejected</code>，那么<code>await</code>命令就会抛出错误。</p>
+<h4 id="Promise-race-iterable"><a href="#Promise-race-iterable" class="headerlink" title="Promise.race(iterable)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/race" target="_blank" rel="noopener"><code>Promise.race(iterable)</code></a></h4><p><code>Promise.race()</code>方法同样是将多个 Promise 实例，包装成一个新的 Promise 实例。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.race([p1, p2, p3]);</span><br></pre></td></tr></table></figure>
+<p>上面代码中，只要<code>p1</code>、<code>p2</code>、<code>p3</code>之中有一个实例率先改变状态，<code>p</code>的状态就跟着改变。那个率先改变的 Promise 实例的返回值，就传递给<code>p</code>的回调函数。</p>
+<h4 id="Promise-reject-reason"><a href="#Promise-reject-reason" class="headerlink" title="Promise.reject(reason)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/reject" target="_blank" rel="noopener"><code>Promise.reject(reason)</code></a></h4><p>返回一个状态为失败的Promise对象，并将给定的失败信息传递给对应的处理方法</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> p = <span class="built_in">Promise</span>.reject(<span class="string">'出错了'</span>);</span><br><span class="line"><span class="comment">// 等同于</span></span><br><span class="line"><span class="keyword">const</span> p = <span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function">(<span class="params">resolve, reject</span>) =&gt;</span> reject(<span class="string">'出错了'</span>))</span><br><span class="line"></span><br><span class="line">p.then(<span class="literal">null</span>, <span class="function"><span class="keyword">function</span> (<span class="params">s</span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(s)</span><br><span class="line">&#125;);</span><br><span class="line"><span class="comment">// 出错了</span></span><br></pre></td></tr></table></figure>
+<h4 id="Promise-resolve-value"><a href="#Promise-resolve-value" class="headerlink" title="Promise.resolve(value)"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Promise/resolve" target="_blank" rel="noopener"><code>Promise.resolve(value)</code></a></h4><p>有时需要将现有对象转为 Promise 对象，<code>Promise.resolve()</code>方法就起到这个作用。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">Promise</span>.resolve(<span class="string">'foo'</span>)</span><br><span class="line"><span class="comment">// 等价于</span></span><br><span class="line"><span class="keyword">new</span> <span class="built_in">Promise</span>(<span class="function"><span class="params">resolve</span> =&gt;</span> resolve(<span class="string">'foo'</span>))</span><br></pre></td></tr></table></figure>
+<h3 id="手写-Promise"><a href="#手写-Promise" class="headerlink" title="手写 Promise"></a>手写 Promise</h3><p><img src="https://pic.downk.cc/item/5f44e8c8160a154a674a244e.png" alt=""></p>
+<p>同时，需要在 <code>myPromise</code>的原型上定义链式调用的 <code>then</code>方法：</p>
+<p><img src="https://pic.downk.cc/item/5f44e8c8160a154a674a2450.png" alt=""></p>
+<p>⚠️根据上小节介绍的.应该原型上应该还需要实现<code>catch</code>方法.并且<code>then</code>和<code>catch</code>应该返回一个<code>Promise实例</code></p>
+<p> 另一个较完整版本:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> PENDING =<span class="string">"pending"</span>;</span><br><span class="line"><span class="keyword">const</span> FULFILLED  = <span class="string">"fulfilled"</span>;</span><br><span class="line"><span class="keyword">const</span> REJECTED  = <span class="string">"rejected"</span> ;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">Promise</span> (<span class="params"> excutor </span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> that = <span class="keyword">this</span> ; <span class="comment">// 缓存当前promise实例对象</span></span><br><span class="line">  that.status = PENDING ; <span class="comment">// 初始状态</span></span><br><span class="line">  that . value = <span class="literal">undefined</span> ; <span class="comment">// fulfilled状态时 返回的信息</span></span><br><span class="line">  that.reason = <span class="literal">undefined</span>; <span class="comment">// rejected状态时 拒绝的原因    </span></span><br><span class="line">  that.onFulfilledCallbacks = []; <span class="comment">// 存储fulfilled状态对应的onFulfilled函数</span></span><br><span class="line">  that.onRejectedCallbacks = []; <span class="comment">// 存储rejected状态对应的onRejected函数</span></span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">resolve</span>(<span class="params">value</span>) </span>&#123; <span class="comment">// value成功态时接收的终值</span></span><br><span class="line">    <span class="keyword">if</span>(value <span class="keyword">instanceof</span> <span class="built_in">Promise</span>) &#123;            </span><br><span class="line">      <span class="keyword">return</span> value.then(resolve, reject);        </span><br><span class="line">    &#125;</span><br><span class="line">    <span class="comment">// 实践中要确保 onFulfilled 和 onRejected 方法异步执行，且应该在 then 方法被调用的那一轮事件循环之后的新执行栈中执行。</span></span><br><span class="line">    setTimeout (<span class="function"><span class="params">()</span> =&gt;</span> &#123; </span><br><span class="line">      <span class="comment">// 调用resolve 回调对应onFulfilled函数 </span></span><br><span class="line">      <span class="keyword">if</span> ( that . status === PENDING ) &#123; </span><br><span class="line">        <span class="comment">// 只能由pending状态 =&gt; fulfilled状态 (避免调用多次resolve reject) </span></span><br><span class="line">        that.status = FULFILLED ; </span><br><span class="line">        that.value = value ; </span><br><span class="line">        that.onFulfilledCallbacks.forEach( <span class="function"><span class="params">cb</span> =&gt;</span> cb (that.value)); </span><br><span class="line">      &#125; </span><br><span class="line">    &#125;); </span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">  <span class="function"><span class="keyword">function</span> <span class="title">reject</span>(<span class="params">reason</span>) </span>&#123; <span class="comment">// reason失败态时接收的拒因</span></span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span>=&gt;</span>&#123;</span><br><span class="line">      <span class="comment">// 调用reject 回调对应onRejected函数</span></span><br><span class="line">      <span class="keyword">if</span>(that.status===PENDING)&#123;</span><br><span class="line">        <span class="comment">// 只能由pending状态 =&gt; fulfilled状态 (避免调用多次resolve reject)</span></span><br><span class="line">        that.status=FULFILLED;</span><br><span class="line">        that.value=value;</span><br><span class="line">        that.onFulfilledCallbacks.forEach(<span class="function"><span class="params">cb</span>=&gt;</span>cb(that.value));                </span><br><span class="line">      &#125; </span><br><span class="line">    &#125;);</span><br><span class="line">  &#125;</span><br><span class="line">  </span><br><span class="line">   </span><br><span class="line">	<span class="comment">// 捕获在excutor执行器中抛出的异常</span></span><br><span class="line">  <span class="comment">// new Promise((resolve, reject) =&gt; &#123;</span></span><br><span class="line">  <span class="comment">//     throw new Error('error in excutor')</span></span><br><span class="line">  <span class="comment">// &#125;)</span></span><br><span class="line">  <span class="keyword">try</span>&#123; </span><br><span class="line">    excutor(resolve,reject);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    reject(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">Promise</span>.prototype.then=<span class="function"><span class="keyword">function</span>(<span class="params">onFulfilled,onRejected</span>)</span>&#123;</span><br><span class="line">  <span class="keyword">const</span> that=<span class="keyword">this</span>;</span><br><span class="line">  <span class="keyword">let</span> newPromise;</span><br><span class="line">  <span class="comment">// 处理参数默认值 保证参数后续能够继续执行</span></span><br><span class="line">  onFulfilled=<span class="keyword">typeof</span> onFulfilled===<span class="string">"function"</span>?onFulfilled:<span class="function"><span class="params">value</span>=&gt;</span>value;</span><br><span class="line">  onRejected=<span class="keyword">typeof</span> onRejected===<span class="string">"function"</span>?onRejected:<span class="function"><span class="params">reason</span>=&gt;</span>&#123;throwreason;&#125;;</span><br><span class="line">  <span class="keyword">if</span> ( that.status === FULFILLED ) &#123; <span class="comment">// 成功态</span></span><br><span class="line">    <span class="keyword">return</span> newPromise = <span class="keyword">new</span> <span class="built_in">Promise</span> (<span class="function">(<span class="params"> resolve , reject </span>) =&gt;</span> &#123; </span><br><span class="line">      setTimeout (<span class="function"><span class="params">()</span> =&gt;</span> &#123; </span><br><span class="line">        <span class="keyword">try</span> &#123; </span><br><span class="line">          <span class="keyword">let</span> x = onFulfilled(that.value); </span><br><span class="line">          resolvePromise (newPromise,x ,resolve,reject); <span class="comment">// 新的promise resolve 上一个onFulfilled的返回值 </span></span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123; </span><br><span class="line">          reject (e); <span class="comment">// 捕获前面onFulfilled中抛出的异常 then(onFulfilled, onRejected); </span></span><br><span class="line">        &#125; </span><br><span class="line">      &#125;); </span><br><span class="line">    &#125;) </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (that.status === REJECTED ) &#123; <span class="comment">// 失败态 </span></span><br><span class="line">    <span class="keyword">return</span> newPromise = <span class="keyword">new</span> <span class="built_in">Promise</span> (<span class="function">(<span class="params"> resolve , reject </span>) =&gt;</span> &#123; </span><br><span class="line">      setTimeout (<span class="function"><span class="params">()</span> =&gt;</span> &#123; </span><br><span class="line">        <span class="keyword">try</span> &#123; </span><br><span class="line">          <span class="keyword">let</span> x = onRejected (that.reason); </span><br><span class="line">          resolvePromise(newPromise,x ,resolve,reject); </span><br><span class="line">        &#125; <span class="keyword">catch</span> (e) &#123; </span><br><span class="line">          reject (e); </span><br><span class="line">        &#125; </span><br><span class="line">      &#125;); </span><br><span class="line">    &#125;); </span><br><span class="line">  &#125;</span><br><span class="line">  <span class="keyword">if</span> (that.status === PENDING ) &#123; <span class="comment">// 等待态</span></span><br><span class="line">    <span class="comment">// 当异步调用resolve/rejected时 将onFulfilled/onRejected收集暂存到集合中 </span></span><br><span class="line">    <span class="keyword">return</span> newPromise = <span class="keyword">new</span> <span class="built_in">Promise</span> (<span class="function">(<span class="params">resolve,reject</span>) =&gt;</span> &#123; </span><br><span class="line">      that.onFulfilledCallbacks.push(<span class="function">(<span class="params">value</span>) =&gt;</span> &#123;</span><br><span class="line">        <span class="keyword">try</span> &#123; <span class="keyword">let</span> x = onFulfilled ( value ); </span><br><span class="line">             resolvePromise(newPromise,x,resolve,reject); </span><br><span class="line">            &#125; <span class="keyword">catch</span> (e) &#123; </span><br><span class="line">              reject (e);</span><br><span class="line">            &#125; </span><br><span class="line">      &#125;); </span><br><span class="line">      that.onRejectedCallbacks.push(<span class="function">(<span class="params">reason </span>) =&gt;</span> &#123; </span><br><span class="line">        <span class="keyword">try</span> &#123; </span><br><span class="line">          <span class="keyword">let</span> x = onRejected (reason); </span><br><span class="line">          resolvePromise(newPromise,x,resolve,reject ); </span><br><span class="line">        &#125; <span class="keyword">catch</span> ( e ) &#123; </span><br><span class="line">          reject ( e ); </span><br><span class="line">         &#125; </span><br><span class="line">      &#125;); </span><br><span class="line">    &#125;); </span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="async-await"><a href="#async-await" class="headerlink" title="async/await"></a><code>async/await</code></h2><p><code>async/await</code>简单来说，它们是基于promises的语法糖，使异步代码更易于编写和阅读。通过使用它们，异步代码看起来更像是老式同步代码</p>
+<h3 id="async"><a href="#async" class="headerlink" title="async"></a><code>async</code></h3><p>一个<code>async</code>修饰的函数,它会自动返回一个<code>Promise</code>实例</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"Hello"</span> &#125;;</span><br><span class="line">hello(); <span class="comment">// Hello</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"Hello"</span> &#125;;</span><br><span class="line">hello(); <span class="comment">// Promise&#123;&lt;fulfilled&gt;:unedfined&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">//你也可以这样写:</span></span><br><span class="line"><span class="keyword">let</span> hello = <span class="keyword">async</span> <span class="function"><span class="keyword">function</span>(<span class="params"></span>) </span>&#123; <span class="keyword">return</span> <span class="string">"Hello"</span> &#125;;</span><br><span class="line">hello();</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> hello = <span class="keyword">async</span> () =&gt; &#123; <span class="keyword">return</span> <span class="string">"Hello"</span> &#125;;</span><br></pre></td></tr></table></figure>
+<p><code>Promise</code>实例是通过<code>then</code>获取异步返回值的.所以可以这么写:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">hello().then(<span class="function">(<span class="params">value</span>) =&gt;</span> <span class="built_in">console</span>.log(value))</span><br><span class="line"><span class="comment">// 还可以简写成:</span></span><br><span class="line"></span><br><span class="line">hello().then(<span class="built_in">console</span>.log)</span><br></pre></td></tr></table></figure>
+<p>将 <code>async</code> 关键字加到函数申明中，可以告诉它们返回的是 promise，而不是直接返回值。此外，它避免了同步函数为支持使用 await 带来的任何潜在开销。在函数声明为 <code>async</code> 时，JavaScript引擎会添加必要的处理，以优化你的程序。</p>
+<h3 id="await"><a href="#await" class="headerlink" title="await"></a>await</h3><p>当 <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/await" target="_blank" rel="noopener">await</a> 关键字与异步函数一起使用时，它的真正优势就变得明显了 —— 事实上， <strong>await 只在异步函数里面才起作用</strong>。它可以放在任何异步的，基于 promise 的函数之前。它会暂停代码在该行上，直到 promise 完成，然后返回结果值。在暂停的同时，其他正在等待执行的代码就有机会执行了。</p>
+<p>⚠️您可以在调用任何返回Promise的函数时使用 <strong>await</strong>，包括Web API函数。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">return</span> greeting = <span class="keyword">await</span> <span class="built_in">Promise</span>.resolve(<span class="string">"Hello"</span>);</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line">hello().then(alert);</span><br></pre></td></tr></table></figure>
+<h3 id="利用async-await重写Promise"><a href="#利用async-await重写Promise" class="headerlink" title="利用async/await重写Promise"></a>利用<code>async/await</code>重写<code>Promise</code></h3><p>使用<code>Promise</code>写的异步:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">fetch(<span class="string">'coffee.jpg'</span>)</span><br><span class="line">.then(<span class="function"><span class="params">response</span> =&gt;</span> response.blob())</span><br><span class="line">.then(<span class="function"><span class="params">myBlob</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> objectURL = URL.createObjectURL(myBlob);</span><br><span class="line">  <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  image.src = objectURL;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(image);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'There has been a problem with your fetch operation: '</span> + e.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>看起来和 使用回掉函数处理异步的写法很相像.</p>
+<p>使用<code>async/await</code>写<code>Promise</code>异步:</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">myFetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'coffee.jpg'</span>);</span><br><span class="line">  <span class="keyword">let</span> myBlob = <span class="keyword">await</span> response.blob();</span><br><span class="line"></span><br><span class="line">  <span class="keyword">let</span> objectURL = URL.createObjectURL(myBlob);</span><br><span class="line">  <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  image.src = objectURL;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(image);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myFetch()</span><br><span class="line">.catch(<span class="function"><span class="params">e</span> =&gt;</span> &#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">'There has been a problem with your fetch operation: '</span> + e.message);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p><code>myFetch</code>内部看起来就像写同步函数一样.它使代码简单多了更容易理解 —— 去除了到处都是 <code>.then()</code> 代码块！</p>
+<h3 id="async-await处理异常"><a href="#async-await处理异常" class="headerlink" title="async/await处理异常"></a><code>async/await</code>处理异常</h3><p><code>Promise</code>的<code>reject</code>状态是无法在 <code>await</code>获取到的. 正确的处理方式是,你应该用<code>try...catch</code>来处理可能出现的异常</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">myFetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">try</span> &#123;</span><br><span class="line">    <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'coffee.jpg'</span>);</span><br><span class="line">    <span class="keyword">let</span> myBlob = <span class="keyword">await</span> response.blob();</span><br><span class="line"></span><br><span class="line">    <span class="keyword">let</span> objectURL = URL.createObjectURL(myBlob);</span><br><span class="line">    <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">    image.src = objectURL;</span><br><span class="line">    <span class="built_in">document</span>.body.appendChild(image);</span><br><span class="line">  &#125; <span class="keyword">catch</span>(e) &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(e);</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myFetch();</span><br></pre></td></tr></table></figure>
+<p>或者在外部函数 添加<code>catch</code>方法</p>
+ <figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">myFetch</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">let</span> response = <span class="keyword">await</span> fetch(<span class="string">'coffee.jpg'</span>);</span><br><span class="line">  <span class="keyword">return</span> <span class="keyword">await</span> response.blob();</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">myFetch().then(<span class="function">(<span class="params">blob</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="keyword">let</span> objectURL = URL.createObjectURL(blob);</span><br><span class="line">  <span class="keyword">let</span> image = <span class="built_in">document</span>.createElement(<span class="string">'img'</span>);</span><br><span class="line">  image.src = objectURL;</span><br><span class="line">  <span class="built_in">document</span>.body.appendChild(image);</span><br><span class="line">&#125;)</span><br><span class="line">.catch(<span class="function">(<span class="params">e</span>) =&gt;</span></span><br><span class="line">  <span class="built_in">console</span>.log(e)</span><br><span class="line">);</span><br></pre></td></tr></table></figure>
+<p>这是因为 <code>.catch()</code> 块将捕获来自异步函数调用和promise链中的错误。如果您在此处使用了<code>try/catch</code> 代码块，则在调用 <code>myFetch()</code> 函数时，您仍可能会收到未处理的错误。</p>
+<h3 id="async-await的缺陷"><a href="#async-await的缺陷" class="headerlink" title="async/await的缺陷"></a><code>async/await</code>的缺陷</h3><p><code>Async/await</code> 让你的代码看起来是同步的，在某种程度上，也使得它的行为更加地同步。 <code>await</code> 关键字会阻塞其后的代码，直到promise完成，就像执行同步操作一样。它确实可以允许其他任务在此期间继续运行，但您自己的代码被阻塞。</p>
+<p>这意味着您的代码可能会因为大量<code>await</code>的promises相继发生而变慢。每个<code>await</code>都会等待前一个完成，而你实际想要的是所有的这些promises同时开始处理（就像我们没有使用<code>async/await</code>时那样）。</p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2018/12/12/Javascript中的await和Promise/">https://fynn90.github.io/2018/12/12/Javascript中的await和Promise/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Promise/">Promise</a>
+            
+              <a href="/tags/Async-Await/">Async/Await</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2018/12/16/Canvas变形/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Canvas变形</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2018/11/21/npm私有仓库/">
+        <span class="next-text nav-default">搭建NPM私有仓库</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
