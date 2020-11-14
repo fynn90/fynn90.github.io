@@ -17,8 +17,12 @@
 
 
 
+  <meta name="description" content="Java异常处理"/>
 
 
+
+
+  <meta name="keywords" content="Java, Fynn's Blog" />
 
 
 
@@ -38,7 +42,7 @@
 
 
 
-<link rel="canonical" href="https://fynn90.github.io/"/>
+<link rel="canonical" href="https://fynn90.github.io/2020/11/14/Java异常处理/"/>
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
@@ -105,7 +109,7 @@
 
 
 
-    <title> Fynn's Blog </title>
+    <title> Java异常处理 - Fynn's Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -198,14 +202,12 @@
         <div class="content-wrapper">
           <div id="content" class="content">
             
-  <section id="posts" class="posts">
-    
-      
+  
   <article class="post">
     <header class="post-header">
       <h1 class="post-title">
         
-          <a class="post-link" href="/2020/11/14/Java异常处理/">Java异常处理</a>
+          Java异常处理
         
       </h1>
 
@@ -232,14 +234,17 @@
 
     
     
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Java异常层次结构"><span class="toc-text">Java异常层次结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Errors"><span class="toc-text">Errors</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Exceptions"><span class="toc-text">Exceptions</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java异常类型"><span class="toc-text">Java异常类型</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#RuntimeException"><span class="toc-text">RuntimeException</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#IOException"><span class="toc-text">IOException</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Java异常处理"><span class="toc-text">Java异常处理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#捕捉和处理异常"><span class="toc-text">捕捉和处理异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try…catch-block"><span class="toc-text">try…catch block</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#多个catch-模块"><span class="toc-text">多个catch 模块</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-finally"><span class="toc-text">Java finally</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-…-catch详细细节"><span class="toc-text">try … catch详细细节</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获多个异常"><span class="toc-text">捕获多个异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-width-resources-语句"><span class="toc-text">try-width-resources 语句</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#throw-和-throws"><span class="toc-text">throw 和 throws</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#throws-关键字"><span class="toc-text">throws 关键字</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#引发多个异常"><span class="toc-text">引发多个异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throws-VS-try…catch…finally"><span class="toc-text">throws VS try…catch…finally</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#throw-关键字"><span class="toc-text">throw 关键字</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#捕获多个异常-1"><span class="toc-text">捕获多个异常</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#一个catch-捕获多个异常"><span class="toc-text">一个catch 捕获多个异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#捕获基础异常"><span class="toc-text">捕获基础异常</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#try-with-resources"><span class="toc-text">try-with-resources</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#被抑制异常"><span class="toc-text">被抑制异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#检查被抑制的异常"><span class="toc-text">检查被抑制的异常</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-with-resources的优势"><span class="toc-text">try-with-resources的优势</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#finally块不需要关闭资源"><span class="toc-text">finally块不需要关闭资源</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#try-with-resources获取多资源"><span class="toc-text">try-with-resources获取多资源</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Java-9-增强-try-with-resources"><span class="toc-text">Java 9 增强 try-with-resources</span></a></li></ol></li></ol>
+    </div>
+  </div>
+
 
     <div class="post-content">
       
-        
-        
-
-        
-          <p>异常是程序执行期间发生的意外事件。它影响程序指令的流程，这可能导致程序异常终止。</p>
+        <p>异常是程序执行期间发生的意外事件。它影响程序指令的流程，这可能导致程序异常终止。</p>
 <p>出于多种原因可能会发生异常。他们之中有一些是：</p>
 <ul>
 <li>无效的用户输入</li>
@@ -459,1206 +464,87 @@
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line">Scanner scanner = <span class="keyword">new</span> Scanner(<span class="keyword">new</span> File(<span class="string">"testRead.txt"</span>));</span><br><span class="line"><span class="keyword">try</span> (scanner) &#123;</span><br><span class="line">  <span class="comment">// code</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>处理此错误,Java 9改进了<code>try-with-resources</code>语句，因此即使未在本地声明资源的引用，也可以使用。上面的代码现在将执行，没有任何编译错误。</p>
 
-        
       
     </div>
 
     
-
-    
-
-  </article>
-
-    
       
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2020/10/30/Java的OOP/">Java的OOP</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-10-30
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Java-language/">Java language</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2020/10/30/Java的OOP/"
-             data-title="Java的OOP">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
       
-        
-        
-          
-        
 
-        
-          <p>Java是一个严格的面相对象(OOP)语言,面向对象方法的核心概念是将复杂的问题分解为较小的对象.具体的对象应该尽量做聚合抽象.得到共同的抽象父类.</p>
-<p>一个对象有两个部分组成:状态和行为. 以一个高级点的自行车🚴‍♀️为例子:</p>
-<ol>
-<li>状态: 速度、档位</li>
-<li>行为: 换档、刹车</li>
-</ol>
-<p>##<a href="https://www.programiz.com/java-programming/class-objects" target="_blank" rel="noopener"> 类和实例对象</a></p>
-<p>类(<code>Class</code>)是对象(<code>Object</code>)的蓝图,在我们创建一个<code>Object</code>之前我们应该先定义一个<code>Class</code>.</p>
-<p>我们可以将<code>Class</code>视为房子的草图（原型）。它包含有关地板，门，窗户等的所有详细信息。基于这些描述，我们建造了房屋。房子是<code>Object</code>。</p>
-          <div class="read-more">
-            <a href="/2020/10/30/Java的OOP/" class="read-more-link">阅读更多</a>
-          </div>
-        
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2020/11/14/Java异常处理/">https://fynn90.github.io/2020/11/14/Java异常处理/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
       
     </div>
+  </div>
 
     
 
     
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
+      <footer class="post-footer">
         
-          <a class="post-link" href="/2020/10/19/Java基础语法/">Java基础语法</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-10-19
-        </span>
-        
-          <div class="post-category">
+          <div class="post-tags">
             
-              <a href="/categories/Java-language/">Java language</a>
+              <a href="/tags/Java/">Java</a>
             
           </div>
         
         
-        <div class="post-visits"
-             data-url="/2020/10/19/Java基础语法/"
-             data-title="Java基础语法">
-            阅读次数
-          </div>
         
-      </div>
-    </header>
-
+  <nav class="post-nav">
     
     
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>Java是一门通用性编程语言，其特征包括但不限于面对对象、跨平台、多线程、高性能等等.Java的最大的特点是跨平台，利用及其稳定的Java虚拟机（Java Virtual Machine）同样的源代码可能在任何平台运行。这不仅仅提高了软件的可移植性，也简化了开发者的工作。</p>
-<p>Java是一门设计优良的编程语言,它是一门完全的面向对象编程语言,面向对象编程是一种重要的编程思想,对于构建复杂的系统有很大的积极作用.</p>
-<p><img src="https://pic.downk.cc/item/5f5e082f160a154a67999b86.jpg" style="zoom:67%;"></p>
-          <div class="read-more">
-            <a href="/2020/10/19/Java基础语法/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2020/07/25/Docker入门/">Docker入门</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-07-25
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/DevOps/">DevOps</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2020/07/25/Docker入门/"
-             data-title="Docker入门">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="https://docs.docker.com/" target="_blank" rel="noopener">docker</a>是一个开源的应用容器引擎,基于Go语言开发并遵循apache2.0协议开源.docker可以让开发者打包他们的应用以及依赖包到一个轻量级、可移植的容器中，然后发布到任何流行的linux服务器，也可以实现虚拟化。</p>
-<p><img src="https://pic.downk.cc/item/5f1bfe5914195aa594939f6f.png" alt=""><br>
-          <div class="read-more">
-            <a href="/2020/07/25/Docker入门/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2020/05/23/mxGraph开发指南/">mxGraph开发手册</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-05-23
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Front-End/">Front End</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2020/05/23/mxGraph开发指南/"
-             data-title="mxGraph开发手册">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h2 id="mxGraph简介"><a href="#mxGraph简介" class="headerlink" title="mxGraph简介"></a><a href="https://jgraph.github.io/mxgraph/" target="_blank" rel="noopener">mxGraph简介</a></h2><blockquote>
-<p>mxGraph是使用SVG和HTML进行渲染的完全客户端JavaScript图形库。</p>
-</blockquote>
-<p><a href="https://github.com/jgraph/mxgraph/tree/v1" target="_blank" rel="noopener">mxGraph</a>支持IE 11, Chrome 43+, Firefox 45+, Safari 10 and later, Opera 30+,未使用第三方JS.mxGraph提供后端.net、java的接口,以支持在后端进行图形的修改、图形I/O、图形布局.</p>
-<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello, World! example for mxGraph<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Sets the basepath for the library if not in same directory --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">      mxBasePath = '../src';</span></span><br><span class="line"><span class="undefined">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Loads and initializes the library --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span> <span class="attr">src</span>=<span class="string">"../src/js/mxClient.js"</span>&gt;</span><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Example code --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">"text/javascript"</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined">      // Program starts here. Creates a sample graph in the</span></span><br><span class="line"><span class="undefined">      // DOM node with the specified ID. This function is invoked</span></span><br><span class="line"><span class="undefined">      // from the onLoad event handler of the document (see below).</span></span><br><span class="line"><span class="undefined">      function main(container)</span></span><br><span class="line"><span class="undefined">      &#123;</span></span><br><span class="line"><span class="undefined">         // Checks if the browser is supported</span></span><br><span class="line"><span class="undefined">         if (!mxClient.isBrowserSupported())</span></span><br><span class="line"><span class="undefined">         &#123;</span></span><br><span class="line"><span class="undefined">            mxUtils.error('Browser is not supported!', 200, false);</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="undefined">         else</span></span><br><span class="line"><span class="undefined">         &#123;</span></span><br><span class="line"><span class="undefined">            // Creates the graph inside the given container</span></span><br><span class="line"><span class="undefined">            var graph = new mxGraph(container);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            // Enables rubberband selection</span></span><br><span class="line"><span class="undefined">            new mxRubberband(graph);</span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined">            // Gets the default parent for inserting new cells. This</span></span><br><span class="line"><span class="undefined">            // is normally the first child of the root (ie. layer 0).</span></span><br><span class="line"><span class="undefined">            var parent = graph.getDefaultParent();</span></span><br><span class="line"><span class="undefined">            // 禁止容器右键事件</span></span><br><span class="line"><span class="undefined">            mxEvent.disableContextMenu(ele);</span></span><br><span class="line"><span class="undefined">            // Adds cells to the model in a single step</span></span><br><span class="line"><span class="undefined">            graph.getModel().beginUpdate();</span></span><br><span class="line"><span class="undefined">            try</span></span><br><span class="line"><span class="undefined">            &#123;</span></span><br><span class="line"><span class="undefined">               var v1 = graph.insertVertex(parent, null,</span></span><br><span class="line"><span class="undefined">                        'Hello,', 20, 20, 80, 30);</span></span><br><span class="line"><span class="undefined">               var v2 = graph.insertVertex(parent, null,</span></span><br><span class="line"><span class="undefined">                        'World!', 200, 150, 80, 30);</span></span><br><span class="line"><span class="undefined">               var e1 = graph.insertEdge(parent, null, '', v1, v2);</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">            finally</span></span><br><span class="line"><span class="undefined">            &#123;</span></span><br><span class="line"><span class="undefined">               // Updates the display</span></span><br><span class="line"><span class="undefined">               graph.getModel().endUpdate();</span></span><br><span class="line"><span class="undefined">            &#125;</span></span><br><span class="line"><span class="undefined">         &#125;</span></span><br><span class="line"><span class="undefined">      &#125;;</span></span><br><span class="line"><span class="undefined">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Page passes the container for the graph to the program --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">"main(document.getElementById('graphContainer'))"</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Creates a container for the graph with a grid wallpaper --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"graphContainer"</span></span></span><br><span class="line"><span class="tag">      <span class="attr">style</span>=<span class="string">"overflow:hidden;width:321px;height:241px;background:url('editors/images/grid.gif')"</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2020/05/23/mxGraph开发指南/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2020/05/16/用于制作 UML(或 BPMN、ERD 等)图表的JavaScript 库/">目前比较流行的用户制作(UML、ERD、BPMN)的图表库</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-05-16
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Front-End/">Front End</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2020/05/16/用于制作 UML(或 BPMN、ERD 等)图表的JavaScript 库/"
-             data-title="目前比较流行的用户制作(UML、ERD、BPMN)的图表库">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>目前比较流行的用户制作(UML、ERD、BPMN)的图表库有:</p>
-<ul>
-<li>JointJS &amp; Rappid(商业版本)</li>
-<li>jsPlumb</li>
-<li>GoJS</li>
-<li>AntV G6</li>
-</ul>
-<h2 id="JointJS-amp-Rappid-JointJS-的商业"><a href="#JointJS-amp-Rappid-JointJS-的商业" class="headerlink" title="JointJS &amp;Rappid(JointJS 的商业)"></a><a href="https://resources.jointjs.com/tutorial" target="_blank" rel="noopener">JointJS &amp;Rappid(JointJS 的商业)</a></h2><p>JointJS图表库，通过JavaScript和SVG为所有现代浏览器创建完全交互式的图表工具。MV体系结构将图形，元素和链接模型与它们的呈现分离开来，这使将JointJS轻松插入后端应用程序变得容易。 JointJS基于Backbone MVC库构建的，并依赖于jQuery和Lodash。</p>
-<p><strong>核心概念</strong></p>
-<p>每个概念分别对应view和model两种概念（前后分别是model和view概念）：</p>
-<ul>
-<li>element,elementView 元素</li>
-<li>link,linkView 连线</li>
-<li>graph,paper 画布</li>
-</ul>
-<p><img src="https://resources.jointjs.com/tutorials/joint/tutorials/images/arch.png" alt=""></p>
-<p>jointJS中，视图和模型是分离的，不同概念的模型和视图之间是不能发生联系的，比如把元素添加到画布上，可以使用element.addTo(graph) 或者 graph.add(element) ，但是不能使用element.addTo(paper)这样的操作，因为element是model概念，而paper是视图概念，两者不能直接操作。</p>
-          <div class="read-more">
-            <a href="/2020/05/16/用于制作 UML(或 BPMN、ERD 等)图表的JavaScript 库/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2020/05/10/mxGraph介绍/">mxGraph介绍</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2020-05-10
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Front-End/">Front End</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2020/05/10/mxGraph介绍/"
-             data-title="mxGraph介绍">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <h1 id="mxGraph是什么"><a href="#mxGraph是什么" class="headerlink" title="mxGraph是什么"></a>mxGraph是什么</h1><blockquote>
-<p>mxGraph是一个JavaScript图表库，可以快速创建交互式图形和图表应用程序，这些应用程序可以在其供应商支持的任何主流浏览器中本地运行。</p>
-</blockquote>
-<p><a href="https://jgraph.github.io/mxgraph/" target="_blank" rel="noopener">mxGraph</a>是用JS编写,通过SVG和HTML进行绘图的渲染,没有依赖其他项目.</p>
-<p>mxGraph在2005年创建，作为商业项目一直持续到2016年，2016年创建者以Apache 2.0开源协议在<a href="https://github.com/jgraph/mxgraph" target="_blank" rel="noopener">GitHub</a>上公布源码。</p>
-<p>但到现在还有维护更新,流行的免费绘图平台<a href="https://www.draw.io/" target="_blank" rel="noopener">draw.io</a>是基于mxGraph开发.</p>
-<p>mxGraph支持目前所有主流的浏览器: (IE11, Chrome 43+,Firefox 45+,Safari 10, Edge 31+)</p>
-<p>⚠️mxGraph提供图形关系视图绘制接口,业务场景中的功能需要自己调用接口实现.</p>
-<p>draw.io是个图形绘制平台,提供了一套完整的图形绘制功能.<br>
-          <div class="read-more">
-            <a href="/2020/05/10/mxGraph介绍/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/10/11/算法知识学习图谱/">算法知识学习图谱</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-10-11
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/算法/">算法</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/10/11/算法知识学习图谱/"
-             data-title="算法知识学习图谱">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>算法知识学习图谱,内容按照下面👇<a href="https://naotu.baidu.com/file/0a53d3a5343bd86375f348b2831d3610?token=5ab1de1c90d5f3ec" target="_blank" rel="noopener">图片</a>设计</p>
-<p><img src="https://ae01.alicdn.com/kf/H4526e15fce37491e91935ab0936881e3c.png" alt=""></p>
-          <div class="read-more">
-            <a href="/2019/10/11/算法知识学习图谱/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/10/10/数据结构知识图谱/">数据结构知识图谱</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-10-10
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/算法/">算法</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/10/10/数据结构知识图谱/"
-             data-title="数据结构知识图谱">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>该文档用于记录数据结构一些知识点和它的解释.记录的内容是按下面<a href="https://naotu.baidu.com/file/b832f043e2ead159d584cca4efb19703?token=7a6a56eb2630548c" target="_blank" rel="noopener">图片</a>表示而来👇<img src="https://i.loli.net/2019/10/09/5DpGHnduYBWjQPy.png" alt="脑图"></p>
-          <div class="read-more">
-            <a href="/2019/10/10/数据结构知识图谱/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/18/十大经典排序算法(上)/">十大经典排序算法(上)</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-18
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/算法/">算法</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/18/十大经典排序算法(上)/"
-             data-title="十大经典排序算法(上)">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>算法是计算机世界永恒的主题,现在世界其实是被算法驱动着进步.学习算法并能熟练在自己业务场景中应用各种算法应该是每个程序员必备的素质.从最基础的十大经典排序算法作为开始,开启自己系统学习算法之路!</p>
-<h2 id="冒泡排序-Bubble-Sort"><a href="#冒泡排序-Bubble-Sort" class="headerlink" title="冒泡排序(Bubble Sort)"></a>冒泡排序(Bubble Sort)</h2><h3 id="思想"><a href="#思想" class="headerlink" title="思想"></a>思想</h3><ul>
-<li>冒泡排序只会操作相邻的两个元素</li>
-<li>每次冒泡操作都会对相邻的两个元素进行比较,看是否满足大小关系要求.如果不满足就让它们俩互换.</li>
-<li>冒泡排序算法最多进行 n-1次(n 排序数组长度),每次算法执行元素对比次数是n - i -1次(n 排序数组长度, i 当前算法循环次数)</li>
-</ul>
-<p><img src="https://i.loli.net/2019/09/15/ZKfk8jYn5VOP6xr.gif" alt="4208590040-5ac42b210af83_articlex.gif"></p>
-<p><img src="https://image-static.segmentfault.com/116/807/116807884-57dcd3a8c4bf4_articlex" alt="116807884-57dcd3a8c4bf4_articlex.gif"></p>
-          <div class="read-more">
-            <a href="/2019/09/18/十大经典排序算法(上)/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/13/JS_Proxy_and_Reflect/">Proxy、Reflect</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-13
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Javascript/">Javascript</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/13/JS_Proxy_and_Reflect/"
-             data-title="Proxy、Reflect">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>从<a href="https://tc39.es/ecma262/#sec-reflection" target="_blank" rel="noopener">ECMAScript2015</a>开始,JavaScript新增了<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Proxy" target="_blank" rel="noopener">Proxy</a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Reflect" target="_blank" rel="noopener">Reflect</a>对象.通过这两个对象你可以拦截并自定义语言原来的操作行为(例如:属性查找、赋值、枚举、函数调用等).借助这两个对象你可以在JavaScript进行元级别进行编程(<a href="[https://zh.wikipedia.org/wiki/%E5%85%83%E7%BC%96%E7%A8%8B](https://zh.wikipedia.org/wiki/元编程">元编程</a>)).</p>
-          <div class="read-more">
-            <a href="/2019/09/13/JS_Proxy_and_Reflect/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/10/Object.defineProperty/">Object.defineProperty</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-10
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Javascript/">Javascript</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/10/Object.defineProperty/"
-             data-title="Object.defineProperty">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><code>Object.defineProperty</code>可以用来给<code>Object</code>增加新的属性或更新已有属性,并返回该<code>Object</code>.</p>
-<p><code>Object.defineProperty</code>并不单单只是让我们手动给<code>Object</code>添加或修改属性值,它最大的特点是我们可以给对象单个属性值添加属性描述符(PropertyDescriptor).</p>
-<p>属性描述符可以给当前对象属性添加额外的一些功能,例如:是否可以被修改、是否可以被枚举、捕获该属性的值的变化和读取.</p>
-<p><em>注意: 冻结一个对象属性操作可以用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" target="_blank" rel="noopener"><code>Object.freeze()</code></a></em></p>
-<p><em>注意: 可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" target="_blank" rel="noopener">Object.defineProperties</a>批量给对象添加或修改属性描述符</em></p>
-          <div class="read-more">
-            <a href="/2019/09/10/Object.defineProperty/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/09/window.requestAnimationFrame/">requestAnimationFrame</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-09
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/BOM/">BOM</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/09/window.requestAnimationFrame/"
-             data-title="requestAnimationFrame">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>在制作页面动画时,我们可以通过定时器(<code>setTimeout</code>或<code>setInterval</code>)循环操作DOM节点来实现动画的效果.</p>
-<p>但是<a href="https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-tw" target="_blank" rel="noopener">Google 最佳JS实践</a>要求使用<code>requestAnimationFrame</code>代替定时器.这是为什么呢?</p>
-<p>原因有三个:</p>
-<ol>
-<li><code>setTimeout\setInterval</code>并不和JS在一个线程上,虽然你可以模拟浏览器刷新频率(1000/60),但如果JS线程执行时间较长,JS出超过这个时间去保存有<code>setTimeout\setInterval</code>回调的队列中拿回调执行.这个时候页面会出现卡顿的情况.</li>
-<li>在一些浏览器中,运行有<code>setTimeout\setInterval</code>的脚本的页面,即使当前未被打开,定时器脚本依然是在后台运行的.这就浪费了计算机资源.</li>
-<li>并不是所有的浏览器都是每秒60帧频率,所以<code>setTimeout\setInterval</code>的定时时间需要适配设备.</li>
-</ol>
-<p>用<code>requestAnimationFrame</code>就不会有上面这三个问题!</p>
-          <div class="read-more">
-            <a href="/2019/09/09/window.requestAnimationFrame/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/02/设计模式-状态模式/">设计模式-状态模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-02
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/02/设计模式-状态模式/"
-             data-title="设计模式-状态模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>状态模式是一种行为软件设计模式.一个对象在其内部状态改变时会改变它的行为.各种状态和状态改变行为的操作是被独立封装的..</p>
-<p>一般情况是:如果一个事物有多钟状态,我们用一个变量保存当前状态名(string),通过<code>if-else</code> 做状态的判断,然后进行状态的变更.</p>
-<p>这样最大的问题是: 你需要将所有的状态和变更状态后的行为都放在一个方法里.这个方法会变得很臃肿和复杂.会变的难以阅读和维护.</p>
-<p>状态模式:将各种状态和状态之间切换的行为封装在一起.只需要一个Context来触发状态变化,而状态变化后引起的行为操作Context不用处理.</p>
-<p>状态模式的优点:</p>
-<ol>
-<li>状态和行为关系封装在一起,增加新的状态和状态转换会很容易</li>
-<li>对象代替字符串保存当前状态,状态的可切换一目了然</li>
-<li>避免了Context无限膨胀</li>
-<li>Context中的请求动作和状态类中封装的行为非常容易,它们独立变化而不互相影响</li>
-</ol>
-<p>状态模式的缺陷:</p>
-<ol>
-<li>逻辑分散在状态类中,虽然避免的条件分支但也导致了逻辑分散问题</li>
-<li>新增了封装状态和行为变化的对象,增加了代码量.</li>
-</ol>
-          <div class="read-more">
-            <a href="/2019/09/02/设计模式-状态模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/25/设计模式-装饰者模式/">设计模式-装饰者模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-25
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/25/设计模式-装饰者模式/"
-             data-title="设计模式-装饰者模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>饰模式是种动态的向一个类(方法)添加行为的设计模式.它不会直接修改原类(方法).</p>
-<p>装饰模式比生成子类更灵活,它不会影响原来的类(方法),可以增对单独的方法增加新的行为.</p>
-<blockquote>
-<p>在面向对象的编程中，装饰器模式是一种设计模式，它允许将行为静态或动态地添加到单个对象，而不会影响同一类中其他对象的行为。装饰器模式通常用于遵守单一责任原则，因为它允许在具有独特关注区域的类之间划分功能。</p>
-</blockquote>
-          <div class="read-more">
-            <a href="/2019/08/25/设计模式-装饰者模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/23/设计模式-职责链模式/">设计模式-职责链模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-23
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/23/设计模式-职责链模式/"
-             data-title="设计模式-职责链模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>职责链模式是一种行为型设计模式,它将一些列可能会处理请求的对象连接成在一起,请求在这些对象间传递,直到遇到可以处理它的对象.这些处理请求的对象称为链中的节点.</p>
-<p>职责链模式优点:</p>
-<ul>
-<li>解耦请求的发送者和N个接受者之间复杂关系.</li>
-<li>手动指定起始节点.</li>
-<li>链中的节点对象可以灵活拆分重组.</li>
-</ul>
-<p><strong>注意:</strong> 职责链模式有个缺陷是,大部分的节点并没有实质的作用,它们的作用仅仅是让请求传递下去,从性能方面考虑我们要避免过长的职责链带来的性能消耗.</p>
-<p>职责链模式可以很好地帮助我们管理代码,降低发起请求的对象和处理请求对象之间的耦合性.</p>
-<p><img src="https://i.loli.net/2019/08/22/LxpzCP1cETB9SnX.png" alt="5bd5b48157043.png"><br>
-          <div class="read-more">
-            <a href="/2019/08/23/设计模式-职责链模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/22/设计模式-中介者模式/">设计模式-中介者模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-22
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/22/设计模式-中介者模式/"
-             data-title="设计模式-中介者模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>中介者模式是一种行为型设计模式,它的目的是通过增加一个中介对象,解除对象与对象之间的紧耦合关系.</p>
-<p>增加中介对象后,所有的相关对象都通过中介对象来通信,而不是互相引用,所有当一个对象发生改变时,只需要通知中介者对象即可.</p>
-<p><img src="https://i.loli.net/2019/08/22/N9zC85GOMHRdxnl.png" alt="mediator-pattern22.png"><br>
-          <div class="read-more">
-            <a href="/2019/08/22/设计模式-中介者模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/20/设计模式-享元模式/">设计模式-享元模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-20
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/20/设计模式-享元模式/"
-             data-title="设计模式-享元模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>享元模式(Flyweight)是一种软件设计模式.是通过将类似的对象进行共享,达到最小化内存的使用对象.</p>
-<p>享元模式要求将对象的属性划分为内部状态(不会改变属性)和外部状态(会动态变化的属性).享元模式的目标是尽量减少共享对象的数量.它的关键点是划分内部状态和外部状态.</p>
-<p>享元模式特点:</p>
-<ul>
-<li>内部状态存储于对象内部</li>
-<li>内部状态可以被一些对象共享</li>
-<li>内部状态独立于具体的场景,通常不会变化</li>
-<li>外部状态取决于具体的场景,并根据场景而变化,外部状态不会被共享.</li>
-</ul>
-<p><strong>注意:</strong> 享元模式是一种用时间换空间的优化模式.<br>
-          <div class="read-more">
-            <a href="/2019/08/20/设计模式-享元模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/19/设计模式-模板方法模式/">设计模式-模板方法模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-19
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/19/设计模式-模板方法模式/"
-             data-title="设计模式-模板方法模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>模板方法模式是一种行为设计模式,它是需要通过继承实现的设计模式.</p>
-<p>模板方法模式有两个部分组成.</p>
-<ol>
-<li>抽象父类.它定义了算法操作框架和具体的算法执行流程.(一般在父类定义 init 方法作执行算法)</li>
-<li>具体实现抽象父类的子类. 子类实现了父类定义的算法结构,但最后的执行通过父类实现的方法执行.</li>
-</ol>
-<p><strong>注意:</strong> 父类只负责定义算法框架,具体实现有子类完成.不同的子类,实现抽象类定义的抽象方法可以不同,但子类不应该改变算法的执行步骤!<br>
-          <div class="read-more">
-            <a href="/2019/08/19/设计模式-模板方法模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/19/设计模式-适配器模式/">设计模式-适配器模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-08-19
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/08/19/设计模式-适配器模式/"
-             data-title="设计模式-适配器模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>适配器模式是一种很简单的软件设计模式,它允许将现有的类(方法)用作另一个接口.它通常用于使现有类(方法)与其他类(方法)一起工作而无需修改其源码.</p>
-<p>适配器模式看起和装饰者模式、代理模式看起来很像.但它们在设计目的上还是有不同的:</p>
-<ul>
-<li>适配器模式主要是用来解决两个已有接口之间不匹配的问题,它不考虑这些接口具体的实现,也不考虑它们将如何演化.适配器不需要改变已有的接口,就能够使它们协同作用.</li>
-<li>装饰者模式和代理模式也不会改变原有对象的接口,但装饰者模式的作用是为了给对象增加功能.代理模式是为了控制对象的访问,通常也只包装一次.</li>
-</ul>
-          <div class="read-more">
-            <a href="/2019/08/19/设计模式-适配器模式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-  </section>
-
-  
-  <nav class="pagination">
-    
-    
-      <a class="next" href="/page/2/">
-        <span class="next-text">下一页</span>
+      <a class="next" href="/2020/10/30/Java的OOP/">
+        <span class="next-text nav-default">Java的OOP</span>
+        <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
     
   </nav>
 
+      </footer>
+    
+
+  </article>
+
 
           </div>
           
+  <div class="comments" id="comments">
+    
+  </div>
+
 
         </div>
       </main>
@@ -1743,6 +629,11 @@
     </div>
 
     
+  
+  
+
+  
+
 
 
     

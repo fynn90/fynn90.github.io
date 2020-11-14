@@ -205,6 +205,63 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2017/08/10/ES6中的Symbol/">ES6中的Symbol</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2017-08-10
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2017/08/10/ES6中的Symbol/"
+             data-title="ES6中的Symbol">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><code>Symbol</code>是ES6开始新增的基本数据类型(<a href="https://developer.mozilla.org/en-US/docs/Glossary/Primitive" target="_blank" rel="noopener">primitive data type</a>).它最大的特点是每一个<code>Symbol([description])</code>函数返回<code>symbol</code>类型的值是唯一的.它可以作为对象的key以避免key冲突.</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> symbol1 = <span class="built_in">Symbol</span>(); <span class="comment">// 可以不传任何参数</span></span><br><span class="line"><span class="keyword">const</span> symbol2 = <span class="built_in">Symbol</span>(<span class="number">42</span>);</span><br><span class="line"><span class="keyword">const</span> symbol3 = <span class="built_in">Symbol</span>(<span class="string">'foo'</span>);</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="keyword">typeof</span> symbol1);</span><br><span class="line"><span class="comment">// expected output: "symbol"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(symbol3.toString());</span><br><span class="line"><span class="comment">// expected output: "Symbol(foo)"</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Symbol</span>(<span class="string">'foo'</span>) === <span class="built_in">Symbol</span>(<span class="string">'foo'</span>));</span><br><span class="line"><span class="comment">// expected output: false</span></span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2017/08/10/ES6中的Symbol/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2017/07/18/Javascript单元测试/">JavaScript Code Test</a>
         
       </h1>
