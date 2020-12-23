@@ -205,6 +205,71 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2019/08/20/设计模式-享元模式/">设计模式-享元模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/设计模式/">设计模式</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/08/20/设计模式-享元模式/"
+             data-title="设计模式-享元模式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>享元模式(Flyweight)是一种软件设计模式.是通过将类似的对象进行共享,达到最小化内存的使用对象.</p>
+<p>享元模式要求将对象的属性划分为内部状态(不会改变属性)和外部状态(会动态变化的属性).享元模式的目标是尽量减少共享对象的数量.它的关键点是划分内部状态和外部状态.</p>
+<p>享元模式特点:</p>
+<ul>
+<li>内部状态存储于对象内部</li>
+<li>内部状态可以被一些对象共享</li>
+<li>内部状态独立于具体的场景,通常不会变化</li>
+<li>外部状态取决于具体的场景,并根据场景而变化,外部状态不会被共享.</li>
+</ul>
+<p><strong>注意:</strong> 享元模式是一种用时间换空间的优化模式.<br>
+          <div class="read-more">
+            <a href="/2019/08/20/设计模式-享元模式/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2019/08/19/设计模式-模板方法模式/">设计模式-模板方法模式</a>
         
       </h1>
@@ -1322,77 +1387,6 @@
           <p>最近写了一个脚本使用JS读取Excel的数据后进行随机组合排列后再写入Excel文件。使用到了<a href="https://github.com/mgcrea/node-xlsx" target="_blank" rel="noopener"><strong>node-xlsx</strong></a> 库用于操作Excel文件。为什么没有使用大名鼎鼎的<a href="https://github.com/SheetJS/js-xlsx" target="_blank" rel="noopener"><strong>js-xlsx</strong></a>，是因为发现<strong>node-xlsx</strong>其实是依赖于<strong>js-xlsx</strong>的，它对<strong>js-xlsx</strong>接口进行了封装对使用者更友好些，特别是读取Excel文件解析后的数据格式更友好些。<br>
           <div class="read-more">
             <a href="/2019/01/18/使用JS操作Excel/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/01/05/Canvas动画/">Canvas动画</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-01-05
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Front-End/">Front End</a>
-            
-              <a href="/categories/Front-End/Canvas/">Canvas</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/01/05/Canvas动画/"
-             data-title="Canvas动画">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Basic_animations" target="_blank" rel="noopener">Canvas动画</a>的原理就是利用JavaScript连续的重绘图形，形成动图的效果。</p>
-<p>主要会使用到的技术点有：</p>
-<ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setInterval" target="_blank" rel="noopener"><strong>setInterval</strong></a> 定时执行某个函数，实现连续绘制图形。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/setTimeout" target="_blank" rel="noopener"><strong>setTimeout</strong></a> 一定时候后执行某个函数，可以实现连续的绘制图形。</li>
-<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener"><strong>requestAnimationFrame</strong></a> 告诉浏览器您希望执行动画并请求浏览器在下一次重绘之前调用指定的函数来更新动画。该方法使用一个回调函数作为参数，这个回调函数会在浏览器重绘之前调用。</p>
-</li>
-<li><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/clearRect" target="_blank" rel="noopener"><strong>clearRect</strong></a> 设置指定矩形区域内（以 点 <em>(x, y)</em> 为起点，范围是<em>(width, height)</em> ）所有像素变成透明，并擦除之前绘制的所有内容的方法。清除画布内容。</p>
-</li>
-<li><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/save" target="_blank" rel="noopener"><strong>save</strong></a>和<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/restore" target="_blank" rel="noopener"><strong>restore</strong></a> 保存当前画布状态和恢复到最近的保存状态的方法。</li>
-</ul>
-<blockquote>
-<p>下面的例子，采用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Window/requestAnimationFrame" target="_blank" rel="noopener"><code>window.requestAnimationFrame()</code></a>实现动画效果。这个方法提供了更加平缓并更加有效率的方式来执行动画，当系统准备好了重绘条件的时候，才调用绘制动画帧。一般每秒钟回调函数执行60次，也有可能会被降低。想要了解更多关于动画循环的信息，尤其是游戏，可以在<a href="https://developer.mozilla.org/zh-CN/docs/Games" target="_blank" rel="noopener">Game development zone</a> 参考这篇文章 <a href="https://developer.mozilla.org/zh-CN/docs/Games/Anatomy" target="_blank" rel="noopener">Anatomy of a video game</a>。</p>
-</blockquote>
-          <div class="read-more">
-            <a href="/2019/01/05/Canvas动画/" class="read-more-link">阅读更多</a>
           </div>
         
       

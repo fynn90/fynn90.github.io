@@ -1,0 +1,516 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="微前端的前世今生"/>
+
+
+
+
+  <meta name="keywords" content="Micro frontend, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2020/12/20/微前端的前世今生/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> 微前端的前世今生 - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          微前端的前世今生
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020-12-20
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/Micro-frontend/">Micro frontend</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2020/12/20/微前端的前世今生/"
+             data-title="微前端的前世今生">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端是什么"><span class="toc-text">微前端是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要微前端"><span class="toc-text">为什么需要微前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端原则"><span class="toc-text">微前端原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端现状"><span class="toc-text">微前端现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端架构的挑战"><span class="toc-text">微前端架构的挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端的几种形式"><span class="toc-text">微前端的几种形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx路由分发"><span class="toc-text">Nginx路由分发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iframe"><span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Components"><span class="toc-text">Web Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前端微服务化"><span class="toc-text">前端微服务化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <h2 id="微前端是什么"><a href="#微前端是什么" class="headerlink" title="微前端是什么"></a>微前端是什么</h2><p><strong>微前端</strong>这个术语最初来自 2016 年的  <a href="https://www.thoughtworks.com/radar/techniques/micro-frontends" target="_blank" rel="noopener">ThoughtWorks 的技术雷达 </a> ，它将微服务的概念扩展到了前端领域。</p>
+<p><img src="https://pic.downk.cc/item/5fd91eb43ffa7d37b390bf9e.jpg" alt=""></p>
+<a id="more"></a>
+<blockquote>
+<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。然而团队避免创建前端巨石应用-庞大且不易扩展的浏览器应用，它就像已经被我们放弃的后端庞大的单体应用一样难以维护和扩展。我们看到一种被我们团队称为<strong>微前端</strong>的方法。通过这种方法，Web应用程序按其页面和功能进行分解，每个功能由一个团队端对端拥有。存在多种技术来将应用程序功能（一些旧的和一些新的）组合在一起，形成具有内聚力的用户体验。它的目标是允许独立于其他功能开发，测试和部署每个功能。<a href="https://www.thoughtworks.com/radar/techniques/bff-backend-for-frontends" target="_blank" rel="noopener">BFF</a>方法在<strong>微前端</strong>这里效果很好，每个团队都开发一个BFF以支持其一组应用程序功能。</p>
+</blockquote>
+<blockquote>
+<p> BFF - Backend For Frontend(服务于前端的后端): 也就是服务器设计 API 时会考虑前端的使用，并在服务端直接进行业务逻辑的处理，又称为用户体验适配器。BFF 只是一种逻辑分层，而非一种技术.</p>
+<p>BFF模式最大好处是<em>关注点分离（separation of concerns）</em>，下游服务可以专注于业务领域模型，前端UI专注于用户体验.后端可以专注于业务领域，更多从领域模型的视角去思考问题，页面视角的数据则交给前端型全栈工程师去搞定。领域模型与页面数据是两种思维模式，通过BFF可以很好地解耦开，让彼此更专业高效。</p>
+</blockquote>
+<h2 id="为什么需要微前端"><a href="#为什么需要微前端" class="headerlink" title="为什么需要微前端"></a>为什么需要微前端</h2><p>因为随着前后端分离，前端可以利用SPA构建出功能丰富且强大的应用。而这样应用一般是构建在微服务架构之上。后端是微服务体系，但是前端还是保持着单一工程，随着时间推移<strong>前端工程会越来越庞大并且技术栈很难更换</strong>，从而导致难以维护和扩展。</p>
+<p><strong>一体化的前端：</strong></p>
+<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt=""></p>
+<p><strong>垂直化的前端：</strong></p>
+<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/verticals-headline.png" alt=""></p>
+<h2 id="微前端原则"><a href="#微前端原则" class="headerlink" title="微前端原则"></a>微前端原则</h2><p>微前端是一种前端架构思想，这样的架构应该满足一下几个原则：</p>
+<ol>
+<li>每个前端应用，可以独立开发。</li>
+<li>每个前端应用，可以独立部署。</li>
+<li>每个前端应用，可以独立运行。</li>
+<li>多个小的前端应用，可以整合成一个大应用。</li>
+<li>整合后的大应用，在用户体验上应该是良好的。</li>
+</ol>
+<p>独立开发、独立运行，意味着技术栈可以独立，开发团队可以独立。</p>
+<p>多个小的应用整合成大的应用，意味着技术栈可以演进，大的应用可以方便扩展更新。</p>
+<p>能够满足以上原则的前端架构可以称为 <strong>微前端</strong>。它于具体实施的技术方案无关.</p>
+<h2 id="微前端现状"><a href="#微前端现状" class="headerlink" title="微前端现状"></a>微前端现状</h2><p>在 ThoughtWorks 中已经将 <strong>微前端</strong> 列入 <strong>应采用</strong> 中.</p>
+<p><img src="https://pic.downk.cc/item/5fd91f1b3ffa7d37b39105bc.jpg" alt=""></p>
+<blockquote>
+<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。不幸的是，我们看到很多团队还在创建前端巨石应用 - 庞大而无法扩展的浏览器应用，这很大的抵消了<strong>微服务</strong>带来的好处。自从微型前端问世以来，它们一直在不断普及。我们看到很多团队采用这样的体系架构于管理由多个开发者和团队负责开发的复杂的用户体验一致的应用。去年6月，该技术的发起者之一发表了一篇介绍性<a href="https://martinfowler.com/articles/micro-frontends.html" target="_blank" rel="noopener">文章</a>，作为微前端的参考.它展示了如何使用各种Web编程机制来实现这种风格，并使用React.js构建示例应用程序。我们相信，随着大型组织试图分解多个团队的UI开发，这种风格将越来越流行。</p>
+</blockquote>
+<p>目前<em>美团</em>、<em>蚂蚁金服</em>、<em>淘系</em>等前端团队在实际生产中已经使用 <strong>微前端</strong> 架构。</p>
+<p>目前较流行的 <strong>微前端</strong> 架构技术方案有：</p>
+<ul>
+<li><p><a href="https://single-spa.js.org/" target="_blank" rel="noopener">single-spa</a></p>
+</li>
+<li><p><a href="https://github.com/umijs/qiankun" target="_blank" rel="noopener">qiankun</a> - 基于 <code>single-spa</code>，蚂蚁金服。</p>
+</li>
+<li><p><a href="https://github.com/phodal/mooa" target="_blank" rel="noopener">mooa</a> - 基于 <code>single-spa</code>的 <code>Angular</code> 微前端</p>
+</li>
+</ul>
+<h2 id="微前端架构的挑战"><a href="#微前端架构的挑战" class="headerlink" title="微前端架构的挑战"></a>微前端架构的挑战</h2><p>一个大型的应用是有多个小应用组合而来。这样的模式带来了一些现实的挑战。</p>
+<ul>
+<li>小应用的组合时机，在构建时组合，还是在运行时组合</li>
+<li>小应用的加载和路由机制</li>
+<li>小应用之间的隔离，CSS隔离，JS隔离</li>
+<li>小应用生命周期管理</li>
+<li>小应用之间的通讯和数据共享</li>
+<li>小应用之间的服务共享</li>
+<li>小应用之间的组件共享</li>
+</ul>
+<h2 id="微前端的几种形式"><a href="#微前端的几种形式" class="headerlink" title="微前端的几种形式"></a>微前端的几种形式</h2><h3 id="Nginx路由分发"><a href="#Nginx路由分发" class="headerlink" title="Nginx路由分发"></a>Nginx路由分发</h3><p>路由分发式微前端，即通过路由将不同的业务分发到不同的、独立前端应用上。其通常可以通过 HTTP 服务器的反向代理来实现，又或者是应用框架自带的路由来解决。</p>
+<p><img src="https://pic.downk.cc/item/5fe2bc5c3ffa7d37b3083eb6.png" alt=""></p>
+<p><strong>优点：</strong> 简单，快速，易配置。</p>
+<p><strong>缺点：</strong> 在切换应用时会触发浏览器刷新，影响体验</p>
+<h3 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h3><p>iframe 可以创建一个全新的独立的宿主环境，这意味着我们的前端应用之间可以相互独立运行。</p>
+<p><strong>优点：</strong>实现简单，子应用之间自带沙箱，天然隔离，互不影响。</p>
+<p><strong>缺点：</strong>low。一些布局场景难以满足。</p>
+<h3 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components" target="_blank" rel="noopener">Web Components</a></h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在您 Web 应用中使用它们。</p>
+<p><img src="https://pic.downk.cc/item/5fe2bdc63ffa7d37b30b5410.png" alt=""></p>
+<h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>前端微服务化，是微服务架构在前端的实施，每个前端应用都是完全独立（技术栈、开发、部署、构建独立）、自主运行的，最后通过模块化的方式组合出完成的应用。</p>
+<p><img src="https://pic.downk.cc/item/5fe2be063ffa7d37b30be5f6.png" alt=""></p>
+<p><strong>优点：</strong> 纯前端改造，体验良好，可无感知切换，子应用相互隔离</p>
+<p><strong>缺点：</strong>需要设计和开发，由于父子应用处于同一页面运行，需要解决子应用的样式冲突，变量对象污染，通信机制等技术点</p>
+<p>目前主流的框架有 <a href="https://single-spa.js.org/" target="_blank" rel="noopener">Single-SPA</a>、<a href="https://qiankun.umijs.org/" target="_blank" rel="noopener">qiankun</a>、<a href="https://github.com/phodal/mooa" target="_blank" rel="noopener">Mooa</a>，后两者都是基于 <code>Single-SPA</code> 的封装。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://micro-frontends.org/" target="_blank" rel="noopener">https://micro-frontends.org/</a></p>
+<p><a href="https://www.thoughtworks.com/radar/techniques/micro-frontends" target="_blank" rel="noopener">https://www.thoughtworks.com/radar/techniques/micro-frontends</a></p>
+<p><a href="https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/" target="_blank" rel="noopener">https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/</a></p>
+<p><a href="https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/" target="_blank" rel="noopener">https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/</a></p>
+<p><a href="https://www.jianshu.com/p/eb1875c62ad3" target="_blank" rel="noopener">https://www.jianshu.com/p/eb1875c62ad3</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2020/12/20/微前端的前世今生/">https://fynn90.github.io/2020/12/20/微前端的前世今生/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Micro-frontend/">Micro frontend</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2020/11/14/Java异常处理/">
+        <span class="next-text nav-default">Java异常处理</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2020
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>
