@@ -205,6 +205,66 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2019/08/25/设计模式-装饰者模式/">设计模式-装饰者模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-08-25
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/设计模式/">设计模式</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/08/25/设计模式-装饰者模式/"
+             data-title="设计模式-装饰者模式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>饰模式是种动态的向一个类(方法)添加行为的设计模式.它不会直接修改原类(方法).</p>
+<p>装饰模式比生成子类更灵活,它不会影响原来的类(方法),可以增对单独的方法增加新的行为.</p>
+<blockquote>
+<p>在面向对象的编程中，装饰器模式是一种设计模式，它允许将行为静态或动态地添加到单个对象，而不会影响同一类中其他对象的行为。装饰器模式通常用于遵守单一责任原则，因为它允许在具有独特关注区域的类之间划分功能。</p>
+</blockquote>
+          <div class="read-more">
+            <a href="/2019/08/25/设计模式-装饰者模式/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2019/08/23/设计模式-职责链模式/">设计模式-职责链模式</a>
         
       </h1>
@@ -1335,65 +1395,6 @@
 <h2 id="Object-Literals"><a href="#Object-Literals" class="headerlink" title="Object Literals"></a>Object Literals</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标准的 JS对象</span></span><br><span class="line"><span class="keyword">const</span> book1 = &#123;</span><br><span class="line">    title: <span class="string">'Book One'</span>,</span><br><span class="line">    author: <span class="string">'John Doe'</span>,</span><br><span class="line">    year: <span class="string">'2013'</span>,</span><br><span class="line">    getSummary: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.title&#125;</span> was writter by <span class="subst">$&#123;<span class="keyword">this</span>.author&#125;</span> in <span class="subst">$&#123;<span class="keyword">this</span>.year&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(book1.getSummary())</span><br><span class="line"><span class="comment">// Book One was writter by John Doe in 2013</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.values(book1))</span><br><span class="line"><span class="comment">// ['Book One', 'John Doe', '2013', fn]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(book1))</span><br><span class="line"><span class="comment">// ['title', 'author', 'year', 'getSummary']</span></span><br></pre></td></tr></table></figure>
           <div class="read-more">
             <a href="/2019/03/27/JavaScript中面向对象编程方式/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/02/14/Charles抓包配置/">Charles抓包配置</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-02-14
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/macOS/">macOS</a>
-            
-              <a href="/categories/macOS/Charles/">Charles</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/02/14/Charles抓包配置/"
-             data-title="Charles抓包配置">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 是macOS上很好用的一款抓包应用程序，通过设置代理服务，你可以很轻松的抓取通讯设备上的HTTP/HTTPS数据包。</p>
-<p><img src="https://i.loli.net/2019/02/14/5c650ff584ea9.png" alt=""></p>
-          <div class="read-more">
-            <a href="/2019/02/14/Charles抓包配置/" class="read-more-link">阅读更多</a>
           </div>
         
       
