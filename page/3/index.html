@@ -205,6 +205,63 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2019/03/27/JavaScript中面向对象编程方式/">JavaScript中面向对象编程方式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-03-27
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/03/27/JavaScript中面向对象编程方式/"
+             data-title="JavaScript中面向对象编程方式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><code>JavaScript</code>语法比较灵活，并没有严格规定的面向编程的方式。在<code>JavaScript</code>中支持多种<a href="https://www.youtube.com/watch?v=vDJpGenyHaA&amp;t=0s&amp;list=LLb6L--2uRBdP_iqHxuwrC1A&amp;index=4" target="_blank" rel="noopener">实现面向对象编程方式</a>。</p>
+<h2 id="Object-Literals"><a href="#Object-Literals" class="headerlink" title="Object Literals"></a>Object Literals</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标准的 JS对象</span></span><br><span class="line"><span class="keyword">const</span> book1 = &#123;</span><br><span class="line">    title: <span class="string">'Book One'</span>,</span><br><span class="line">    author: <span class="string">'John Doe'</span>,</span><br><span class="line">    year: <span class="string">'2013'</span>,</span><br><span class="line">    getSummary: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.title&#125;</span> was writter by <span class="subst">$&#123;<span class="keyword">this</span>.author&#125;</span> in <span class="subst">$&#123;<span class="keyword">this</span>.year&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(book1.getSummary())</span><br><span class="line"><span class="comment">// Book One was writter by John Doe in 2013</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.values(book1))</span><br><span class="line"><span class="comment">// ['Book One', 'John Doe', '2013', fn]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(book1))</span><br><span class="line"><span class="comment">// ['title', 'author', 'year', 'getSummary']</span></span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2019/03/27/JavaScript中面向对象编程方式/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2019/02/14/Charles抓包配置/">Charles抓包配置</a>
         
       </h1>
@@ -1324,63 +1381,6 @@
 <p><img src="https://pic.downk.cc/item/5f104b5714195aa594aeca9b.png" alt=""></p>
           <div class="read-more">
             <a href="/2018/07/21/Javacript中的黑魔法/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2018/06/23/git使用技巧/">Git使用技巧</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2018-06-23
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Git/">Git</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2018/06/23/git使用技巧/"
-             data-title="Git使用技巧">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><a href="https://git-scm.com" target="_blank" rel="noopener"><strong>Git</strong></a>是开发中常用的分布式代码管理工具，它是<a href="https://zh.wikipedia.org/wiki/%E6%9E%97%E7%BA%B3%E6%96%AF%C2%B7%E6%89%98%E7%93%A6%E5%85%B9" target="_blank" rel="noopener"><strong>Linus</strong></a>为管理Linux内核代码而设计开发的。</p>
-<p><img src="https://git-scm.com/images/logo@2x.png" alt=""></p>
-          <div class="read-more">
-            <a href="/2018/06/23/git使用技巧/" class="read-more-link">阅读更多</a>
           </div>
         
       

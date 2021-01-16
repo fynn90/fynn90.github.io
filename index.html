@@ -205,6 +205,65 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2021/01/16/ReflectMetadata/">ReflectMetadata</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-01-16
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/TypeScript/">TypeScript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2021/01/16/ReflectMetadata/"
+             data-title="ReflectMetadata">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p><strong>反射(Reflect)</strong>一般指那些用来检验(inspect)其他代码的代码，部分使用场景：依赖注入/运行时类型断言/测试。</p>
+<p>当JS应用变复杂时，需要使用一些(IoC容器)或特性(运行时类型断言)来处理复杂度，而由于JS中不存在反射的特性很难做到这一点。</p>
+<p>一个反射API应允许在运行时检验一个未知对象，获取其不限于名称、类型、接口、参数等信息。</p>
+<p>在JS中可以使用<code>Object.getOwnPropertyDescriptor()</code>或<code>Object.keys()</code>来获取实体的信息，但还是需要反射去实现更强大的开发工具。目前在TS中可以使用<a href="https://github.com/rbuckton/reflect-metadata" target="_blank" rel="noopener">reflect-metadata</a>来实现反射特性，同时这个库是作为metadata reflection API的polyfill，可参考<a href="https://rbuckton.github.io/reflect-metadata/" target="_blank" rel="noopener">相关提案</a>。</p>
+          <div class="read-more">
+            <a href="/2021/01/16/ReflectMetadata/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2021/01/15/TS装饰器/">TS装饰器</a>
         
       </h1>
@@ -1399,77 +1458,6 @@
 <p>用<code>requestAnimationFrame</code>就不会有上面这三个问题!</p>
           <div class="read-more">
             <a href="/2019/09/09/window.requestAnimationFrame/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/02/设计模式-状态模式/">设计模式-状态模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-02
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/设计模式/">设计模式</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/02/设计模式-状态模式/"
-             data-title="设计模式-状态模式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>状态模式是一种行为软件设计模式.一个对象在其内部状态改变时会改变它的行为.各种状态和状态改变行为的操作是被独立封装的..</p>
-<p>一般情况是:如果一个事物有多钟状态,我们用一个变量保存当前状态名(string),通过<code>if-else</code> 做状态的判断,然后进行状态的变更.</p>
-<p>这样最大的问题是: 你需要将所有的状态和变更状态后的行为都放在一个方法里.这个方法会变得很臃肿和复杂.会变的难以阅读和维护.</p>
-<p>状态模式:将各种状态和状态之间切换的行为封装在一起.只需要一个Context来触发状态变化,而状态变化后引起的行为操作Context不用处理.</p>
-<p>状态模式的优点:</p>
-<ol>
-<li>状态和行为关系封装在一起,增加新的状态和状态转换会很容易</li>
-<li>对象代替字符串保存当前状态,状态的可切换一目了然</li>
-<li>避免了Context无限膨胀</li>
-<li>Context中的请求动作和状态类中封装的行为非常容易,它们独立变化而不互相影响</li>
-</ol>
-<p>状态模式的缺陷:</p>
-<ol>
-<li>逻辑分散在状态类中,虽然避免的条件分支但也导致了逻辑分散问题</li>
-<li>新增了封装状态和行为变化的对象,增加了代码量.</li>
-</ol>
-          <div class="read-more">
-            <a href="/2019/09/02/设计模式-状态模式/" class="read-more-link">阅读更多</a>
           </div>
         
       

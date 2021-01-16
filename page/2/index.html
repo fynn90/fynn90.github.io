@@ -205,6 +205,77 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2019/09/02/设计模式-状态模式/">设计模式-状态模式</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-09-02
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/设计模式/">设计模式</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/09/02/设计模式-状态模式/"
+             data-title="设计模式-状态模式">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>状态模式是一种行为软件设计模式.一个对象在其内部状态改变时会改变它的行为.各种状态和状态改变行为的操作是被独立封装的..</p>
+<p>一般情况是:如果一个事物有多钟状态,我们用一个变量保存当前状态名(string),通过<code>if-else</code> 做状态的判断,然后进行状态的变更.</p>
+<p>这样最大的问题是: 你需要将所有的状态和变更状态后的行为都放在一个方法里.这个方法会变得很臃肿和复杂.会变的难以阅读和维护.</p>
+<p>状态模式:将各种状态和状态之间切换的行为封装在一起.只需要一个Context来触发状态变化,而状态变化后引起的行为操作Context不用处理.</p>
+<p>状态模式的优点:</p>
+<ol>
+<li>状态和行为关系封装在一起,增加新的状态和状态转换会很容易</li>
+<li>对象代替字符串保存当前状态,状态的可切换一目了然</li>
+<li>避免了Context无限膨胀</li>
+<li>Context中的请求动作和状态类中封装的行为非常容易,它们独立变化而不互相影响</li>
+</ol>
+<p>状态模式的缺陷:</p>
+<ol>
+<li>逻辑分散在状态类中,虽然避免的条件分支但也导致了逻辑分散问题</li>
+<li>新增了封装状态和行为变化的对象,增加了代码量.</li>
+</ol>
+          <div class="read-more">
+            <a href="/2019/09/02/设计模式-状态模式/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2019/08/25/设计模式-装饰者模式/">设计模式-装饰者模式</a>
         
       </h1>
@@ -1338,63 +1409,6 @@
 <p>而文件类型常见的分为:<code>-</code>、<code>d</code>、<code>l</code><br>
           <div class="read-more">
             <a href="/2019/04/24/Linux的文件和目录权限/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/03/27/JavaScript中面向对象编程方式/">JavaScript中面向对象编程方式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-03-27
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Javascript/">Javascript</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/03/27/JavaScript中面向对象编程方式/"
-             data-title="JavaScript中面向对象编程方式">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><code>JavaScript</code>语法比较灵活，并没有严格规定的面向编程的方式。在<code>JavaScript</code>中支持多种<a href="https://www.youtube.com/watch?v=vDJpGenyHaA&amp;t=0s&amp;list=LLb6L--2uRBdP_iqHxuwrC1A&amp;index=4" target="_blank" rel="noopener">实现面向对象编程方式</a>。</p>
-<h2 id="Object-Literals"><a href="#Object-Literals" class="headerlink" title="Object Literals"></a>Object Literals</h2><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 标准的 JS对象</span></span><br><span class="line"><span class="keyword">const</span> book1 = &#123;</span><br><span class="line">    title: <span class="string">'Book One'</span>,</span><br><span class="line">    author: <span class="string">'John Doe'</span>,</span><br><span class="line">    year: <span class="string">'2013'</span>,</span><br><span class="line">    getSummary: <span class="function"><span class="keyword">function</span> (<span class="params"></span>) </span>&#123;</span><br><span class="line">        <span class="keyword">return</span> <span class="string">`<span class="subst">$&#123;<span class="keyword">this</span>.title&#125;</span> was writter by <span class="subst">$&#123;<span class="keyword">this</span>.author&#125;</span> in <span class="subst">$&#123;<span class="keyword">this</span>.year&#125;</span>`</span>;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(book1.getSummary())</span><br><span class="line"><span class="comment">// Book One was writter by John Doe in 2013</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.values(book1))</span><br><span class="line"><span class="comment">// ['Book One', 'John Doe', '2013', fn]</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">console</span>.log(<span class="built_in">Object</span>.keys(book1))</span><br><span class="line"><span class="comment">// ['title', 'author', 'year', 'getSummary']</span></span><br></pre></td></tr></table></figure>
-          <div class="read-more">
-            <a href="/2019/03/27/JavaScript中面向对象编程方式/" class="read-more-link">阅读更多</a>
           </div>
         
       
