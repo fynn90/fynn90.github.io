@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="JS Memory Leak And V8 Garbage Collection"/>
+
+
+
+
+  <meta name="keywords" content="Garbage Collection, Memory Leak, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2021/01/31/JS垃圾回收和内存泄漏/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> JS Memory Leak And V8 Garbage Collection - Fynn's Blog </title>
+  </head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          JS Memory Leak And V8 Garbage Collection
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-01-31
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2021/01/31/JS垃圾回收和内存泄漏/"
+             data-title="JS Memory Leak And V8 Garbage Collection">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#如何导致-内存泄漏"><span class="toc-text">如何导致 内存泄漏</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#全局引用"><span class="toc-text">全局引用</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#DOM内存泄露"><span class="toc-text">DOM内存泄露</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Memory-结构"><span class="toc-text">Memory 结构</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Heap-memory"><span class="toc-text">Heap memory</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Stack-memory"><span class="toc-text">Stack memory</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#V8-内存管理：Garbage-Collection-GC"><span class="toc-text">V8 内存管理：Garbage Collection (GC)</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Minor-GC-Scavenger"><span class="toc-text">Minor GC (Scavenger)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Major-GC-Mark-Sweep-Compact"><span class="toc-text">Major GC (Mark-Sweep-Compact)</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Stop-The-World"><span class="toc-text">Stop-The-World</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#优化-Orinoco"><span class="toc-text">优化 Orinoco</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#增量GC-Incremental-GC"><span class="toc-text">增量GC - Incremental GC</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增量标记-Concurrent-marking"><span class="toc-text">增量标记 Concurrent marking</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#增量清除和压缩-Concurrent-sweeping-compacting"><span class="toc-text">增量清除和压缩 Concurrent sweeping/compacting</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#懒清理-Lazy-sweeping"><span class="toc-text">懒清理 Lazy sweeping</span></a></li></ol></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Minor-GC-优化"><span class="toc-text">Minor GC 优化</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#Major-GC-优化"><span class="toc-text">Major GC 优化</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refer-To"><span class="toc-text">Refer To</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <blockquote>
+<p> 内存泄漏（Memory Leak）：程序中不会再被使用到的内存且无法被浏览器 GC (Garbage Collection)回收。</p>
+</blockquote>
+<p>内存泄漏可能导致诸如应用程序速度降低，崩溃，高延迟等问题。</p>
+<p><strong>⚠️本文内容都是基于 Chrome浏览器 V8 JS 解析引擎。</strong></p>
+<h2 id="如何导致-内存泄漏"><a href="#如何导致-内存泄漏" class="headerlink" title="如何导致 内存泄漏"></a>如何导致 内存泄漏</h2><p>一句话简单总结<strong>内存泄漏：</strong>应该存在时间很短的<code>Object</code>,但是被无意中引用导致无法被销毁。</p>
+<a id="more"></a>
+<h3 id="全局引用"><a href="#全局引用" class="headerlink" title="全局引用"></a>全局引用</h3><figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// This will be hoisted as a global variable</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    foo = <span class="string">"Message"</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// This will also become a global variable as global functions have</span></span><br><span class="line"><span class="comment">// global `this` as the contextual `this` in non strict mode</span></span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">hello</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">this</span>.foo = <span class="string">"Message"</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<p>上面👆代码中，<code>foo</code>变量被挂载到全局对象<code>global</code>中，导致即使它在程序中不会再被使用到，但是无法被GC回收。</p>
+<p>建议在编码中尽量使用<code>let</code>和<code>const</code>.</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">&lt;!DOCTYPE html&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">html</span> <span class="attr">lang</span>=<span class="string">"en"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">charset</span>=<span class="string">"UTF-8"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">meta</span> <span class="attr">name</span>=<span class="string">"viewport"</span> <span class="attr">content</span>=<span class="string">"width=device-width, initial-scale=1.0"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">title</span>&gt;</span>JavaScript memory leaks<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">"app"</span>&gt;</span></span><br><span class="line">    hello,world!</span><br><span class="line">  <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">script</span>&gt;</span><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">var</span> a = &#123;&#125;;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(a <span class="keyword">in</span> <span class="built_in">window</span> ) <span class="comment">// true</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="javascript"><span class="keyword">let</span> b = &#123;&#125;;</span></span><br><span class="line"><span class="javascript"><span class="built_in">console</span>.log(b <span class="keyword">in</span> <span class="built_in">window</span>) <span class="comment">// false</span></span></span><br><span class="line"><span class="undefined"></span></span><br><span class="line"><span class="undefined"></span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+<h3 id="DOM内存泄露"><a href="#DOM内存泄露" class="headerlink" title="DOM内存泄露"></a>DOM内存泄露</h3><p>为了操作方便我们会将DOM节点赋值给JS变量，但有时我们会操作删除掉DOM节点，可是引用的了该DOM节点的变量没有清空，从而导致在Heap内存中会一直保持该DOM节点的数据。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buttonOne = <span class="built_in">document</span>.querySelector(<span class="string">'#button-a'</span>);</span><br><span class="line"><span class="keyword">const</span> buttonTwo = <span class="built_in">document</span>.querySelector(<span class="string">'#button-b'</span>);</span><br><span class="line"></span><br><span class="line">buttonOne.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(buttonTwo);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在上面的代码中，通过单击<code>buttonOne</code> 中删除<code>#btton-b</code>DOM节点，但我们从不删除存储在变量<code>buttonTwo</code> 中 的引用。这种内存泄漏可能非常危险。因为在<code>buttonTwo</code>作用域中不会被销毁，则变量<code>buttonTwo</code>不会被GC回收。</p>
+<p>可以通过一下方式避免这样的情况：</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> buttonOne = <span class="built_in">document</span>.querySelector(<span class="string">'#button-a'</span>);</span><br><span class="line"></span><br><span class="line">buttonOne.addEventListener(<span class="string">'click'</span>, () =&gt; &#123;</span><br><span class="line">    <span class="keyword">const</span> buttonTwo = <span class="built_in">document</span>.querySelector(<span class="string">'#button-b'</span>);</span><br><span class="line">    <span class="built_in">document</span>.body.removeChild(buttonTwo);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<p>在这里，我们通过单击<code>buttonOne</code>从DOM中删除<code>buttonTwo</code>并收集垃圾。</p>
+<p>还有一种情况：清除了父DOM节点，但子节点有被变量引用则父节点还是不会被销毁。</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> select = <span class="built_in">document</span>.querySelector;</span><br><span class="line"><span class="keyword">var</span> treeRef = select(<span class="string">"#tree"</span>);</span><br><span class="line"><span class="keyword">var</span> leafRef = select(<span class="string">"#leaf"</span>);</span><br><span class="line"><span class="keyword">var</span> body = select(<span class="string">"body"</span>);</span><br><span class="line"></span><br><span class="line">body.removeChild(treeRef);</span><br><span class="line"></span><br><span class="line"><span class="comment">//#tree can't be GC yet due to treeRef</span></span><br><span class="line">treeRef = <span class="literal">null</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">//#tree can't be GC yet due to indirect</span></span><br><span class="line"><span class="comment">//reference from leafRef</span></span><br><span class="line"></span><br><span class="line">leafRef = <span class="literal">null</span>;</span><br><span class="line"><span class="comment">//#NOW can be #tree GC</span></span><br></pre></td></tr></table></figure>
+<h2 id="Memory-结构"><a href="#Memory-结构" class="headerlink" title="Memory 结构"></a>Memory 结构</h2><p>内存分为栈内存（Stack）和堆内存(Heap):</p>
+<ul>
+<li><strong>Stack: </strong> 这是静态数据的存储位置。包括方法/函数框架、基本数据类型值和指向对象的指针。<strong>Stack</strong>的内存管理有操作系统（OS）处理。</li>
+<li><strong>Heap:</strong> 这里是V8引擎存储JS对象和动态数据的地方。这是内存中最大的区域，有<strong>Garbage Collection</strong>管理。</li>
+</ul>
+<blockquote>
+<p>V8 通过GC管理Heap内存。简单地说，它释放孤立对象使用的内存，即不再从 Stack 中直接或间接引用的对象（通过另一个对象的引用），以便为新对象创建创造空间。<br>GC负责回收未被使用的内容供V8进程使用。GC会讲Heap中的对象根据存活时间分为两种类型，并使用三种算法进行内存回收。以保证内存回收的高效和准确。</p>
+</blockquote>
+<p><img src="https://img.imgdb.cn/item/6013d32b3ffa7d37b35a9006.png" alt=""></p>
+<h3 id="Heap-memory"><a href="#Heap-memory" class="headerlink" title="Heap memory"></a>Heap memory</h3><p><code>Heap</code>是 V8存储对象和动态数据的地方。它是有一大块内存空间组成，它也是<code>Garbage Collection</code>工作的地方。Heap有很多部分组成，只有<code>New space</code>和<code>Old space</code>是有<code>Garbage Collection</code>进行管理：</p>
+<ul>
+<li><code>New Space (Young generation)</code> : 它是生命周期较短的对象存储的地方。它是通过<code>Scavenger(Minor GC)</code>算法进行管理。</li>
+<li><code>Old Space (Old generation)</code>: 当在 <code>New Space</code>保存的数据经过两次<code>Scavenger(Minor GC)</code>循环后还在未被清除，则会被移到此处。这里的管理内存算法是 <code>Major GC(Mark-Sweep &amp; Mark-Compact)</code>.<ul>
+<li><code>Old pointer space</code>  - 包含具有指向其他对象的指针的幸存对象。</li>
+<li><code>Old data space</code> - 包含仅包含数据的对象（没有指向其他对象的指针）。</li>
+</ul>
+</li>
+<li><code>Large object space</code> - 这里存储的对象的大小超过其它内存模块大小限制。</li>
+<li><p><code>Code-space</code>:  存储着 <code>Just In Time(JIT)</code>编译后的代码块。这是唯一具有可执行内存的空间。</p>
+</li>
+<li><p><code>Cell space, property cell space, and map space：</code> 这些区域存放Cell、属性Cell和Map，每个区域因为都是存放相同大小的元素，因此内存结构很简单。</p>
+</li>
+</ul>
+<p>每个区域都由一组内存页构成。内存页是一块连续的内存，经<code>mmap</code>（或者Windows的什么等价物）由操作系统分配而来。除大对象区的内存页较大之外，每个区的内存页都是1MB大小，且按1MB内存对齐。</p>
+<h2 id="Stack-memory"><a href="#Stack-memory" class="headerlink" title="Stack memory"></a>Stack memory</h2><p>每一个V8进程拥有一块 Stack space.它存储着 ‘’方法 的框架“, 静态数据项，指向Heap space中对象的指针。它有操作系统直接管理。</p>
+<h2 id="V8-内存管理：Garbage-Collection-GC"><a href="#V8-内存管理：Garbage-Collection-GC" class="headerlink" title="V8 内存管理：Garbage Collection (GC)"></a>V8 内存管理：Garbage Collection (GC)</h2><p>V8内存管理简单概括是：它会将Heap中孤立的对象（在程序中未被引用的对象）清除掉，以便为创建新对象留出空间。</p>
+<p>根据对象存活的时间长短，V8将保存对象的Heap分为两类：<strong>new space(young generation)</strong> 和 <strong>old space(old generation)</strong>.</p>
+<ul>
+<li><code>New Space (Young generation)</code> : 它是生命周期较短的对象存储的地方。它是通过<code>Scavenger(Minor GC)</code>算法进行管理。</li>
+<li><code>Old Space (Old generation)</code>: 当在 <code>New Space</code>保存的数据经过两次<code>Scavenger(Minor GC)</code>循环后还在未被清除，则会被移到此处。这里的管理内存算法是 <code>Major GC(Mark-Sweep &amp; Mark-Compact)</code>.<ul>
+<li><code>Old pointer space</code>  - 包含具有指向其他对象的指针的幸存对象。</li>
+<li><code>Old data space</code> - 包含仅包含数据的对象（没有指向其他对象的指针）。</li>
+</ul>
+</li>
+</ul>
+<h3 id="Minor-GC-Scavenger"><a href="#Minor-GC-Scavenger" class="headerlink" title="Minor GC (Scavenger)"></a>Minor GC (Scavenger)</h3><p><strong>new space</strong>的空间很小一般是1-8M，它用来保存存活时间较短的对象。</p>
+<p>给<strong>new space</strong>分配内存很简单：当我们想为新对象保留空间时，我们只需要创建一个分配指针。当该分配指针指到<strong>new space</strong>尾部时，则会触发一次 <strong>Minor GC</strong>.这个过程被称为 <strong>Scavenger</strong>,它使用的是 <a href="http://en.wikipedia.org/wiki/Cheney&#39;s_algorithm" target="_blank" rel="noopener">Cheney’s algorithm</a> （一个典型的牺牲空间换取时间的复制算法，在占用空间不大的场景上非常适用）。它会被频繁触发，使用并发辅助器它执行效率很高。</p>
+<p><strong>Cheney’s algorithm</strong> 将新生代堆分为两部分，分别叫<code>from-space</code>和<code>to-space</code>，工作方式也很简单，就是将<code>from-space</code>中存活的活动对象复制到<code>to-space</code>中，并将这些对象的内存有序的排列起来，然后将<code>from-space</code>中的非活动对象的内存进行释放，完成之后，将<code>from space</code> 和<code>to space</code>进行互换，这样可以使得新生代中的这两块区域可以重复利用。</p>
+<p><img src="https://img.imgdb.cn/item/601651ef3ffa7d37b33f51fa.png" alt=""></p>
+<p><strong>new space</strong>分为两个大小相等的半空间：<strong>to-space</strong> and <strong>from-space</strong>。大多数分配都是<strong>from space</strong>进行（某些类型的对象除外，例如始终在旧空间中分配的可执行代码）。<strong>from space</strong>填充时，将触发次要 GC。</p>
+<ul>
+<li>标记活动对象和非活动对象</li>
+<li>复制 from space 的活动对象到 to space 并对其进行排序</li>
+<li>释放 from space 中的非活动对象的内存</li>
+<li>将 from space 和 to space 角色互换</li>
+</ul>
+<p>那么，垃圾回收器是怎么知道哪些对象是活动对象和非活动对象的呢？</p>
+<p>有一个概念叫对象的可达性，表示从初始的根对象（window，global）的指针开始，这个根指针对象被称为根集（root set），从这个根集向下搜索其子节点，被搜索到的子节点说明该节点的引用对象可达，并为其留下标记，然后递归这个搜索的过程，直到所有子节点都被遍历结束，那么没有被标记的对象节点，说明该对象没有被任何地方引用，可以证明这是一个需要被释放内存的对象，可以被垃圾回收器回收。</p>
+<p>当在 <strong>New Space</strong> 保存的数据经过两次 <strong>Minor GC</strong> 循环后还在未被清除，则会被移到 <strong>old space</strong></p>
+<h3 id="Major-GC-Mark-Sweep-Compact"><a href="#Major-GC-Mark-Sweep-Compact" class="headerlink" title="Major GC (Mark-Sweep-Compact)"></a>Major GC (Mark-Sweep-Compact)</h3><p>当V8觉得没有足够的 <strong>old space</strong>时就会触发 <strong>Major GC</strong>。 <strong>old space</strong> 对象来至于 <strong>new space</strong>,V8 动态的计算极限值。</p>
+<p><strong>Scavenger</strong> 算法非常适合小数据大小，但对于大型堆来说不切实际，因为它具有内存开销，因此主要 GC 是使用 <strong>Mark-Sweep-Compact</strong> 算法完成的。</p>
+<p><strong>Mark-Sweep-Compact：</strong> 算法分为三步</p>
+<ul>
+<li><strong>Mark</strong> - 第一步，其中<strong>GC</strong>标识哪些对象正在使用，哪些对象未在使用。</li>
+<li><strong>Sweeping</strong> - GC遍历Heap，并记下未标记为活动的任何对象的内存地址。此空间现在在<strong>free-list</strong>中标记为<strong>free</strong>，可用于存储其他对象.</li>
+<li><strong>Compacting</strong> - Sweeping之后，如果需要，所有幸存的对象将被移动到一起。这将减少碎片，并提高将内存分配给较新的对象的性能。</li>
+</ul>
+<p><img src="https://img.imgdb.cn/item/601659973ffa7d37b3420308.gif" alt=""></p>
+<h3 id="Stop-The-World"><a href="#Stop-The-World" class="headerlink" title="Stop-The-World"></a>Stop-The-World</h3><p>由于垃圾回收是在JS引擎中进行的，而Mark-Compact算法在执行过程中需要移动对象，而当活动对象较多的时候，它的执行速度不可能很快，为了避免JavaScript应用逻辑和垃圾回收器的内存资源竞争导致的不一致性问题，垃圾回收器会将JavaScript应用暂停，这个过程，被称为<code>全停顿</code>（stop-the-world）。</p>
+<p>在新生代中，由于空间小、存活对象较少、Scavenge算法执行效率较快，所以全停顿的影响并不大。而老生代中就不一样，如果老生代中的活动对象较多，垃圾回收器就会暂停主线程较长的时间，使得页面变得卡顿。</p>
+<h3 id="优化-Orinoco"><a href="#优化-Orinoco" class="headerlink" title="优化 Orinoco"></a>优化 Orinoco</h3><p>orinoco为V8的垃圾回收器的项目代号，为了提升用户体验，解决全停顿问题，它利用了增量标记、懒性清理、并发、并行来降低主线程挂起的时间。</p>
+<h4 id="增量GC-Incremental-GC"><a href="#增量GC-Incremental-GC" class="headerlink" title="增量GC - Incremental GC"></a>增量GC - Incremental GC</h4><p>增量式垃圾回收是主线程间歇性的去做少量的垃圾回收的方式。我们不会在增量式垃圾回收的时候执行整个垃圾回收的过程，只是整个垃圾回收过程中的一小部分工作。做这样的工作是极其困难的，因为 JavaScript 也在做增量式垃圾回收的时候同时执行，这意味着堆的状态已经发生了变化，这有可能会导致之前的增量回收工作完全无效。从图中可以看出并没有减少主线程暂停的时间（事实上，通常会略微增加），只会随着时间的推移而增长。但这仍然是解决问题的的好方法，通过 JavaScript 间歇性的执行，同时也间歇性的去做垃圾回收工作，JavaScript 的执行仍然可以在用户输入或者执行动画的时候得到及时的响应。</p>
+<p><img src="https://img.imgdb.cn/item/60165c133ffa7d37b342ff74.jpg" alt=""></p>
+<h4 id="增量标记-Concurrent-marking"><a href="#增量标记-Concurrent-marking" class="headerlink" title="增量标记 Concurrent marking"></a>增量标记 Concurrent marking</h4><p>标记是使用多个辅助线程同时完成的，而不会影响主要的JavaScript线程。<strong>写屏障</strong>用于跟踪在辅助线程进行标记时JavaScript创建的对象之间的新引用。</p>
+<h4 id="增量清除和压缩-Concurrent-sweeping-compacting"><a href="#增量清除和压缩-Concurrent-sweeping-compacting" class="headerlink" title="增量清除和压缩 Concurrent sweeping/compacting"></a>增量清除和压缩 Concurrent sweeping/compacting</h4><p>在辅助线程同时进行清理和压缩，而不会影响主要的JavaScript线程。</p>
+<h4 id="懒清理-Lazy-sweeping"><a href="#懒清理-Lazy-sweeping" class="headerlink" title="懒清理 Lazy sweeping"></a>懒清理 Lazy sweeping</h4><p>增量标记只是对活动对象和非活动对象进行标记，惰性清理用来真正的清理释放内存。当增量标记完成后，假如当前的可用内存足以让我们快速的执行代码，其实我们是没必要立即清理内存的，可以将清理的过程延迟一下，让JavaScript逻辑代码先执行，也无需一次性清理完所有非活动对象内存，垃圾回收器会按需逐一进行清理，直到所有的页都清理完毕。</p>
+<h3 id="Minor-GC-优化"><a href="#Minor-GC-优化" class="headerlink" title="Minor GC 优化"></a>Minor GC 优化</h3><p>V8在新生代垃圾回收中，使用并行（parallel）机制，在整理排序阶段，也就是将活动对象从<code>from-to</code>复制到<code>space-to</code>的时候，启用多个辅助线程，并行的进行整理。由于多个线程竞争一个新生代的堆的内存资源，可能出现有某个活动对象被多个线程进行复制操作的问题，为了解决这个问题，V8在第一个线程对活动对象进行复制并且复制完成后，都必须去维护复制这个活动对象后的指针转发地址，以便于其他协助线程可以找到该活动对象后可以判断该活动对象是否已被复制。</p>
+<p><img src="https://img.imgdb.cn/item/601665583ffa7d37b346ce30.png" alt=""></p>
+<h4 id="Major-GC-优化"><a href="#Major-GC-优化" class="headerlink" title="Major GC 优化"></a>Major GC 优化</h4><p>V8 中的主垃圾回收器主要使用并发标记，一旦堆的动态分配接近极限的时候，将启动并发标记任务。每个辅助线程都会去追踪每个标记到的对象的指针以及对这个对象的引用。在 JavaScript 执行的时候，并发标记在后台进行。写入屏障（<a href="https://link.zhihu.com/?target=https%3A//dl.acm.org/citation.cfm%3Fid%3D2025255" target="_blank" rel="noopener">write barriers</a>）技术在辅助线程在进行并发标记的时候会一直追踪每一个 JavaScript 对象的新引用。</p>
+<p>当并发标记完成或者动态分配到达极限的时候，主线程会执行最终的快速标记步骤；在这个阶段主线程会被暂停，这段时间也就是主垃圾回收器执行的所有时间。在这个阶段主线程会再一次的扫描根集以确保所有的对象都完成了标记；然后辅助线程就会去做更新指针和整理内存的工作。并非所有的内存页都会被整理，之前提到的加入到空闲列表的内存页就不会被整理。在暂停的时候主线程会启动并发清理的任务，这些任务都是并发执行的，并不会影响并行内存页的整理工作和 JavaScript 的执行。</p>
+<p><img src="https://img.imgdb.cn/item/601665583ffa7d37b346ce34.png" alt=""></p>
+<h2 id="Refer-To"><a href="#Refer-To" class="headerlink" title="Refer To"></a>Refer To</h2><p><a href="https://dev.to/deepu105/visualizing-memory-management-in-v8-engine-javascript-nodejs-deno-webassembly-105p" target="_blank" rel="noopener">https://dev.to/deepu105/visualizing-memory-management-in-v8-engine-javascript-nodejs-deno-webassembly-105p</a></p>
+<p><a href="https://github.com/yacan8/blog/issues/33" target="_blank" rel="noopener">https://github.com/yacan8/blog/issues/33</a></p>
+<p><a href="http://newhtml.net/v8-garbage-collection/" target="_blank" rel="noopener">http://newhtml.net/v8-garbage-collection/</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2021/01/31/JS垃圾回收和内存泄漏/">https://fynn90.github.io/2021/01/31/JS垃圾回收和内存泄漏/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Garbage-Collection/">Garbage Collection</a>
+            
+              <a href="/tags/Memory-Leak/">Memory Leak</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+    
+      <a class="next" href="/2021/01/16/ReflectMetadata/">
+        <span class="next-text nav-default">ReflectMetadata</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2021
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -205,6 +205,67 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2021/01/31/JS垃圾回收和内存泄漏/">JS Memory Leak And V8 Garbage Collection</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-01-31
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Javascript/">Javascript</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2021/01/31/JS垃圾回收和内存泄漏/"
+             data-title="JS Memory Leak And V8 Garbage Collection">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p> 内存泄漏（Memory Leak）：程序中不会再被使用到的内存且无法被浏览器 GC (Garbage Collection)回收。</p>
+</blockquote>
+<p>内存泄漏可能导致诸如应用程序速度降低，崩溃，高延迟等问题。</p>
+<p><strong>⚠️本文内容都是基于 Chrome浏览器 V8 JS 解析引擎。</strong></p>
+<h2 id="如何导致-内存泄漏"><a href="#如何导致-内存泄漏" class="headerlink" title="如何导致 内存泄漏"></a>如何导致 内存泄漏</h2><p>一句话简单总结<strong>内存泄漏：</strong>应该存在时间很短的<code>Object</code>,但是被无意中引用导致无法被销毁。</p>
+          <div class="read-more">
+            <a href="/2021/01/31/JS垃圾回收和内存泄漏/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2021/01/16/ReflectMetadata/">ReflectMetadata</a>
         
       </h1>
@@ -1394,70 +1455,6 @@
 <p><em>注意: 可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" target="_blank" rel="noopener">Object.defineProperties</a>批量给对象添加或修改属性描述符</em></p>
           <div class="read-more">
             <a href="/2019/09/10/Object.defineProperty/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/09/window.requestAnimationFrame/">requestAnimationFrame</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-09
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/BOM/">BOM</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/09/window.requestAnimationFrame/"
-             data-title="requestAnimationFrame">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>在制作页面动画时,我们可以通过定时器(<code>setTimeout</code>或<code>setInterval</code>)循环操作DOM节点来实现动画的效果.</p>
-<p>但是<a href="https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-tw" target="_blank" rel="noopener">Google 最佳JS实践</a>要求使用<code>requestAnimationFrame</code>代替定时器.这是为什么呢?</p>
-<p>原因有三个:</p>
-<ol>
-<li><code>setTimeout\setInterval</code>并不和JS在一个线程上,虽然你可以模拟浏览器刷新频率(1000/60),但如果JS线程执行时间较长,JS出超过这个时间去保存有<code>setTimeout\setInterval</code>回调的队列中拿回调执行.这个时候页面会出现卡顿的情况.</li>
-<li>在一些浏览器中,运行有<code>setTimeout\setInterval</code>的脚本的页面,即使当前未被打开,定时器脚本依然是在后台运行的.这就浪费了计算机资源.</li>
-<li>并不是所有的浏览器都是每秒60帧频率,所以<code>setTimeout\setInterval</code>的定时时间需要适配设备.</li>
-</ol>
-<p>用<code>requestAnimationFrame</code>就不会有上面这三个问题!</p>
-          <div class="read-more">
-            <a href="/2019/09/09/window.requestAnimationFrame/" class="read-more-link">阅读更多</a>
           </div>
         
       

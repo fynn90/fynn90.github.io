@@ -205,6 +205,70 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2019/09/09/window.requestAnimationFrame/">requestAnimationFrame</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2019-09-09
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/BOM/">BOM</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2019/09/09/window.requestAnimationFrame/"
+             data-title="requestAnimationFrame">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>在制作页面动画时,我们可以通过定时器(<code>setTimeout</code>或<code>setInterval</code>)循环操作DOM节点来实现动画的效果.</p>
+<p>但是<a href="https://developers.google.com/web/fundamentals/performance/rendering/optimize-javascript-execution?hl=zh-tw" target="_blank" rel="noopener">Google 最佳JS实践</a>要求使用<code>requestAnimationFrame</code>代替定时器.这是为什么呢?</p>
+<p>原因有三个:</p>
+<ol>
+<li><code>setTimeout\setInterval</code>并不和JS在一个线程上,虽然你可以模拟浏览器刷新频率(1000/60),但如果JS线程执行时间较长,JS出超过这个时间去保存有<code>setTimeout\setInterval</code>回调的队列中拿回调执行.这个时候页面会出现卡顿的情况.</li>
+<li>在一些浏览器中,运行有<code>setTimeout\setInterval</code>的脚本的页面,即使当前未被打开,定时器脚本依然是在后台运行的.这就浪费了计算机资源.</li>
+<li>并不是所有的浏览器都是每秒60帧频率,所以<code>setTimeout\setInterval</code>的定时时间需要适配设备.</li>
+</ol>
+<p>用<code>requestAnimationFrame</code>就不会有上面这三个问题!</p>
+          <div class="read-more">
+            <a href="/2019/09/09/window.requestAnimationFrame/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2019/09/02/设计模式-状态模式/">设计模式-状态模式</a>
         
       </h1>
@@ -1350,65 +1414,6 @@
 <p>FHS的重点在于规范每个特定的目录下应该要放置什么样子的数据而已。 这样做好处非常多，因为Linux操作系统就能够在既有的面貌下(目录架构不变)发展出开发者想要的独特风格。<br>
           <div class="read-more">
             <a href="/2019/04/29/Linux的目录结构/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/04/24/Linux的文件和目录权限/">Linux的文件和目录权限</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-04-24
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Linux/">Linux</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/04/24/Linux的文件和目录权限/"
-             data-title="Linux的文件和目录权限">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p>Linux支持多人同时登录系统处理,每个登录用户都会创建一个shell进程.shell进程的id是唯一的,除了linux核心模块其他文件是可以实现同时操作的.</p>
-<p>支撑多人同时对系统进行操作的基础,的是Linux安全的文件权限设计.</p>
-<p>在Linux上任何东西都是文件,而文件的权限从使用者分为:<code>own</code>、<code>group</code>、<code>other</code>.从行为分为:<code>r</code>、<code>w</code>、<code>x</code>.</p>
-<p>而文件类型常见的分为:<code>-</code>、<code>d</code>、<code>l</code><br>
-          <div class="read-more">
-            <a href="/2019/04/24/Linux的文件和目录权限/" class="read-more-link">阅读更多</a>
           </div>
         
       
