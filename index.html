@@ -205,6 +205,67 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2021/02/04/浏览器中跨页面的通讯/">浏览器跨页面通讯</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-02-04
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/BOM/">BOM</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2021/02/04/浏览器中跨页面的通讯/"
+             data-title="浏览器跨页面通讯">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <blockquote>
+<p><strong>同源策略</strong>是一个重要的安全策略，它用于限制一个<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/源" target="_blank" rel="noopener">origin</a>的文档或者它加载的脚本如何能与另一个源的资源进行交互。它能帮助阻隔恶意文档，减少可能被攻击的媒介。</p>
+</blockquote>
+<p><strong>同源定义： </strong> 两个页面的<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Protocol" target="_blank" rel="noopener">Protocol（协议）</a>、<a href="https://developer.mozilla.org/en-US/docs/Glossary/Port" target="_blank" rel="noopener">Port(端口)</a>、<a href="https://developer.mozilla.org/zh-CN/docs/Glossary/Host" target="_blank" rel="noopener">host(域名)</a>相同</p>
+<p>例如：<code>http://www.aaa.com/dir/page.html</code>  <strong>协议： </strong> <code>http://</code>  ， <strong>端口：</strong> <code>80(默认)</code>，<strong>域名：</strong> <code>www.aaa.com</code>。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="string">"http://www.aaa.com/dir/other.html"</span> ：同源</span><br><span class="line"><span class="string">"http://aaa.com/dir/other.html"</span>: 不同源（域名不同）</span><br><span class="line"><span class="string">"http://v2.www.aaa.com/dir/other.html"</span>: 不同源（域名不同）</span><br><span class="line"><span class="string">"http://www.aaa.com:8081/dir/other.html"</span>: 不同源（端口不同）</span><br><span class="line"><span class="string">"https://www.aaa.com:8081/dir/other.html"</span>: 不同源（协议不同）</span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2021/02/04/浏览器中跨页面的通讯/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2021/01/31/JS垃圾回收和内存泄漏/">JS Memory Leak And V8 Garbage Collection</a>
         
       </h1>
@@ -1395,66 +1456,6 @@
 <p><em>单一职责原则</em>、<em>开闭原则</em>、<em>迪米特法则</em>、<em>里氏代换原则</em> 和<em>接口隔离原则</em> 就是我们平常熟知的<strong>SOLID</strong>。</p>
           <div class="read-more">
             <a href="/2019/09/12/设计模式原则/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/09/10/Object.defineProperty/">Object.defineProperty</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019-09-10
-        </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Javascript/">Javascript</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/09/10/Object.defineProperty/"
-             data-title="Object.defineProperty">
-            阅读次数
-          </div>
-        
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <p><code>Object.defineProperty</code>可以用来给<code>Object</code>增加新的属性或更新已有属性,并返回该<code>Object</code>.</p>
-<p><code>Object.defineProperty</code>并不单单只是让我们手动给<code>Object</code>添加或修改属性值,它最大的特点是我们可以给对象单个属性值添加属性描述符(PropertyDescriptor).</p>
-<p>属性描述符可以给当前对象属性添加额外的一些功能,例如:是否可以被修改、是否可以被枚举、捕获该属性的值的变化和读取.</p>
-<p><em>注意: 冻结一个对象属性操作可以用 <a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/freeze" target="_blank" rel="noopener"><code>Object.freeze()</code></a></em></p>
-<p><em>注意: 可以用<a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Object/defineProperties" target="_blank" rel="noopener">Object.defineProperties</a>批量给对象添加或修改属性描述符</em></p>
-          <div class="read-more">
-            <a href="/2019/09/10/Object.defineProperty/" class="read-more-link">阅读更多</a>
           </div>
         
       
