@@ -17,7 +17,7 @@
 
 
 
-  <meta name="description" content="设计模式原则"/>
+  <meta name="description" content="面向对象设计模式原则"/>
 
 
 
@@ -109,7 +109,7 @@
 
 
 
-    <title> 设计模式原则 - Fynn's Blog </title>
+    <title> 面向对象设计模式原则 - Fynn's Blog </title>
   </head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -207,7 +207,7 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          设计模式原则
+          面向对象设计模式原则
         
       </h1>
 
@@ -225,7 +225,7 @@
         
         <div class="post-visits"
              data-url="/2019/09/12/设计模式原则/"
-             data-title="设计模式原则">
+             data-title="面向对象设计模式原则">
             阅读次数
           </div>
         
@@ -250,8 +250,8 @@
 <li>单一职责原则（Single Responsibility Principle, SRP）</li>
 <li>开闭原则（Open Closed Principle，OCP）</li>
 <li>里氏代换原则（Liskov Substitution Principle，LSP）</li>
-<li>依赖倒转原则（Dependency Inversion Principle，DIP）</li>
 <li>接口隔离原则（Interface Segregation Principle，ISP）</li>
+<li>依赖倒转原则（Dependency Inversion Principle，DIP）</li>
 <li>迪米特法则（Law of Demeter，LOD）</li>
 <li>合成/聚合复用原则（Composite/Aggregate Reuse Principle，CARP）</li>
 </ol>
@@ -280,14 +280,14 @@
 <td style="text-align:center">所有引用基类的地方必须能透明地使用其子类的对象</td>
 </tr>
 <tr>
-<td style="text-align:center">DIP</td>
-<td style="text-align:center">依赖倒转原则</td>
-<td style="text-align:center">依赖于抽象，不能依赖于具体实现</td>
-</tr>
-<tr>
 <td style="text-align:center">ISP</td>
 <td style="text-align:center">接口隔离原则</td>
 <td style="text-align:center">类之间的依赖关系应该建立在最小的接口上</td>
+</tr>
+<tr>
+<td style="text-align:center">DIP</td>
+<td style="text-align:center">依赖倒转原则</td>
+<td style="text-align:center">依赖于抽象，不能依赖于具体实现</td>
 </tr>
 <tr>
 <td style="text-align:center">LOD</td>
@@ -301,10 +301,10 @@
 </tr>
 </tbody>
 </table>
-<p><em>单一职责原则</em>、<em>开闭原则</em>、<em>迪米特法则</em>、<em>里氏代换原则</em> 和<em>接口隔离原则</em> 就是我们平常熟知的<strong>SOLID</strong>。</p>
+<p><em>单一职责原则</em>、<em>开闭原则</em>、<em>里氏代换原则</em>、<em>接口隔离原则</em> 和<em>依赖倒转原则</em> 就是我们平常熟知的<strong>SOLID</strong>。</p>
 <a id="more"></a>
 <h2 id="单一职责原则（Single-Responsibility-Principle-SRP）"><a href="#单一职责原则（Single-Responsibility-Principle-SRP）" class="headerlink" title="单一职责原则（Single Responsibility Principle, SRP）"></a>单一职责原则（Single Responsibility Principle, SRP）</h2><blockquote>
-<p> <strong>定义：</strong>一个接口或类只有一个原因引起变化，也就是一个接口或类只有一个职责，它就负责一件事。。</p>
+<p><strong>定义：</strong>一个接口或类只有一个原因引起变化，也就是一个接口或类只有一个职责，它就负责一件事。。</p>
 </blockquote>
 <p>如果<code>职责</code>是针对整个<code>类</code>而言，在<code>Java</code>中一个<code>类</code>会包含很多<code>属性</code>和<code>行为</code>，要达到一个原因影响一个<code>类</code>变更是很难的。除非拆成极端的最细颗粒，但这样维护时间成本会增大。</p>
 <p><strong>优点</strong>：</p>
@@ -315,14 +315,14 @@
 </li>
 <li><p>可维护性提高，可读性提高，那当然更容易维护了；</p>
 </li>
-<li><p>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个 </p>
+<li><p>变更引起的风险降低，变更是必不可少的，如果接口的单一职责做得好，一个</p>
 </li>
 <li><p>接口修改只对相应的实现类有影响，对其他的接口无影响，这对系统的扩展性、维护性都有非常大的帮助。</p>
 </li>
 </ol>
 <p>对于单一职责原则， 我的建议是接口一定要做到单一职责，类的设计尽量做到只有一个原因引起变化。</p>
 <h2 id="开闭原则（Open-Closed-Principle，OCP）"><a href="#开闭原则（Open-Closed-Principle，OCP）" class="headerlink" title="开闭原则（Open Closed Principle，OCP）"></a>开闭原则（Open Closed Principle，OCP）</h2><blockquote>
-<p> <strong>定义：</strong>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭</p>
+<p><strong>定义：</strong>一个软件实体如类、模块和函数应该对扩展开放，对修改关闭</p>
 </blockquote>
 <p>在软件的生命周期内，因为变化、升级和维护等原因，需要对软件原有的代码进行修改时，可能会给旧代码引入错误。因此，当软件需要变化时，我们应该尽量通过扩展的方式来实现变化，而不是通过修改已有的代码来实现。</p>
 <p><strong>优点：</strong></p>
@@ -372,7 +372,7 @@
 <li><p>子类必须完全实现父类的方法。子类可以有自己的方法和属性，相应子类可以胜任父类，但是父类不可以胜任子类</p>
 </li>
 <li><p>覆盖或者实现父类的方法时输入参数被放大：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;￼     </span><br><span class="line">	<span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(HashMap map)</span></span>&#123;￼         </span><br><span class="line">		System.out.println(<span class="string">"父类被执行..."</span>);￼           </span><br><span class="line">		<span class="keyword">return</span> map.values();￼   </span><br><span class="line">	&#125;</span><br><span class="line"> ￼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;￼    </span><br><span class="line">	<span class="comment">//放大输入参数类型￼     </span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(Map map)</span></span>&#123;￼          </span><br><span class="line">		System.out.println(<span class="string">"子类被执行..."</span>);￼            </span><br><span class="line">		<span class="keyword">return</span> map.values();￼   </span><br><span class="line">	&#125;￼</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Father</span> </span>&#123;￼</span><br><span class="line">	<span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(HashMap map)</span></span>&#123;￼</span><br><span class="line">		System.out.println(<span class="string">"父类被执行..."</span>);￼</span><br><span class="line">		<span class="keyword">return</span> map.values();￼</span><br><span class="line">	&#125;</span><br><span class="line"> ￼&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Son</span> <span class="keyword">extends</span> <span class="title">Father</span> </span>&#123;￼</span><br><span class="line">	<span class="comment">//放大输入参数类型￼</span></span><br><span class="line">	<span class="function"><span class="keyword">public</span> Collection <span class="title">doSomething</span><span class="params">(Map map)</span></span>&#123;￼</span><br><span class="line">		System.out.println(<span class="string">"子类被执行..."</span>);￼</span><br><span class="line">		<span class="keyword">return</span> map.values();￼</span><br><span class="line">	&#125;￼</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 </li>
 <li><p>覆写或实现父类的方法时返回结果可以被缩小</p>
 <p>当父类返回一个类型 T，子类的相同方法(覆写或重载)返回值为 S，里氏替换原则要求 S 必须小于等于 T，也就是说要么 S 和 T 一个类型，要么 S 是 T 的子集，为什么，在默念这一句话：有父类的地方，子类应该完全胜任。</p>
@@ -386,8 +386,8 @@
 <li>细节应该依赖抽象。</li>
 </ol>
 </blockquote>
-<p>在实现依赖倒转原则时，我们需要针对抽象层编程，而将具体类的对象通过依赖注入(DependencyInjection, DI)的方式注入到其他对象中，依赖注入是指当一个对象要与其他对象发生依赖关系时，通过抽象来注入所依赖的对象。常用的注入方式有三种，分别是：构造注入，设值注入（Setter注入）和接口注入。Spring的IOC是此实现的典范。</p>
-<p>从Java角度看待依赖倒转原则的本质就是：面向接口(抽象)编程。</p>
+<p>在实现依赖倒转原则时，我们需要针对抽象层编程，而将具体类的对象通过依赖注入(DependencyInjection, DI)的方式注入到其他对象中，依赖注入是指当一个对象要与其他对象发生依赖关系时，通过抽象来注入所依赖的对象。常用的注入方式有三种，分别是：构造注入，设值注入（Setter 注入）和接口注入。Spring 的 IOC 是此实现的典范。</p>
+<p>从 Java 角度看待依赖倒转原则的本质就是：面向接口(抽象)编程。</p>
 <ul>
 <li>每个具体的类都应该有其接口或者基类，或者两者都具备。</li>
 <li>类中的引用对象应该是接口或者基类。</li>
@@ -430,13 +430,13 @@
 </ol>
 <p>迪米特法则的核心观念就是类间解耦，也就降低类之间的耦合，只有类处于弱耦合状态，类的复用率才会提高。所谓降低类间耦合，实际上就是尽量减少对象之间的交互，如果两个对象之间不必彼此直接通信，那么这两个对象就不应当发生任何直接的相互作用，如果其中的一个对象需要调用另一个对象的某一个方法的话，可以通过第三者转发这个调用。</p>
 <p>体育老师要知道班里面女生的人数，他委托体育课代表点清女生的人数：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</span><br><span class="line">	</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GroupLeader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> List&lt;Girl&gt; girls;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GroupLeader</span><span class="params">(List&lt;Girl&gt; girls)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.girls = girls;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countGirls</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"The sum of girls is "</span> + girls.size());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">command</span><span class="params">(GroupLeader leader)</span></span>&#123;</span><br><span class="line">		leader.countGirls();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		Teacher teacher = <span class="keyword">new</span> Teacher();</span><br><span class="line">		GroupLeader groupLeader = <span class="keyword">new</span> GroupLeader(Arrays.asList(<span class="keyword">new</span> Girl(), <span class="keyword">new</span> Girl()));</span><br><span class="line">		teacher.command(groupLeader);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Girl</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">GroupLeader</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="keyword">private</span> <span class="keyword">final</span> List&lt;Girl&gt; girls;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="title">GroupLeader</span><span class="params">(List&lt;Girl&gt; girls)</span> </span>&#123;</span><br><span class="line">		<span class="keyword">this</span>.girls = girls;</span><br><span class="line">	&#125;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">countGirls</span><span class="params">()</span> </span>&#123;</span><br><span class="line">		System.out.println(<span class="string">"The sum of girls is "</span> + girls.size());</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Teacher</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">command</span><span class="params">(GroupLeader leader)</span></span>&#123;</span><br><span class="line">		leader.countGirls();</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">App</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">	<span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> <span class="keyword">throws</span> Exception </span>&#123;</span><br><span class="line">		Teacher teacher = <span class="keyword">new</span> Teacher();</span><br><span class="line">		GroupLeader groupLeader = <span class="keyword">new</span> GroupLeader(Arrays.asList(<span class="keyword">new</span> Girl(), <span class="keyword">new</span> Girl()));</span><br><span class="line">		teacher.command(groupLeader);</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 <p>这个例子中，体育课代表就是中间类，体育课代表对于体育老师来说就是”直接的朋友”，如果去掉体育课代表这个中间类，体育老师必须亲自清点女生的人数(实际上就数人数这个功能，体育老师是不必要获取所有女生的对象列表)，这样做会违反迪米特法则。</p>
 <h2 id="合成-聚合复用原则（Composite-Aggregate-Reuse-Principle，CARP）"><a href="#合成-聚合复用原则（Composite-Aggregate-Reuse-Principle，CARP）" class="headerlink" title="合成/聚合复用原则（Composite/Aggregate Reuse Principle，CARP）"></a>合成/聚合复用原则（Composite/Aggregate Reuse Principle，CARP）</h2><blockquote>
 <p><strong>定义：</strong>尽量使用合成/聚合，而不是通过继承达到复用的目的。</p>
 </blockquote>
 <p>合成/聚合复用原则就是在一个新的对象里面使用一些已有的对象，使之成为新对象的一部分；新的对象通过向内部持有的这些对象的委派达到复用已有功能的目的，而不是通过继承来获得已有的功能。</p>
-<h3 id="聚合-Aggregate-的概念"><a href="#聚合-Aggregate-的概念" class="headerlink" title="聚合(Aggregate)的概念"></a>聚合(Aggregate)的概念</h3><p>聚合表示一种弱的”拥有”关系，一般表现为松散的整体和部分的关系，其实，所谓整体和部分也可以是完全不相关的。例如A对象持有B对象，B对象并不是A对象的一部分，也就是B对象的生命周期是B对象自身管理，和A对象不相关。</p>
+<h3 id="聚合-Aggregate-的概念"><a href="#聚合-Aggregate-的概念" class="headerlink" title="聚合(Aggregate)的概念"></a>聚合(Aggregate)的概念</h3><p>聚合表示一种弱的”拥有”关系，一般表现为松散的整体和部分的关系，其实，所谓整体和部分也可以是完全不相关的。例如 A 对象持有 B 对象，B 对象并不是 A 对象的一部分，也就是 B 对象的生命周期是 B 对象自身管理，和 A 对象不相关。</p>
 <h3 id="合成-Composite-的概念"><a href="#合成-Composite-的概念" class="headerlink" title="合成(Composite)的概念"></a>合成(Composite)的概念</h3><p>合成表示一种强的”拥有”关系，一般表现为严格的整体和部分的关系，部分和整体的生命周期是一样的。</p>
 <h3 id="聚合和合成的关系"><a href="#聚合和合成的关系" class="headerlink" title="聚合和合成的关系"></a>聚合和合成的关系</h3><p>这里用山羊举例说明聚合和合成的关系：</p>
 <p><img src="https://pic.downk.cc/item/5fe3417a3ffa7d37b3d67883.png" alt=""></p>
