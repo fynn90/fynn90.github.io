@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> shadowsocks安装 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/05/14/shadowsocks安装/"
+             data-url="/2018/05/14/shadowsocks%E5%AE%89%E8%A3%85/"
              data-title="shadowsocks安装">
             阅读次数
           </div>
@@ -239,24 +239,29 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置文件"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#命令"><span class="toc-text">命令</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">配置文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%91%BD%E4%BB%A4"><span class="toc-text">命令</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>一名合格的程序员必备技能之一应该就是能够翻越那堵墙，而<a href="https://github.com/shadowsocks/shadowsocks/tree/master" target="_blank" rel="noopener">Shadowsocks</a>在这方面是好用的工具。</p>
+        <p>一名合格的程序员必备技能之一应该就是能够翻越那堵墙，而<a target="_blank" rel="noopener" href="https://github.com/shadowsocks/shadowsocks/tree/master">Shadowsocks</a>在这方面是好用的工具。</p>
 <blockquote>
-<p>A fast tunnel proxy that helps you bypass firewalls<br><a id="more"></a></p>
+<p>A fast tunnel proxy that helps you bypass firewalls</p>
 </blockquote>
+<span id="more"></span>
 <h2 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h2><p>基于centos7,依赖于python3 和 pip3。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yum install libsodium python34-pip</span><br><span class="line">$ pip3 install git+https://github.com/shadowsocks/shadowsocks.git@master</span><br></pre></td></tr></table></figure>
+
 <h2 id="配置文件"><a href="#配置文件" class="headerlink" title="配置文件"></a>配置文件</h2><p>创建一个配置文件:<code>/etc/shadowsocks.json</code></p>
-<figure class="highlight"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    "server":"0.0.0.0", // 接受服务器端ip 0.0.0.0为接受所有ip请求</span><br><span class="line">    "server_port":443, // 监听服务器端端口号</span><br><span class="line">    "local_address":"127.0.0.1", // 本地IP</span><br><span class="line">    "local_port":1080, // 本地端口</span><br><span class="line">    "password":'xxx', // 密码</span><br><span class="line">    "timeout":300,// 超时时间</span><br><span class="line">    "method": "aes-256-cfb", //加密方法</span><br><span class="line">    "fast_open":true, // 是否开启快速模式</span><br><span class="line">    "workers":2 // 开启线程数</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">    <span class="attr">&quot;server&quot;</span>:<span class="string">&quot;0.0.0.0&quot;</span>, <span class="comment">// 接受服务器端ip 0.0.0.0为接受所有ip请求</span></span><br><span class="line">    <span class="attr">&quot;server_port&quot;</span>:<span class="number">443</span>, <span class="comment">// 监听服务器端端口号</span></span><br><span class="line">    <span class="attr">&quot;local_address&quot;</span>:<span class="string">&quot;127.0.0.1&quot;</span>, <span class="comment">// 本地IP</span></span><br><span class="line">    <span class="attr">&quot;local_port&quot;</span>:<span class="number">1080</span>, <span class="comment">// 本地端口</span></span><br><span class="line">    <span class="attr">&quot;password&quot;</span>:&#x27;xxx&#x27;, <span class="comment">// 密码</span></span><br><span class="line">    <span class="attr">&quot;timeout&quot;</span>:<span class="number">300</span>,<span class="comment">// 超时时间</span></span><br><span class="line">    <span class="attr">&quot;method&quot;</span>: <span class="string">&quot;aes-256-cfb&quot;</span>, <span class="comment">//加密方法</span></span><br><span class="line">    <span class="attr">&quot;fast_open&quot;</span>:<span class="literal">true</span>, <span class="comment">// 是否开启快速模式</span></span><br><span class="line">    <span class="attr">&quot;workers&quot;</span>:<span class="number">2</span> <span class="comment">// 开启线程数</span></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p>创建systemctl单元文件，将shadowsocks服务加入到systemctl中。地址：<code>/usr/lib/systemd/system/shadowsocks.service</code></p>
 <figure class="highlight ini"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="section">[Unit]</span></span><br><span class="line"><span class="attr">Description</span>=Shadowsocks</span><br><span class="line"><span class="section">[Service]</span></span><br><span class="line"><span class="attr">ExecStart</span>=/usr/bin/ssserver -c /etc/shadowsocks.json</span><br><span class="line"><span class="attr">ExecStop</span>=/usr/bin/ssserver -c /etc/shadowsocks.json -d stop</span><br><span class="line"><span class="section">[Install]</span></span><br><span class="line"><span class="attr">WantedBy</span>=multi-user.target</span><br></pre></td></tr></table></figure>
+
 <h2 id="命令"><a href="#命令" class="headerlink" title="命令"></a>命令</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start shadowsocks.service <span class="comment"># 启动shadowsocks服务</span></span><br><span class="line">$ sudo systemctl stop shadowsocks.service <span class="comment"># 停止shadowsocks服务</span></span><br><span class="line">$ sudo systemctl status shadowsocks.service <span class="comment"># 查看shadowsocks服务状态</span></span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -272,7 +277,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/05/14/shadowsocks安装/">https://fynn90.github.io/2018/05/14/shadowsocks安装/</a>
+      <a href="https://fynn90.github.io/2018/05/14/shadowsocks%E5%AE%89%E8%A3%85/">https://fynn90.github.io/2018/05/14/shadowsocks%E5%AE%89%E8%A3%85/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -318,14 +323,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/05/17/Redis入门手册/">
+      <a class="prev" href="/2018/05/17/Redis%E5%85%A5%E9%97%A8%E6%89%8B%E5%86%8C/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Redis入门手册</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/05/11/rpm重装python,yum/">
+      <a class="next" href="/2018/05/11/rpm%E9%87%8D%E8%A3%85python,yum/">
         <span class="next-text nav-default">rpm重装Python,yum</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -365,31 +370,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

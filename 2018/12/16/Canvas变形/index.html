@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Canvas变形 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/12/16/Canvas变形/"
+             data-url="/2018/12/16/Canvas%E5%8F%98%E5%BD%A2/"
              data-title="Canvas变形">
             阅读次数
           </div>
@@ -239,7 +239,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#状态的保存和释放"><span class="toc-text">状态的保存和释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#移动-Translating"><span class="toc-text">移动 Translating</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#旋转-Rotating"><span class="toc-text">旋转 Rotating</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#缩放-Scaling"><span class="toc-text">缩放 Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#变形-Transforms"><span class="toc-text">变形 Transforms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%8A%B6%E6%80%81%E7%9A%84%E4%BF%9D%E5%AD%98%E5%92%8C%E9%87%8A%E6%94%BE"><span class="toc-text">状态的保存和释放</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%A7%BB%E5%8A%A8-Translating"><span class="toc-text">移动 Translating</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%97%8B%E8%BD%AC-Rotating"><span class="toc-text">旋转 Rotating</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%BC%A9%E6%94%BE-Scaling"><span class="toc-text">缩放 Scaling</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%98%E5%BD%A2-Transforms"><span class="toc-text">变形 Transforms</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
@@ -247,25 +247,30 @@
     <div class="post-content">
       
         <p>Canvas 绘制的图像是可以：放大、缩小、变形、旋转。这些特性和 CSS3 很类似，和 CSS3 不同的是,Canvas 变形的中心点并不是图形的正中心，而是图形的左上角。</p>
-<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1704/canvas-12-3.png" alt=""></p>
-<a id="more"></a>
-<h2 id="状态的保存和释放"><a href="#状态的保存和释放" class="headerlink" title="状态的保存和释放"></a>状态的保存和释放</h2><p><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/save" target="_blank" rel="noopener"><code>save()</code></a> 的用途是将当前 canvas 的状态保存到堆栈中。<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/restore" target="_blank" rel="noopener"><code>restore()</code></a>的用途是恢复保存在堆栈中的保持状态。</p>
+<p><img src="https://www.w3cplus.com/sites/default/files/blogs/2017/1704/canvas-12-3.png"></p>
+<span id="more"></span>
+
+<h2 id="状态的保存和释放"><a href="#状态的保存和释放" class="headerlink" title="状态的保存和释放"></a>状态的保存和释放</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/save"><code>save()</code></a> 的用途是将当前 canvas 的状态保存到堆栈中。<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/restore"><code>restore()</code></a>的用途是恢复保存在堆栈中的保持状态。</p>
 <p>在绘制复杂的图形时，保存绘制状态和恢复绘制状态可以大大减少绘制的计算复杂度。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>)</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">'2d'</span>)</span><br><span class="line"></span><br><span class="line">ctx.save() <span class="comment">// save the default state</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">'green'</span></span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">ctx.restore() <span class="comment">// restore to the default state</span></span><br><span class="line">ctx.fillRect(<span class="number">150</span>, <span class="number">75</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2018/12/16/5c15e8baa6bbc.png" alt=""></p>
-<h2 id="移动-Translating"><a href="#移动-Translating" class="headerlink" title="移动 Translating"></a>移动 Translating</h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate" target="_blank" rel="noopener"><code>translate()</code></a>是用来移动 Canvas 中的中心点位置，在绘制复杂的图案时，<code>tanslate</code>和<code>save</code>、<code>restore</code>可以大大降低绘制图案的计算复杂度。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">      ctx.save()</span><br><span class="line">      ctx.fillStyle = <span class="string">'rgb('</span> + <span class="number">51</span> * i + <span class="string">', '</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">', 255)'</span></span><br><span class="line">      ctx.translate(<span class="number">10</span> + j * <span class="number">50</span>, <span class="number">10</span> + i * <span class="number">50</span>)</span><br><span class="line">      ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">25</span>)</span><br><span class="line">      ctx.restore()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://mdn.mozillademos.org/files/9857/translate.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>)</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line"></span><br><span class="line">ctx.save() <span class="comment">// save the default state</span></span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">&#x27;green&#x27;</span></span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line"></span><br><span class="line">ctx.restore() <span class="comment">// restore to the default state</span></span><br><span class="line">ctx.fillRect(<span class="number">150</span>, <span class="number">75</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2018/12/16/5c15e8baa6bbc.png"></p>
+<h2 id="移动-Translating"><a href="#移动-Translating" class="headerlink" title="移动 Translating"></a>移动 Translating</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/translate"><code>translate()</code></a>是用来移动 Canvas 中的中心点位置，在绘制复杂的图案时，<code>tanslate</code>和<code>save</code>、<code>restore</code>可以大大降低绘制图案的计算复杂度。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>).getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt; <span class="number">3</span>; i++) &#123;</span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; <span class="number">3</span>; j++) &#123;</span><br><span class="line">      ctx.save()</span><br><span class="line">      ctx.fillStyle = <span class="string">&#x27;rgb(&#x27;</span> + <span class="number">51</span> * i + <span class="string">&#x27;, &#x27;</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">&#x27;, 255)&#x27;</span></span><br><span class="line">      ctx.translate(<span class="number">10</span> + j * <span class="number">50</span>, <span class="number">10</span> + i * <span class="number">50</span>)</span><br><span class="line">      ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">25</span>, <span class="number">25</span>)</span><br><span class="line">      ctx.restore()</span><br><span class="line">    &#125;</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mdn.mozillademos.org/files/9857/translate.png"></p>
 <p>在上一个例子中，每个小正方形的大小相同但位置不同，如果不用<code>translate</code>我们需要在<code>fillRect</code>中设置它的坐标，这样代码上就会变得不易读懂。</p>
-<h2 id="旋转-Rotating"><a href="#旋转-Rotating" class="headerlink" title="旋转 Rotating"></a>旋转 Rotating</h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate" target="_blank" rel="noopener"><code>rotate(angle)</code></a>以原点为中心旋转。</p>
+<h2 id="旋转-Rotating"><a href="#旋转-Rotating" class="headerlink" title="旋转 Rotating"></a>旋转 Rotating</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/rotate"><code>rotate(angle)</code></a>以原点为中心旋转。</p>
 <p>旋转的中心点始终是 canvas 的原点，如果要改变它，我们需要用到 <code>translate</code>方法。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>)</span><br><span class="line">  ctx.translate(<span class="number">75</span>, <span class="number">75</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// Loop through rings (from inside to out)</span></span><br><span class="line">    ctx.save()</span><br><span class="line">    ctx.fillStyle = <span class="string">'rgb('</span> + <span class="number">51</span> * i + <span class="string">','</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">',255)'</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; i * <span class="number">6</span>; j++) &#123;</span><br><span class="line">      <span class="comment">// draw individual dots</span></span><br><span class="line">      ctx.rotate((<span class="built_in">Math</span>.PI * <span class="number">2</span>) / (i * <span class="number">6</span>))</span><br><span class="line">      ctx.beginPath()</span><br><span class="line">      ctx.arc(<span class="number">0</span>, i * <span class="number">12.5</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>)</span><br><span class="line">      ctx.fill()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ctx.restore()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2018/12/16/5c15edbf16d01.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>).getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line">  ctx.translate(<span class="number">75</span>, <span class="number">75</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">1</span>; i &lt; <span class="number">6</span>; i++) &#123;</span><br><span class="line">    <span class="comment">// Loop through rings (from inside to out)</span></span><br><span class="line">    ctx.save()</span><br><span class="line">    ctx.fillStyle = <span class="string">&#x27;rgb(&#x27;</span> + <span class="number">51</span> * i + <span class="string">&#x27;,&#x27;</span> + (<span class="number">255</span> - <span class="number">51</span> * i) + <span class="string">&#x27;,255)&#x27;</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> (<span class="keyword">var</span> j = <span class="number">0</span>; j &lt; i * <span class="number">6</span>; j++) &#123;</span><br><span class="line">      <span class="comment">// draw individual dots</span></span><br><span class="line">      ctx.rotate((<span class="built_in">Math</span>.PI * <span class="number">2</span>) / (i * <span class="number">6</span>))</span><br><span class="line">      ctx.beginPath()</span><br><span class="line">      ctx.arc(<span class="number">0</span>, i * <span class="number">12.5</span>, <span class="number">5</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI * <span class="number">2</span>, <span class="literal">true</span>)</span><br><span class="line">      ctx.fill()</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    ctx.restore()</span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2018/12/16/5c15edbf16d01.png"></p>
 <p>上面例子中，第一层循环决定环的数量，第二层循环决定每环有多少个点。每环开始之前，我都保存一下 canvas 的状态，这样恢复起来方便。每次画圆点，我都以一定夹角来旋转 canvas，而这个夹角则是由环上的圆点数目的决定的。最里层的环有 6 个圆点，这样，每次旋转的夹角就是 360/6 = 60 度。往外每一环的圆点数目是里面一环的 2 倍，那么每次旋转的夹角随之减半。</p>
-<h2 id="缩放-Scaling"><a href="#缩放-Scaling" class="headerlink" title="缩放 Scaling"></a>缩放 Scaling</h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale" target="_blank" rel="noopener"><code>scale(x, y)</code></a>用以改变绘制图形的大小，<code>scale</code>方法接受两个参数。x,y 分别是横轴和纵轴的缩放因子，它们都必须是正值。值比 1.0 小表示缩小，比 1.0 大则表示放大，值为 1.0 时什么效果都没有。</p>
+<h2 id="缩放-Scaling"><a href="#缩放-Scaling" class="headerlink" title="缩放 Scaling"></a>缩放 Scaling</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/scale"><code>scale(x, y)</code></a>用以改变绘制图形的大小，<code>scale</code>方法接受两个参数。x,y 分别是横轴和纵轴的缩放因子，它们都必须是正值。值比 1.0 小表示缩小，比 1.0 大则表示放大，值为 1.0 时什么效果都没有。</p>
 <p><strong>注意：</strong> 在用 Canvas 绘制图形中，会发现绘制的图形不够清晰，这时我们可以通过放大 Canvas 图形的大小，并缩小外层包裹 Canvas 标签的大小，达到高清的图形效果。</p>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;zoom:0.5;&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">"box"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"mycanvas"</span> <span class="attr">width</span>=<span class="string">"700px"</span> <span class="attr">height</span>=<span class="string">"700px"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<h2 id="变形-Transforms"><a href="#变形-Transforms" class="headerlink" title="变形 Transforms"></a>变形 Transforms</h2><p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform" target="_blank" rel="noopener"><code>transform(a, b, c, d, e, f)</code></a>变形方法可以实现上面的：平移（<code>translate</code>）／旋转（<code>rotate</code>）／缩放（ <code>scale</code>）变换</p>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">.box&#123;zoom:0.5;&#125;</span><br><span class="line"></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">class</span>=<span class="string">&quot;box&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;mycanvas&quot;</span> <span class="attr">width</span>=<span class="string">&quot;700px&quot;</span> <span class="attr">height</span>=<span class="string">&quot;700px&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="变形-Transforms"><a href="#变形-Transforms" class="headerlink" title="变形 Transforms"></a>变形 Transforms</h2><p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/transform"><code>transform(a, b, c, d, e, f)</code></a>变形方法可以实现上面的：平移（<code>translate</code>）／旋转（<code>rotate</code>）／缩放（ <code>scale</code>）变换</p>
 <table>
 <thead>
 <tr>
@@ -273,8 +278,7 @@
 <th>含义</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>a</td>
 <td>水平缩放绘图</td>
 </tr>
@@ -298,15 +302,15 @@
 <td>f</td>
 <td>垂直移动绘图</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>transform() 方法是对当前坐标系进行矩阵变换。</p>
-<p><a href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform" target="_blank" rel="noopener"><code>setTransform(a, b, c, d, e, f)</code></a> setTransform() 方法重置变形矩阵。先将当前的矩阵重置为单位矩阵（即默认的坐标系），再用相同的参数调用 transform() 方法设置矩阵。</p>
-<p><code>resetTransform()</code>重置当前变形为单位矩阵，它和调用以下语句<code></code>是一样的</p>
+<p><a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/API/CanvasRenderingContext2D/setTransform"><code>setTransform(a, b, c, d, e, f)</code></a> setTransform() 方法重置变形矩阵。先将当前的矩阵重置为单位矩阵（即默认的坐标系），再用相同的参数调用 transform() 方法设置矩阵。</p>
+<p><code>resetTransform()</code>重置当前变形为单位矩阵，它和调用以下语句``是一样的</p>
 <p><code>ctx.setTransform(1, 0, 0, 1, 0, 0);</code></p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sin = <span class="built_in">Math</span>.sin(<span class="built_in">Math</span>.PI / <span class="number">6</span>)</span><br><span class="line">  <span class="keyword">var</span> cos = <span class="built_in">Math</span>.cos(<span class="built_in">Math</span>.PI / <span class="number">6</span>)</span><br><span class="line">  ctx.translate(<span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">  <span class="keyword">var</span> c = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">12</span>; i++) &#123;</span><br><span class="line">    c = <span class="built_in">Math</span>.floor((<span class="number">255</span> / <span class="number">12</span>) * i)</span><br><span class="line">    ctx.fillStyle = <span class="string">'rgb('</span> + c + <span class="string">','</span> + c + <span class="string">','</span> + c + <span class="string">')'</span></span><br><span class="line">    ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>)</span><br><span class="line">    ctx.transform(cos, sin, -sin, cos, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ctx.setTransform(<span class="number">-1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">  ctx.fillStyle = <span class="string">'rgba(255, 128, 255, 0.5)'</span></span><br><span class="line">  ctx.fillRect(<span class="number">0</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-<p><img src="https://mdn.mozillademos.org/files/255/Canvas_transform.png" alt=""></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html" target="_blank" rel="noopener">https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>).getContext(<span class="string">&#x27;2d&#x27;</span>)</span><br><span class="line"></span><br><span class="line">  <span class="keyword">var</span> sin = <span class="built_in">Math</span>.sin(<span class="built_in">Math</span>.PI / <span class="number">6</span>)</span><br><span class="line">  <span class="keyword">var</span> cos = <span class="built_in">Math</span>.cos(<span class="built_in">Math</span>.PI / <span class="number">6</span>)</span><br><span class="line">  ctx.translate(<span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">  <span class="keyword">var</span> c = <span class="number">0</span></span><br><span class="line">  <span class="keyword">for</span> (<span class="keyword">var</span> i = <span class="number">0</span>; i &lt;= <span class="number">12</span>; i++) &#123;</span><br><span class="line">    c = <span class="built_in">Math</span>.floor((<span class="number">255</span> / <span class="number">12</span>) * i)</span><br><span class="line">    ctx.fillStyle = <span class="string">&#x27;rgb(&#x27;</span> + c + <span class="string">&#x27;,&#x27;</span> + c + <span class="string">&#x27;,&#x27;</span> + c + <span class="string">&#x27;)&#x27;</span></span><br><span class="line">    ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>, <span class="number">10</span>)</span><br><span class="line">    ctx.transform(cos, sin, -sin, cos, <span class="number">0</span>, <span class="number">0</span>)</span><br><span class="line">  &#125;</span><br><span class="line"></span><br><span class="line">  ctx.setTransform(-<span class="number">1</span>, <span class="number">0</span>, <span class="number">0</span>, <span class="number">1</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">  ctx.fillStyle = <span class="string">&#x27;rgba(255, 128, 255, 0.5)&#x27;</span></span><br><span class="line">  ctx.fillRect(<span class="number">0</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>)</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://mdn.mozillademos.org/files/255/Canvas_transform.png"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html">https://aotu.io/notes/2017/05/25/canvas-img-rotate-and-flip/index.html</a></p>
 
       
     </div>
@@ -322,7 +326,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/12/16/Canvas变形/">https://fynn90.github.io/2018/12/16/Canvas变形/</a>
+      <a href="https://fynn90.github.io/2018/12/16/Canvas%E5%8F%98%E5%BD%A2/">https://fynn90.github.io/2018/12/16/Canvas%E5%8F%98%E5%BD%A2/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -368,14 +372,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/01/02/Canvas合成与裁剪/">
+      <a class="prev" href="/2019/01/02/Canvas%E5%90%88%E6%88%90%E4%B8%8E%E8%A3%81%E5%89%AA/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Canvas合成与剪切</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/12/12/Javascript中的await和Promise/">
+      <a class="next" href="/2018/12/12/Javascript%E4%B8%AD%E7%9A%84await%E5%92%8CPromise/">
         <span class="next-text nav-default">JavaScript中的Promise和Async/Await</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -415,31 +419,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

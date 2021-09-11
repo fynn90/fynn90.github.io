@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Chocolatey-windows包管理器 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2017/11/28/chocolatey-windows包管理器/"
+             data-url="/2017/11/28/chocolatey-windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/"
              data-title="Chocolatey-windows包管理器">
             阅读次数
           </div>
@@ -237,59 +237,62 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Chocolatey"><span class="toc-text">安装Chocolatey</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装要求"><span class="toc-text">安装要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#通过CMD"><span class="toc-text">通过CMD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#更新Chocolatey"><span class="toc-text">更新Chocolatey</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载Chocolatey"><span class="toc-text">卸载Chocolatey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#常用命令"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-展示远程或本地包"><span class="toc-text">list 展示远程或本地包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search-搜索包"><span class="toc-text">search 搜索包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upgrade-更新包"><span class="toc-text">upgrade 更新包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outdated-过时的包"><span class="toc-text">outdated 过时的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uninstall-卸载包"><span class="toc-text">uninstall 卸载包</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Chocolatey"><span class="toc-text">安装Chocolatey</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85%E8%A6%81%E6%B1%82"><span class="toc-text">安装要求</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%80%9A%E8%BF%87CMD"><span class="toc-text">通过CMD</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E6%9B%B4%E6%96%B0Chocolatey"><span class="toc-text">更新Chocolatey</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BDChocolatey"><span class="toc-text">卸载Chocolatey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%B8%B8%E7%94%A8%E5%91%BD%E4%BB%A4"><span class="toc-text">常用命令</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#list-%E5%B1%95%E7%A4%BA%E8%BF%9C%E7%A8%8B%E6%88%96%E6%9C%AC%E5%9C%B0%E5%8C%85"><span class="toc-text">list 展示远程或本地包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#search-%E6%90%9C%E7%B4%A2%E5%8C%85"><span class="toc-text">search 搜索包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#install"><span class="toc-text">install</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#upgrade-%E6%9B%B4%E6%96%B0%E5%8C%85"><span class="toc-text">upgrade 更新包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#outdated-%E8%BF%87%E6%97%B6%E7%9A%84%E5%8C%85"><span class="toc-text">outdated 过时的包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#uninstall-%E5%8D%B8%E8%BD%BD%E5%8C%85"><span class="toc-text">uninstall 卸载包</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p><a href="https://chocolatey.org/" target="_blank" rel="noopener">Chocolatey</a>是一个windows平台的包管理器，它就像是windows平台的apt-get或yum。它被设计成分散的框架，用于快速安装你所需要的软件和工具。它是建立在PowerShell的NuGet基础架构上。<br><a id="more"></a> </p>
-<h2 id="安装Chocolatey"><a href="#安装Chocolatey" class="headerlink" title="安装Chocolatey"></a><a href="https://chocolatey.org/install" target="_blank" rel="noopener">安装Chocolatey</a></h2><h3 id="安装要求"><a href="#安装要求" class="headerlink" title="安装要求"></a>安装要求</h3><ul>
+        <p><a target="_blank" rel="noopener" href="https://chocolatey.org/">Chocolatey</a>是一个windows平台的包管理器，它就像是windows平台的apt-get或yum。它被设计成分散的框架，用于快速安装你所需要的软件和工具。它是建立在PowerShell的NuGet基础架构上。</p>
+<span id="more"></span> 
+<h2 id="安装Chocolatey"><a href="#安装Chocolatey" class="headerlink" title="安装Chocolatey"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/install">安装Chocolatey</a></h2><h3 id="安装要求"><a href="#安装要求" class="headerlink" title="安装要求"></a>安装要求</h3><ul>
 <li>Windows 7+ / Windows Server 2003+</li>
 <li>PowerShell v2+</li>
 <li>.NET Framework 4+</li>
 </ul>
-<h3 id="通过CMD"><a href="#通过CMD" class="headerlink" title="通过CMD"></a>通过CMD</h3><p>以管理员身份打开CMD，然后执行下面代码：<br><figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" &amp;&amp; SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"</span><br></pre></td></tr></table></figure></p>
+<h3 id="通过CMD"><a href="#通过CMD" class="headerlink" title="通过CMD"></a>通过CMD</h3><p>以管理员身份打开CMD，然后执行下面代码：  </p>
+<figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">@&quot;%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe&quot; -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command &quot;iex ((New-Object System.Net.WebClient).DownloadString(&#x27;https://chocolatey.org/install.ps1&#x27;))&quot; &amp;&amp; SET &quot;PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin&quot;</span><br></pre></td></tr></table></figure>
 <h3 id="更新Chocolatey"><a href="#更新Chocolatey" class="headerlink" title="更新Chocolatey"></a>更新Chocolatey</h3><p>Chocolatey完全被安装后，可以通过命令升级到最新版本：</p>
 <figure class="highlight shell"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco upgrade chocolatey</span><br></pre></td></tr></table></figure>
-<h2 id="卸载Chocolatey"><a href="#卸载Chocolatey" class="headerlink" title="卸载Chocolatey"></a><a href="https://chocolatey.org/docs/uninstallation" target="_blank" rel="noopener">卸载Chocolatey</a></h2><p>Chocolatey实际上并没有安装到系统上，卸载它只需要删除一些目录和环境变量。</p>
+<h2 id="卸载Chocolatey"><a href="#卸载Chocolatey" class="headerlink" title="卸载Chocolatey"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/uninstallation">卸载Chocolatey</a></h2><p>Chocolatey实际上并没有安装到系统上，卸载它只需要删除一些目录和环境变量。</p>
 <ul>
 <li>文件夹<ul>
-<li>C:\Chocolatey - for Chocolatey version &lt; 0.9.8.27</li>
-<li>C:\ProgramData\chocolatey &gt; 0.9.8.27</li>
+<li> C:\Chocolatey - for Chocolatey version &lt; 0.9.8.27</li>
+<li> C:\ProgramData\chocolatey &gt; 0.9.8.27</li>
 </ul>
 </li>
 </ul>
 <p><strong>注意：</strong> 如果你是从0.9.8.26升级到0.9.8.27文件夹是<code>C:\Chocolatey</code></p>
 <ul>
 <li>环境变量<ul>
-<li>ChocolateyInstall</li>
-<li>ChocolateyBinRoot</li>
-<li>ChocolateyToolsLocation</li>
-<li>PATH (will need updated to remove)</li>
+<li> ChocolateyInstall</li>
+<li> ChocolateyBinRoot</li>
+<li> ChocolateyToolsLocation</li>
+<li> PATH (will need updated to remove)</li>
 </ul>
 </li>
 </ul>
-<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="list-展示远程或本地包"><a href="#list-展示远程或本地包" class="headerlink" title="list 展示远程或本地包"></a><a href="https://chocolatey.org/docs/commands-list" target="_blank" rel="noopener">list 展示远程或本地包</a></h3><p>列出本地通过choco安装的包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">choco list -l</span><br><span class="line">choco list --local-only</span><br></pre></td></tr></table></figure>
+<h2 id="常用命令"><a href="#常用命令" class="headerlink" title="常用命令"></a>常用命令</h2><h3 id="list-展示远程或本地包"><a href="#list-展示远程或本地包" class="headerlink" title="list 展示远程或本地包"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-list">list 展示远程或本地包</a></h3><p>列出本地通过choco安装的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">choco list -l</span><br><span class="line">choco list --local-only</span><br></pre></td></tr></table></figure>
 <p>列出本地安装啊的软件</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco list -li</span><br></pre></td></tr></table></figure>
-<h3 id="search-搜索包"><a href="#search-搜索包" class="headerlink" title="search 搜索包"></a>search 搜索包</h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco search node #搜索nodejs相关的包</span><br></pre></td></tr></table></figure>
-<p>建议去<a href="https://chocolatey.org/packages" target="_blank" rel="noopener">官网页面</a>搜索需要的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco list -li</span><br></pre></td></tr></table></figure>
+<h3 id="search-搜索包"><a href="#search-搜索包" class="headerlink" title="search 搜索包"></a>search 搜索包</h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco search node #搜索nodejs相关的包</span><br></pre></td></tr></table></figure>
+<p>建议去<a target="_blank" rel="noopener" href="https://chocolatey.org/packages">官网页面</a>搜索需要的包</p>
 <p>查看包详细信息</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco search &lt;pkgname&gt; --exact --detailed</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco search &lt;pkgname&gt; --exact --detailed</span><br></pre></td></tr></table></figure>
 <p><strong>注意：</strong> 查询时包名可以是模糊的，但如果是查看包详细信息包名是要精确的。</p>
-<h3 id="install"><a href="#install" class="headerlink" title="install"></a><a href="https://chocolatey.org/docs/commands-install" target="_blank" rel="noopener">install</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install &lt;pkg|packages.config&gt; &lt;pkg2&gt; [&lt;options/switches&gt;]</span><br></pre></td></tr></table></figure>
+<h3 id="install"><a href="#install" class="headerlink" title="install"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-install">install</a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install &lt;pkg|packages.config&gt; &lt;pkg2&gt; [&lt;options/switches&gt;]</span><br></pre></td></tr></table></figure>
 <p>可以同时安装多个包，包名用空格隔开。</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install notepadplusplus googlechrome atom 7zip</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install notepadplusplus googlechrome atom 7zip</span><br></pre></td></tr></table></figure>
 <p>你还可以指定要安装的版本</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nodejs.install --version 8.5.0</span><br></pre></td></tr></table></figure>
-<h3 id="upgrade-更新包"><a href="#upgrade-更新包" class="headerlink" title="upgrade 更新包"></a><a href="https://chocolatey.org/docs/commands-upgrade" target="_blank" rel="noopener">upgrade 更新包</a></h3><p>更新安装的包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">choco upgrade chocolatey  #更新到最新的chocolatey</span><br><span class="line">choco upgrade notepadplusplus googlechrome atom 7zip #同时更新多个包</span><br><span class="line">choco upgrade nodejs.install --version 0.10.35 #更新到指定版本</span><br><span class="line">choco upgrade all #更新所有包</span><br><span class="line">choco upgrade all --except=&quot;&apos;skype,conemu&apos;&quot; # 更新所有包 除了这些</span><br></pre></td></tr></table></figure>
-<h3 id="outdated-过时的包"><a href="#outdated-过时的包" class="headerlink" title="outdated 过时的包"></a><a href="https://chocolatey.org/docs/commands-outdated" target="_blank" rel="noopener">outdated 过时的包</a></h3><p>查看过时的包</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco outdated</span><br></pre></td></tr></table></figure>
-<h3 id="uninstall-卸载包"><a href="#uninstall-卸载包" class="headerlink" title="uninstall 卸载包"></a><a href="https://chocolatey.org/docs/commands-uninstall" target="_blank" rel="noopener">uninstall 卸载包</a></h3><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">choco uninstall git #卸载一个包</span><br><span class="line">choco uninstall notepadplusplus googlechrome atom 7zip #同时卸载多个</span><br><span class="line">choco uninstall ruby --version 1.8.7.37402 #卸载指定版本的</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco install nodejs.install --version 8.5.0</span><br></pre></td></tr></table></figure>
+<h3 id="upgrade-更新包"><a href="#upgrade-更新包" class="headerlink" title="upgrade 更新包"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-upgrade">upgrade 更新包</a></h3><p>更新安装的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">choco upgrade chocolatey  #更新到最新的chocolatey</span><br><span class="line">choco upgrade notepadplusplus googlechrome atom 7zip #同时更新多个包</span><br><span class="line">choco upgrade nodejs.install --version 0.10.35 #更新到指定版本</span><br><span class="line">choco upgrade all #更新所有包</span><br><span class="line">choco upgrade all --except=&quot;&#x27;skype,conemu&#x27;&quot; # 更新所有包 除了这些</span><br></pre></td></tr></table></figure>
+<h3 id="outdated-过时的包"><a href="#outdated-过时的包" class="headerlink" title="outdated 过时的包"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-outdated">outdated 过时的包</a></h3><p>查看过时的包</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">choco outdated</span><br></pre></td></tr></table></figure>
+<h3 id="uninstall-卸载包"><a href="#uninstall-卸载包" class="headerlink" title="uninstall 卸载包"></a><a target="_blank" rel="noopener" href="https://chocolatey.org/docs/commands-uninstall">uninstall 卸载包</a></h3><figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">choco uninstall git #卸载一个包</span><br><span class="line">choco uninstall notepadplusplus googlechrome atom 7zip #同时卸载多个</span><br><span class="line">choco uninstall ruby --version 1.8.7.37402 #卸载指定版本的</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -305,7 +308,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2017/11/28/chocolatey-windows包管理器/">https://fynn90.github.io/2017/11/28/chocolatey-windows包管理器/</a>
+      <a href="https://fynn90.github.io/2017/11/28/chocolatey-windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/">https://fynn90.github.io/2017/11/28/chocolatey-windows%E5%8C%85%E7%AE%A1%E7%90%86%E5%99%A8/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -351,14 +354,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/11/29/systemd入门/">
+      <a class="prev" href="/2017/11/29/systemd%E5%85%A5%E9%97%A8/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">systemd介绍</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2017/11/23/markdown手册/">
+      <a class="next" href="/2017/11/23/markdown%E6%89%8B%E5%86%8C/">
         <span class="next-text nav-default">Markdown手册</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -398,31 +401,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+  <head>
+    
+<meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+<meta name="theme-color" content="#f8f5ec" />
+<meta name="msapplication-navbutton-color" content="#f8f5ec">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
+
+
+
+  <meta name="description" content="微前端的前世今生"/>
+
+
+
+
+  <meta name="keywords" content="Micro frontend, Fynn's Blog" />
+
+
+
+
+
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+
+
+
+<link rel="canonical" href="https://fynn90.github.io/2021/04/07/微前端框架qiankun入门/"/>
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+
+
+
+  <link rel="stylesheet" type="text/css" href="/lib/fancybox/jquery.fancybox.css" />
+
+
+
+
+  
+  <script id="baidu_analytics">
+    var _hmt = _hmt || [];
+    (function() {
+      var hm = document.createElement("script");
+      hm.src = "https://hm.baidu.com/hm.js?607980a031d3edcefed502ce80e77ffb";
+      var s = document.getElementsByTagName("script")[0];
+      s.parentNode.insertBefore(hm, s);
+    })();
+  </script>
+
+
+
+  <script id="google_analytics">
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+        (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+        m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+        })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+        ga('create', 'UA-115728733-1', 'auto');
+        ga('send', 'pageview');
+  </script>
+
+
+  <script id="baidu_push">
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+
+
+  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
+  <script id="leancloud">
+    AV.init({
+      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
+      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
+    });
+  </script>
+
+
+
+
+
+    <title> 微前端的前世今生 - Fynn's Blog </title>
+  <meta name="generator" content="Hexo 5.4.0"></head>
+
+  <body><div id="mobile-navbar" class="mobile-navbar">
+  <div class="mobile-header-logo">
+    <a href="/." class="logo">Fynn's Blog</a>
+  </div>
+  <div class="mobile-navbar-icon">
+    <span></span>
+    <span></span>
+    <span></span>
+  </div>
+</div>
+
+<nav id="mobile-menu" class="mobile-menu slideout-menu">
+  <ul class="mobile-menu-list">
+    
+      <a href="/">
+        <li class="mobile-menu-item">
+          
+          
+            首页
+          
+        </li>
+      </a>
+    
+      <a href="/archives/">
+        <li class="mobile-menu-item">
+          
+          
+            归档
+          
+        </li>
+      </a>
+    
+      <a href="/categories/">
+        <li class="mobile-menu-item">
+          
+          
+            分类
+          
+        </li>
+      </a>
+    
+  </ul>
+</nav>
+
+    <div class="container" id="mobile-panel">
+      <header id="header" class="header"><div class="logo-wrapper">
+  <a href="/." class="logo">Fynn's Blog</a>
+</div>
+
+<nav class="site-navbar">
+  
+    <ul id="menu" class="menu">
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/">
+            
+            
+              首页
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/archives/">
+            
+            
+              归档
+            
+          </a>
+        </li>
+      
+        <li class="menu-item">
+          <a class="menu-item-link" href="/categories/">
+            
+            
+              分类
+            
+          </a>
+        </li>
+      
+    </ul>
+  
+</nav>
+
+      </header>
+
+      <main id="main" class="main">
+        <div class="content-wrapper">
+          <div id="content" class="content">
+            
+  
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
+          微前端的前世今生
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2021-04-07
+        </span>
+        
+          <div class="post-category">
+            
+              <a href="/categories/Front-End/">Front End</a>
+            
+              <a href="/categories/Front-End/Micro-frontend/">Micro frontend</a>
+            
+          </div>
+        
+        
+        <div class="post-visits"
+             data-url="/2021/04/07/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6qiankun%E5%85%A5%E9%97%A8/"
+             data-title="微前端的前世今生">
+            阅读次数
+          </div>
+        
+      </div>
+    </header>
+
+    
+    
+  <div class="post-toc" id="post-toc">
+    <h2 class="post-toc-title">文章目录</h2>
+    <div class="post-toc-content">
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9F%BA%E4%BA%8E%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE"><span class="toc-text">基于路由配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%89%8B%E5%8A%A8%E5%8A%A0%E8%BD%BD%E5%BE%AE%E5%BA%94%E7%94%A8"><span class="toc-text">手动加载微应用</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%BA%94%E7%94%A8%E9%85%8D%E7%BD%AE"><span class="toc-text">微应用配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#public-path-js"><span class="toc-text">public-path.js</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#webpack-%E9%85%8D%E7%BD%AE"><span class="toc-text">webpack 配置</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%BA%94%E7%94%A8%E6%95%B0%E6%8D%AE%E9%80%9A%E4%BF%A1"><span class="toc-text">微应用数据通信</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96"><span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%BE%AE%E5%BA%94%E7%94%A8%E7%9B%91%E5%90%AC"><span class="toc-text">微应用监听</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Refer-To"><span class="toc-text">Refer To</span></a></li></ol>
+    </div>
+  </div>
+
+
+    <div class="post-content">
+      
+        <p><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh">qiankun</a> 是目前较成熟可以开箱即用的实现<a target="_blank" rel="noopener" href="https://juejin.cn/post/6844903881218981902">微前端</a>的框架。它主要特点有：</p>
+<ol>
+<li>简单 - 任意 js 框架均可使用。微应用接入像使用接入一个 iframe 系统一样简单，但实际不是 iframe。</li>
+<li>完备 - 几乎包含所有构建微前端系统时所需要的基本能力，如 样式隔离、js 沙箱、预加载等。</li>
+<li>生产可用 - 已在蚂蚁内外经受过足够大量的线上系统的考验及打磨，健壮性值得信赖。</li>
+</ol>
+<p>qiankun2.0 提供了两种接入微应用的方式：基于路由配置、手动加载微应用。</p>
+<span id="more"></span>
+
+<h2 id="基于路由配置"><a href="#基于路由配置" class="headerlink" title="基于路由配置"></a><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/api#%E5%9F%BA%E4%BA%8E%E8%B7%AF%E7%94%B1%E9%85%8D%E7%BD%AE">基于路由配置</a></h2><figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM, &#123; render &#125; <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; start, registerMicroApps, setDefaultMountApp &#125; <span class="keyword">from</span> <span class="string">&#x27;qiankun&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"></span><br><span class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">App</span>&gt;</span><span class="tag">&lt;/<span class="name">App</span>&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;mainApp&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// registerMicroApps 注册 微应用</span></span><br><span class="line">registerMicroApps([</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;react-app&#x27;</span>, <span class="comment">// 微应用名称</span></span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8888&#x27;</span>, <span class="comment">// 微应用接入入口</span></span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#reactApp&#x27;</span>, <span class="comment">// 微应用挂载的 容器DOM节点</span></span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/react-app&#x27;</span>, <span class="comment">// 触发的路由</span></span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;vue-app&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8080&#x27;</span>,</span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#vueApp&#x27;</span>,</span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/vue-app&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">  &#123;</span><br><span class="line">    <span class="attr">name</span>: <span class="string">&#x27;ng-app&#x27;</span>,</span><br><span class="line">    <span class="attr">entry</span>: <span class="string">&#x27;//localhost:4200&#x27;</span>,</span><br><span class="line">    <span class="attr">container</span>: <span class="string">&#x27;#ngApp&#x27;</span>,</span><br><span class="line">    <span class="attr">activeRule</span>: <span class="string">&#x27;/ng-app&#x27;</span>,</span><br><span class="line">  &#125;,</span><br><span class="line">]);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 设置的默认路由</span></span><br><span class="line">setDefaultMountApp(<span class="string">&#x27;/ng-app&#x27;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 启动应用</span></span><br><span class="line">start();</span><br></pre></td></tr></table></figure>
+
+<h2 id="手动加载微应用"><a href="#手动加载微应用" class="headerlink" title="手动加载微应用"></a><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/api#%E6%89%8B%E5%8A%A8%E5%8A%A0%E8%BD%BD%E5%BE%AE%E5%BA%94%E7%94%A8">手动加载微应用</a></h2><p>适用于需要手动 加载/卸载 一个微应用的场景。</p>
+<blockquote>
+<p>通常这种场景下微应用是一个不带路由的可独立运行的业务组件。 微应用不宜拆分过细，建议按照业务域来做拆分。业务关联紧密的功能单元应该做成一个微应用，反之关联不紧密的可以考虑拆分成多个微应用。 一个判断业务关联是否紧密的标准：<strong>看这个微应用与其他微应用是否有频繁的通信需求</strong>。如果有可能说明这两个微应用本身就是服务于同一个业务场景，合并成一个微应用可能会更合适。</p>
+</blockquote>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM, &#123; render &#125; <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; loadMicroApp, initGlobalState, MicroAppStateActions &#125; <span class="keyword">from</span> <span class="string">&#x27;qiankun&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"></span><br><span class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">App</span>&gt;</span><span class="tag">&lt;/<span class="name">App</span>&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;mainApp&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> actions: MicroAppStateActions = initGlobalState(&#123;</span><br><span class="line">  <span class="string">&#x27;vue-app&#x27;</span>: [],</span><br><span class="line">  <span class="string">&#x27;react-app&#x27;</span>: [],</span><br><span class="line">  <span class="string">&#x27;ng-app&#x27;</span>: [],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 手动记载 微应用</span></span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;vue-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8080&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#vueApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;react-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8888&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#reactApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;ng-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:4200&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#ngApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">actions.onGlobalStateChange(<span class="function">(<span class="params">state, prev</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// state: 变更后的状态; prev 变更前的状态</span></span><br><span class="line">  <span class="comment">// console.log(state, prev);</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h2 id="微应用配置"><a href="#微应用配置" class="headerlink" title="微应用配置"></a><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/guide/tutorial">微应用配置</a></h2><p>qiankun 的接入使用并不复杂，但它对需要接入的微应用打包配置提了一些要求，并且会一些坑。下面列的都是基于 webpack5 的配置方式。</p>
+<h3 id="public-path-js"><a href="#public-path-js" class="headerlink" title="public-path.js"></a>public-path.js</h3><p>在每个微应用工程下都需要建一个 public-path.js 文件,内容如下：</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//@ts-ignore</span></span><br><span class="line"><span class="keyword">if</span> (<span class="built_in">window</span>.__POWERED_BY_QIANKUN__) &#123;</span><br><span class="line">  <span class="comment">//@ts-ignore</span></span><br><span class="line">  __webpack_public_path__ = <span class="built_in">window</span>.__INJECTED_PUBLIC_PATH_BY_QIANKUN__;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p><code>public-path.js</code> 应该被引入工程启动文件中。</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// 工程启动 文件引入 public-path</span></span><br><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./public-path&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; store &#125; <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance: <span class="built_in">any</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">props: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; container &#125; = props;</span><br><span class="line">  instance = createApp(App);</span><br><span class="line">  instance.use(store);</span><br><span class="line">  instance.config.globalProperties.$onGlobalStateChange =</span><br><span class="line">    props.onGlobalStateChange;</span><br><span class="line">  instance.config.globalProperties.$setGlobalState = props.setGlobalState;</span><br><span class="line">  instance.mount(container ? container.querySelector(<span class="string">&#x27;#vueApp&#x27;</span>) : <span class="string">&#x27;#vueApp&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@ts-ignore</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">window</span>.__POWERED_BY_QIANKUN__) &#123;</span><br><span class="line">  render(&#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;%c &#x27;</span>, <span class="string">&#x27;color: green;&#x27;</span>, <span class="string">&#x27;vue3.0 app bootstraped&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">mount</span>(<span class="params">props: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  render(props);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">unmount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  instance.unmount();</span><br><span class="line">  instance._container.innerHTML = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  instance = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="webpack-配置"><a href="#webpack-配置" class="headerlink" title="webpack 配置"></a>webpack 配置</h3><p>对于用 webpack 构建的工程有几个地方需要注意：</p>
+<figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">output: &#123;</span><br><span class="line">  path: path.resolve(__dirname, &#x27;./dist&#x27;),</span><br><span class="line">  library: `$&#123;name&#125;`, <span class="comment">// 这个name 和 在quankun里面配置的 name 保持一致</span></span><br><span class="line">  libraryTarget: &#x27;umd&#x27;, <span class="comment">// 必须</span></span><br><span class="line">  chunkLoadingGlobal: `webpackJsonp_$&#123;name&#125;`, <span class="comment">// 必须</span></span><br><span class="line">  globalObject: &#x27;window&#x27;, <span class="comment">// 必须</span></span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">devServer: &#123;</span><br><span class="line">  hot: <span class="literal">true</span>,</span><br><span class="line">  historyApiFallback: <span class="literal">true</span>,</span><br><span class="line">  compress: <span class="literal">true</span>,</span><br><span class="line">  open: <span class="literal">true</span>,</span><br><span class="line">  port: <span class="number">8080</span>,</span><br><span class="line">  injectClient: <span class="literal">false</span>, <span class="comment">// webpack5 必须</span></span><br><span class="line">  headers: &#123;</span><br><span class="line">    &#x27;Access-Control-Allow-Origin&#x27;: &#x27;*&#x27;, <span class="comment">// 必须</span></span><br><span class="line">  &#125;,</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>注意 ⚠️：如果是 <code>webpack5</code> 则 <code>&quot;webpack-dev-server&quot;: &quot;^4.0.0-beta.0&quot;</code> 需要用这个版本。</p>
+<h2 id="微应用数据通信"><a href="#微应用数据通信" class="headerlink" title="微应用数据通信"></a><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/api#initglobalstatestate">微应用数据通信</a></h2><p>qiankun 提供了在主应用和微应用之间数据同步的方案： <code>initGlobalState(state)</code></p>
+<h3 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h3><p>在主应用初始化</p>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> React <span class="keyword">from</span> <span class="string">&#x27;react&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> ReactDOM, &#123; render &#125; <span class="keyword">from</span> <span class="string">&#x27;react-dom&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; loadMicroApp, initGlobalState, MicroAppStateActions &#125; <span class="keyword">from</span> <span class="string">&#x27;qiankun&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App&#x27;</span>;</span><br><span class="line"></span><br><span class="line">render(<span class="xml"><span class="tag">&lt;<span class="name">App</span>&gt;</span><span class="tag">&lt;/<span class="name">App</span>&gt;</span></span>, <span class="built_in">document</span>.getElementById(<span class="string">&#x27;mainApp&#x27;</span>));</span><br><span class="line"></span><br><span class="line"><span class="comment">// 初始化 GlobalState</span></span><br><span class="line"><span class="keyword">const</span> actions: MicroAppStateActions = initGlobalState(&#123;</span><br><span class="line">  <span class="string">&#x27;vue-app&#x27;</span>: [],</span><br><span class="line">  <span class="string">&#x27;react-app&#x27;</span>: [],</span><br><span class="line">  <span class="string">&#x27;ng-app&#x27;</span>: [],</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;vue-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8080&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#vueApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;react-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:8888&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#reactApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line">loadMicroApp(&#123;</span><br><span class="line">  <span class="attr">name</span>: <span class="string">&#x27;ng-app&#x27;</span>,</span><br><span class="line">  <span class="attr">entry</span>: <span class="string">&#x27;//localhost:4200&#x27;</span>,</span><br><span class="line">  <span class="attr">container</span>: <span class="string">&#x27;#ngApp&#x27;</span>,</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 监听 GlobalState数据有变化时 触发</span></span><br><span class="line">actions.onGlobalStateChange(<span class="function">(<span class="params">state, prev</span>) =&gt;</span> &#123;</span><br><span class="line">  <span class="comment">// state: 变更后的状态; prev 变更前的状态</span></span><br><span class="line">  <span class="comment">// console.log(state, prev);</span></span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
+<h3 id="微应用监听"><a href="#微应用监听" class="headerlink" title="微应用监听"></a>微应用监听</h3><p>在主应用初始化 <code>GlobalState</code>之后，我们可以在微应用获取到获取三个方法用来处理 State:</p>
+<ul>
+<li>onGlobalStateChange: <code>(callback: OnGlobalStateChangeCallback, fireImmediately?: boolean) =&gt; void</code>， 在当前应用监听全局状态，有变更触发 callback，fireImmediately = true 立即触发 callback</li>
+<li>setGlobalState: <code>(state: Record&lt;string, any&gt;) =&gt; boolean</code>， 按一级属性设置全局状态，微应用中只能修改已存在的一级属性</li>
+<li>offGlobalStateChange: <code>() =&gt; boolean</code>，移除当前应用的状态监听，微应用 umount 时会默认调用</li>
+</ul>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> <span class="string">&#x27;./public-path&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; createApp &#125; <span class="keyword">from</span> <span class="string">&#x27;vue&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> &#123; store &#125; <span class="keyword">from</span> <span class="string">&#x27;./store&#x27;</span>;</span><br><span class="line"><span class="keyword">import</span> App <span class="keyword">from</span> <span class="string">&#x27;./App.vue&#x27;</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">let</span> instance: <span class="built_in">any</span> = <span class="literal">null</span>;</span><br><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">render</span>(<span class="params">props: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  <span class="keyword">const</span> &#123; container &#125; = props;</span><br><span class="line">  instance = createApp(App);</span><br><span class="line">  instance.use(store);</span><br><span class="line">  instance.config.globalProperties.$onGlobalStateChange =</span><br><span class="line">    props.onGlobalStateChange;</span><br><span class="line">  instance.config.globalProperties.$setGlobalState = props.setGlobalState;</span><br><span class="line">  instance.mount(container ? container.querySelector(<span class="string">&#x27;#vueApp&#x27;</span>) : <span class="string">&#x27;#vueApp&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//@ts-ignore</span></span><br><span class="line"><span class="keyword">if</span> (!<span class="built_in">window</span>.__POWERED_BY_QIANKUN__) &#123;</span><br><span class="line">  render(&#123;&#125;);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">bootstrap</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  <span class="built_in">console</span>.log(<span class="string">&#x27;%c &#x27;</span>, <span class="string">&#x27;color: green;&#x27;</span>, <span class="string">&#x27;vue3.0 app bootstraped&#x27;</span>);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// mount props对象中会有 onGlobalStateChange、setGlobalState、offGlobalStateChange三个方法</span></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">mount</span>(<span class="params">props: <span class="built_in">any</span></span>) </span>&#123;</span><br><span class="line">  render(props);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">export</span> <span class="keyword">async</span> <span class="function"><span class="keyword">function</span> <span class="title">unmount</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">  instance.unmount();</span><br><span class="line">  instance._container.innerHTML = <span class="string">&#x27;&#x27;</span>;</span><br><span class="line">  instance = <span class="literal">null</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>在微应用拿到<code>onGlobalStateChange</code>、<code>setGlobalState</code>、<code>offGlobalStateChange</code>方法后就可以根据自己的业务需要愉快的和其它应用交流了。但是如果你发现有两个微应用数据交流过多，则你需要考虑将这个两个微应用合并了。</p>
+<p><a target="_blank" rel="noopener" href="https://github.com/fynn90/qiankun-demo">代码</a></p>
+<h2 id="Refer-To"><a href="#Refer-To" class="headerlink" title="Refer To"></a>Refer To</h2><p><a target="_blank" rel="noopener" href="https://qiankun.umijs.org/zh/guide">https://qiankun.umijs.org/zh/guide</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6844904151231496200">https://juejin.cn/post/6844904151231496200</a></p>
+<p><a target="_blank" rel="noopener" href="https://juejin.cn/post/6846687602439897101">https://juejin.cn/post/6846687602439897101</a></p>
+
+      
+    </div>
+
+    
+      
+      
+
+  <div class="post-copyright">
+    <p class="copyright-item">
+      <span>原文作者: </span>
+      <a href="https://fynn90.github.io">Fynn</a>
+    </p>
+    <p class="copyright-item">
+      <span>原文链接: </span>
+      <a href="https://fynn90.github.io/2021/04/07/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6qiankun%E5%85%A5%E9%97%A8/">https://fynn90.github.io/2021/04/07/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6qiankun%E5%85%A5%E9%97%A8/</a>
+    </p>
+    <p class="copyright-item">
+      <span>许可协议: </span>
+      
+      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+    </p>
+  </div>
+
+
+
+      
+      
+  <div class="post-reward">
+    <input type="checkbox" name="reward" id="reward" hidden />
+    <label class="reward-button" for="reward">赞赏支持</label>
+    <div class="qr-code">
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/wechat.png" title="wechat">
+        </label>
+      
+      
+        <label class="qr-code-image" for="reward">
+          <img class="image" src="/image/reward/alipay.png" title="alipay">
+        </label>
+      
+    </div>
+  </div>
+
+    
+
+    
+      <footer class="post-footer">
+        
+          <div class="post-tags">
+            
+              <a href="/tags/Micro-frontend/">Micro frontend</a>
+            
+          </div>
+        
+        
+        
+  <nav class="post-nav">
+    
+      <a class="prev" href="/2021/08/03/rollup.js%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+        <i class="iconfont icon-left"></i>
+        <span class="prev-text nav-default">Rollup.js配置</span>
+        <span class="prev-text nav-mobile">上一篇</span>
+      </a>
+    
+    
+      <a class="next" href="/2021/04/04/Maven%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/">
+        <span class="next-text nav-default">Maven简易教程</span>
+        <span class="prev-text nav-mobile">下一篇</span>
+        <i class="iconfont icon-right"></i>
+      </a>
+    
+  </nav>
+
+      </footer>
+    
+
+  </article>
+
+
+          </div>
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+      </main>
+
+      <footer id="footer" class="footer">
+
+  <div class="social-links">
+    
+      
+        
+          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+        
+      
+    
+      
+    
+      
+    
+      
+    
+    
+    
+  </div>
+
+
+<div class="copyright">
+  <span class="copyright-year">
+    
+    &copy; 
+     
+      2017 - 
+    
+    2021
+
+    <span class="heart">
+      <i class="iconfont icon-heart"></i>
+    </span>
+    <span class="author">Fynn</span>
+  </span>
+  
+</div>
+
+      </footer>
+
+      <div class="back-to-top" id="back-to-top">
+        <i class="iconfont icon-up"></i>
+      </div>
+    </div>
+
+    
+  
+  
+
+  
+
+
+
+    
+  
+
+
+
+
+
+  
+    <script type="text/javascript" src="/lib/jquery/jquery-3.1.1.min.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/slideout/slideout.js"></script>
+  
+
+  
+    <script type="text/javascript" src="/lib/fancybox/jquery.fancybox.pack.js"></script>
+  
+
+
+    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+
+  </body>
+</html>

@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Canvas文本和图片处理 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/11/14/Canvas文本和图片处理/"
+             data-url="/2018/11/14/Canvas%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/"
              data-title="Canvas文本和图片处理">
             阅读次数
           </div>
@@ -239,7 +239,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#文字"><span class="toc-text">文字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#图片"><span class="toc-text">图片</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E5%AD%97"><span class="toc-text">文字</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%9B%BE%E7%89%87"><span class="toc-text">图片</span></a></li></ol>
     </div>
   </div>
 
@@ -247,31 +247,34 @@
     <div class="post-content">
       
         <p><code>canvas</code>提供了对文字和图片操作的接口，可以方便我们对文字或图片进行处理。</p>
-<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p><code>canvas</code>文字操作和<code>CSS</code>操作文字一样可以设定文字的大小，字体，和文字间对齐方式。<br><a id="more"></a></p>
+<h2 id="文字"><a href="#文字" class="headerlink" title="文字"></a>文字</h2><p><code>canvas</code>文字操作和<code>CSS</code>操作文字一样可以设定文字的大小，字体，和文字间对齐方式。</p>
+<span id="more"></span>
 <ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/fillText" target="_blank" rel="noopener"><code>fillText(text, x, y [, maxWidth])</code></a> 在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/strokeText" target="_blank" rel="noopener"><code>strokeText(text, x, y [, maxWidth])</code></a> 在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/fillText"><code>fillText(text, x, y [, maxWidth])</code></a> 在指定的(x,y)位置填充指定的文本，绘制的最大宽度是可选的.</li>
+<li><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/strokeText"><code>strokeText(text, x, y [, maxWidth])</code></a> 在指定的(x,y)位置绘制文本边框，绘制的最大宽度是可选的</li>
 </ul>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">ctx.font = <span class="string">"48px serif"</span>;</span><br><span class="line">ctx.fillText(<span class="string">"Hello world"</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2018/11/11/5be7f1afdf2b2.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"></span><br><span class="line">ctx.font = <span class="string">&quot;48px serif&quot;</span>;</span><br><span class="line">ctx.fillText(<span class="string">&quot;Hello world&quot;</span>, <span class="number">50</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2018/11/11/5be7f1afdf2b2.png"></p>
 <ul>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/font" target="_blank" rel="noopener"><code>font = value</code></a> 当前我们用来绘制文本的样式. 这个字符串使用和 <a href="https://developer.mozilla.org/en-US/docs/Web/CSS" target="_blank" rel="noopener">CSS</a> <a href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font" target="_blank" rel="noopener"><code>font</code></a> 属性相同的语法. 默认的字体是 <code>10px sans-serif</code>。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textAlign" target="_blank" rel="noopener"><code>textAlign = value</code></a> 文本对齐选项. 可选的值包括：<code>start</code>, <code>end</code>, <code>left</code>, <code>right</code> or <code>center</code>. 默认值是 <code>start</code>。</li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textBaseline" target="_blank" rel="noopener"><code>textBaseline = value</code></a> 基线对齐选项. 可选的值包括：<code>top</code>, <code>hanging</code>, <code>middle</code>, <code>alphabetic</code>, <code>ideographic</code>, <code>bottom</code>。默认值是 <code>alphabetic。</code></li>
-<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/direction" target="_blank" rel="noopener"><code>direction = value</code></a> 文本方向。可能的值包括：<code>ltr</code>, <code>rtl</code>, <code>inherit</code>。默认值是 <code>inherit。</code></li>
+<li> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/font"><code>font = value</code></a> 当前我们用来绘制文本的样式. 这个字符串使用和 <a target="_blank" rel="noopener" href="https://developer.mozilla.org/en-US/docs/Web/CSS">CSS</a> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/CSS/font"><code>font</code></a> 属性相同的语法. 默认的字体是 <code>10px sans-serif</code>。</li>
+<li> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textAlign"><code>textAlign = value</code></a> 文本对齐选项. 可选的值包括：<code>start</code>, <code>end</code>, <code>left</code>, <code>right</code> or <code>center</code>. 默认值是 <code>start</code>。</li>
+<li> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/textBaseline"><code>textBaseline = value</code></a> 基线对齐选项. 可选的值包括：<code>top</code>, <code>hanging</code>, <code>middle</code>, <code>alphabetic</code>, <code>ideographic</code>, <code>bottom</code>。默认值是 <code>alphabetic。</code></li>
+<li> <a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/direction"><code>direction = value</code></a> 文本方向。可能的值包括：<code>ltr</code>, <code>rtl</code>, <code>inherit</code>。默认值是 <code>inherit。</code></li>
 </ul>
-<p><img src="https://html.spec.whatwg.org/images/baselines.png" alt=""></p>
-<p><img src="https://i.loli.net/2018/11/11/5be7f71479fdd.png" alt=""></p>
+<p><img src="https://html.spec.whatwg.org/images/baselines.png"></p>
+<p><img src="https://i.loli.net/2018/11/11/5be7f71479fdd.png"></p>
 <h2 id="图片"><a href="#图片" class="headerlink" title="图片"></a>图片</h2><p><code>canvas</code>可以对图像进行操作（缩放，截取等），还能将<code>canvas</code>内容导出成图片。</p>
 <p><code>canvas</code> 处理图像分为两步：</p>
 <ol>
-<li><p>获得一个<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLImageElement" target="_blank" rel="noopener"><code>HTMLImageElement</code></a>的对象或者另一个canvas元素的引用作为图片源，也可以通过提供一个URL的方式来使用图片</p>
+<li><p>获得一个<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/HTMLImageElement"><code>HTMLImageElement</code></a>的对象或者另一个canvas元素的引用作为图片源，也可以通过提供一个URL的方式来使用图片</p>
 </li>
-<li><p>使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage" target="_blank" rel="noopener"><code>drawImage()</code></a>  或<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/createPattern" target="_blank" rel="noopener"><code>createPattern()</code></a>函数将图片绘制到画布上</p>
+<li><p>使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/drawImage"><code>drawImage()</code></a>  或<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/createPattern"><code>createPattern()</code></a>函数将图片绘制到画布上</p>
 <p><code>drawImage</code>第一个参数应该是图片源，它的类型可以是：<code>HTMLImageElement</code>、<code>HTMLVideoElement</code>、<code>HTMLCanvasElement</code>、<code>ImageBitmap</code></p>
 </li>
 </ol>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">'canvas'</span>).getContext(<span class="string">'2d'</span>);</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      ctx.drawImage(img,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">      ctx.beginPath();</span><br><span class="line">      ctx.moveTo(<span class="number">30</span>,<span class="number">96</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">70</span>,<span class="number">66</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">103</span>,<span class="number">76</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">170</span>,<span class="number">15</span>);</span><br><span class="line">      ctx.stroke();</span><br><span class="line">    &#125;</span><br><span class="line">    img.src = <span class="string">'images/backdrop.png'</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">function</span> <span class="title">draw</span>(<span class="params"></span>) </span>&#123;</span><br><span class="line">    <span class="keyword">var</span> ctx = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;canvas&#x27;</span>).getContext(<span class="string">&#x27;2d&#x27;</span>);</span><br><span class="line">    <span class="keyword">var</span> img = <span class="keyword">new</span> Image();</span><br><span class="line">    img.onload = <span class="function"><span class="keyword">function</span>(<span class="params"></span>)</span>&#123;</span><br><span class="line">      ctx.drawImage(img,<span class="number">0</span>,<span class="number">0</span>);</span><br><span class="line">      ctx.beginPath();</span><br><span class="line">      ctx.moveTo(<span class="number">30</span>,<span class="number">96</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">70</span>,<span class="number">66</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">103</span>,<span class="number">76</span>);</span><br><span class="line">      ctx.lineTo(<span class="number">170</span>,<span class="number">15</span>);</span><br><span class="line">      ctx.stroke();</span><br><span class="line">    &#125;</span><br><span class="line">    img.src = <span class="string">&#x27;images/backdrop.png&#x27;</span>;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>drawImage</code>有三种调用方式：</p>
 <ol>
 <li><p><code>drawImage(image, dx, dy)</code>  图片的正常渲染</p>
@@ -287,14 +290,17 @@
 <li><code>dHeight</code> 在目标画布上绘制图像的高度。 允许对绘制的图像进行缩放。 如果不说明， 在绘制时图片高度不会缩放</li>
 </ul>
 </li>
-<li><code>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</code> 可以用于图片的截取显示<ul>
+<li><p><code>drawImage(image, sx, sy, sWidth, sHeight, dx, dy, dWidth, dHeight)</code> 可以用于图片的截取显示</p>
+<ul>
 <li><code>sWidth</code> 需要绘制到目标上下文中的，源图像的矩形选择框的宽度。如果不说明，整个矩形从坐标的sx和sy开始，到图像的右下角结束</li>
 <li><code>sHeight</code>  需要绘制到目标上下文中的，源图像的矩形选择框的高度</li>
 </ul>
 </li>
 </ol>
-<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">"canvas"</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">"display:none;"</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">"source"</span> <span class="attr">src</span>=<span class="string">"https://mdn.mozillademos.org/files/5397/rhino.jpg"</span></span></span><br><span class="line"><span class="tag">       <span class="attr">width</span>=<span class="string">"300"</span> <span class="attr">height</span>=<span class="string">"227"</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.getElementById(<span class="string">'source'</span>);</span><br><span class="line"></span><br><span class="line">ctx.drawImage(image, <span class="number">33</span>, <span class="number">71</span>, <span class="number">104</span>, <span class="number">124</span>, <span class="number">21</span>, <span class="number">20</span>, <span class="number">87</span>, <span class="number">104</span>);</span><br></pre></td></tr></table></figure>
+<figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">canvas</span> <span class="attr">id</span>=<span class="string">&quot;canvas&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">canvas</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">div</span> <span class="attr">style</span>=<span class="string">&quot;display:none;&quot;</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">img</span> <span class="attr">id</span>=<span class="string">&quot;source&quot;</span> <span class="attr">src</span>=<span class="string">&quot;https://mdn.mozillademos.org/files/5397/rhino.jpg&quot;</span></span></span><br><span class="line"><span class="tag">       <span class="attr">width</span>=<span class="string">&quot;300&quot;</span> <span class="attr">height</span>=<span class="string">&quot;227&quot;</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> image = <span class="built_in">document</span>.getElementById(<span class="string">&#x27;source&#x27;</span>);</span><br><span class="line"></span><br><span class="line">ctx.drawImage(image, <span class="number">33</span>, <span class="number">71</span>, <span class="number">104</span>, <span class="number">124</span>, <span class="number">21</span>, <span class="number">20</span>, <span class="number">87</span>, <span class="number">104</span>);</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -310,7 +316,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/11/14/Canvas文本和图片处理/">https://fynn90.github.io/2018/11/14/Canvas文本和图片处理/</a>
+      <a href="https://fynn90.github.io/2018/11/14/Canvas%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/">https://fynn90.github.io/2018/11/14/Canvas%E6%96%87%E6%9C%AC%E5%92%8C%E5%9B%BE%E7%89%87%E5%A4%84%E7%90%86/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -356,14 +362,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/11/18/npm指南/">
+      <a class="prev" href="/2018/11/18/npm%E6%8C%87%E5%8D%97/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">NPM指南</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/11/09/Canvas入门/">
+      <a class="next" href="/2018/11/09/Canvas%E5%85%A5%E9%97%A8/">
         <span class="next-text nav-default">Canvas入门</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -403,31 +409,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

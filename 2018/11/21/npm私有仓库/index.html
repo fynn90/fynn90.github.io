@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="Node.js, npm, Fynn's Blog" />
+  <meta name="keywords" content="npm, Node.js, Fynn's Blog" />
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> 搭建NPM私有仓库 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/11/21/npm私有仓库/"
+             data-url="/2018/11/21/npm%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/"
              data-title="搭建NPM私有仓库">
             阅读次数
           </div>
@@ -239,15 +239,17 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#安装-Verdaccio"><span class="toc-text">安装 Verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置-Verdaccio"><span class="toc-text">配置 Verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pm2-管理-verdaccio"><span class="toc-text">pm2 管理 verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#配置Nginx反向代理"><span class="toc-text">配置Nginx反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nrm"><span class="toc-text">nrm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#发布私包和下载"><span class="toc-text">发布私包和下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85-Verdaccio"><span class="toc-text">安装 Verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-Verdaccio"><span class="toc-text">配置 Verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#pm2-%E7%AE%A1%E7%90%86-verdaccio"><span class="toc-text">pm2 管理 verdaccio</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AENginx%E5%8F%8D%E5%90%91%E4%BB%A3%E7%90%86"><span class="toc-text">配置Nginx反向代理</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#nrm"><span class="toc-text">nrm</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%91%E5%B8%83%E7%A7%81%E5%8C%85%E5%92%8C%E4%B8%8B%E8%BD%BD"><span class="toc-text">发布私包和下载</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>在公司内部有时因为业务需要我们建立自己的<code>npm</code>包私有仓库，以方便各个项目代码共用。<a href="https://verdaccio.org/en/" target="_blank" rel="noopener">verdaccio</a>是比较方便搭建<code>npm</code>私有仓库的包。</p>
-<p><img src="https://verdaccio.org/img/logo/banner/png/verdaccio-banner@2x.png" alt=""><br><a id="more"></a><br><code>verdaccio</code> 的特点：</p>
+        <p>在公司内部有时因为业务需要我们建立自己的<code>npm</code>包私有仓库，以方便各个项目代码共用。<a target="_blank" rel="noopener" href="https://verdaccio.org/en/">verdaccio</a>是比较方便搭建<code>npm</code>私有仓库的包。</p>
+<p><img src="https://verdaccio.org/img/logo/banner/png/verdaccio-banner@2x.png"></p>
+<span id="more"></span>
+<p><code>verdaccio</code> 的特点：</p>
 <ul>
 <li>不同步拉取npm库，占据大量硬盘，没有硬盘被撑爆的问题；</li>
 <li>安装配置极其简单,不需要数据库；</li>
@@ -257,23 +259,30 @@
 <li>支持 docker 等应用容器</li>
 </ul>
 <h2 id="安装-Verdaccio"><a href="#安装-Verdaccio" class="headerlink" title="安装 Verdaccio"></a>安装 Verdaccio</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ npm install --global verdaccio</span><br></pre></td></tr></table></figure>
+
 <p><strong>注意：</strong> <code>verdaccio</code>对Node.js有一定的要求，确保使用较新版本的Node.js。</p>
 <h2 id="配置-Verdaccio"><a href="#配置-Verdaccio" class="headerlink" title="配置 Verdaccio"></a>配置 Verdaccio</h2><p><code>verdaccio</code>配置文件在:<code>~/.config/verdaccio/config.yaml</code>。</p>
-<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##设置NPM包的存放目录</span></span><br><span class="line"><span class="attr">storage:</span> <span class="string">./storage</span>   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置WEB UI界面</span></span><br><span class="line"><span class="string">web</span> <span class="string">:</span></span><br><span class="line">    <span class="string">title</span> <span class="string">:</span> <span class="string">'搭建私有NPM'</span></span><br><span class="line">    <span class="comment">#logo : logo.png</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 设置用户验证的文件。</span></span><br><span class="line"><span class="attr">auth:</span>                </span><br><span class="line"><span class="attr">  htpasswd:</span></span><br><span class="line"><span class="attr">    file:</span> <span class="string">./htpasswd</span></span><br><span class="line"><span class="attr">    max_users:</span> <span class="number">1000</span>   <span class="comment">#默认为1000，改为-1，禁止注册</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置其它的npm注册源(registry)</span></span><br><span class="line"><span class="attr">uplinks:</span></span><br><span class="line"><span class="attr">  npmjs:</span></span><br><span class="line"><span class="attr">    url:</span> <span class="attr">https://registry.npmjs.org/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置权限管理</span></span><br><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="string">'@*/*'</span><span class="string">:</span></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行安装 【$all 表示所有人都可以执行对应的操作，$authenticated 表示只有通过验证的人可以执行对应操作，$anonymous 表示只有匿名者可以进行对应操作（通常无用）】</span></span><br><span class="line"><span class="attr">    access:</span> <span class="string">$all</span></span><br><span class="line">     <span class="comment">#表示哪一类用户可以对匹配的项目进行发布</span></span><br><span class="line"><span class="attr">    publish:</span> <span class="string">$authenticated</span></span><br><span class="line"></span><br><span class="line">  <span class="string">'*'</span><span class="string">:</span></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行安装</span></span><br><span class="line"><span class="attr">    access:</span> <span class="string">$all</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行发布</span></span><br><span class="line"><span class="attr">    publish:</span> <span class="string">$authenticated</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果一个npm包不存在，它会去询问设置的代理。 建议屏蔽掉它</span></span><br><span class="line">    <span class="comment"># proxy: npmjs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志输出设置</span></span><br><span class="line"><span class="attr">logs:</span></span><br><span class="line"><span class="bullet">  -</span> <span class="string">&#123;type:</span> <span class="string">stdout,</span> <span class="attr">format:</span> <span class="string">pretty,</span> <span class="attr">level:</span> <span class="string">http&#125;</span></span><br><span class="line">  <span class="comment">#- &#123;type: file, path: verdaccio.log, level: info&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修改监听的端口</span></span><br><span class="line"><span class="comment">#listen: 0.0.0.0:4873</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight yaml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">##设置NPM包的存放目录</span></span><br><span class="line"><span class="attr">storage:</span> <span class="string">./storage</span>   </span><br><span class="line"></span><br><span class="line"><span class="comment"># 配置WEB UI界面</span></span><br><span class="line"><span class="attr">web :</span></span><br><span class="line">    <span class="attr">title :</span> <span class="string">&#x27;搭建私有NPM&#x27;</span></span><br><span class="line">    <span class="comment">#logo : logo.png</span></span><br><span class="line"></span><br><span class="line"><span class="comment">## 设置用户验证的文件。</span></span><br><span class="line"><span class="attr">auth:</span>                </span><br><span class="line">  <span class="attr">htpasswd:</span></span><br><span class="line">    <span class="attr">file:</span> <span class="string">./htpasswd</span></span><br><span class="line">    <span class="attr">max_users:</span> <span class="number">1000</span>   <span class="comment">#默认为1000，改为-1，禁止注册</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 设置其它的npm注册源(registry)</span></span><br><span class="line"><span class="attr">uplinks:</span></span><br><span class="line">  <span class="attr">npmjs:</span></span><br><span class="line">    <span class="attr">url:</span> <span class="string">https://registry.npmjs.org/</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#配置权限管理</span></span><br><span class="line"><span class="attr">packages:</span></span><br><span class="line">  <span class="string">&#x27;@*/*&#x27;</span><span class="string">:</span></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行安装 【$all 表示所有人都可以执行对应的操作，$authenticated 表示只有通过验证的人可以执行对应操作，$anonymous 表示只有匿名者可以进行对应操作（通常无用）】</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$all</span></span><br><span class="line">     <span class="comment">#表示哪一类用户可以对匹配的项目进行发布</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">$authenticated</span></span><br><span class="line"></span><br><span class="line">  <span class="string">&#x27;*&#x27;</span><span class="string">:</span></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行安装</span></span><br><span class="line">    <span class="attr">access:</span> <span class="string">$all</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">#表示哪一类用户可以对匹配的项目进行发布</span></span><br><span class="line">    <span class="attr">publish:</span> <span class="string">$authenticated</span></span><br><span class="line"></span><br><span class="line">    <span class="comment"># 如果一个npm包不存在，它会去询问设置的代理。 建议屏蔽掉它</span></span><br><span class="line">    <span class="comment"># proxy: npmjs</span></span><br><span class="line"></span><br><span class="line"><span class="comment"># 日志输出设置</span></span><br><span class="line"><span class="attr">logs:</span></span><br><span class="line">  <span class="bullet">-</span> &#123;<span class="attr">type:</span> <span class="string">stdout</span>, <span class="attr">format:</span> <span class="string">pretty</span>, <span class="attr">level:</span> <span class="string">http</span>&#125;</span><br><span class="line">  <span class="comment">#- &#123;type: file, path: verdaccio.log, level: info&#125;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">#修改监听的端口</span></span><br><span class="line"><span class="comment">#listen: 0.0.0.0:4873  </span></span><br><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 <p><strong>注意：</strong> <code>proxy</code>建议屏蔽掉，因为如果是公司内部使用，确保可以清晰的知道下载的包来源比较安全。</p>
 <p>​    <code>verdaccio</code>默认监听的端口是：4873</p>
 <h2 id="pm2-管理-verdaccio"><a href="#pm2-管理-verdaccio" class="headerlink" title="pm2 管理 verdaccio"></a>pm2 管理 verdaccio</h2><p><code>verdaccio</code>本质是个Node.js服务，可以通过<code>pm2</code>对它进行进程管理。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ pm2 start verdaccio <span class="comment"># 启动 verdaccio</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="配置Nginx反向代理"><a href="#配置Nginx反向代理" class="headerlink" title="配置Nginx反向代理"></a>配置Nginx反向代理</h2><p><code>verdaccio</code>监听的是本地端口，为了方便外部用户访问最好在<code>Nginx</code>配置一个反向代理</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen	80;</span><br><span class="line">	server_name registry.npm.xxxxx.com;</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass	http://127.0.0.1:4873/;</span><br><span class="line">		proxy_set_header	Host $host;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">server &#123;</span><br><span class="line">	listen	80;</span><br><span class="line">	server_name registry.npm.xxxxx.com;</span><br><span class="line">	location / &#123;</span><br><span class="line">		proxy_pass	http://127.0.0.1:4873/;</span><br><span class="line">		proxy_set_header	Host $host;	</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><code>sudo systemctl reload nginx.service</code> 重启<code>Nginx</code></p>
 <h2 id="nrm"><a href="#nrm" class="headerlink" title="nrm"></a>nrm</h2><p> 搭建好自己的私有<code>npm</code>仓库后，你需要将本地的<code>npm registry</code>指定为自己的私有仓库路径。</p>
-<p><a href="https://github.com/Pana/nrm" target="_blank" rel="noopener">nrm</a>是 npm registry 管理工具, 能够查看和切换当前使用的registry。不安装也可以，安装会更高效。</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g nrm <span class="comment"># 全局安装 nrm</span></span><br><span class="line">$ nrm ls <span class="comment"># 查看 nrm拥有的 registry地址</span></span><br><span class="line">* npm -----  https://registry.npmjs.org/</span><br><span class="line">  cnpm ----  http://r.cnpmjs.org/</span><br><span class="line">  taobao --  https://registry.npm.taobao.org/</span><br><span class="line">  nj ------  https://registry.nodejitsu.com/</span><br><span class="line">  rednpm -- http://registry.mirror.cqupt.edu.cn</span><br><span class="line">  skimdb -- https://skimdb.npmjs.com/registry</span><br><span class="line">  </span><br><span class="line">$ nrm add [registryName] [registry url] <span class="comment"># 添加新的 registry地址 nrm add newNpm http://xxx</span></span><br><span class="line">$ nrm use [registryName] <span class="comment"># 切换 registry地址 nrm use taobao</span></span><br></pre></td></tr></table></figure>
+<p><a target="_blank" rel="noopener" href="https://github.com/Pana/nrm">nrm</a>是 npm registry 管理工具, 能够查看和切换当前使用的registry。不安装也可以，安装会更高效。</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">$ npm install -g nrm <span class="comment"># 全局安装 nrm</span></span><br><span class="line">$ nrm ls <span class="comment"># 查看 nrm拥有的 registry地址</span></span><br><span class="line">* npm -----  https://registry.npmjs.org/</span><br><span class="line">  cnpm ----  http://r.cnpmjs.org/</span><br><span class="line">  taobao --  https://registry.npm.taobao.org/</span><br><span class="line">  nj ------  https://registry.nodejitsu.com/</span><br><span class="line">  rednpm -- http://registry.mirror.cqupt.edu.cn</span><br><span class="line">  skimdb -- https://skimdb.npmjs.com/registry</span><br><span class="line">  </span><br><span class="line">$ nrm add [registryName] [registry url] <span class="comment"># 添加新的 registry地址 nrm add newNpm http://xxx</span></span><br><span class="line">$ nrm use [registryName] <span class="comment"># 切换 registry地址 nrm use taobao </span></span><br></pre></td></tr></table></figure>
+
+
+
 <h2 id="发布私包和下载"><a href="#发布私包和下载" class="headerlink" title="发布私包和下载"></a>发布私包和下载</h2><p>通过<code>nrm</code>将你的<code>registry</code>地址切换为自己私有仓库的路径后，通过<code>npm install</code>下载的包都会从自己私有仓库下载。</p>
 <p>如果发布私有包只需要<code>npm publish</code>一下就可以。但如果你是第一次发布包，你需要让通过<code>npm adduser</code>在私有仓库上注册一个账户。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://juejin.im/post/5ab07687f265da2396123513" target="_blank" rel="noopener">https://juejin.im/post/5ab07687f265da2396123513</a></p>
-<p><a href="https://segmentfault.com/a/1190000015713260" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015713260</a></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://juejin.im/post/5ab07687f265da2396123513">https://juejin.im/post/5ab07687f265da2396123513</a></p>
+<p><a target="_blank" rel="noopener" href="https://segmentfault.com/a/1190000015713260">https://segmentfault.com/a/1190000015713260</a></p>
 
       
     </div>
@@ -289,7 +298,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/11/21/npm私有仓库/">https://fynn90.github.io/2018/11/21/npm私有仓库/</a>
+      <a href="https://fynn90.github.io/2018/11/21/npm%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/">https://fynn90.github.io/2018/11/21/npm%E7%A7%81%E6%9C%89%E4%BB%93%E5%BA%93/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -327,9 +336,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/Node-js/">Node.js</a>
-            
               <a href="/tags/npm/">npm</a>
+            
+              <a href="/tags/Node-js/">Node.js</a>
             
           </div>
         
@@ -337,14 +346,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/12/12/Javascript中的await和Promise/">
+      <a class="prev" href="/2018/12/12/Javascript%E4%B8%AD%E7%9A%84await%E5%92%8CPromise/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">JavaScript中的Promise和Async/Await</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/11/18/npm指南/">
+      <a class="next" href="/2018/11/18/npm%E6%8C%87%E5%8D%97/">
         <span class="next-text nav-default">NPM指南</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -384,31 +393,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

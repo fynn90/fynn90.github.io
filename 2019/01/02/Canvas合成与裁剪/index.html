@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Canvas合成与剪切 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2019/01/02/Canvas合成与裁剪/"
+             data-url="/2019/01/02/Canvas%E5%90%88%E6%88%90%E4%B8%8E%E8%A3%81%E5%89%AA/"
              data-title="Canvas合成与剪切">
             阅读次数
           </div>
@@ -247,11 +247,13 @@
     <div class="post-content">
       
         <p>在一个<code>Canvas</code>画布中，两个图形会有交叉的情况，这种情况可以通过<code>globalCompositeOperation</code> 属性设置两个图形交叉时展示的效果。</p>
-<p>你还可以使用<a href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/clip" target="_blank" rel="noopener">clip</a>，将当前路径设置为剪切路径。从而绘制剪切的效果。<br><a id="more"></a></p>
-<h2 id="globalCompositeOperation"><a href="#globalCompositeOperation" class="headerlink" title="globalCompositeOperation"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Compositing" target="_blank" rel="noopener">globalCompositeOperation</a></h2><p><code>globalCompositeOperation</code>属性设置要在绘制新形状时两个图形之间的合成操作类型，它接受一个字符串类型赋值。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line">ctx.globalCompositeOperation = <span class="string">"xor"</span>;</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">"blue"</span>;</span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">"red"</span>;</span><br><span class="line">ctx.fillRect(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+<p>你还可以使用<a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/CanvasRenderingContext2D/clip">clip</a>，将当前路径设置为剪切路径。从而绘制剪切的效果。</p>
+<span id="more"></span>
+<h2 id="globalCompositeOperation"><a href="#globalCompositeOperation" class="headerlink" title="globalCompositeOperation"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/API/Canvas_API/Tutorial/Compositing">globalCompositeOperation</a></h2><p><code>globalCompositeOperation</code>属性设置要在绘制新形状时两个图形之间的合成操作类型，它接受一个字符串类型赋值。</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"></span><br><span class="line">ctx.globalCompositeOperation = <span class="string">&quot;xor&quot;</span>;</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">&quot;blue&quot;</span>;</span><br><span class="line">ctx.fillRect(<span class="number">10</span>, <span class="number">10</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br><span class="line"></span><br><span class="line">ctx.fillStyle = <span class="string">&quot;red&quot;</span>;</span><br><span class="line">ctx.fillRect(<span class="number">50</span>, <span class="number">50</span>, <span class="number">100</span>, <span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
 <p>这是一段使用 <code>globalCompositeOperation</code> 属性的简单的代码片段，绘制了2个矩形在重叠时相互排斥的情况。</p>
-<p><img src="https://i.loli.net/2019/01/02/5c2c5015915b8.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/01/02/5c2c5015915b8.png"></p>
 <p><code>globalCompositeOperation</code>一共拥有26种值。</p>
 <ol>
 <li>source-over — 这是默认设置，并在现有画布上下文之上绘制新图形。</li>
@@ -281,11 +283,12 @@
 <li>color — 保留了底层的亮度（luma），同时采用了顶层的色调(hue)和色度(chroma)。</li>
 <li>luminosity — 保持底层的色调（hue）和色度（chroma），同时采用顶层的亮度（luma）。</li>
 </ol>
-<h2 id="clip"><a href="#clip" class="headerlink" title="clip"></a>clip</h2><p><code>clip</code>和普通的<code>Canvas</code>图形差不多，不同的是它的作用是遮罩，用来隐藏不需要的部分。</p>
-<p><img src="https://mdn.mozillademos.org/files/209/Canvas_clipping_path.png" alt=""></p>
+<h2 id="clip"><a href="#clip" class="headerlink" title="clip"></a>clip</h2><p><code> clip</code>和普通的<code>Canvas</code>图形差不多，不同的是它的作用是遮罩，用来隐藏不需要的部分。</p>
+<p><img src="https://mdn.mozillademos.org/files/209/Canvas_clipping_path.png"></p>
 <p>如上图所示。红边五角星就是裁切路径，所有在路径以外的部分都不会在 canvas 上绘制出来。</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">"canvas"</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">"2d"</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create clipping region</span></span><br><span class="line">ctx.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">75</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">false</span>);</span><br><span class="line">ctx.clip();</span><br><span class="line"></span><br><span class="line">ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
-<p><img src="https://i.loli.net/2019/01/02/5c2c6c617c468.png" alt=""></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> canvas = <span class="built_in">document</span>.getElementById(<span class="string">&quot;canvas&quot;</span>);</span><br><span class="line"><span class="keyword">var</span> ctx = canvas.getContext(<span class="string">&quot;2d&quot;</span>);</span><br><span class="line"></span><br><span class="line"><span class="comment">// Create clipping region</span></span><br><span class="line">ctx.arc(<span class="number">100</span>, <span class="number">100</span>, <span class="number">75</span>, <span class="number">0</span>, <span class="built_in">Math</span>.PI*<span class="number">2</span>, <span class="literal">false</span>);</span><br><span class="line">ctx.clip();</span><br><span class="line"></span><br><span class="line">ctx.fillRect(<span class="number">0</span>, <span class="number">0</span>, <span class="number">100</span>,<span class="number">100</span>);</span><br></pre></td></tr></table></figure>
+
+<p><img src="https://i.loli.net/2019/01/02/5c2c6c617c468.png"></p>
 
       
     </div>
@@ -301,7 +304,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2019/01/02/Canvas合成与裁剪/">https://fynn90.github.io/2019/01/02/Canvas合成与裁剪/</a>
+      <a href="https://fynn90.github.io/2019/01/02/Canvas%E5%90%88%E6%88%90%E4%B8%8E%E8%A3%81%E5%89%AA/">https://fynn90.github.io/2019/01/02/Canvas%E5%90%88%E6%88%90%E4%B8%8E%E8%A3%81%E5%89%AA/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -347,14 +350,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/01/04/贝塞尔曲线/">
+      <a class="prev" href="/2019/01/04/%E8%B4%9D%E5%A1%9E%E5%B0%94%E6%9B%B2%E7%BA%BF/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">贝塞尔曲线</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/12/16/Canvas变形/">
+      <a class="next" href="/2018/12/16/Canvas%E5%8F%98%E5%BD%A2/">
         <span class="next-text nav-default">Canvas变形</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -394,31 +397,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

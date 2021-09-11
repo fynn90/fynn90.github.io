@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Linux的目录结构 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2019/04/29/Linux的目录结构/"
+             data-url="/2019/04/29/Linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/"
              data-title="Linux的目录结构">
             阅读次数
           </div>
@@ -237,15 +237,16 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#根目录-的意义与内容"><span class="toc-text">根目录 (/) 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usr-的意义与内容"><span class="toc-text">/usr 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var-的意义与内容"><span class="toc-text">/var 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux目录树"><span class="toc-text">Linux目录树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B9%E7%9B%AE%E5%BD%95-%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E5%86%85%E5%AE%B9"><span class="toc-text">根目录 (&#x2F;) 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#usr-%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E5%86%85%E5%AE%B9"><span class="toc-text">&#x2F;usr 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#var-%E7%9A%84%E6%84%8F%E4%B9%89%E4%B8%8E%E5%86%85%E5%AE%B9"><span class="toc-text">&#x2F;var 的意义与内容</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Linux%E7%9B%AE%E5%BD%95%E6%A0%91"><span class="toc-text">Linux目录树</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>Linux拥有多个版本,为了希望让使用者可以了解到已安装软件通常放置于那个目录下,Linux推出了<a href="http://www.pathname.com/fhs/" target="_blank" rel="noopener">Filesystem Hierarchy Standard (FHS)</a>标准.</p>
-<p>FHS的重点在于规范每个特定的目录下应该要放置什么样子的数据而已。 这样做好处非常多，因为Linux操作系统就能够在既有的面貌下(目录架构不变)发展出开发者想要的独特风格。<br><a id="more"></a></p>
+        <p>Linux拥有多个版本,为了希望让使用者可以了解到已安装软件通常放置于那个目录下,Linux推出了<a target="_blank" rel="noopener" href="http://www.pathname.com/fhs/">Filesystem Hierarchy Standard (FHS)</a>标准.</p>
+<p>FHS的重点在于规范每个特定的目录下应该要放置什么样子的数据而已。 这样做好处非常多，因为Linux操作系统就能够在既有的面貌下(目录架构不变)发展出开发者想要的独特风格。</p>
+<span id="more"></span>
 <h2 id="根目录-的意义与内容"><a href="#根目录-的意义与内容" class="headerlink" title="根目录 (/) 的意义与内容"></a>根目录 (/) 的意义与内容</h2><p>跟目录包含系统:开机、还原、修复等相关动作.若系统出现错误时，根目录也必须要包含有能够修复文件系统的程序才行。 因为根目录是这么的重要，所以在FHS的要求方面，他希望根目录不要放在非常大的分割槽内， 因为越大的分割槽妳会放入越多的数据，如此一来根目录所在分割槽就可能会有较多发生错误的机会。</p>
 <p>因此FHS标准建议：根目录(/)所在分割槽应该越小越好， 且应用程序所安装的软件最好不要与根目录放在同一个分割槽内，保持根目录越小越好。 如此不但效能较佳，根目录所在的文件系统也较不容易发生问题。</p>
 <p>有鉴于上述的说明，因此FHS定义出根目录(/)底下应该要有底下这些次目录的存在才好：</p>
@@ -256,8 +257,7 @@
 <th>应放置文件内容</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>/bin</td>
 <td>系统有很多放置执行文件的目录，但/bin比较特殊。因为/bin放置的是在单人维护模式下还能够被操作的指令。 在/bin底下的指令可以被root与一般账号所使用，主要有：cat, chmod, chown, date, mv, mkdir, cp, bash等等常用的指令。</td>
 </tr>
@@ -267,7 +267,7 @@
 </tr>
 <tr>
 <td>/dev</td>
-<td>在Linux系统上，任何装置与接口设备都是以文件的型态存在于这个目录当中的。 你只要透过存取这个目录底下的某个文件，就等于存取某个装置啰～ 比要重要的文件有/dev/null, /dev/zero, /dev/tty, /dev/lp<em>, /dev/hd</em>, /dev/sd*等等</td>
+<td>在Linux系统上，任何装置与接口设备都是以文件的型态存在于这个目录当中的。 你只要透过存取这个目录底下的某个文件，就等于存取某个装置啰～ 比要重要的文件有/dev/null, /dev/zero, /dev/tty, /dev/lp*, /dev/hd*, /dev/sd*等等</td>
 </tr>
 <tr>
 <td>/etc</td>
@@ -309,8 +309,7 @@
 <td>/tmp</td>
 <td>这是让一般使用者或者是正在执行的程序暂时放置文件的地方。 这个目录是任何人都能够存取的，所以你需要定期的清理一下。当然，重要数据不可放置在此目录啊！ 因为FHS甚至建议在开机时，应该要将/tmp下的数据都删除唷！</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <p>在Linux开机中根目录会被挂载， 其他分割槽则是在开机完成之后才会持续的进行挂载的行为.所以和开机相关的目录应该和根目录放在一个分割槽中:</p>
 <ul>
 <li>/etc：配置文件</li>
@@ -327,8 +326,7 @@
 <th>应放置文件内容</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>/usr/X11R6/</td>
 <td>为X Window System重要数据所放置的目录，之所以取名为X11R6是因为最后的X版本为第11版，且该版的第6次释出之意。</td>
 </tr>
@@ -360,8 +358,7 @@
 <td>/usr/src/</td>
 <td>一般原始码建议放置到这里，src有source的意思。至于核心原始码则建议放置到/usr/src/linux/目录下。</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="var-的意义与内容"><a href="#var-的意义与内容" class="headerlink" title="/var 的意义与内容"></a>/var 的意义与内容</h2><p>如果/usr是安装时会占用较大硬盘容量的目录，那么/var就是在系统运作后才会渐渐占用硬盘容量的目录。 因为/var目录主要针对常态性变动的文件，包括缓存(cache)、登录档(log file)以及某些软件运作所产生的文件， 包括程序文件(lock file, run file)，或者例如MySQL数据库的文件等等.</p>
 <table>
 <thead>
@@ -370,8 +367,7 @@
 <th>应放置文件内容</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td>/var/cache/</td>
 <td>应用程序本身运作过程中会产生的一些暂存档；</td>
 </tr>
@@ -399,11 +395,10 @@
 <td>/var/spool/</td>
 <td>这个目录通常放置一些队列数据，所谓的『队列』就是排队等待其他程序使用的数据啦！ 这些数据被使用后通常都会被删除。举例来说，系统收到新信会放置到/var/spool/mail/中， 但使用者收下该信件后该封信原则上就会被删除。信件如果暂时寄不出去会被放到/var/spool/mqueue/中， 等到被送出后就被删除。如果是工作排程数据(crontab)，就会被放置到/var/spool/cron/目录中！</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="Linux目录树"><a href="#Linux目录树" class="headerlink" title="Linux目录树"></a>Linux目录树</h2><p>在Linux底下，所有的文件与目录都是由根目录开始的！那是所有目录与文件的源头～ 然后再一个一个的分支下来，有点像是树枝状啊～因此，我们也称这种目录配置方式为：『目录树(directory tree)』</p>
-<p><img src="https://i.loli.net/2019/04/29/5cc65ec0c4c87.gif" alt=""></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir" target="_blank" rel="noopener"><a href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir" target="_blank" rel="noopener">http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir</a></a></p>
+<p><img src="https://i.loli.net/2019/04/29/5cc65ec0c4c87.gif"></p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir"><a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir">http://cn.linux.vbird.org/linux_basic/0210filepermission.php#dir</a></a></p>
 
       
     </div>
@@ -419,7 +414,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2019/04/29/Linux的目录结构/">https://fynn90.github.io/2019/04/29/Linux的目录结构/</a>
+      <a href="https://fynn90.github.io/2019/04/29/Linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">https://fynn90.github.io/2019/04/29/Linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -465,14 +460,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/05/06/Linux用户和权限管理/">
+      <a class="prev" href="/2019/05/06/Linux%E7%94%A8%E6%88%B7%E5%92%8C%E6%9D%83%E9%99%90%E7%AE%A1%E7%90%86/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Linux用户和权限管理</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2019/04/24/Linux的文件和目录权限/">
+      <a class="next" href="/2019/04/24/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/">
         <span class="next-text nav-default">Linux的文件和目录权限</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -512,31 +507,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

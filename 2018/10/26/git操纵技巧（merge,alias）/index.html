@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Git使用技巧（merge,alias） - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/10/26/git操纵技巧（merge,alias）/"
+             data-url="/2018/10/26/git%E6%93%8D%E7%BA%B5%E6%8A%80%E5%B7%A7%EF%BC%88merge,alias%EF%BC%89/"
              data-title="Git使用技巧（merge,alias）">
             阅读次数
           </div>
@@ -237,30 +237,36 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-–no-ff"><span class="toc-text">merge –no-ff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-–abort"><span class="toc-text">merge –abort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-别名"><span class="toc-text">git 别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#更改分支名称"><span class="toc-text">更改分支名称</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-%E2%80%93no-ff"><span class="toc-text">merge –no-ff</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#merge-%E2%80%93abort"><span class="toc-text">merge –abort</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#git-%E5%88%AB%E5%90%8D"><span class="toc-text">git 别名</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%9B%B4%E6%94%B9%E5%88%86%E6%94%AF%E5%90%8D%E7%A7%B0"><span class="toc-text">更改分支名称</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="merge-–no-ff"><a href="#merge-–no-ff" class="headerlink" title="merge –no-ff"></a>merge –no-ff</h2><p>git进行代码合并时一般操纵是<code>git merge feature</code>。这表示快速合并两个分支，将HEAD指针快速指向最远的那个节点。<br><a id="more"></a></p>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070505.png" alt=""></p>
+        <h2 id="merge-–no-ff"><a href="#merge-–no-ff" class="headerlink" title="merge –no-ff"></a>merge –no-ff</h2><p>git进行代码合并时一般操纵是<code>git merge feature</code>。这表示快速合并两个分支，将HEAD指针快速指向最远的那个节点。</p>
+<span id="more"></span>
+
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070505.png"></p>
 <p><code>merge --no-ff</code>禁止进行快速合并，会生成一个新的节点。</p>
-<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070506.png" alt=""></p>
+<p><img src="http://www.ruanyifeng.com/blogimg/asset/201207/bg2012070506.png"></p>
 <p>这样在提交记录会更清晰。比较适合对于主干分支进行这样的操作。因为主干分支合并操作比较少，一般只有发布一个版本后才会合并，这样的合并最好有对应的tag记录以便日后的跟踪回溯。</p>
-<p><strong>参考：</strong> <a href="http://www.ruanyifeng.com/blog/2012/07/git.html" target="_blank" rel="noopener">Git分支管理策略</a></p>
+<p><strong>参考：</strong> <a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2012/07/git.html">Git分支管理策略</a></p>
 <h2 id="merge-–abort"><a href="#merge-–abort" class="headerlink" title="merge –abort"></a>merge –abort</h2><p>在合并时经常会遇到头疼的代码冲突，如果情况比较复杂你不想处理这次冲突。你可以通过<code>merge --abort</code>退出这次合并，将暂存区回退到合并之前状态。也可以运行 <code>git reset --hard HEAD</code> 回到之前的状态或其他你想要恢复的状态。 </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">$ git status -sb</span><br><span class="line"><span class="comment">## master</span></span><br><span class="line">UU hello.rb</span><br><span class="line"></span><br><span class="line">$ git merge --abort</span><br><span class="line"></span><br><span class="line">$ git status -sb</span><br><span class="line"><span class="comment">## master</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="git-别名"><a href="#git-别名" class="headerlink" title="git 别名"></a>git 别名</h2><p>对于常用的命令，我们可以自己给它起个名字，方便平日快速调用。</p>
 <p>git别名设置很简单：<code>git config --global alias.cm commit</code>。你就可以在日常的使用中用<code>cm</code> 代替<code>commit</code>。</p>
 <p>常用别名设置：</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.cm commit // git cm</span><br><span class="line">git config --global alias.co checkout // git co</span><br><span class="line">git config --global alias.st <span class="string">'status -sb'</span> // git st</span><br><span class="line">git config --global alias.tags <span class="string">'tag -l'</span> // git tags</span><br><span class="line">git config --global alias.branches <span class="string">'branch -a'</span> // git branches</span><br><span class="line">git config --global alias.remotes <span class="string">'remote -v'</span> // git remotes</span><br><span class="line">git config --global alias.lg <span class="string">"log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset' --abbrev-commit --"</span> // git lg</span><br><span class="line">git config --global alias.unstage <span class="string">'reset HEAD --'</span> // git untage fileA</span><br></pre></td></tr></table></figure>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">git config --global alias.cm commit // git cm</span><br><span class="line">git config --global alias.co checkout // git co</span><br><span class="line">git config --global alias.st <span class="string">&#x27;status -sb&#x27;</span> // git st</span><br><span class="line">git config --global alias.tags <span class="string">&#x27;tag -l&#x27;</span> // git tags</span><br><span class="line">git config --global alias.branches <span class="string">&#x27;branch -a&#x27;</span> // git branches</span><br><span class="line">git config --global alias.remotes <span class="string">&#x27;remote -v&#x27;</span> // git remotes</span><br><span class="line">git config --global alias.lg <span class="string">&quot;log --color --graph --pretty=format:&#x27;%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)&lt;%an&gt;%Creset&#x27; --abbrev-commit --&quot;</span> // git lg</span><br><span class="line">git config --global alias.unstage <span class="string">&#x27;reset HEAD --&#x27;</span> // git untage fileA</span><br></pre></td></tr></table></figure>
+
 <h2 id="更改分支名称"><a href="#更改分支名称" class="headerlink" title="更改分支名称"></a>更改分支名称</h2><p>假设旧分支名称为: <code>oldName</code>,新的分支名称为: <code>newName</code>.</p>
 <p>变更本地分支名称:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ git branch -m oldName newName</span><br></pre></td></tr></table></figure>
+
 <p>更新远程分支名称:</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ git push --delete oldName</span><br><span class="line">$ git push origin newName</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -276,7 +282,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/10/26/git操纵技巧（merge,alias）/">https://fynn90.github.io/2018/10/26/git操纵技巧（merge,alias）/</a>
+      <a href="https://fynn90.github.io/2018/10/26/git%E6%93%8D%E7%BA%B5%E6%8A%80%E5%B7%A7%EF%BC%88merge,alias%EF%BC%89/">https://fynn90.github.io/2018/10/26/git%E6%93%8D%E7%BA%B5%E6%8A%80%E5%B7%A7%EF%BC%88merge,alias%EF%BC%89/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -322,14 +328,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/11/04/Babel7手册/">
+      <a class="prev" href="/2018/11/04/Babel7%E6%89%8B%E5%86%8C/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Babel7手册</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/10/23/JS的数据类型和它们之间的转换/">
+      <a class="next" href="/2018/10/23/JS%E7%9A%84%E6%95%B0%E6%8D%AE%E7%B1%BB%E5%9E%8B%E5%92%8C%E5%AE%83%E4%BB%AC%E4%B9%8B%E9%97%B4%E7%9A%84%E8%BD%AC%E6%8D%A2/">
         <span class="next-text nav-default">JavaScript的数据类型和它们之间的转换</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -369,31 +375,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Charles抓包配置 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2019/02/14/Charles抓包配置/"
+             data-url="/2019/02/14/Charles%E6%8A%93%E5%8C%85%E9%85%8D%E7%BD%AE/"
              data-title="Charles抓包配置">
             阅读次数
           </div>
@@ -239,29 +239,30 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP配置"><span class="toc-text">HTTP配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac、Mobile-Device安装SSL证书"><span class="toc-text">Mac、Mobile Device安装SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#启用SSL代理"><span class="toc-text">启用SSL代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改-Charles端口号"><span class="toc-text">修改 Charles端口号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#注意事项"><span class="toc-text">注意事项</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTP%E9%85%8D%E7%BD%AE"><span class="toc-text">HTTP配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#HTTPS"><span class="toc-text">HTTPS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac%E3%80%81Mobile-Device%E5%AE%89%E8%A3%85SSL%E8%AF%81%E4%B9%A6"><span class="toc-text">Mac、Mobile Device安装SSL证书</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%90%AF%E7%94%A8SSL%E4%BB%A3%E7%90%86"><span class="toc-text">启用SSL代理</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-Charles%E7%AB%AF%E5%8F%A3%E5%8F%B7"><span class="toc-text">修改 Charles端口号</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9"><span class="toc-text">注意事项</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p><a href="https://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 是macOS上很好用的一款抓包应用程序，通过设置代理服务，你可以很轻松的抓取通讯设备上的HTTP/HTTPS数据包。</p>
-<p><img src="https://i.loli.net/2019/02/14/5c650ff584ea9.png" alt=""></p>
-<a id="more"></a>
+        <p><a target="_blank" rel="noopener" href="https://www.charlesproxy.com/">Charles</a> 是macOS上很好用的一款抓包应用程序，通过设置代理服务，你可以很轻松的抓取通讯设备上的HTTP/HTTPS数据包。</p>
+<p><img src="https://i.loli.net/2019/02/14/5c650ff584ea9.png"></p>
+<span id="more"></span>
+
 <h2 id="HTTP配置"><a href="#HTTP配置" class="headerlink" title="HTTP配置"></a>HTTP配置</h2><p><strong>Charles</strong> 默认的端口号是<code>8888</code>，在手机端设置网络代理，将服务器主机名指向运行<strong>Charles</strong>设备的<strong>IP</strong>，端口号设置为<strong>8888</strong>。</p>
-<p><img src="https://i.loli.net/2019/02/14/5c650df743ed6.jpeg" alt=""></p>
+<p><img src="https://i.loli.net/2019/02/14/5c650df743ed6.jpeg"></p>
 <p>如上图所示。配置完后，就可以在<strong>Charles</strong>看到设备上所有的HTTP/HTTPS包了。</p>
 <h2 id="HTTPS"><a href="#HTTPS" class="headerlink" title="HTTPS"></a>HTTPS</h2><p>HTTPS请求是加密的，如果不做些配置抓取的包是无法打开查看的。<strong>Charles</strong>提供了几步简单配置方式可以让我们查看到HTTPS包信息。</p>
-<h3 id="Mac、Mobile-Device安装SSL证书"><a href="#Mac、Mobile-Device安装SSL证书" class="headerlink" title="Mac、Mobile Device安装SSL证书"></a>Mac、Mobile Device安装SSL证书</h3><p><img src="https://i.loli.net/2019/02/14/5c6519ebcba30.png" alt=""></p>
+<h3 id="Mac、Mobile-Device安装SSL证书"><a href="#Mac、Mobile-Device安装SSL证书" class="headerlink" title="Mac、Mobile Device安装SSL证书"></a>Mac、Mobile Device安装SSL证书</h3><p><img src="https://i.loli.net/2019/02/14/5c6519ebcba30.png"></p>
 <p>如上图操作，<strong>Install Charles Root Certificate</strong> 是在Mac上安装 SSL证书。</p>
 <p>SSL证书安装好后，需要更改下权限。</p>
-<p><img src="https://i.loli.net/2019/02/14/5c651d2002cbd.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/02/14/5c651d2002cbd.png"></p>
 <p>安装<strong>Mobile Device</strong> 端的SSL操作步骤点击<strong>Install Charles Root Certificat on a Mobile Device or Remote Browser</strong> </p>
-<p><img src="https://i.loli.net/2019/02/14/5c651e645ec88.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/02/14/5c651e645ec88.png"></p>
 <p><strong>注意</strong> 在链接了 <strong>Charles</strong>的后再打开<code>https://chls.pro/ssl</code>。如果是iOS设备，需要设置 使用证书。</p>
 <h3 id="启用SSL代理"><a href="#启用SSL代理" class="headerlink" title="启用SSL代理"></a>启用SSL代理</h3><p>最后一步，启用<strong>Charles</strong> SSL代理服务，设置路径是：<code>Proxy-&gt;SSL Proxying Settings</code></p>
-<p><img src="https://i.loli.net/2019/02/14/5c6529c928b36.jpeg" alt=""></p>
+<p><img src="https://i.loli.net/2019/02/14/5c6529c928b36.jpeg"></p>
 <p>进行如上图设置，点击OK即可。</p>
 <h2 id="修改-Charles端口号"><a href="#修改-Charles端口号" class="headerlink" title="修改 Charles端口号"></a>修改 Charles端口号</h2><p><code>Proxy -&gt; Proxy Settings -&gt; Proxies</code></p>
 <h2 id="注意事项"><a href="#注意事项" class="headerlink" title="注意事项"></a>注意事项</h2><ol>
@@ -282,7 +283,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2019/02/14/Charles抓包配置/">https://fynn90.github.io/2019/02/14/Charles抓包配置/</a>
+      <a href="https://fynn90.github.io/2019/02/14/Charles%E6%8A%93%E5%8C%85%E9%85%8D%E7%BD%AE/">https://fynn90.github.io/2019/02/14/Charles%E6%8A%93%E5%8C%85%E9%85%8D%E7%BD%AE/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -328,14 +329,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/03/27/JavaScript中面向对象编程方式/">
+      <a class="prev" href="/2019/03/27/JavaScript%E4%B8%AD%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E6%96%B9%E5%BC%8F/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">JavaScript中面向对象编程方式</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2019/02/11/Xcode快捷键/">
+      <a class="next" href="/2019/02/11/Xcode%E5%BF%AB%E6%8D%B7%E9%94%AE/">
         <span class="next-text nav-default">Xcode快捷键</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -375,31 +376,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

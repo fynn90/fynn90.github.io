@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> 微前端的前世今生 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2020/12/20/微前端的前世今生/"
+             data-url="/2020/12/20/%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/"
              data-title="微前端的前世今生">
             阅读次数
           </div>
@@ -239,18 +239,19 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端是什么"><span class="toc-text">微前端是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#为什么需要微前端"><span class="toc-text">为什么需要微前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端原则"><span class="toc-text">微前端原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端现状"><span class="toc-text">微前端现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端架构的挑战"><span class="toc-text">微前端架构的挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#微前端的几种形式"><span class="toc-text">微前端的几种形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx路由分发"><span class="toc-text">Nginx路由分发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iframe"><span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Components"><span class="toc-text">Web Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#前端微服务化"><span class="toc-text">前端微服务化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%98%AF%E4%BB%80%E4%B9%88"><span class="toc-text">微前端是什么</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%B8%BA%E4%BB%80%E4%B9%88%E9%9C%80%E8%A6%81%E5%BE%AE%E5%89%8D%E7%AB%AF"><span class="toc-text">为什么需要微前端</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E5%8E%9F%E5%88%99"><span class="toc-text">微前端原则</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%8E%B0%E7%8A%B6"><span class="toc-text">微前端现状</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%9E%B6%E6%9E%84%E7%9A%84%E6%8C%91%E6%88%98"><span class="toc-text">微前端架构的挑战</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E5%87%A0%E7%A7%8D%E5%BD%A2%E5%BC%8F"><span class="toc-text">微前端的几种形式</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Nginx%E8%B7%AF%E7%94%B1%E5%88%86%E5%8F%91"><span class="toc-text">Nginx路由分发</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#iframe"><span class="toc-text">iframe</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Web-Components"><span class="toc-text">Web Components</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%89%8D%E7%AB%AF%E5%BE%AE%E6%9C%8D%E5%8A%A1%E5%8C%96"><span class="toc-text">前端微服务化</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="微前端是什么"><a href="#微前端是什么" class="headerlink" title="微前端是什么"></a>微前端是什么</h2><p><strong>微前端</strong>这个术语最初来自 2016 年的  <a href="https://www.thoughtworks.com/radar/techniques/micro-frontends" target="_blank" rel="noopener">ThoughtWorks 的技术雷达 </a> ，它将微服务的概念扩展到了前端领域。</p>
-<p><img src="https://pic.downk.cc/item/5fd91eb43ffa7d37b390bf9e.jpg" alt=""></p>
-<a id="more"></a>
+        <h2 id="微前端是什么"><a href="#微前端是什么" class="headerlink" title="微前端是什么"></a>微前端是什么</h2><p><strong>微前端</strong>这个术语最初来自 2016 年的  <a target="_blank" rel="noopener" href="https://www.thoughtworks.com/radar/techniques/micro-frontends">ThoughtWorks 的技术雷达 </a> ，它将微服务的概念扩展到了前端领域。</p>
+<p><img src="https://pic.downk.cc/item/5fd91eb43ffa7d37b390bf9e.jpg"></p>
+<span id="more"></span>
+
 <blockquote>
-<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。然而团队避免创建前端巨石应用-庞大且不易扩展的浏览器应用，它就像已经被我们放弃的后端庞大的单体应用一样难以维护和扩展。我们看到一种被我们团队称为<strong>微前端</strong>的方法。通过这种方法，Web应用程序按其页面和功能进行分解，每个功能由一个团队端对端拥有。存在多种技术来将应用程序功能（一些旧的和一些新的）组合在一起，形成具有内聚力的用户体验。它的目标是允许独立于其他功能开发，测试和部署每个功能。<a href="https://www.thoughtworks.com/radar/techniques/bff-backend-for-frontends" target="_blank" rel="noopener">BFF</a>方法在<strong>微前端</strong>这里效果很好，每个团队都开发一个BFF以支持其一组应用程序功能。</p>
+<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。然而团队避免创建前端巨石应用-庞大且不易扩展的浏览器应用，它就像已经被我们放弃的后端庞大的单体应用一样难以维护和扩展。我们看到一种被我们团队称为<strong>微前端</strong>的方法。通过这种方法，Web应用程序按其页面和功能进行分解，每个功能由一个团队端对端拥有。存在多种技术来将应用程序功能（一些旧的和一些新的）组合在一起，形成具有内聚力的用户体验。它的目标是允许独立于其他功能开发，测试和部署每个功能。<a target="_blank" rel="noopener" href="https://www.thoughtworks.com/radar/techniques/bff-backend-for-frontends">BFF</a>方法在<strong>微前端</strong>这里效果很好，每个团队都开发一个BFF以支持其一组应用程序功能。</p>
 </blockquote>
 <blockquote>
 <p> BFF - Backend For Frontend(服务于前端的后端): 也就是服务器设计 API 时会考虑前端的使用，并在服务端直接进行业务逻辑的处理，又称为用户体验适配器。BFF 只是一种逻辑分层，而非一种技术.</p>
@@ -258,9 +259,9 @@
 </blockquote>
 <h2 id="为什么需要微前端"><a href="#为什么需要微前端" class="headerlink" title="为什么需要微前端"></a>为什么需要微前端</h2><p>因为随着前后端分离，前端可以利用SPA构建出功能丰富且强大的应用。而这样应用一般是构建在微服务架构之上。后端是微服务体系，但是前端还是保持着单一工程，随着时间推移<strong>前端工程会越来越庞大并且技术栈很难更换</strong>，从而导致难以维护和扩展。</p>
 <p><strong>一体化的前端：</strong></p>
-<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png" alt=""></p>
+<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/monolith-frontback-microservices.png"></p>
 <p><strong>垂直化的前端：</strong></p>
-<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/verticals-headline.png" alt=""></p>
+<p><img src="https://micro-frontends.org/ressources/diagrams/organisational/verticals-headline.png"></p>
 <h2 id="微前端原则"><a href="#微前端原则" class="headerlink" title="微前端原则"></a>微前端原则</h2><p>微前端是一种前端架构思想，这样的架构应该满足一下几个原则：</p>
 <ol>
 <li>每个前端应用，可以独立开发。</li>
@@ -273,18 +274,18 @@
 <p>多个小的应用整合成大的应用，意味着技术栈可以演进，大的应用可以方便扩展更新。</p>
 <p>能够满足以上原则的前端架构可以称为 <strong>微前端</strong>。它于具体实施的技术方案无关.</p>
 <h2 id="微前端现状"><a href="#微前端现状" class="headerlink" title="微前端现状"></a>微前端现状</h2><p>在 ThoughtWorks 中已经将 <strong>微前端</strong> 列入 <strong>应采用</strong> 中.</p>
-<p><img src="https://pic.downk.cc/item/5fd91f1b3ffa7d37b39105bc.jpg" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5fd91f1b3ffa7d37b39105bc.jpg"></p>
 <blockquote>
-<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。不幸的是，我们看到很多团队还在创建前端巨石应用 - 庞大而无法扩展的浏览器应用，这很大的抵消了<strong>微服务</strong>带来的好处。自从微型前端问世以来，它们一直在不断普及。我们看到很多团队采用这样的体系架构于管理由多个开发者和团队负责开发的复杂的用户体验一致的应用。去年6月，该技术的发起者之一发表了一篇介绍性<a href="https://martinfowler.com/articles/micro-frontends.html" target="_blank" rel="noopener">文章</a>，作为微前端的参考.它展示了如何使用各种Web编程机制来实现这种风格，并使用React.js构建示例应用程序。我们相信，随着大型组织试图分解多个团队的UI开发，这种风格将越来越流行。</p>
+<p>我们已经看到微服务带来的巨大益处，它可以让团队独立的持续部署交付和维护服务。不幸的是，我们看到很多团队还在创建前端巨石应用 - 庞大而无法扩展的浏览器应用，这很大的抵消了<strong>微服务</strong>带来的好处。自从微型前端问世以来，它们一直在不断普及。我们看到很多团队采用这样的体系架构于管理由多个开发者和团队负责开发的复杂的用户体验一致的应用。去年6月，该技术的发起者之一发表了一篇介绍性<a target="_blank" rel="noopener" href="https://martinfowler.com/articles/micro-frontends.html">文章</a>，作为微前端的参考.它展示了如何使用各种Web编程机制来实现这种风格，并使用React.js构建示例应用程序。我们相信，随着大型组织试图分解多个团队的UI开发，这种风格将越来越流行。</p>
 </blockquote>
 <p>目前<em>美团</em>、<em>蚂蚁金服</em>、<em>淘系</em>等前端团队在实际生产中已经使用 <strong>微前端</strong> 架构。</p>
 <p>目前较流行的 <strong>微前端</strong> 架构技术方案有：</p>
 <ul>
-<li><p><a href="https://single-spa.js.org/" target="_blank" rel="noopener">single-spa</a></p>
+<li><p><a target="_blank" rel="noopener" href="https://single-spa.js.org/">single-spa</a></p>
 </li>
-<li><p><a href="https://github.com/umijs/qiankun" target="_blank" rel="noopener">qiankun</a> - 基于 <code>single-spa</code>，蚂蚁金服。</p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/umijs/qiankun">qiankun</a> - 基于 <code>single-spa</code>，蚂蚁金服。</p>
 </li>
-<li><p><a href="https://github.com/phodal/mooa" target="_blank" rel="noopener">mooa</a> - 基于 <code>single-spa</code>的 <code>Angular</code> 微前端</p>
+<li><p><a target="_blank" rel="noopener" href="https://github.com/phodal/mooa">mooa</a> - 基于 <code>single-spa</code>的 <code>Angular</code> 微前端</p>
 </li>
 </ul>
 <h2 id="微前端架构的挑战"><a href="#微前端架构的挑战" class="headerlink" title="微前端架构的挑战"></a>微前端架构的挑战</h2><p>一个大型的应用是有多个小应用组合而来。这样的模式带来了一些现实的挑战。</p>
@@ -298,24 +299,24 @@
 <li>小应用之间的组件共享</li>
 </ul>
 <h2 id="微前端的几种形式"><a href="#微前端的几种形式" class="headerlink" title="微前端的几种形式"></a>微前端的几种形式</h2><h3 id="Nginx路由分发"><a href="#Nginx路由分发" class="headerlink" title="Nginx路由分发"></a>Nginx路由分发</h3><p>路由分发式微前端，即通过路由将不同的业务分发到不同的、独立前端应用上。其通常可以通过 HTTP 服务器的反向代理来实现，又或者是应用框架自带的路由来解决。</p>
-<p><img src="https://pic.downk.cc/item/5fe2bc5c3ffa7d37b3083eb6.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5fe2bc5c3ffa7d37b3083eb6.png"></p>
 <p><strong>优点：</strong> 简单，快速，易配置。</p>
 <p><strong>缺点：</strong> 在切换应用时会触发浏览器刷新，影响体验</p>
 <h3 id="iframe"><a href="#iframe" class="headerlink" title="iframe"></a>iframe</h3><p>iframe 可以创建一个全新的独立的宿主环境，这意味着我们的前端应用之间可以相互独立运行。</p>
 <p><strong>优点：</strong>实现简单，子应用之间自带沙箱，天然隔离，互不影响。</p>
 <p><strong>缺点：</strong>low。一些布局场景难以满足。</p>
-<h3 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a><a href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components" target="_blank" rel="noopener">Web Components</a></h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在您 Web 应用中使用它们。</p>
-<p><img src="https://pic.downk.cc/item/5fe2bdc63ffa7d37b30b5410.png" alt=""></p>
+<h3 id="Web-Components"><a href="#Web-Components" class="headerlink" title="Web Components"></a><a target="_blank" rel="noopener" href="https://developer.mozilla.org/zh-CN/docs/Web/Web_Components">Web Components</a></h3><p>Web Components 是一套不同的技术，允许开发者创建可重用的定制元素（它们的功能封装在代码之外）并且在您 Web 应用中使用它们。</p>
+<p><img src="https://pic.downk.cc/item/5fe2bdc63ffa7d37b30b5410.png"></p>
 <h3 id="前端微服务化"><a href="#前端微服务化" class="headerlink" title="前端微服务化"></a>前端微服务化</h3><p>前端微服务化，是微服务架构在前端的实施，每个前端应用都是完全独立（技术栈、开发、部署、构建独立）、自主运行的，最后通过模块化的方式组合出完成的应用。</p>
-<p><img src="https://pic.downk.cc/item/5fe2be063ffa7d37b30be5f6.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5fe2be063ffa7d37b30be5f6.png"></p>
 <p><strong>优点：</strong> 纯前端改造，体验良好，可无感知切换，子应用相互隔离</p>
 <p><strong>缺点：</strong>需要设计和开发，由于父子应用处于同一页面运行，需要解决子应用的样式冲突，变量对象污染，通信机制等技术点</p>
-<p>目前主流的框架有 <a href="https://single-spa.js.org/" target="_blank" rel="noopener">Single-SPA</a>、<a href="https://qiankun.umijs.org/" target="_blank" rel="noopener">qiankun</a>、<a href="https://github.com/phodal/mooa" target="_blank" rel="noopener">Mooa</a>，后两者都是基于 <code>Single-SPA</code> 的封装。</p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://micro-frontends.org/" target="_blank" rel="noopener">https://micro-frontends.org/</a></p>
-<p><a href="https://www.thoughtworks.com/radar/techniques/micro-frontends" target="_blank" rel="noopener">https://www.thoughtworks.com/radar/techniques/micro-frontends</a></p>
-<p><a href="https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/" target="_blank" rel="noopener">https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/</a></p>
-<p><a href="https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/" target="_blank" rel="noopener">https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/</a></p>
-<p><a href="https://www.jianshu.com/p/eb1875c62ad3" target="_blank" rel="noopener">https://www.jianshu.com/p/eb1875c62ad3</a></p>
+<p>目前主流的框架有 <a target="_blank" rel="noopener" href="https://single-spa.js.org/">Single-SPA</a>、<a target="_blank" rel="noopener" href="https://qiankun.umijs.org/">qiankun</a>、<a target="_blank" rel="noopener" href="https://github.com/phodal/mooa">Mooa</a>，后两者都是基于 <code>Single-SPA</code> 的封装。</p>
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://micro-frontends.org/">https://micro-frontends.org/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.thoughtworks.com/radar/techniques/micro-frontends">https://www.thoughtworks.com/radar/techniques/micro-frontends</a></p>
+<p><a target="_blank" rel="noopener" href="https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/">https://xiaomi-info.github.io/2020/04/14/fe-microfrontends-practice/</a></p>
+<p><a target="_blank" rel="noopener" href="https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/">https://fed.taobao.org/blog/taofed/do71ct/xgmaz3/</a></p>
+<p><a target="_blank" rel="noopener" href="https://www.jianshu.com/p/eb1875c62ad3">https://www.jianshu.com/p/eb1875c62ad3</a></p>
 
       
     </div>
@@ -331,7 +332,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2020/12/20/微前端的前世今生/">https://fynn90.github.io/2020/12/20/微前端的前世今生/</a>
+      <a href="https://fynn90.github.io/2020/12/20/%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/">https://fynn90.github.io/2020/12/20/%E5%BE%AE%E5%89%8D%E7%AB%AF%E7%9A%84%E5%89%8D%E4%B8%96%E4%BB%8A%E7%94%9F/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -377,14 +378,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2021/01/05/Java 集合框架(Collections)/">
+      <a class="prev" href="/2021/01/05/Java%20%E9%9B%86%E5%90%88%E6%A1%86%E6%9E%B6(Collections)/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Java collections framework</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2020/11/14/Java异常处理/">
+      <a class="next" href="/2020/11/14/Java%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
         <span class="next-text nav-default">Java异常处理</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -424,31 +425,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

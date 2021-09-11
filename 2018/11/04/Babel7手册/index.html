@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Babel7手册 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/11/04/Babel7手册/"
+             data-url="/2018/11/04/Babel7%E6%89%8B%E5%86%8C/"
              data-title="Babel7手册">
             阅读次数
           </div>
@@ -239,29 +239,34 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#配置"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#overrides"><span class="toc-text">overrides</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ignore"><span class="toc-text">ignore</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preset-env"><span class="toc-text">preset-env</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-polyfill"><span class="toc-text">@babel/polyfill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-plugin-transform-runtime、-babel-runtime"><span class="toc-text">@babel/plugin-transform-runtime、 @babel/runtime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#安装"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#配置-1"><span class="toc-text">配置</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE"><span class="toc-text">配置</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#overrides"><span class="toc-text">overrides</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ignore"><span class="toc-text">ignore</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#preset-env"><span class="toc-text">preset-env</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-polyfill"><span class="toc-text">@babel&#x2F;polyfill</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babel-plugin-transform-runtime%E3%80%81-babel-runtime"><span class="toc-text">@babel&#x2F;plugin-transform-runtime、 @babel&#x2F;runtime</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%AE%89%E8%A3%85"><span class="toc-text">安装</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%85%8D%E7%BD%AE-1"><span class="toc-text">配置</span></a></li></ol></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p><img src="https://babel.docschina.org/img/babel.svg" alt=""></p>
-<p><a href="https://babel.docschina.org/" target="_blank" rel="noopener">Babel7</a>是Babel最新的一个大版本的更新，它启用新的包名方式以区分官方包和非官方包，它现在也开始支持<code>TypeScript</code>。它引入了新的配置方式<code>babel.config.js</code>。</p>
-<p>之前对Babel有所了解，工作中也有使用，但一直觉得自己对它认识很模糊，所以整理一篇文章让自己对它认识更清晰。<br><a id="more"></a></p>
-<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a href="https://babeljs.io/docs/en/configuration" target="_blank" rel="noopener">配置</a></h2><p>Babel7支持三种配置方式：<code>babel.config.js</code>,<code>.babelrc/.babelrc.js</code>和<code>package.json#babel</code></p>
+        <p><img src="https://babel.docschina.org/img/babel.svg"></p>
+<p><a target="_blank" rel="noopener" href="https://babel.docschina.org/">Babel7</a>是Babel最新的一个大版本的更新，它启用新的包名方式以区分官方包和非官方包，它现在也开始支持<code>TypeScript</code>。它引入了新的配置方式<code>babel.config.js</code>。</p>
+<p>之前对Babel有所了解，工作中也有使用，但一直觉得自己对它认识很模糊，所以整理一篇文章让自己对它认识更清晰。</p>
+<span id="more"></span>
+<h2 id="配置"><a href="#配置" class="headerlink" title="配置"></a><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/configuration">配置</a></h2><p>Babel7支持三种配置方式：<code>babel.config.js</code>,<code>.babelrc/.babelrc.js</code>和<code>package.json#babel</code></p>
 <p>Babel7中可以使用<code>babel.config.js</code>进行配置了，使得配置的灵活性得到大的提升。它的配置内容没啥变化：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">api</span>) </span>&#123;</span><br><span class="line">  api.cache(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> presets = [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/env"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        useBuiltIns: <span class="string">"usage"</span>,</span><br><span class="line">        targets: &#123;</span><br><span class="line">          browsers: [</span><br><span class="line">            <span class="string">"Chrome &gt;= 49"</span>,</span><br><span class="line">            <span class="string">"Firefox &gt;= 45"</span>,</span><br><span class="line">            <span class="string">"Safari &gt;= 10"</span>,</span><br><span class="line">            <span class="string">"Edge &gt;= 13"</span>,</span><br><span class="line">            <span class="string">"iOS &gt;= 10"</span>,</span><br><span class="line">            <span class="string">"Electron &gt;= 0.36"</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> &#123; presets &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = <span class="function"><span class="keyword">function</span>(<span class="params">api</span>) </span>&#123;</span><br><span class="line">  api.cache(<span class="literal">false</span>);</span><br><span class="line">  <span class="keyword">const</span> presets = [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/env&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">useBuiltIns</span>: <span class="string">&quot;usage&quot;</span>,</span><br><span class="line">        <span class="attr">targets</span>: &#123;</span><br><span class="line">          <span class="attr">browsers</span>: [</span><br><span class="line">            <span class="string">&quot;Chrome &gt;= 49&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Firefox &gt;= 45&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Safari &gt;= 10&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Edge &gt;= 13&quot;</span>,</span><br><span class="line">            <span class="string">&quot;iOS &gt;= 10&quot;</span>,</span><br><span class="line">            <span class="string">&quot;Electron &gt;= 0.36&quot;</span></span><br><span class="line">          ]</span><br><span class="line">        &#125;</span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ];</span><br><span class="line">  <span class="keyword">return</span> &#123; presets &#125;;</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p>你可以通过使用Node.jsAPI，进行配置，例如：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [ ... ];</span><br><span class="line"><span class="keyword">const</span> plugins = [ ... ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env[<span class="string">"ENV"</span>] === <span class="string">"prod"</span>) &#123;</span><br><span class="line">  plugins.push(...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123; presets, plugins &#125;;</span><br></pre></td></tr></table></figure>
-<h3 id="overrides"><a href="#overrides" class="headerlink" title="overrides"></a><a href="https://babeljs.io/docs/en/options#source-map-options" target="_blank" rel="noopener">overrides</a></h3><p>你可以根据不同的目录配置不同的配置项</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  presets: [</span><br><span class="line">    <span class="comment">// defeault config...</span></span><br><span class="line">  ],</span><br><span class="line">  overrides: [&#123;</span><br><span class="line">    test: [<span class="string">"./node_modules"</span>],</span><br><span class="line">    presets: [</span><br><span class="line">      <span class="comment">// config for node_modules</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    test: [<span class="string">"./tests"</span>],</span><br><span class="line">    presets: [</span><br><span class="line">      <span class="comment">// config for tests</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [ ... ];</span><br><span class="line"><span class="keyword">const</span> plugins = [ ... ];</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> (process.env[<span class="string">&quot;ENV&quot;</span>] === <span class="string">&quot;prod&quot;</span>) &#123;</span><br><span class="line">  plugins.push(...);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123; presets, plugins &#125;;</span><br></pre></td></tr></table></figure>
+
+<h3 id="overrides"><a href="#overrides" class="headerlink" title="overrides"></a><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/options#source-map-options">overrides</a></h3><p>你可以根据不同的目录配置不同的配置项</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">presets</span>: [</span><br><span class="line">    <span class="comment">// defeault config...</span></span><br><span class="line">  ],</span><br><span class="line">  <span class="attr">overrides</span>: [&#123;</span><br><span class="line">    <span class="attr">test</span>: [<span class="string">&quot;./node_modules&quot;</span>],</span><br><span class="line">    <span class="attr">presets</span>: [</span><br><span class="line">      <span class="comment">// config for node_modules</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;, &#123;</span><br><span class="line">    <span class="attr">test</span>: [<span class="string">&quot;./tests&quot;</span>],</span><br><span class="line">    <span class="attr">presets</span>: [</span><br><span class="line">      <span class="comment">// config for tests</span></span><br><span class="line">    ],</span><br><span class="line">  &#125;]</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <h3 id="ignore"><a href="#ignore" class="headerlink" title="ignore"></a>ignore</h3><p>指定忽略编译目录或文件</p>
 <h2 id="preset-env"><a href="#preset-env" class="headerlink" title="preset-env"></a>preset-env</h2><p><code>preset-env</code>包含一组可以编译已正式发布的JavaScript最新语法（JavaScript每年会发一个版本）的<strong>插件</strong>。你可以可以指定项目运行的环境，<code>preset-env</code>使用对应的插件将项目代码编译成在这些指定的环境下可以正常运行。</p>
-<p>Babel7 放弃<code>Stage-presets</code>（<code>@babel/preset-stage-0</code> 等），原因在官网博客有<a href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets" target="_blank" rel="noopener">说明</a>。</p>
+<p>Babel7 放弃<code>Stage-presets</code>（<code>@babel/preset-stage-0</code> 等），原因在官网博客有<a target="_blank" rel="noopener" href="https://babeljs.io/blog/2018/07/27/removing-babels-stage-presets">说明</a>。</p>
 <p>配置例子：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [</span><br><span class="line">  [</span><br><span class="line">    <span class="string">"@babel/env"</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      targets: &#123;</span><br><span class="line">        edge: <span class="string">"17"</span>,</span><br><span class="line">        firefox: <span class="string">"60"</span>,</span><br><span class="line">        chrome: <span class="string">"67"</span>,</span><br><span class="line">        safari: <span class="string">"11.1"</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      useBuiltIns: <span class="string">"usage"</span>, <span class="comment">// 根据需要引入 polyfill</span></span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123; presets &#125;;</span><br></pre></td></tr></table></figure>
-<h2 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="@babel/polyfill"></a><a href="https://babeljs.io/docs/en/babel-polyfill" target="_blank" rel="noopener">@babel/polyfill</a></h2><p>Babel只负责语法转换，比如将ES6的语法转换成ES5，但对于新的JavaScript语法规则中新增的对象或方法Babel本身是不支持编译的。例如：</p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> presets = [</span><br><span class="line">  [</span><br><span class="line">    <span class="string">&quot;@babel/env&quot;</span>,</span><br><span class="line">    &#123;</span><br><span class="line">      <span class="attr">targets</span>: &#123;</span><br><span class="line">        <span class="attr">edge</span>: <span class="string">&quot;17&quot;</span>,</span><br><span class="line">        <span class="attr">firefox</span>: <span class="string">&quot;60&quot;</span>,</span><br><span class="line">        <span class="attr">chrome</span>: <span class="string">&quot;67&quot;</span>,</span><br><span class="line">        <span class="attr">safari</span>: <span class="string">&quot;11.1&quot;</span>,</span><br><span class="line">      &#125;,</span><br><span class="line">      <span class="attr">useBuiltIns</span>: <span class="string">&quot;usage&quot;</span>, <span class="comment">// 根据需要引入 polyfill</span></span><br><span class="line">    &#125;,</span><br><span class="line">  ],</span><br><span class="line">];</span><br><span class="line"></span><br><span class="line"><span class="built_in">module</span>.exports = &#123; presets &#125;;</span><br></pre></td></tr></table></figure>
+
+<h2 id="babel-polyfill"><a href="#babel-polyfill" class="headerlink" title="@babel/polyfill"></a><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-polyfill">@babel/polyfill</a></h2><p>Babel只负责语法转换，比如将ES6的语法转换成ES5，但对于新的JavaScript语法规则中新增的对象或方法Babel本身是不支持编译的。例如：</p>
 <ol>
 <li><p>全局对象：Promise、WeakMap 等。</p>
 </li>
@@ -274,13 +279,17 @@
 <p><code>@babel/polyfill</code>可以完美的支持这些新增的方法或对象。</p>
 <p>你只需要安装它，并将它打包进项目中。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add @babel/polyfill</span><br></pre></td></tr></table></figure>
+
 <p>你需要确保<code>@babel/polyfill</code>能够优先被加载解析，因为它会对JavaScript原生对象进行修改和处理。</p>
 <p>如果你使用<code>webpack</code>打包项目，你可以：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  entry: [<span class="string">"@babel/polyfill"</span>, <span class="string">"./app.js"</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">module</span>.exports = &#123;</span><br><span class="line">  <span class="attr">entry</span>: [<span class="string">&quot;@babel/polyfill&quot;</span>, <span class="string">&quot;./app.js&quot;</span>],</span><br><span class="line">&#125;;</span><br></pre></td></tr></table></figure>
+
 <p><code>@babel/polyfill</code>会对全局对象进行污染，并且可能会加入你用不到的新方法。你可以通过<code>@babel/runtime</code>插件在你需要的地方引入你使用到的新方法，而不会造成全局污染。</p>
 <p><strong>注意</strong> 如果使用<code>@babel/runtime</code>一些实例方法你将无法使用，例如：<code>Array.prototype.includes</code>。因为它必须在原生对象的原型链上进行修改。</p>
-<h2 id="babel-plugin-transform-runtime、-babel-runtime"><a href="#babel-plugin-transform-runtime、-babel-runtime" class="headerlink" title="@babel/plugin-transform-runtime、 @babel/runtime"></a><a href="https://babeljs.io/docs/en/babel-plugin-transform-runtime" target="_blank" rel="noopener">@babel/plugin-transform-runtime、 @babel/runtime</a></h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add -D @babel/plugin-transform-runtime</span><br><span class="line">$ yarn add @babel/runtime</span><br></pre></td></tr></table></figure>
-<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">"plugins"</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">"@babel/plugin-transform-runtime"</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">"corejs"</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">"helpers"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"regenerator"</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">"useESModules"</span>: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<h2 id="babel-plugin-transform-runtime、-babel-runtime"><a href="#babel-plugin-transform-runtime、-babel-runtime" class="headerlink" title="@babel/plugin-transform-runtime、 @babel/runtime"></a><a target="_blank" rel="noopener" href="https://babeljs.io/docs/en/babel-plugin-transform-runtime">@babel/plugin-transform-runtime、 @babel/runtime</a></h2><h3 id="安装"><a href="#安装" class="headerlink" title="安装"></a>安装</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ yarn add -D @babel/plugin-transform-runtime</span><br><span class="line">$ yarn add @babel/runtime</span><br></pre></td></tr></table></figure>
+
+<h3 id="配置-1"><a href="#配置-1" class="headerlink" title="配置"></a>配置</h3><figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;plugins&quot;</span>: [</span><br><span class="line">    [</span><br><span class="line">      <span class="string">&quot;@babel/plugin-transform-runtime&quot;</span>,</span><br><span class="line">      &#123;</span><br><span class="line">        <span class="attr">&quot;corejs&quot;</span>: <span class="literal">false</span>,</span><br><span class="line">        <span class="attr">&quot;helpers&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;regenerator&quot;</span>: <span class="literal">true</span>,</span><br><span class="line">        <span class="attr">&quot;useESModules&quot;</span>: <span class="literal">false</span></span><br><span class="line">      &#125;</span><br><span class="line">    ]</span><br><span class="line">  ]</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <p><strong>注意</strong> 一般库或工具中使用<code>@babel/runtime</code>，因为它可以避免全局的污染。如果是项目中可以直接使用<code>@babel/polyfill</code>或者在<code>@babel/preset-env</code>中配置<code>useBuiltIns = usage</code></p>
 
       
@@ -297,7 +306,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/11/04/Babel7手册/">https://fynn90.github.io/2018/11/04/Babel7手册/</a>
+      <a href="https://fynn90.github.io/2018/11/04/Babel7%E6%89%8B%E5%86%8C/">https://fynn90.github.io/2018/11/04/Babel7%E6%89%8B%E5%86%8C/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -343,14 +352,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/11/09/Canvas入门/">
+      <a class="prev" href="/2018/11/09/Canvas%E5%85%A5%E9%97%A8/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Canvas入门</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/10/26/git操纵技巧（merge,alias）/">
+      <a class="next" href="/2018/10/26/git%E6%93%8D%E7%BA%B5%E6%8A%80%E5%B7%A7%EF%BC%88merge,alias%EF%BC%89/">
         <span class="next-text nav-default">Git使用技巧（merge,alias）</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -390,31 +399,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

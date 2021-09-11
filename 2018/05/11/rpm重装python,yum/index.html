@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> rpm重装Python,yum - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2018/05/11/rpm重装python,yum/"
+             data-url="/2018/05/11/rpm%E9%87%8D%E8%A3%85python,yum/"
              data-title="rpm重装Python,yum">
             阅读次数
           </div>
@@ -239,20 +239,24 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#卸载-Python-yum"><span class="toc-text">卸载 Python,yum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#安装Python-yum"><span class="toc-text">安装Python,yum</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%B8%E8%BD%BD-Python-yum"><span class="toc-text">卸载 Python,yum</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%AE%89%E8%A3%85Python-yum"><span class="toc-text">安装Python,yum</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>阿里云Python自带版本是2.x想升级到3.x。就把自带的Python删掉了，最后发现yum居然用不了了！因为yum依赖于Python2.x。最后通过google找到一个最简单好用的重新安装Python,yum方法。通过Linux软件包<a href="http://man.linuxde.net/rpm" target="_blank" rel="noopener">RPM</a>安装。<br><a id="more"></a></p>
+        <p>阿里云Python自带版本是2.x想升级到3.x。就把自带的Python删掉了，最后发现yum居然用不了了！因为yum依赖于Python2.x。最后通过google找到一个最简单好用的重新安装Python,yum方法。通过Linux软件包<a target="_blank" rel="noopener" href="http://man.linuxde.net/rpm">RPM</a>安装。</p>
+<span id="more"></span>
 <h2 id="卸载-Python-yum"><a href="#卸载-Python-yum" class="headerlink" title="卸载 Python,yum"></a>卸载 Python,yum</h2><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">rpm -qa|grep python|xargs rpm -ev --allmatches --nodeps <span class="comment">##强制删除已安装程序及其关联</span></span><br><span class="line">whereis python |xargs rm -frv <span class="comment">##删除所有残余文件 ##xargs，允许你对输出执行其他某些命令</span></span><br><span class="line">whereis python <span class="comment">##验证删除，返回无结果</span></span><br><span class="line"></span><br><span class="line">rpm -qa|grep yum|xargs rpm -ev --allmatches --nodeps</span><br><span class="line">whereis yum|xargs rm -fr</span><br><span class="line">whereis yum</span><br></pre></td></tr></table></figure>
-<h2 id="安装Python-yum"><a href="#安装Python-yum" class="headerlink" title="安装Python,yum"></a>安装Python,yum</h2><p><a href="http://mirrors.163.com/centos/7.4.1708/os/x86_64/Packages/" target="_blank" rel="noopener">网易rpm包镜像</a>找到自己系统版本对应的安装包目录。查看系统命令：<code>cat /etc/redhat-release</code></p>
+
+<h2 id="安装Python-yum"><a href="#安装Python-yum" class="headerlink" title="安装Python,yum"></a>安装Python,yum</h2><p><a target="_blank" rel="noopener" href="http://mirrors.163.com/centos/7.4.1708/os/x86_64/Packages/">网易rpm包镜像</a>找到自己系统版本对应的安装包目录。查看系统命令：<code>cat /etc/redhat-release</code></p>
 <p>需要安装的rpm包有：</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line">python-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-backports-1.0-8.el7.x86_64.rpm</span><br><span class="line">python-backports-ssl_match_hostname-3.4.0.2-4.el7.noarch.rpm</span><br><span class="line">python-dateutil-1.5-7.el7.noarch.rpm</span><br><span class="line">python-devel-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-iniparse-0.4-9.el7.noarch.rpm</span><br><span class="line">python-libs-2.7.5-58.el7.x86_64.rpm</span><br><span class="line">python-pycurl-7.19.0-19.el7.x86_64.rpm</span><br><span class="line">python-setuptools-0.9.8-7.el7.noarch.rpm</span><br><span class="line">python-six-1.9.0-2.el7.noarch.rpm</span><br><span class="line">python-urlgrabber-3.10-8.el7.noarch.rpm</span><br><span class="line">rpm-4.11.3-25.el7.x86_64.rpm</span><br><span class="line">rpm-build-4.11.3-25.el7.x86_64.rpm</span><br><span class="line">rpm-build-libs-4.11.3-25.el7.x86_64.rpm</span><br><span class="line">rpm-libs-4.11.3-25.el7.x86_64.rpm</span><br><span class="line">rpm-python-4.11.3-25.el7.x86_64.rpm</span><br><span class="line">yum-3.4.3-154.el7.centos.noarch.rpm</span><br><span class="line">yum-metadata-parser-1.1.4-10.el7.x86_64.rpm</span><br><span class="line">yum-plugin-fastestmirror-1.1.31-42.el7.noarch.rpm</span><br></pre></td></tr></table></figure>
+
 <p>通过:<code>rpm -ivh yum*.rpm</code>和<code>rpm -ivh python*.rpm</code>安装。</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line">$ yum --version</span><br><span class="line">3.4.3</span><br><span class="line">  已安装： rpm-4.11.3-25.el7.x86_64 在 2017-10-15 15:19</span><br><span class="line">  构建    ：CentOS BuildSystem &lt;http://bugs.centos.org&gt; 在 2017-08-03 03:48</span><br><span class="line">  已提交：Panu Matilainen &lt;pmatilai@redhat.com&gt; ，共 2017-03-17 </span><br><span class="line"></span><br><span class="line">  已安装： yum-3.4.3-154.el7.centos.noarch 在 2018-05-11 05:50</span><br><span class="line">  构建    ：CentOS BuildSystem &lt;http://bugs.centos.org&gt; 在 2017-08-05 19:13</span><br><span class="line">  已提交：CentOS Sources &lt;bugs@centos.org&gt; ，共 2017-08-01 </span><br><span class="line"></span><br><span class="line">  已安装： yum-plugin-fastestmirror-1.1.31-42.el7.noarch 在 2018-05-11 05:50</span><br><span class="line">  构建    ：CentOS BuildSystem &lt;http://bugs.centos.org&gt; 在 2017-08-11 10:23</span><br><span class="line">  已提交：Valentina Mukhamedzhanova &lt;vmukhame@redhat.com&gt; ，共 2017-03-21 </span><br><span class="line">$ python -V</span><br><span class="line">Python 2.7.5</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -268,7 +272,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2018/05/11/rpm重装python,yum/">https://fynn90.github.io/2018/05/11/rpm重装python,yum/</a>
+      <a href="https://fynn90.github.io/2018/05/11/rpm%E9%87%8D%E8%A3%85python,yum/">https://fynn90.github.io/2018/05/11/rpm%E9%87%8D%E8%A3%85python,yum/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -314,14 +318,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2018/05/14/shadowsocks安装/">
+      <a class="prev" href="/2018/05/14/shadowsocks%E5%AE%89%E8%A3%85/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">shadowsocks安装</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2018/04/24/koa实战手册/">
+      <a class="next" href="/2018/04/24/koa%E5%AE%9E%E6%88%98%E6%89%8B%E5%86%8C/">
         <span class="next-text nav-default">Koa实战手册</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -361,31 +365,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

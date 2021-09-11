@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> systemd-单元 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -226,7 +226,7 @@
         
         
         <div class="post-visits"
-             data-url="/2017/11/30/systemd-单元/"
+             data-url="/2017/11/30/systemd-%E5%8D%95%E5%85%83/"
              data-title="systemd-单元">
             阅读次数
           </div>
@@ -239,19 +239,20 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#单元管理命令"><span class="toc-text">单元管理命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-部分"><span class="toc-text">[Unit] 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-text">Description=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documetation"><span class="toc-text">Documetation=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requires"><span class="toc-text">Requires=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wants"><span class="toc-text">Wants=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requisite"><span class="toc-text">Requisite=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BindsTo"><span class="toc-text">BindsTo=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PartOf"><span class="toc-text">PartOf=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conflicts"><span class="toc-text">Conflicts=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Before-After"><span class="toc-text">Before=, After=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OnFailure"><span class="toc-text">OnFailure=</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-部分"><span class="toc-text">[Service]部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#隐形依赖"><span class="toc-text">隐形依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#默认依赖"><span class="toc-text">默认依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type"><span class="toc-text">Type=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RemainAfterExit"><span class="toc-text">RemainAfterExit=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStart"><span class="toc-text">ExecStart=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStartPre-ExecStartPost"><span class="toc-text">ExecStartPre= ExecStartPost=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecReload"><span class="toc-text">ExecReload=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStop"><span class="toc-text">ExecStop=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStopPost"><span class="toc-text">ExecStopPost=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KillMode"><span class="toc-text">KillMode=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RestartSec"><span class="toc-text">RestartSec=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutStartSec"><span class="toc-text">TimeoutStartSec=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutStopSec"><span class="toc-text">TimeoutStopSec=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutSec"><span class="toc-text">TimeoutSec=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart"><span class="toc-text">Restart=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RestartSec-1"><span class="toc-text">RestartSec=</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-部分"><span class="toc-text">[Install]部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alias"><span class="toc-text">Alias=</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WantBy-RequiredBy"><span class="toc-text">WantBy= RequiredBy=</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置文件后重启"><span class="toc-text">修改配置文件后重启</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8D%95%E5%85%83%E7%AE%A1%E7%90%86%E5%91%BD%E4%BB%A4"><span class="toc-text">单元管理命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Unit-%E9%83%A8%E5%88%86"><span class="toc-text">[Unit] 部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Description"><span class="toc-text">Description&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Documetation"><span class="toc-text">Documetation&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requires"><span class="toc-text">Requires&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Wants"><span class="toc-text">Wants&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Requisite"><span class="toc-text">Requisite&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#BindsTo"><span class="toc-text">BindsTo&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#PartOf"><span class="toc-text">PartOf&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Conflicts"><span class="toc-text">Conflicts&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Before-After"><span class="toc-text">Before&#x3D;, After&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#OnFailure"><span class="toc-text">OnFailure&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Service-%E9%83%A8%E5%88%86"><span class="toc-text">[Service]部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%9A%90%E5%BD%A2%E4%BE%9D%E8%B5%96"><span class="toc-text">隐形依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%BB%98%E8%AE%A4%E4%BE%9D%E8%B5%96"><span class="toc-text">默认依赖</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Type"><span class="toc-text">Type&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RemainAfterExit"><span class="toc-text">RemainAfterExit&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStart"><span class="toc-text">ExecStart&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStartPre-ExecStartPost"><span class="toc-text">ExecStartPre&#x3D; ExecStartPost&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecReload"><span class="toc-text">ExecReload&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStop"><span class="toc-text">ExecStop&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#ExecStopPost"><span class="toc-text">ExecStopPost&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#KillMode"><span class="toc-text">KillMode&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RestartSec"><span class="toc-text">RestartSec&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutStartSec"><span class="toc-text">TimeoutStartSec&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutStopSec"><span class="toc-text">TimeoutStopSec&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#TimeoutSec"><span class="toc-text">TimeoutSec&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Restart"><span class="toc-text">Restart&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#RestartSec-1"><span class="toc-text">RestartSec&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Install-%E9%83%A8%E5%88%86"><span class="toc-text">[Install]部分</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Alias"><span class="toc-text">Alias&#x3D;</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#WantBy-RequiredBy"><span class="toc-text">WantBy&#x3D; RequiredBy&#x3D;</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E5%90%8E%E9%87%8D%E5%90%AF"><span class="toc-text">修改配置文件后重启</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p>一个<a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html" target="_blank" rel="noopener">单元文件</a>可以描述如下内容之一：<code>.service</code>系统服务、<code>.mount</code>挂载点、<code>.sockets</code>sockets、<code>.device</code>系统设备、<code>.swap</code>文件路径、<code>.target</code>启动目标、<code>.timer</code>systemd管理的计时器。<br><a id="more"></a><br>不同的单元文件类型里面的配置项不同，通用的配置项有 <code>Unit</code>和<code>Install</code>。</p>
+        <p>一个<a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html">单元文件</a>可以描述如下内容之一：<code>.service</code>系统服务、<code>.mount</code>挂载点、<code>.sockets</code>sockets、<code>.device</code>系统设备、<code>.swap</code>文件路径、<code>.target</code>启动目标、<code>.timer</code>systemd管理的计时器。</p>
+<span id="more"></span> 
+<p>不同的单元文件类型里面的配置项不同，通用的配置项有 <code>Unit</code>和<code>Install</code>。</p>
 <p>单元文件可以使用Boolean作为参数作为变量值。正值可以是<code>1</code>、<code>yes</code>、<code>true</code>、<code>on</code>,负值可以是<code>0</code>、<code>no</code>、<code>false</code>、<code>off</code>。</p>
 <p>单元文件中时间变量值可以带时间单位，例如:<code>s</code>、<code>min</code>、<code>h</code>、<code>d</code>、<code>w</code>、<code>ms</code>、<code>us</code>。<code>2min 200ms</code>等同于<code>120200 ms</code>。如果时间变量的值没有给单位，则默认单位是<code>s</code>。</p>
 <p>以<code>#</code>或<code>;</code>开头的行会被忽略掉。你可以用这种方式写备注。在行尾添加反斜线将链接下面一行的内容。</p>
-<p>有一些单元的名称包含一个 @ 标记（例如： <a href="mailto:`name@string.service" target="_blank" rel="noopener">`name@string.service</a><code>），这意味着它是模板单元</code>name@.service<code>的一个 实例。 string 被称作实例标识符，在 systemctl 调用模板单元时，会将其当作一个参数传给模板单元，模板单元会使用这个传入的参数代替模板中的</code>%I<code>指示符。
-在实例化之前，systemd 会先检查</code><a href="mailto:name@string.suffix" target="_blank" rel="noopener">name@string.suffix</a><code>文件是否存在（如果存在，就直接使用这个文件，而不是模板实例化）。大多数情况下，包含 @ 标记都意味着这个文件是模板。如果一个模板单元没有实例化就调用，该调用会返回失败，因为模板单元中的</code>%I` 指示符没有被替换。</p>
+<p>有一些单元的名称包含一个 @ 标记（例如： <code>name@string.service</code> ），这意味着它是模板单元 <code>name@.service</code> 的一个 实例。 string 被称作实例标识符，在 systemctl 调用模板单元时，会将其当作一个参数传给模板单元，模板单元会使用这个传入的参数代替模板中的 <code>%I</code> 指示符。<br>在实例化之前，systemd 会先检查 <code>name@string.suffix</code> 文件是否存在（如果存在，就直接使用这个文件，而不是模板实例化）。大多数情况下，包含 @ 标记都意味着这个文件是模板。如果一个模板单元没有实例化就调用，该调用会返回失败，因为模板单元中的 <code>%I</code> 指示符没有被替换。</p>
 <p>单元之间存在隐形依赖，依赖关系取决于单元类型和单元配置。这些隐形依赖可以时单位文件更简洁。不同单元文件类型中的隐形依赖关系可能不一样。例如，对于<code>.service</code>服务类型单元文件，<code>Type=dbus</code>自动获取获取对<code>dbus.socket</code>的<code>Requires=</code>和<code>After=</code>依赖关系。</p>
 <p>在系统模式下单元文件可以从下面两个地方加载，优先级从低到高：</p>
 <ul>
@@ -260,30 +261,48 @@
 </ul>
 <p><strong>注意：</strong> 用户运行时模式下加载路径不一样。</p>
 <h2 id="单元管理命令"><a href="#单元管理命令" class="headerlink" title="单元管理命令"></a>单元管理命令</h2><p>下面命令是最长用到的一些命令</p>
-<p>立即激活单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>立即停止单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl stop &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>杀死一个服务的所有子进程：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl kill &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>重启单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>重新加载配置：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl reload &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>输出单元运行状态：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>检查单元是否配置为自动启动：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl is-enabled &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>开机激活单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>设置单元为自动启动并立即启动这个单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable --now &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>取消开机自动激活单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl disable &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>禁用一个单元（禁用后，间接启动也是不可能的）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl mask &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>取消禁用一个单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl unmask &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>显示单元的手册页（必须由单元文件提供）：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl help &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>重新载入 systemd，扫描新的或有变动的单元：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>显示某个Unit的所有底层参数<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl show &lt;单元&gt;</span><br></pre></td></tr></table></figure></p>
-<p>显示某个 Unit 的指定属性的值<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo  systemctl show -p CPUShares httpd.service</span><br></pre></td></tr></table></figure></p>
-<p>设置某个 Unit 的指定属性<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl set-property httpd.service CPUShares=500</span><br></pre></td></tr></table></figure></p>
+<p>立即激活单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl start &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>立即停止单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl stop &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>杀死一个服务的所有子进程：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl kill &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>重启单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl restart &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>重新加载配置：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl reload &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>输出单元运行状态：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>检查单元是否配置为自动启动：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl is-enabled &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>开机激活单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>设置单元为自动启动并立即启动这个单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl enable --now &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>取消开机自动激活单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl disable &lt;单元&gt; </span><br></pre></td></tr></table></figure>
+<p>禁用一个单元（禁用后，间接启动也是不可能的）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl mask &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>取消禁用一个单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl unmask &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>显示单元的手册页（必须由单元文件提供）：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl help &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>重新载入 systemd，扫描新的或有变动的单元：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl daemon-reload &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>显示某个Unit的所有底层参数</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl show &lt;单元&gt;</span><br></pre></td></tr></table></figure>
+<p>显示某个 Unit 的指定属性的值 </p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo  systemctl show -p CPUShares httpd.service</span><br></pre></td></tr></table></figure>
+<p>设置某个 Unit 的指定属性</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">sudo systemctl set-property httpd.service CPUShares=500</span><br></pre></td></tr></table></figure>
 <p>提示：</p>
 <ul>
-<li>上面的大部分命令可以跟多个单元名，详细参见<a href="http://jlk.fjfi.cvut.cz/arch/manpages/man/systemctl.1.zh_CN" target="_blank" rel="noopener"> systemctl(1)</a></li>
+<li>上面的大部分命令可以跟多个单元名，详细参见<a target="_blank" rel="noopener" href="http://jlk.fjfi.cvut.cz/arch/manpages/man/systemctl.1.zh_CN"> systemctl(1)</a></li>
 <li><code>systemctl</code>命令在<code>enable</code>、<code>disable</code>和<code>mask</code>子命令中增加了<code>--now</code>选项，可以实现激活的同时启动服务，取消激活的同时停止服务。</li>
 <li>一个软件包可能会提供多个不同的单元。如果你已经安装了软件包，可以通过<code>pacman -Qql package | grep systemd</code>命令检查这个软件包提供了哪些单元。</li>
 </ul>
-<p>在查看服务状态中：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status httpd</span><br><span class="line"></span><br><span class="line">httpd.service - The Apache HTTP Server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)</span><br><span class="line">   Active: active (running) since 金 2014-12-05 12:18:22 JST; 7min ago</span><br><span class="line"> Main PID: 4349 (httpd)</span><br><span class="line">   Status: &quot;Total requests: 1; Current requests/sec: 0; Current traffic:   0 B/sec&quot;</span><br><span class="line">   CGroup: /system.slice/httpd.service</span><br><span class="line">           ├─4349 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4350 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4351 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4352 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4353 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           └─4354 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line"></span><br><span class="line">12月 05 12:18:22 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...</span><br><span class="line">12月 05 12:18:22 localhost.localdomain systemd[1]: Started The Apache HTTP Server.</span><br><span class="line">12月 05 12:22:40 localhost.localdomain systemd[1]: Started The Apache HTTP Server.</span><br></pre></td></tr></table></figure></p>
+<p>在查看服务状态中：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl status httpd</span><br><span class="line"></span><br><span class="line">httpd.service - The Apache HTTP Server</span><br><span class="line">   Loaded: loaded (/usr/lib/systemd/system/httpd.service; enabled)</span><br><span class="line">   Active: active (running) since 金 2014-12-05 12:18:22 JST; 7min ago</span><br><span class="line"> Main PID: 4349 (httpd)</span><br><span class="line">   Status: &quot;Total requests: 1; Current requests/sec: 0; Current traffic:   0 B/sec&quot;</span><br><span class="line">   CGroup: /system.slice/httpd.service</span><br><span class="line">           ├─4349 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4350 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4351 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4352 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           ├─4353 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line">           └─4354 /usr/sbin/httpd -DFOREGROUND</span><br><span class="line"></span><br><span class="line">12月 05 12:18:22 localhost.localdomain systemd[1]: Starting The Apache HTTP Server...</span><br><span class="line">12月 05 12:18:22 localhost.localdomain systemd[1]: Started The Apache HTTP Server.</span><br><span class="line">12月 05 12:22:40 localhost.localdomain systemd[1]: Started The Apache HTTP Server.</span><br></pre></td></tr></table></figure>
 <p>上面的输出结果含义如下。</p>
 <ul>
 <li>Loaded行：配置文件的位置，是否设为开机启动</li>
@@ -326,9 +345,9 @@
 </ul>
 <h3 id="RemainAfterExit"><a href="#RemainAfterExit" class="headerlink" title="RemainAfterExit="></a>RemainAfterExit=</h3><p>接收一个Boolean值。说明是否在服务进程都退出的情况下保留服务。默认是no</p>
 <p>应用例子：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Switch-off Touchpad</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot #只执行一次</span><br><span class="line">ExecStart=/usr/bin/touchpad-off</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Switch-off Touchpad</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot #只执行一次</span><br><span class="line">ExecStart=/usr/bin/touchpad-off</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <p>上面例子是：笔记本电脑启动时，要把触摸板关掉。启动类型是<code>oneshot</code>表面这个服务只要运行一次就够了。但关闭后将来某个时间想打开，可以修改配置文件如下：</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Switch-off Touchpad</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=/usr/bin/touchpad-off start</span><br><span class="line">ExecStop=/usr/bin/touchpad-off stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">[Unit]</span><br><span class="line">Description=Switch-off Touchpad</span><br><span class="line"></span><br><span class="line">[Service]</span><br><span class="line">Type=oneshot</span><br><span class="line">ExecStart=/usr/bin/touchpad-off start</span><br><span class="line">ExecStop=/usr/bin/touchpad-off stop</span><br><span class="line">RemainAfterExit=yes</span><br><span class="line"></span><br><span class="line">[Install]</span><br><span class="line">WantedBy=multi-user.target</span><br></pre></td></tr></table></figure>
 <p><code>RemainAfterExit</code>字段是<code>yes</code>，表明在进程退出后服务仍然保持执行。这样在执行<code>systemctl stop</code>命令停止服务时，<code>ExecStop</code>指定的命令就会执行，从而重新开启触摸板。</p>
 <h3 id="ExecStart"><a href="#ExecStart" class="headerlink" title="ExecStart="></a>ExecStart=</h3><p>启动进程时执行的命令。</p>
 <p>除非<code>Type</code>是<code>oneshot</code>，则必须给个命令。可以定义多个<code>ExecStart</code>字段，但如果有<code>ExecStart</code>字段为空值，则这个字段上面定义的<code>ExecStart</code>字段将无效。</p>
@@ -339,32 +358,30 @@
 <thead>
 <tr>
 <th>Prefix</th>
-<th style="text-align:center">Effect</th>
+<th align="center">Effect</th>
 </tr>
 </thead>
-<tbody>
-<tr>
-<td><code>@</code></td>
-<td style="text-align:center">可执行文件前缀是<code>@</code>，则第二个指定的标记将会作为参数<code>argv[0]</code>传递给进程</td>
+<tbody><tr>
+<td><code>@ </code></td>
+<td align="center">可执行文件前缀是<code>@</code>，则第二个指定的标记将会作为参数<code>argv[0]</code>传递给进程</td>
 </tr>
 <tr>
 <td><code>-</code></td>
-<td style="text-align:center">可执行文件前缀是<code>-</code>，则该命令退出代码被认为失败状态（没有退出状态或由于信号不正常退出），会被忽略掉认为是成功退出</td>
+<td align="center">可执行文件前缀是<code>-</code>，则该命令退出代码被认为失败状态（没有退出状态或由于信号不正常退出），会被忽略掉认为是成功退出</td>
 </tr>
 <tr>
 <td><code>+</code></td>
-<td style="text-align:center">可执行文件前缀是<code>+</code>则该进程具有完全执行权限。这个权限模式下限制配置的User=, Group=, CapabilityBoundingSet= `或者变量文件系统命名空间操作，在命令行是不会被执行应用的。</td>
+<td align="center">可执行文件前缀是<code>+</code>则该进程具有完全执行权限。这个权限模式下限制配置的User=, Group=, CapabilityBoundingSet= `或者变量文件系统命名空间操作，在命令行是不会被执行应用的。</td>
 </tr>
 <tr>
 <td><code>!</code></td>
-<td style="text-align:center">Similar to the “+” character discussed above this permits invoking command lines with elevated privileges. However, unlike “+” the “!” character exclusively alters the effect of User=, Group= and SupplementaryGroups=, i.e. only the stanzas the affect user and group credentials. Note that this setting may be combined with DynamicUser=, in which case a dynamic user/group pair is allocated before the command is invoked, but credential changing is left to the executed process itself.</td>
+<td align="center">Similar to the “+” character discussed above this permits invoking command lines with elevated privileges. However, unlike “+” the “!” character exclusively alters the effect of User=, Group= and SupplementaryGroups=, i.e. only the stanzas the affect user and group credentials. Note that this setting may be combined with DynamicUser=, in which case a dynamic user/group pair is allocated before the command is invoked, but credential changing is left to the executed process itself.</td>
 </tr>
 <tr>
 <td><code>!!</code></td>
-<td style="text-align:center">This prefix is very similar to “!!”, however it only has an effect on systems lacking support for ambient process capabilities, i.e. without support for AmbientCapabilities=. It’s intended to be used for unit files that take benefit of ambient capabilities to run processes with minimal privileges wherever possible while remaining compatible with systems that lack ambient capabilities support. Note that when “!!” is used, and a system lacking ambient capability support is detected any configured SystemCallFilter= and CapabilityBoundingSet= stanzas are implicitly modified, in order to permit spawned processes to drop credentials and capabilities themselves, even if this is configured to not be allowed. Moreover, if this prefix is used and a system lacking ambient capability support is detected AmbientCapabilities= will be skipped and not be applied. On systems supporting ambient capabilities, “!!” has no effect and is redundant.</td>
+<td align="center">This prefix is very similar to “!!”, however it only has an effect on systems lacking support for ambient process capabilities, i.e. without support for AmbientCapabilities=. It’s intended to be used for unit files that take benefit of ambient capabilities to run processes with minimal privileges wherever possible while remaining compatible with systems that lack ambient capabilities support. Note that when “!!” is used, and a system lacking ambient capability support is detected any configured SystemCallFilter= and CapabilityBoundingSet= stanzas are implicitly modified, in order to permit spawned processes to drop credentials and capabilities themselves, even if this is configured to not be allowed. Moreover, if this prefix is used and a system lacking ambient capability support is detected AmbientCapabilities= will be skipped and not be applied. On systems supporting ambient capabilities, “!!” has no effect and is redundant.</td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h3 id="ExecStartPre-ExecStartPost"><a href="#ExecStartPre-ExecStartPost" class="headerlink" title="ExecStartPre= ExecStartPost="></a>ExecStartPre= ExecStartPost=</h3><ul>
 <li><code>ExecStartPre</code>字段：启动服务之前执行的命令</li>
 <li><code>ExecStartPost</code>字段：启动服务之后执行的命令</li>
@@ -372,8 +389,8 @@
 <h3 id="ExecReload"><a href="#ExecReload" class="headerlink" title="ExecReload="></a>ExecReload=</h3><p>触发重新加载时的命令。</p>
 <h3 id="ExecStop"><a href="#ExecStop" class="headerlink" title="ExecStop="></a>ExecStop=</h3><p>停止经由<code>ExecStart=</code>启动的服务。</p>
 <h3 id="ExecStopPost"><a href="#ExecStopPost" class="headerlink" title="ExecStopPost="></a>ExecStopPost=</h3><p>服务停止后执行的命令。</p>
-<h3 id="KillMode"><a href="#KillMode" class="headerlink" title="KillMode="></a>KillMode=</h3><p><code>killMode</code>字段属于<a href="https://www.freedesktop.org/software/systemd/man/systemd.kill.html#" target="_blank" rel="noopener"><code>systemd.kill</code></a>。根据单元类型（<code>service.service</code>,<code>socket.socket</code>, <code>mount.mount</code>, <code>swap.swap</code>, <code>scope.scope</code>）可以选择配置。</p>
-<p>指定进程kill方式（<code>control-group</code>、<code>process</code>、<code>mixed</code>、<code>none</code>）。</p>
+<h3 id="KillMode"><a href="#KillMode" class="headerlink" title="KillMode="></a>KillMode=</h3><p><code>killMode</code>字段属于<a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.kill.html#"><code>systemd.kill</code></a>。根据单元类型（<code>service.service</code>,<code>socket.socket</code>, <code>mount.mount</code>, <code>swap.swap</code>, <code>scope.scope</code>）可以选择配置。</p>
+<p>指定进程kill方式（<code>control-group</code>、<code>process </code>、<code>mixed </code>、<code>none</code>）。</p>
 <ul>
 <li><code>control-group</code>：当前控制组里面的所有子进程，都会被杀掉。</li>
 <li><code>process</code>：只杀主进程，不停止任何子进程。</li>
@@ -403,11 +420,19 @@
 <p>当列表中的单元启动时，此单元也会被启动。</p>
 <p>这个两个字段表示Target，一个Target可以包含多个单元，但Target被启动时，里面所包含的单元也会跟在启动。</p>
 <p>一般Target就是运行模式。</p>
-<p>查看当前运行模式：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl get-default </span><br><span class="line">multi-user.target</span><br></pre></td></tr></table></figure></p>
-<p>查看 multi-user.target 包含的所有服务：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl list-dependencies multi-user.target</span><br></pre></td></tr></table></figure></p>
-<p>切换target<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl isolate shutdown.target</span><br></pre></td></tr></table></figure></p>
-<h2 id="修改配置文件后重启"><a href="#修改配置文件后重启" class="headerlink" title="修改配置文件后重启"></a>修改配置文件后重启</h2><p>修改配置文件以后，需要重新加载配置文件，然后重新启动相关服务。<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 重新加载配置文件</span><br><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"># 重启相关服务</span><br><span class="line">$ sudo systemctl restart foobar</span><br></pre></td></tr></table></figure></p>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html#WantedBy=" target="_blank" rel="noopener">https://www.freedesktop.org/software/systemd/man/systemd.unit.html#WantedBy=</a><br><a href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html</a></p>
+<p>查看当前运行模式：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl get-default </span><br><span class="line">multi-user.target</span><br></pre></td></tr></table></figure>
+
+<p>查看 multi-user.target 包含的所有服务：</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line">$ systemctl list-dependencies multi-user.target</span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<p>切换target</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ sudo systemctl isolate shutdown.target</span><br></pre></td></tr></table></figure>
+
+<h2 id="修改配置文件后重启"><a href="#修改配置文件后重启" class="headerlink" title="修改配置文件后重启"></a>修改配置文件后重启</h2><p>修改配置文件以后，需要重新加载配置文件，然后重新启动相关服务。</p>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"># 重新加载配置文件</span><br><span class="line">$ sudo systemctl daemon-reload</span><br><span class="line"></span><br><span class="line"># 重启相关服务</span><br><span class="line">$ sudo systemctl restart foobar</span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://www.freedesktop.org/software/systemd/man/systemd.unit.html#WantedBy=">https://www.freedesktop.org/software/systemd/man/systemd.unit.html#WantedBy=</a><br><a target="_blank" rel="noopener" href="http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html">http://www.ruanyifeng.com/blog/2016/03/systemd-tutorial-part-two.html</a></p>
 
       
     </div>
@@ -423,7 +448,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2017/11/30/systemd-单元/">https://fynn90.github.io/2017/11/30/systemd-单元/</a>
+      <a href="https://fynn90.github.io/2017/11/30/systemd-%E5%8D%95%E5%85%83/">https://fynn90.github.io/2017/11/30/systemd-%E5%8D%95%E5%85%83/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -469,14 +494,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/12/09/Flask介绍/">
+      <a class="prev" href="/2017/12/09/Flask%E4%BB%8B%E7%BB%8D/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Flask介绍</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2017/11/29/systemd入门/">
+      <a class="next" href="/2017/11/29/systemd%E5%85%A5%E9%97%A8/">
         <span class="next-text nav-default">systemd介绍</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -516,31 +541,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

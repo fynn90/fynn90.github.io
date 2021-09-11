@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Linux的文件和目录权限 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2019/04/24/Linux的文件和目录权限/"
+             data-url="/2019/04/24/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/"
              data-title="Linux的文件和目录权限">
             阅读次数
           </div>
@@ -237,7 +237,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#拥有者-own-、群组-group-、other"><span class="toc-text">拥有者(own)、群组(group)、other</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#文件和目录属性和权限"><span class="toc-text">文件和目录属性和权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chgrp"><span class="toc-text">chgrp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown"><span class="toc-text">chown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod"><span class="toc-text">chmod</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#数字类型"><span class="toc-text">数字类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#符号类型"><span class="toc-text">符号类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%8B%A5%E6%9C%89%E8%80%85-own-%E3%80%81%E7%BE%A4%E7%BB%84-group-%E3%80%81other"><span class="toc-text">拥有者(own)、群组(group)、other</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E5%B1%9E%E6%80%A7%E5%92%8C%E6%9D%83%E9%99%90"><span class="toc-text">文件和目录属性和权限</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#chgrp"><span class="toc-text">chgrp</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chown"><span class="toc-text">chown</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#chmod"><span class="toc-text">chmod</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#%E6%95%B0%E5%AD%97%E7%B1%BB%E5%9E%8B"><span class="toc-text">数字类型</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#%E7%AC%A6%E5%8F%B7%E7%B1%BB%E5%9E%8B"><span class="toc-text">符号类型</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
@@ -247,19 +247,20 @@
         <p>Linux支持多人同时登录系统处理,每个登录用户都会创建一个shell进程.shell进程的id是唯一的,除了linux核心模块其他文件是可以实现同时操作的.</p>
 <p>支撑多人同时对系统进行操作的基础,的是Linux安全的文件权限设计.</p>
 <p>在Linux上任何东西都是文件,而文件的权限从使用者分为:<code>own</code>、<code>group</code>、<code>other</code>.从行为分为:<code>r</code>、<code>w</code>、<code>x</code>.</p>
-<p>而文件类型常见的分为:<code>-</code>、<code>d</code>、<code>l</code><br><a id="more"></a></p>
+<p>而文件类型常见的分为:<code>-</code>、<code>d</code>、<code>l</code></p>
+<span id="more"></span>
 <h2 id="拥有者-own-、群组-group-、other"><a href="#拥有者-own-、群组-group-、other" class="headerlink" title="拥有者(own)、群组(group)、other"></a>拥有者(own)、群组(group)、other</h2><p>一个Linux文件,它将用户分成了三类.拥有它的人(own),它所属群组的用户(group),其他陌生人(other).</p>
 <p>群组里面都是放着具体的用户,同一个群组的用户拥有的权限是一样的.</p>
 <p>一个用户可以属于多个群组,也可以单独属于一个群组.</p>
 <p>Linux世界中有个超级用户(root),它就像Linux世界的神,无所不能.</p>
 <p>一个公司约少人拥有root账户,约安全.针对不同的开发需求,应该创建有限的权限用户和群组给开发使用.</p>
 <h2 id="文件和目录属性和权限"><a href="#文件和目录属性和权限" class="headerlink" title="文件和目录属性和权限"></a>文件和目录属性和权限</h2><p>在Linux中用查看当前目录信息最常用的命令是 :<code>ls -al</code>.这个命令会显示目录下所有文件和目录即使是隐藏的.</p>
-<p><img src="https://i.loli.net/2019/04/24/5cc008575c572.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/04/24/5cc008575c572.png"></p>
 <p>如上图,展示一个文件或目录的基础信息.它属于谁(4,5),不同的用户对文件或目录拥有的权限是什么(1).</p>
 <p>具体对照如:</p>
-<p><img src="https://i.loli.net/2019/04/24/5cc00954f3b2e.gif" alt=""></p>
+<p><img src="https://i.loli.net/2019/04/24/5cc00954f3b2e.gif"></p>
 <p>文档权限部分代表含义如下:</p>
-<p><img src="https://i.loli.net/2019/04/24/5cc00954db210.gif" alt=""></p>
+<p><img src="https://i.loli.net/2019/04/24/5cc00954db210.gif"></p>
 <p><code>权限</code>部分第一个字符代表该文件的类型,一个文件常见的类型有:</p>
 <ul>
 <li><code>-</code>表示文件</li>
@@ -271,6 +272,7 @@
 <p>后面的字符串,三个字符一组.字符顺序是固定的[rwx].<code>r</code>表示可读权限,<code>w</code>表示可写权限,<code>x</code>表示可执行权限.这个三个权限位置是固定的.字符上如果是<code>-</code>表示该用户类型没有该权限.</p>
 <p>文件权限类型是用三个一组的字符表示,而一共有三组权限.它们分别表示:<code>文件拥有者权限</code>,<code>所属群组权限</code>,<code>其他用户权限</code>.</p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">[-][rwx][r-x][r--]</span><br><span class="line"> 1  234  567  890</span><br><span class="line"> </span><br><span class="line"> // 1 表示该文件类型是</span><br><span class="line"> // 234 表示 拥有者的权限 是 rwx</span><br><span class="line"> // 567 表示所属群组拥有的权限是 rx</span><br><span class="line"> // 890 表示其他用户拥有的权限是 r</span><br></pre></td></tr></table></figure>
+
 <p>##修改文件和目录的属性和权限</p>
 <p>Linux中文件权限修改指令有:</p>
 <ul>
@@ -278,11 +280,13 @@
 <li><code>chown</code>:改变文件拥有者</li>
 <li><code>chmod</code>:改变文件的权限, SUID, SGID, SBIT等等的特性</li>
 </ul>
-<h3 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a><a href="http://man.linuxde.net/chgrp" target="_blank" rel="noopener">chgrp</a></h3><p>修改文件所属的群组</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># chgrp [-R] dirname/filename ...</span></span><br><span class="line">选项与参数：</span><br><span class="line">-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件、目录</span><br><span class="line">     都更新成为这个群组之意。常常用在变更某一目录内所有的文件之情况。</span><br><span class="line">范例：</span><br><span class="line">[root@www ~]chgrp users install.log</span><br><span class="line">[root@www ~]ls -l</span><br><span class="line">-rw-r--r--  1 root users 68495 Jun 25 08:53 install.log</span><br><span class="line">[root@www ~]chgrp testing install.log</span><br><span class="line">chgrp: invalid group name `testing<span class="string">' &lt;== 发生错误讯息啰～找不到这个群组名～</span></span><br></pre></td></tr></table></figure>
-<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a><a href="http://man.linuxde.net/chown" target="_blank" rel="noopener">chown</a></h3><p>改变某个文件或目录的所有者和<strong><em>所属的组</em></strong></p>
+<h3 id="chgrp"><a href="#chgrp" class="headerlink" title="chgrp"></a><a target="_blank" rel="noopener" href="http://man.linuxde.net/chgrp">chgrp</a></h3><p>修改文件所属的群组</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># chgrp [-R] dirname/filename ...</span></span><br><span class="line">选项与参数：</span><br><span class="line">-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件、目录</span><br><span class="line">     都更新成为这个群组之意。常常用在变更某一目录内所有的文件之情况。</span><br><span class="line">范例：</span><br><span class="line">[root@www ~]chgrp users install.log</span><br><span class="line">[root@www ~]ls -l</span><br><span class="line">-rw-r--r--  1 root users 68495 Jun 25 08:53 install.log</span><br><span class="line">[root@www ~]chgrp testing install.log</span><br><span class="line">chgrp: invalid group name `testing<span class="string">&#x27; &lt;== 发生错误讯息啰～找不到这个群组名～</span></span><br></pre></td></tr></table></figure>
+
+<h3 id="chown"><a href="#chown" class="headerlink" title="chown"></a><a target="_blank" rel="noopener" href="http://man.linuxde.net/chown">chown</a></h3><p>改变某个文件或目录的所有者和<em><strong>所属的组</strong></em></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># chown [-R] 账号名称 文件或目录</span></span><br><span class="line">[root@www ~]<span class="comment"># chown [-R] 账号名称:组名 文件或目录</span></span><br><span class="line">选项与参数：</span><br><span class="line">-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件都变更</span><br><span class="line"></span><br><span class="line">范例：将install.log的拥有者改为bin这个账号：</span><br><span class="line">[root@www ~]chown bin install.log</span><br><span class="line">[root@www ~]ls -l</span><br><span class="line">-rw-r--r--  1 bin  users 68495 Jun 25 08:53 install.log</span><br><span class="line"></span><br><span class="line">范例：将install.log的拥有者与群组改回为root：</span><br><span class="line">[root@www ~]chown root:root install.log</span><br><span class="line">[root@www ~]ls -l</span><br><span class="line">-rw-r--r--  1 root root 68495 Jun 25 08:53 install.log</span><br></pre></td></tr></table></figure>
-<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a><a href="http://man.linuxde.net/chmod" target="_blank" rel="noopener">chmod</a></h3><p>用来变更文件或目录的权限</p>
+
+<h3 id="chmod"><a href="#chmod" class="headerlink" title="chmod"></a><a target="_blank" rel="noopener" href="http://man.linuxde.net/chmod">chmod</a></h3><p>用来变更文件或目录的权限</p>
 <h4 id="数字类型"><a href="#数字类型" class="headerlink" title="数字类型"></a>数字类型</h4><p>Linux为每个权限类型设定了数值.</p>
 <ul>
 <li><code>r</code> : 4</li>
@@ -290,14 +294,19 @@
 <li><code>x</code> : 1</li>
 </ul>
 <p>每种身份(owner/group/others)各自的三个权限(r/w/x)分数是需要累加的，例如当权限为： [-rwxrwx—] 分数则是:</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">owner = rwx = 4+2+1 = 7 OR rw- = 4+2 = 6</span><br><span class="line">group = rwx = 4+2+1 = 7 OR r-x = 4+1 = 5</span><br><span class="line">others= --- = 0+0+0 = 0 OR -w- = 2</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">owner = rwx = 4+2+1 = 7 OR rw- = 4+2 = 6</span><br><span class="line">group = rwx = 4+2+1 = 7 OR r-x = 4+1 = 5</span><br><span class="line">others= --- = 0+0+0 = 0 OR -w- = 2</span><br></pre></td></tr></table></figure>
+
 <p>命令格式: <code>chmod xxx filename</code> </p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]<span class="comment"># chmod [-R] xyz 文件或目录</span></span><br><span class="line">选项与参数：</span><br><span class="line">xyz : 就是刚刚提到的数字类型的权限属性，为 rwx 属性数值的相加。</span><br><span class="line">-R : 进行递归(recursive)的持续变更，亦即连同次目录下的所有文件都会变更</span><br><span class="line">[root@www ~]ls -al .bashrc</span><br><span class="line">-rw-r--r--  1 root root 395 Jul  4 11:45 .bashrc</span><br><span class="line">[root@www ~]chmod 777 .bashrc</span><br><span class="line">[root@www ~]ls -al .bashrc</span><br><span class="line">-rwxrwxrwx  1 root root 395 Jul  4 11:45 .bashrc</span><br></pre></td></tr></table></figure>
+
 <h4 id="符号类型"><a href="#符号类型" class="headerlink" title="符号类型"></a>符号类型</h4><p>chmod命令中可以通过 <code>u</code>,<code>g</code>,<code>o</code>分别指定 <code>拥有者</code>,<code>群主</code>,<code>其他人</code>,还可以通过<code>a</code>指定三种用户类型.</p>
 <p>可以通过算数符号<code>+</code>,<code>-</code>,<code>=</code>给用户类型设定权限.</p>
-<p><img src="https://i.loli.net/2019/04/24/5cc0352ad53bb.png" alt=""></p>
+<p><img src="https://i.loli.net/2019/04/24/5cc0352ad53bb.png"></p>
 <figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">[root@www ~]chmod  u=rwx,go=rx  .bashrc</span><br><span class="line"><span class="comment"># 注意喔！那个 u=rwx,go=rx 是连在一起的，中间并没有任何空格！</span></span><br><span class="line">[root@www ~]ls -al .bashrc</span><br><span class="line">-rwxr-xr-x  1 root root 395 Jul  4 11:45 .bashrc</span><br><span class="line">[root@www ~]chmod  a+w  .bashrc</span><br><span class="line">[root@www ~]ls -al .bashrc</span><br><span class="line">-rwxrwxrwx  1 root root 395 Jul  4 11:45 .bashrc</span><br><span class="line">[root@www ~]chmod  a-x  .bashrc</span><br><span class="line">[root@www ~]ls -al .bashrc</span><br><span class="line">-rw-rw-rw-  1 root root 395 Jul  4 11:45 .bashrc</span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php" target="_blank" rel="noopener"><a href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php" target="_blank" rel="noopener">http://cn.linux.vbird.org/linux_basic/0210filepermission.php</a></a></p>
+
+
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php"><a target="_blank" rel="noopener" href="http://cn.linux.vbird.org/linux_basic/0210filepermission.php">http://cn.linux.vbird.org/linux_basic/0210filepermission.php</a></a></p>
 
       
     </div>
@@ -313,7 +322,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2019/04/24/Linux的文件和目录权限/">https://fynn90.github.io/2019/04/24/Linux的文件和目录权限/</a>
+      <a href="https://fynn90.github.io/2019/04/24/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/">https://fynn90.github.io/2019/04/24/Linux%E7%9A%84%E6%96%87%E4%BB%B6%E5%92%8C%E7%9B%AE%E5%BD%95%E6%9D%83%E9%99%90/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -359,14 +368,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/04/29/Linux的目录结构/">
+      <a class="prev" href="/2019/04/29/Linux%E7%9A%84%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Linux的目录结构</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2019/03/27/JavaScript中面向对象编程方式/">
+      <a class="next" href="/2019/03/27/JavaScript%E4%B8%AD%E9%9D%A2%E5%90%91%E5%AF%B9%E8%B1%A1%E7%BC%96%E7%A8%8B%E6%96%B9%E5%BC%8F/">
         <span class="next-text nav-default">JavaScript中面向对象编程方式</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -406,31 +415,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

@@ -22,7 +22,7 @@
 
 
 
-  <meta name="keywords" content="Java, Maven, Fynn's Blog" />
+  <meta name="keywords" content="Maven, Java, Fynn's Blog" />
 
 
 
@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> Maven简易教程 - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2021/04/04/Maven简易教程/"
+             data-url="/2021/04/04/Maven%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/"
              data-title="Maven简易教程">
             阅读次数
           </div>
@@ -237,34 +237,39 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-环境搭建"><span class="toc-text">Maven 环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-电脑"><span class="toc-text">Mac 电脑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-电脑"><span class="toc-text">Windows 电脑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA-配置"><span class="toc-text">IDEA 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-包管理"><span class="toc-text">Maven 包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#项目依赖包"><span class="toc-text">项目依赖包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#工程运行插件"><span class="toc-text">工程运行插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改-Maven-镜像请求地址"><span class="toc-text">修改 Maven 镜像请求地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-中目录结构"><span class="toc-text">Maven 中目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-配置文件"><span class="toc-text">Maven 配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-xml"><span class="toc-text">POM.xml</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-命令"><span class="toc-text">Maven 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-生命周期"><span class="toc-text">Maven 生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-依赖范围"><span class="toc-text">Maven 依赖范围</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA"><span class="toc-text">Maven 环境搭建</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#Mac-%E7%94%B5%E8%84%91"><span class="toc-text">Mac 电脑</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Windows-%E7%94%B5%E8%84%91"><span class="toc-text">Windows 电脑</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#IDEA-%E9%85%8D%E7%BD%AE"><span class="toc-text">IDEA 配置</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E5%8C%85%E7%AE%A1%E7%90%86"><span class="toc-text">Maven 包管理</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E9%A1%B9%E7%9B%AE%E4%BE%9D%E8%B5%96%E5%8C%85"><span class="toc-text">项目依赖包</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B7%A5%E7%A8%8B%E8%BF%90%E8%A1%8C%E6%8F%92%E4%BB%B6"><span class="toc-text">工程运行插件</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E4%BF%AE%E6%94%B9-Maven-%E9%95%9C%E5%83%8F%E8%AF%B7%E6%B1%82%E5%9C%B0%E5%9D%80"><span class="toc-text">修改 Maven 镜像请求地址</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E4%B8%AD%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84"><span class="toc-text">Maven 中目录结构</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6"><span class="toc-text">Maven 配置文件</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#POM-xml"><span class="toc-text">POM.xml</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E5%91%BD%E4%BB%A4"><span class="toc-text">Maven 命令</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F"><span class="toc-text">Maven 生命周期</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Maven-%E4%BE%9D%E8%B5%96%E8%8C%83%E5%9B%B4"><span class="toc-text">Maven 依赖范围</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <p><a href="https://maven.apache.org/" target="_blank" rel="noopener">Maven</a> 是 Java 工程包和项目管理工具,方便 Java 工程的管理。</p>
+        <p><a target="_blank" rel="noopener" href="https://maven.apache.org/">Maven</a> 是 Java 工程包和项目管理工具,方便 Java 工程的管理。</p>
 <p><img src="https://maven.apache.org/images/maven-logo-black-on-white.png" alt="img"></p>
-<a id="more"></a>
+<span id="more"></span>
+
 <h2 id="Maven-环境搭建"><a href="#Maven-环境搭建" class="headerlink" title="Maven 环境搭建"></a>Maven 环境搭建</h2><h3 id="Mac-电脑"><a href="#Mac-电脑" class="headerlink" title="Mac 电脑"></a>Mac 电脑</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">$ brew install maven</span><br></pre></td></tr></table></figure>
-<p>注意 ⚠️ 需要在电脑下载 <a href="https://brew.sh/index_zh-cn" target="_blank" rel="noopener">brew</a></p>
-<h3 id="Windows-电脑"><a href="#Windows-电脑" class="headerlink" title="Windows 电脑"></a>Windows 电脑</h3><p><a href="https://maven.apache.org/" target="_blank" rel="noopener">https://maven.apache.org/</a>官网下载，并将 bin 目录添加到 path 中</p>
-<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mvn -version</span><br><span class="line">Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)</span><br><span class="line">Maven home: /usr/<span class="built_in">local</span>/Cellar/maven/3.6.3_1/libexec</span><br><span class="line">Java version: 14.0.1, vendor: N/A, runtime: /usr/<span class="built_in">local</span>/Cellar/openjdk/14.0.1/libexec/openjdk.jdk/Contents/Home</span><br><span class="line">Default locale: zh_CN_<span class="comment">#Hans, platform encoding: UTF-8</span></span><br><span class="line">OS name: <span class="string">"mac os x"</span>, version: <span class="string">"10.16"</span>, arch: <span class="string">"x86_64"</span>, family: <span class="string">"mac"</span></span><br></pre></td></tr></table></figure>
+
+<p>注意 ⚠️ 需要在电脑下载 <a target="_blank" rel="noopener" href="https://brew.sh/index_zh-cn">brew</a></p>
+<h3 id="Windows-电脑"><a href="#Windows-电脑" class="headerlink" title="Windows 电脑"></a>Windows 电脑</h3><p><a target="_blank" rel="noopener" href="https://maven.apache.org/">https://maven.apache.org/</a>官网下载，并将 bin 目录添加到 path 中</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">$ mvn -version</span><br><span class="line">Apache Maven 3.6.3 (cecedd343002696d0abb50b32b541b8a6ba2883f)</span><br><span class="line">Maven home: /usr/<span class="built_in">local</span>/Cellar/maven/3.6.3_1/libexec</span><br><span class="line">Java version: 14.0.1, vendor: N/A, runtime: /usr/<span class="built_in">local</span>/Cellar/openjdk/14.0.1/libexec/openjdk.jdk/Contents/Home</span><br><span class="line">Default locale: zh_CN_<span class="comment">#Hans, platform encoding: UTF-8</span></span><br><span class="line">OS name: <span class="string">&quot;mac os x&quot;</span>, version: <span class="string">&quot;10.16&quot;</span>, arch: <span class="string">&quot;x86_64&quot;</span>, family: <span class="string">&quot;mac&quot;</span></span><br></pre></td></tr></table></figure>
+
 <h2 id="IDEA-配置"><a href="#IDEA-配置" class="headerlink" title="IDEA 配置"></a>IDEA 配置</h2><p>可以手动修改 IDEA 会自动带有 Maven。</p>
 <p>可以手动修改 Maven 的配置信息：Maven 命令路径、<code>settings.xml</code>配置文件路径</p>
-<h2 id="Maven-包管理"><a href="#Maven-包管理" class="headerlink" title="Maven 包管理"></a>Maven 包管理</h2><p><a href="https://mvnrepository.com/" target="_blank" rel="noopener">https://mvnrepository.com/</a> 可以查看到所有可下载的 Maven 包</p>
+<h2 id="Maven-包管理"><a href="#Maven-包管理" class="headerlink" title="Maven 包管理"></a>Maven 包管理</h2><p><a target="_blank" rel="noopener" href="https://mvnrepository.com/">https://mvnrepository.com/</a> 可以查看到所有可下载的 Maven 包</p>
 <h3 id="项目依赖包"><a href="#项目依赖包" class="headerlink" title="项目依赖包"></a>项目依赖包</h3><p>在仓库找到需要使用的 依赖包后，将依赖包的 xml 信息复制到 <code>pom.xml</code>中 到 <code>dependencies</code>中。然后通过 IDEA 自动更新</p>
 <h3 id="工程运行插件"><a href="#工程运行插件" class="headerlink" title="工程运行插件"></a>工程运行插件</h3><p>一些工程运行时需要使用的工具包，被称为 插件。例如<code>apache tomcat</code>插件，帮助我们在开发阶段启动一个服务器运行我们代码。</p>
-<p>插件 可以在 <a href="https://maven.apache.org/" target="_blank" rel="noopener">https://maven.apache.org/</a> 官网 plugins 中找到。</p>
+<p>插件 可以在 <a target="_blank" rel="noopener" href="https://maven.apache.org/">https://maven.apache.org/</a> 官网 plugins 中找到。</p>
 <p>将信息负责到 pom.xml 中的 plugins 中</p>
 <h2 id="修改-Maven-镜像请求地址"><a href="#修改-Maven-镜像请求地址" class="headerlink" title="修改 Maven 镜像请求地址"></a>修改 Maven 镜像请求地址</h2><p>Maven 镜像在国外访问速度可能较慢，我们只需要在<code>settings.xml</code>中将将镜像请求地址修改为 国内的:</p>
 <p>第一步:修改 maven 根目录下的 conf 文件夹中的 setting.xml 文件，内容如下：</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">mirrors</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">mirror</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">mirrorOf</span>&gt;</span>central<span class="tag">&lt;/<span class="name">mirrorOf</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">mirror</span>&gt;</span></span><br><span class="line"> <span class="tag">&lt;/<span class="name">mirrors</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
 <p>第二步: pom.xml 文件里添加:</p>
 <figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">repositories</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;<span class="name">repository</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">id</span>&gt;</span>alimaven<span class="tag">&lt;/<span class="name">id</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">name</span>&gt;</span>aliyun maven<span class="tag">&lt;/<span class="name">name</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">url</span>&gt;</span>http://maven.aliyun.com/nexus/content/groups/public/<span class="tag">&lt;/<span class="name">url</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">releases</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>true<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">releases</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">snapshots</span>&gt;</span></span><br><span class="line">      <span class="tag">&lt;<span class="name">enabled</span>&gt;</span>false<span class="tag">&lt;/<span class="name">enabled</span>&gt;</span></span><br><span class="line">    <span class="tag">&lt;/<span class="name">snapshots</span>&gt;</span></span><br><span class="line">  <span class="tag">&lt;/<span class="name">repository</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">repositories</span>&gt;</span></span><br></pre></td></tr></table></figure>
-<p><img src="https://img.imgdb.cn/item/6069ad058322e6675c8cfa93.jpg" alt=""></p>
-<h2 id="Maven-中目录结构"><a href="#Maven-中目录结构" class="headerlink" title="Maven 中目录结构"></a>Maven 中目录结构</h2><p><img src="https://img.imgdb.cn/item/6069a7468322e6675c875dec.jpg" alt=""></p>
+
+<p><img src="https://img.imgdb.cn/item/6069ad058322e6675c8cfa93.jpg"></p>
+<h2 id="Maven-中目录结构"><a href="#Maven-中目录结构" class="headerlink" title="Maven 中目录结构"></a>Maven 中目录结构</h2><p><img src="https://img.imgdb.cn/item/6069a7468322e6675c875dec.jpg"></p>
 <ul>
 <li>src/ - 项目工程目录<ul>
 <li>main -业务代码目录<ul>
@@ -299,7 +304,7 @@
 <li><p>项目部署分发配置</p>
 </li>
 </ul>
-<h2 id="Maven-命令"><a href="#Maven-命令" class="headerlink" title="Maven 命令"></a>Maven 命令</h2><p><img src="https://img.imgdb.cn/item/6069b3928322e6675c93d358.jpg" alt=""></p>
+<h2 id="Maven-命令"><a href="#Maven-命令" class="headerlink" title="Maven 命令"></a>Maven 命令</h2><p><img src="https://img.imgdb.cn/item/6069b3928322e6675c93d358.jpg"></p>
 <table>
 <thead>
 <tr>
@@ -307,14 +312,13 @@
 <th>说明</th>
 </tr>
 </thead>
-<tbody>
-<tr>
+<tbody><tr>
 <td><code>mvn --version</code></td>
 <td>查看版本</td>
 </tr>
 <tr>
 <td><code>mvn archetype:generate</code></td>
-<td>构建 Maven 工程命令.PS maven 3.0.5 之前的命令是 <code>mvn archetype:create</code><br> <code>mvn archetype:generate -DgroupId=org.example -DartifactId=trains-03 -DpackageName=com.explame -DarchetypeArtifactId=maven-archetype-quickstart</code></td>
+<td>构建 Maven 工程命令.PS maven 3.0.5 之前的命令是 <code>mvn archetype:create</code><br /> <code>mvn archetype:generate -DgroupId=org.example -DartifactId=trains-03 -DpackageName=com.explame -DarchetypeArtifactId=maven-archetype-quickstart</code></td>
 </tr>
 <tr>
 <td><code>mvn clean</code></td>
@@ -356,8 +360,7 @@
 <td><code>mvn exec:java</code></td>
 <td>执行项目。<code>mvn exec:java -Dexec.mainClass=&quot;org.example.App&quot;</code></td>
 </tr>
-</tbody>
-</table>
+</tbody></table>
 <h2 id="Maven-生命周期"><a href="#Maven-生命周期" class="headerlink" title="Maven 生命周期"></a>Maven 生命周期</h2><p>Maven 生命周期是 Maven 项目的标准操作接口，统一了 Maven 项目管理的方式.</p>
 <p>它分为三种生命周期：</p>
 <ul>
@@ -365,11 +368,11 @@
 <li>default lifecycle: 项目编译和打包环节</li>
 <li>site lifecycle: 项目报告，站点信息，发布环节</li>
 </ul>
-<p><img src="https://img.imgdb.cn/item/6069b9088322e6675c99324a.jpg" alt=""></p>
+<p><img src="https://img.imgdb.cn/item/6069b9088322e6675c99324a.jpg"></p>
 <p>生命周期命令可以嵌套执行,例如： <code>mvn clean compile</code></p>
 <h2 id="Maven-依赖范围"><a href="#Maven-依赖范围" class="headerlink" title="Maven 依赖范围"></a>Maven 依赖范围</h2><p>Maven 中我们可以指定 依赖包的在 maven 生命周期中使用的阶段。</p>
-<p><img src="https://img.imgdb.cn/item/6069bfd28322e6675ca058e7.jpg" alt=""></p>
-<p><img src="https://img.imgdb.cn/item/6069c15f8322e6675ca1e1c2.jpg" alt=""></p>
+<p><img src="https://img.imgdb.cn/item/6069bfd28322e6675ca058e7.jpg"></p>
+<p><img src="https://img.imgdb.cn/item/6069c15f8322e6675ca1e1c2.jpg"></p>
 
       
     </div>
@@ -385,7 +388,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2021/04/04/Maven简易教程/">https://fynn90.github.io/2021/04/04/Maven简易教程/</a>
+      <a href="https://fynn90.github.io/2021/04/04/Maven%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/">https://fynn90.github.io/2021/04/04/Maven%E7%AE%80%E6%98%93%E6%95%99%E7%A8%8B/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -423,9 +426,9 @@
         
           <div class="post-tags">
             
-              <a href="/tags/Java/">Java</a>
-            
               <a href="/tags/Maven/">Maven</a>
+            
+              <a href="/tags/Java/">Java</a>
             
           </div>
         
@@ -433,7 +436,7 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2021/04/07/微前端框架qiankun入门/">
+      <a class="prev" href="/2021/04/07/%E5%BE%AE%E5%89%8D%E7%AB%AF%E6%A1%86%E6%9E%B6qiankun%E5%85%A5%E9%97%A8/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">微前端的前世今生</span>
         <span class="prev-text nav-mobile">上一篇</span>
@@ -480,31 +483,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

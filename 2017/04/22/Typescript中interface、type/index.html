@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> TypeScript中的interface和type - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2017/04/22/Typescript中interface、type/"
+             data-url="/2017/04/22/Typescript%E4%B8%ADinterface%E3%80%81type/"
              data-title="TypeScript中的interface和type">
             阅读次数
           </div>
@@ -237,7 +237,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Objects-Functions"><span class="toc-text">Objects / Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Types"><span class="toc-text">Other Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extends"><span class="toc-text">Extends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implements"><span class="toc-text">Implements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaration-merging"><span class="toc-text">Declaration merging</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Objects-Functions"><span class="toc-text">Objects &#x2F; Functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Other-Types"><span class="toc-text">Other Types</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Extends"><span class="toc-text">Extends</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Implements"><span class="toc-text">Implements</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Declaration-merging"><span class="toc-text">Declaration merging</span></a></li></ol>
     </div>
   </div>
 
@@ -250,19 +250,24 @@
 <blockquote>
 <p>Unlike an interface declaration, which always introduces a named object type, <strong>a type alias declaration</strong> can introduce a name for any kind of type, including primitive, union, and intersection types.</p>
 </blockquote>
-<a id="more"></a>
+<span id="more"></span>
 <p>type是给一种类型(原型,方法,对象等)起个别名,interface 是定义一种数据类型.</p>
 <p>type和interface功能上没太大的区别,只是在语法上有些不同.</p>
 <h2 id="Objects-Functions"><a href="#Objects-Functions" class="headerlink" title="Objects / Functions"></a>Objects / Functions</h2><p>它们都可以描述函数和对象类型,只是语法不同</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> SetPoint &#123;</span><br><span class="line">  (x: <span class="built_in">number</span>, y: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// type alias</span></span><br><span class="line"><span class="keyword">type</span> Point = &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SetPoint = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">interface</span> SetPoint &#123;</span><br><span class="line">  (x: <span class="built_in">number</span>, <span class="attr">y</span>: <span class="built_in">number</span>): <span class="built_in">void</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// type alias</span></span><br><span class="line"><span class="keyword">type</span> Point = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> SetPoint = <span class="function">(<span class="params">x: <span class="built_in">number</span>, y: <span class="built_in">number</span></span>) =&gt;</span> <span class="built_in">void</span>;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Other-Types"><a href="#Other-Types" class="headerlink" title="Other Types"></a>Other Types</h2><p>type可以给一种类型,起个别名.interface做不到这个.</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// primitive</span></span><br><span class="line"><span class="keyword">type</span> Name = <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> PartialPointY = &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// union</span></span><br><span class="line"><span class="keyword">type</span> PartialPoint = PartialPointX | PartialPointY;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tuple</span></span><br><span class="line"><span class="keyword">type</span> Data = [<span class="built_in">number</span>, <span class="built_in">string</span>];</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// primitive</span></span><br><span class="line"><span class="keyword">type</span> Name = <span class="built_in">string</span>;</span><br><span class="line"></span><br><span class="line"><span class="comment">// object</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; <span class="attr">x</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> PartialPointY = &#123; <span class="attr">y</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// union</span></span><br><span class="line"><span class="keyword">type</span> PartialPoint = PartialPointX | PartialPointY;</span><br><span class="line"></span><br><span class="line"><span class="comment">// tuple</span></span><br><span class="line"><span class="keyword">type</span> Data = [<span class="built_in">number</span>, <span class="built_in">string</span>];</span><br></pre></td></tr></table></figure>
+
 <h2 id="Extends"><a href="#Extends" class="headerlink" title="Extends"></a>Extends</h2><p>interface 和 type支持自身的继承,和互相的继承.</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Type alias extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; x: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type alias extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; y: <span class="built_in">number</span>; &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// interface extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">//Type alias extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; <span class="attr">x</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; <span class="attr">y</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Interface extends type alias</span></span><br><span class="line"><span class="keyword">type</span> PartialPointX = &#123; <span class="attr">x</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"><span class="keyword">interface</span> Point <span class="keyword">extends</span> PartialPointX &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="comment">// Type alias extends interface</span></span><br><span class="line"><span class="keyword">interface</span> PartialPointX &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">type</span> Point = PartialPointX &amp; &#123; <span class="attr">y</span>: <span class="built_in">number</span>; &#125;;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Implements"><a href="#Implements" class="headerlink" title="Implements"></a>Implements</h2><p>class可以实现interface 和 type,它们用法是一样的.但是class 和interface对类型的要求是静止非动态的.联合类型(union)的值是动态的.所以 type定义的 union值 class是无法实现的.</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> SomePoint <span class="keyword">implements</span> Point &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Point2 = &#123;</span><br><span class="line">  x: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="keyword">class</span> SomePoint2 <span class="keyword">implements</span> Point2 &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PartialPoint = &#123; x: <span class="built_in">number</span>; &#125; | &#123; y: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">FIXME:</span> can not implement a union type</span></span><br><span class="line"><span class="keyword">class</span> SomePartialPoint <span class="keyword">implements</span> PartialPoint &#123;</span><br><span class="line">  x: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">interface</span> Point &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomePoint</span> <span class="title">implements</span> <span class="title">Point</span> </span>&#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> Point2 = &#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="built_in">number</span>;</span><br><span class="line">  y: <span class="built_in">number</span>;</span><br><span class="line">&#125;;</span><br><span class="line"></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomePoint2</span> <span class="title">implements</span> <span class="title">Point2</span> </span>&#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">type</span> PartialPoint = &#123; <span class="attr">x</span>: <span class="built_in">number</span>; &#125; | &#123; <span class="attr">y</span>: <span class="built_in">number</span>; &#125;;</span><br><span class="line"></span><br><span class="line"><span class="comment">// <span class="doctag">FIXME:</span> can not implement a union type</span></span><br><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">SomePartialPoint</span> <span class="title">implements</span> <span class="title">PartialPoint</span> </span>&#123;</span><br><span class="line">  <span class="attr">x</span>: <span class="number">1</span>;</span><br><span class="line">  y: <span class="number">2</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 <h2 id="Declaration-merging"><a href="#Declaration-merging" class="headerlink" title="Declaration merging"></a>Declaration merging</h2><p>一个interface可以定义多次,它们值默认是合并的.一个type是不支持多次定义的.</p>
-<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// These two declarations become:</span></span><br><span class="line"><span class="comment">// interface Point &#123; x: number; y: number; &#125;</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> point: Point = &#123; x: <span class="number">1</span>, y: <span class="number">2</span> &#125;;</span><br></pre></td></tr></table></figure>
+<figure class="highlight typescript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">// These two declarations become:</span></span><br><span class="line"><span class="comment">// interface Point &#123; x: number; y: number; &#125;</span></span><br><span class="line"><span class="keyword">interface</span> Point &#123; x: <span class="built_in">number</span>; &#125;</span><br><span class="line"><span class="keyword">interface</span> Point &#123; y: <span class="built_in">number</span>; &#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">const</span> point: Point = &#123; <span class="attr">x</span>: <span class="number">1</span>, <span class="attr">y</span>: <span class="number">2</span> &#125;;</span><br></pre></td></tr></table></figure>
+
 
       
     </div>
@@ -278,7 +283,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2017/04/22/Typescript中interface、type/">https://fynn90.github.io/2017/04/22/Typescript中interface、type/</a>
+      <a href="https://fynn90.github.io/2017/04/22/Typescript%E4%B8%ADinterface%E3%80%81type/">https://fynn90.github.io/2017/04/22/Typescript%E4%B8%ADinterface%E3%80%81type/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -316,7 +321,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/interface、type/">interface、type</a>
+              <a href="/tags/interface%E3%80%81type/">interface、type</a>
             
           </div>
         
@@ -324,14 +329,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2017/04/24/Jest实例教程/">
+      <a class="prev" href="/2017/04/24/Jest%E5%AE%9E%E4%BE%8B%E6%95%99%E7%A8%8B/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Jest实例教程</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2017/04/14/TypeScript实践手册/">
+      <a class="next" href="/2017/04/14/TypeScript%E5%AE%9E%E8%B7%B5%E6%89%8B%E5%86%8C/">
         <span class="next-text nav-default">TypeScript实践手册</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -371,31 +376,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     

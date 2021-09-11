@@ -33,7 +33,7 @@
 
 
 
-  <link rel="alternate" href="/atom.xml" title="Fynn's Blog">
+  <link rel="alternate" href="/atom.xml" title="Fynn's Blog" type="application/atom+xml">
 
 
 
@@ -110,7 +110,7 @@
 
 
     <title> 浏览器和Node.js中的Event Loop - Fynn's Blog </title>
-  </head>
+  <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
   <div class="mobile-header-logo">
@@ -224,7 +224,7 @@
         
         
         <div class="post-visits"
-             data-url="/2019/07/13/浏览器的Even Loop和Node.JS的Even Loop/"
+             data-url="/2019/07/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84Even%20Loop%E5%92%8CNode.JS%E7%9A%84Even%20Loop/"
              data-title="浏览器和Node.js中的Event Loop">
             阅读次数
           </div>
@@ -237,7 +237,7 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Even-Loop"><span class="toc-text">Even Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#浏览器"><span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#macrotask-amp-microtask"><span class="toc-text">macrotask &amp; microtask</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-JS"><span class="toc-text">Node.JS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#timers"><span class="toc-text">timers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pending-callbacks"><span class="toc-text">pending callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poll"><span class="toc-text">poll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#check"><span class="toc-text">check</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#close-callbacks"><span class="toc-text">close callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#小结"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process-nextTick-setTimeout与setImmediate"><span class="toc-text">process.nextTick,setTimeout与setImmediate</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-nextTick"><span class="toc-text">process.nextTick()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setTimeout-和setImmediate"><span class="toc-text">setTimeout()和setImmediate()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考"><span class="toc-text">参考</span></a></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#Even-Loop"><span class="toc-text">Even Loop</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%B5%8F%E8%A7%88%E5%99%A8"><span class="toc-text">浏览器</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#macrotask-amp-microtask"><span class="toc-text">macrotask &amp; microtask</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Node-JS"><span class="toc-text">Node.JS</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#timers"><span class="toc-text">timers</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#pending-callbacks"><span class="toc-text">pending callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#poll"><span class="toc-text">poll</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#check"><span class="toc-text">check</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#close-callbacks"><span class="toc-text">close callbacks</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%B0%8F%E7%BB%93"><span class="toc-text">小结</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#process-nextTick-setTimeout%E4%B8%8EsetImmediate"><span class="toc-text">process.nextTick,setTimeout与setImmediate</span></a><ol class="toc-child"><li class="toc-item toc-level-4"><a class="toc-link" href="#process-nextTick"><span class="toc-text">process.nextTick()</span></a></li><li class="toc-item toc-level-4"><a class="toc-link" href="#setTimeout-%E5%92%8CsetImmediate"><span class="toc-text">setTimeout()和setImmediate()</span></a></li></ol></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%8F%82%E8%80%83"><span class="toc-text">参考</span></a></li></ol>
     </div>
   </div>
 
@@ -247,7 +247,9 @@
         <blockquote>
 <p>“Event Loop是一个程序结构，用于等待和发送消息和事件。（a programming construct that waits for and dispatches events or messages in a program.）”</p>
 </blockquote>
-<p>JS是一门单线程语言,但它支持事件驱动,可以同时接受多个事件并处理响应.这个处理过程是异步操作的. 在浏览器和Node.js中实现了一套 Event Loop机制来完成 JS的异步操作行为.<br><a id="more"></a></p>
+<p>JS是一门单线程语言,但它支持事件驱动,可以同时接受多个事件并处理响应.这个处理过程是异步操作的. 在浏览器和Node.js中实现了一套 Event Loop机制来完成 JS的异步操作行为.</p>
+<span id="more"></span>
+
 <h2 id="Even-Loop"><a href="#Even-Loop" class="headerlink" title="Even Loop"></a>Even Loop</h2><ol>
 <li><p>在JS中所有的任务都是在主线程中执行的,所有的同步任务会加入到该线程中.这个线程被称为执行栈(execution context stack)</p>
 </li>
@@ -257,7 +259,7 @@
 </li>
 </ol>
 <p>JS 循环执行上面👆.</p>
-<p><img src="https://pic.downk.cc/item/5ef6fe5514195aa5944365c9.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5ef6fe5514195aa5944365c9.png"></p>
 <h2 id="浏览器"><a href="#浏览器" class="headerlink" title="浏览器"></a>浏览器</h2><p>关于Loop Event. HTML规范是这样描述的:</p>
 <blockquote>
 <p>There must be at least one event loop per user agent, and at most one event loop per unit of related similar-origin browsing contexts.<br>An event loop has one or more task queues.<br>Each task is defined as coming from a specific task source.</p>
@@ -271,21 +273,22 @@
 <p><strong>microtask</strong>：更新应用程序状态的任务，包括promise回调，MutationObserver，process.nextTick，Object.observe</p>
 </blockquote>
 <p>其中<code>setImmediate</code>和<code>process.nextTick</code>是nodejs的实现.</p>
-<p><img src="https://pic.downk.cc/item/5ef6fe5514195aa5944365cb.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5ef6fe5514195aa5944365cb.png"></p>
 <p>鼠标,键盘,网络请求,UI render,定时器属于 mactrotask.  ⚠️全局代码属于mactrotask.</p>
 <p>process.nextTick、promises、Object.observe、MutationObserver属于microtask。</p>
-<p><img src="https://pic.downk.cc/item/5ef700d314195aa59444a749.gif" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5ef700d314195aa59444a749.gif"></p>
 <p>首先，全局代码（main()）压入调用栈执行，打印<code>start</code>；</p>
 <p>接下来setTimeout压入macrotask队列，promise.then回调放入microtask队列，最后执行console.log(‘end’)，打印出<code>end</code>；</p>
-<p>至此，调用栈中的代码被执行完成，<strong>回顾macrotask的定义，我们知道全局代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印<code>promise1</code></strong>；</p>
+<p>至此，调用栈中的代码被执行完成，**回顾macrotask的定义，我们知道全局代码属于macrotask，macrotask执行完，那接下来就是执行microtask队列的任务了，执行promise回调打印<code>promise1</code>**；</p>
 <p>promise回调函数默认返回undefined，promise状态变为fullfill触发接下来的then回调，继续压入microtask队列，<strong>event loop会把当前的microtask队列一直执行完</strong>，此时执行第二个promise.then回调打印出<code>promise2</code>；</p>
 <p>这时microtask队列已经为空，从上面的流程图可以知道，接下来主线程会去做一些UI渲染工作（不一定会做），然后开始下一轮event loop，执行setTimeout的回调，打印出<code>setTimeout</code>；</p>
 <p>这个过程会不断重复，也就是所谓的<strong>事件循环</strong>。</p>
 <p>一个macrotask执行完后,浏览器会去将microtask中所有任务都执行完.</p>
-<p><img src="https://pic.downk.cc/item/5ef702ad14195aa5944594d6.png" alt=""></p>
+<p><img src="https://pic.downk.cc/item/5ef702ad14195aa5944594d6.png"></p>
 <h2 id="Node-JS"><a href="#Node-JS" class="headerlink" title="Node.JS"></a>Node.JS</h2><p>node选择chrome v8引擎作为js解释器，v8引擎将js代码分析后去调用对应的node api，而这些api最后则由libuv引擎驱动，执行对应的任务，并把不同的事件放在不同的队列中等待主线程执行,实际上node中的事件循环存在于libuv引擎中.</p>
 <p>libuv是一个基于事件驱动的跨平台抽象层，封装了不同操作系统一些底层特性，对外提供统一的API，事件循环机制也是它里面的实现</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   ┌───────────────────────────┐</span><br><span class="line">┌─&gt;│           timers          │ </span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │     pending callbacks     │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │       idle, prepare       │</span><br><span class="line">│  └─────────────┬─────────────┘      ┌───────────────┐</span><br><span class="line">│  ┌─────────────┴─────────────┐      │   incoming:   │</span><br><span class="line">│  │           poll            │&lt;─────┤  connections, │</span><br><span class="line">│  └─────────────┬─────────────┘      │   data, etc.  │</span><br><span class="line">│  ┌─────────────┴─────────────┐      └───────────────┘</span><br><span class="line">│  │           check           │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">└──┤      close callbacks      │</span><br><span class="line">   └───────────────────────────┘</span><br></pre></td></tr></table></figure>
+<figure class="highlight plaintext"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line">   ┌───────────────────────────┐</span><br><span class="line">┌─&gt;│           timers          │ </span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │     pending callbacks     │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">│  │       idle, prepare       │</span><br><span class="line">│  └─────────────┬─────────────┘      ┌───────────────┐</span><br><span class="line">│  ┌─────────────┴─────────────┐      │   incoming:   │</span><br><span class="line">│  │           poll            │&lt;─────┤  connections, │</span><br><span class="line">│  └─────────────┬─────────────┘      │   data, etc.  │</span><br><span class="line">│  ┌─────────────┴─────────────┐      └───────────────┘</span><br><span class="line">│  │           check           │</span><br><span class="line">│  └─────────────┬─────────────┘</span><br><span class="line">│  ┌─────────────┴─────────────┐</span><br><span class="line">└──┤      close callbacks      │</span><br><span class="line">   └───────────────────────────┘</span><br></pre></td></tr></table></figure>
+
 <p>每个阶段都有一个 FIFO 队列来执行回调。虽然每个阶段都是特殊的，但通常情况下，当事件循环进入给定的阶段时，它将执行特定于该阶段的任何操作，然后执行该阶段队列中的回调，直到队列用尽或最大回调数已执行。当该队列已用尽或达到回调限制，事件循环将移动到下一阶段，等等。</p>
 <ul>
 <li>timers - 本阶段执行已经被 <code>setTimeout()</code> 和 <code>setInterval()</code> 的调度回调函数。</li>
@@ -320,10 +323,12 @@
 <h4 id="setTimeout-和setImmediate"><a href="#setTimeout-和setImmediate" class="headerlink" title="setTimeout()和setImmediate()"></a><strong>setTimeout()和setImmediate()</strong></h4><p><code>setTimeout()</code>方法是定义一个回调，并且希望这个回调在我们所指定的时间间隔后第一时间去执行。注意这个“第一时间执行”，这意味着，受到操作系统和当前执行任务的诸多影响，该回调并不会在我们预期的时间间隔后精准的执行。执行的时间存在一定的延迟和误差，这是不可避免的。node会在可以执行timer回调的第一时间去执行你所设定的任务。</p>
 <p><code>setImmediate()</code>方法从意义上将是立刻执行的意思，但是实际上它却是在一个固定的阶段才会执行回调，即poll阶段之后。有趣的是，这个名字的意义和之前提到过的<code>process.nextTick()</code>方法才是最匹配的。node的开发者们也清楚这两个方法的命名上存在一定的混淆，他们表示不会把这两个方法的名字调换过来—因为有大量的node程序使用着这两个方法，调换命名所带来的好处与它的影响相比不值一提。</p>
 <p><code>setTimeout()</code>和不设置时间间隔的<code>setImmediate()</code>表现上及其相似。猜猜下面这段代码的结果是什么？</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;timeout&#x27;</span>);</span><br><span class="line">&#125;, <span class="number">0</span>);</span><br><span class="line"></span><br><span class="line">setImmediate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">console</span>.log(<span class="string">&#x27;immediate&#x27;</span>);</span><br><span class="line">&#125;);</span><br></pre></td></tr></table></figure>
+
 <p>实际上，答案是不一定。没错，就连node的开发者都无法准确的判断这两者的顺序谁前谁后。这取决于这段代码的运行环境。运行环境中的各种复杂的情况会导致在同步队列里两个方法的顺序随机决定。但是，在一种情况下可以准确判断两个方法回调的执行顺序，那就是在一个I/O事件的回调中。下面这段代码的顺序永远是固定的：</p>
-<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">'fs'</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(__filename, () =&gt; &#123;</span><br><span class="line">    setTimeout(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'timeout'</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    setImmediate(<span class="function"><span class="params">()</span> =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">'immediate'</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 答案永远是</span></span><br><span class="line"><span class="comment">//immediate</span></span><br><span class="line"><span class="comment">//timeout</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为在I/O事件的回调中，setImmediate方法的回调永远在timer的回调前执行。</span></span><br></pre></td></tr></table></figure>
-<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a href="https://lynnelv.github.io/js-event-loop-browser" target="_blank" rel="noopener">https://lynnelv.github.io/js-event-loop-browser</a><br><a href="https://lynnelv.github.io/js-event-loop-nodejs" target="_blank" rel="noopener">https://lynnelv.github.io/js-event-loop-nodejs</a><br><a href="https://zhuanlan.zhihu.com/p/33058983" target="_blank" rel="noopener">https://zhuanlan.zhihu.com/p/33058983</a><br><a href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/" target="_blank" rel="noopener">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/</a></p>
+<figure class="highlight javascript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">const</span> fs = <span class="built_in">require</span>(<span class="string">&#x27;fs&#x27;</span>);</span><br><span class="line"></span><br><span class="line">fs.readFile(__filename, <span class="function">() =&gt;</span> &#123;</span><br><span class="line">    <span class="built_in">setTimeout</span>(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;timeout&#x27;</span>);</span><br><span class="line">    &#125;, <span class="number">0</span>);</span><br><span class="line">    setImmediate(<span class="function">() =&gt;</span> &#123;</span><br><span class="line">        <span class="built_in">console</span>.log(<span class="string">&#x27;immediate&#x27;</span>);</span><br><span class="line">    &#125;);</span><br><span class="line">&#125;);</span><br><span class="line"></span><br><span class="line"><span class="comment">// 答案永远是</span></span><br><span class="line"><span class="comment">//immediate</span></span><br><span class="line"><span class="comment">//timeout</span></span><br><span class="line"></span><br><span class="line"><span class="comment">// 因为在I/O事件的回调中，setImmediate方法的回调永远在timer的回调前执行。</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="参考"><a href="#参考" class="headerlink" title="参考"></a>参考</h2><p><a target="_blank" rel="noopener" href="https://lynnelv.github.io/js-event-loop-browser">https://lynnelv.github.io/js-event-loop-browser</a><br><a target="_blank" rel="noopener" href="https://lynnelv.github.io/js-event-loop-nodejs">https://lynnelv.github.io/js-event-loop-nodejs</a><br><a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/33058983">https://zhuanlan.zhihu.com/p/33058983</a><br><a target="_blank" rel="noopener" href="https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/">https://nodejs.org/zh-cn/docs/guides/event-loop-timers-and-nexttick/</a></p>
 
       
     </div>
@@ -339,7 +344,7 @@
     </p>
     <p class="copyright-item">
       <span>原文链接: </span>
-      <a href="https://fynn90.github.io/2019/07/13/浏览器的Even Loop和Node.JS的Even Loop/">https://fynn90.github.io/2019/07/13/浏览器的Even Loop和Node.JS的Even Loop/</a>
+      <a href="https://fynn90.github.io/2019/07/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84Even%20Loop%E5%92%8CNode.JS%E7%9A%84Even%20Loop/">https://fynn90.github.io/2019/07/13/%E6%B5%8F%E8%A7%88%E5%99%A8%E7%9A%84Even%20Loop%E5%92%8CNode.JS%E7%9A%84Even%20Loop/</a>
     </p>
     <p class="copyright-item">
       <span>许可协议: </span>
@@ -385,14 +390,14 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2019/07/17/Node.JS自动打包部署脚本/">
+      <a class="prev" href="/2019/07/17/Node.JS%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/">
         <i class="iconfont icon-left"></i>
         <span class="prev-text nav-default">Node.JS自动打包部署脚本</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2019/06/03/Dart最佳实践/">
+      <a class="next" href="/2019/06/03/Dart%E6%9C%80%E4%BD%B3%E5%AE%9E%E8%B7%B5/">
         <span class="next-text nav-default">Dart最佳实践</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
@@ -432,31 +437,25 @@
     
       
         
-          <a href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
+          <a target="_blank" rel="noopener" href="https://www.linkedin.com/in/%E5%B8%86-%E9%82%93-17163589/" class="iconfont icon-linkedin" title="linkedin"></a>
         
       
     
       
         
-          <a href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
         
       
     
       
         
-          <a href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
         
       
     
       
         
-          <a href="http://www.weibo.com/306019091" class="iconfont icon-weibo" title="weibo"></a>
-        
-      
-    
-      
-        
-          <a href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
+          <a target="_blank" rel="noopener" href="https://www.zhihu.com/people/FynnDeng/activities" class="iconfont icon-zhihu" title="zhihu"></a>
         
       
     
