@@ -548,60 +548,38 @@ h6 {
   padding: 1em 0 2em; }
   .post + .post {
     border-top: 1px solid #e6e6e6; }
-  .post .post-header {
-    margin-bottom: 20px; }
-    .post .post-header .post-title {
-      margin: 0;
-      font-size: 27px;
-      font-weight: 400;
-      font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
-    .post .post-header .post-link {
-      display: inline-block;
-      vertical-align: middle;
-      transform: translateZ(0);
-      backface-visibility: hidden;
-      box-shadow: 0 0 1px transparent;
-      position: relative;
-      overflow: hidden; }
-      .post .post-header .post-link:before {
-        content: '';
-        position: absolute;
-        z-index: -1;
-        height: 2px;
-        bottom: 0;
-        left: 51%;
-        right: 51%;
-        background: #2E98FF;
-        transition-duration: 0.2s;
-        transition-property: right, left;
-        transition-timing-function: ease-out; }
-      .post .post-header .post-link.active:before, .post .post-header .post-link:active:before, .post .post-header .post-link:focus:before, .post .post-header .post-link:hover:before {
-        right: 0;
-        left: 0; }
+  .post .post-header .post-title {
+    margin: 0;
+    font-size: 27px;
+    font-weight: 400;
+    font-family: Athelas, STHeiti, Microsoft Yahei, serif; }
+  .post .post-header .post-link {
+    display: inline-block;
+    vertical-align: middle;
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    box-shadow: 0 0 1px transparent;
+    position: relative;
+    overflow: hidden; }
+    .post .post-header .post-link:before {
+      content: '';
+      position: absolute;
+      z-index: -1;
+      height: 2px;
+      bottom: 0;
+      left: 51%;
+      right: 51%;
+      background: #2E98FF;
+      transition-duration: 0.2s;
+      transition-property: right, left;
+      transition-timing-function: ease-out; }
+    .post .post-header .post-link.active:before, .post .post-header .post-link:active:before, .post .post-header .post-link:focus:before, .post .post-header .post-link:hover:before {
+      right: 0;
+      left: 0; }
+  .post .post-header .post-meta {
+    margin-top: 5px; }
     .post .post-header .post-meta .post-time {
-      font-size: 15px;
       color: #8a8a8a; }
-    .post .post-header .post-meta .post-category {
-      display: inline;
-      font-size: 14px;
-      color: #8a8a8a; }
-      .post .post-header .post-meta .post-category::before {
-        content: '·'; }
-      .post .post-header .post-meta .post-category a {
-        color: inherit; }
-        .post .post-header .post-meta .post-category a + a::before {
-          content: '/';
-          margin-right: 3px;
-          color: #8a8a8a !important; }
-        .post .post-header .post-meta .post-category a:hover {
-          color: #2E98FF; }
-    .post .post-header .post-meta .post-visits {
-      display: inline-block;
-      font-size: 14px;
-      color: #8a8a8a;
-      visibility: hidden; }
-      .post .post-header .post-meta .post-visits::before {
-        content: '·'; }
   .post .post-toc {
     position: absolute;
     width: 200px;
@@ -733,7 +711,7 @@ h6 {
     .post .post-content .highlight.bash > ::after {
       content: "Bash"; }
     .post .post-content .highlight.shell > ::after {
-      content: "Shell"; }
+      content: "Bash"; }
     .post .post-content .highlight.css > ::after {
       content: "CSS"; }
     .post .post-content .highlight.scss > ::after {
@@ -762,16 +740,12 @@ h6 {
       content: "Objective-C"; }
     .post .post-content .highlight.yml > ::after {
       content: "YAML"; }
-    .post .post-content .highlight.ini > ::after {
-      content: "INI"; }
     .post .post-content .highlight.stylus > ::after {
       content: "Stylus"; }
     .post .post-content .highlight.sql > ::after {
       content: "SQL"; }
     .post .post-content .highlight.http > ::after {
       content: "HTTP"; }
-    .post .post-content .highlight.conf > ::after {
-      content: "Conf"; }
     .post .post-content .highlight .code pre {
       margin: 0;
       padding: 30px 10px 10px; }

@@ -10,11 +10,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
 
 
   <meta name="description" content="NPM指南"/>
@@ -22,13 +17,7 @@
 
 
 
-  <meta name="keywords" content="npm, Fynn's Blog" />
-
-
-
-
-
-
+  <meta name="keywords" content="npm," />
 
 
 
@@ -38,14 +27,30 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1.2" />
 
 
 
 <link rel="canonical" href="https://fynn90.github.io/2018/11/18/npm指南/"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+<meta name="description" content="npm 全称：Node Package Manager (Node 包管理器），目前是Web前端开发重要依赖工具之一。安装Node.js默认会安装npm,前端各种资源都可以通过一个npm命令下载到自己的本地计算机上。 用户通过一个命令将npm上发布的包下载自己本地计算机并在项目中使用，也可以将自己的包发布到npm上供全球Web前端开发者下载使用。 npm的出现极大提升了前端开发体验。">
+<meta property="og:type" content="article">
+<meta property="og:title" content="NPM指南">
+<meta property="og:url" content="https://fynn90.github.io/2018/11/18/npm%E6%8C%87%E5%8D%97/index.html">
+<meta property="og:site_name" content="Fynn&#39;s Blog">
+<meta property="og:description" content="npm 全称：Node Package Manager (Node 包管理器），目前是Web前端开发重要依赖工具之一。安装Node.js默认会安装npm,前端各种资源都可以通过一个npm命令下载到自己的本地计算机上。 用户通过一个命令将npm上发布的包下载自己本地计算机并在项目中使用，也可以将自己的包发布到npm上供全球Web前端开发者下载使用。 npm的出现极大提升了前端开发体验。">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2018/11/13/5bea6f9a6a5be.png">
+<meta property="article:published_time" content="2018-11-18T01:05:00.000Z">
+<meta property="article:modified_time" content="2020-11-18T02:51:23.420Z">
+<meta property="article:author" content="Fynn">
+<meta property="article:tag" content="npm">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2018/11/13/5bea6f9a6a5be.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1.2" />
 
 
 
@@ -54,8 +59,21 @@
 
 
 
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
   
-  <script id="baidu_analytics">
+  <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -66,8 +84,7 @@
   </script>
 
 
-
-  <script id="google_analytics">
+  <script type="text/javascript">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -78,38 +95,8 @@
   </script>
 
 
-  <script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
-  <script id="leancloud">
-    AV.init({
-      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
-      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
-    });
-  </script>
-
-
-
-
-
-    <title> NPM指南 - Fynn's Blog </title>
+    <title> NPM指南 · Fynn's Blog </title>
   <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -130,7 +117,7 @@
         <li class="mobile-menu-item">
           
           
-            首页
+            Home
           
         </li>
       </a>
@@ -139,16 +126,16 @@
         <li class="mobile-menu-item">
           
           
-            归档
+            Archives
           
         </li>
       </a>
     
-      <a href="/categories/">
+      <a href="/tags">
         <li class="mobile-menu-item">
           
           
-            分类
+            Tags
           
         </li>
       </a>
@@ -184,13 +171,14 @@
         </li>
       
         <li class="menu-item">
-          <a class="menu-item-link" href="/categories/">
+          <a class="menu-item-link" href="/tags">
             
             
-              分类
+              标签
             
           </a>
         </li>
+      
       
     </ul>
   
@@ -213,24 +201,8 @@
 
       <div class="post-meta">
         <span class="post-time">
-          2018-11-18
+          2018年11月18日
         </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/Node-js/">Node.js</a>
-            
-              <a href="/categories/Node-js/NPM/">NPM</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2018/11/18/npm%E6%8C%87%E5%8D%97/"
-             data-title="NPM指南">
-            阅读次数
-          </div>
-        
       </div>
     </header>
 
@@ -349,7 +321,7 @@
 <p>有时候做一些插件开发，比如grunt等工具的插件，它们往往是在grunt的某个版本的基础上开发的，而在他们的代码中并不会出现require(“grunt”)这样的依赖，dependencies配置里边也不会写上grunt的依赖，为了说明此模块只能作为插件跑在宿主的某个版本范围下，可以配置peerDependencies：</p>
 <figure class="highlight json"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">&#123;</span><br><span class="line">  <span class="attr">&quot;name&quot;</span>: <span class="string">&quot;tea-latte&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;version&quot;</span>: <span class="string">&quot;1.3.5&quot;</span>,</span><br><span class="line">  <span class="attr">&quot;peerDependencies&quot;</span>: &#123;</span><br><span class="line">    <span class="attr">&quot;tea&quot;</span>: <span class="string">&quot;2.x&quot;</span></span><br><span class="line">  &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<p>上面这个配置确保再npm install的时候tea-latte会和2.x版本的tea一起安装，而且它们两个的依赖关系是同级的：<br>├── <a href="mailto:&#x74;&#x65;&#97;&#x2d;&#108;&#97;&#x74;&#116;&#x65;&#64;&#x31;&#46;&#51;&#x2e;&#x35;">&#x74;&#x65;&#97;&#x2d;&#108;&#97;&#x74;&#116;&#x65;&#64;&#x31;&#46;&#51;&#x2e;&#x35;</a><br>└── <a href="mailto:&#x74;&#101;&#97;&#x40;&#x32;&#x2e;&#50;&#46;&#48;">&#x74;&#101;&#97;&#x40;&#x32;&#x2e;&#50;&#46;&#48;</a><br>这个配置的目的是让npm知道，如果要使用此插件模块，请确保在宿主环境按照了我需要的依赖包(<code>peerDependencies中声明的包</code>)。<br>即使宿主环境并没有使用该依赖包,但还是会在它的node_modules中按照该依赖包.</p>
+<p>上面这个配置确保再npm install的时候tea-latte会和2.x版本的tea一起安装，而且它们两个的依赖关系是同级的：<br>├── <a href="mailto:&#116;&#101;&#x61;&#45;&#108;&#97;&#116;&#116;&#x65;&#64;&#x31;&#x2e;&#x33;&#46;&#53;">&#116;&#101;&#x61;&#45;&#108;&#97;&#116;&#116;&#x65;&#64;&#x31;&#x2e;&#x33;&#46;&#53;</a><br>└── <a href="mailto:&#116;&#x65;&#97;&#64;&#x32;&#46;&#x32;&#46;&#x30;">&#116;&#x65;&#97;&#64;&#x32;&#46;&#x32;&#46;&#x30;</a><br>这个配置的目的是让npm知道，如果要使用此插件模块，请确保在宿主环境按照了我需要的依赖包(<code>peerDependencies中声明的包</code>)。<br>即使宿主环境并没有使用该依赖包,但还是会在它的node_modules中按照该依赖包.</p>
 <h4 id="npm2和npm3中peerDependencies的区别"><a href="#npm2和npm3中peerDependencies的区别" class="headerlink" title="npm2和npm3中peerDependencies的区别"></a>npm2和npm3中peerDependencies的区别</h4><p>正如上一节谈论的，在npm2中，PackageA包中peerDependencies所指定的依赖会随着npm install PackageA一起被强制安装，所以不需要在宿主环境的package.json文件中指定对PackageA中peerDependencies内容的依赖。</p>
 <p>但是在npm3中，peerDependencies的表现与npm2不同：</p>
 <p>npm3中不会再要求peerDependencies所指定的依赖包被强制安装，相反npm3会在安装结束后检查本次安装是否正确，如果不正确会给用户打印警告提示。</p>
@@ -398,17 +370,21 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://fynn90.github.io">Fynn</a>
+      <span>作者: </span>
+      <span>Fynn</span>
     </p>
     <p class="copyright-item">
-      <span>原文链接: </span>
+      <span>来源: </span>
+      <a href="https://fynn90.github.io">https://fynn90.github.io</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
       <a href="https://fynn90.github.io/2018/11/18/npm%E6%8C%87%E5%8D%97/">https://fynn90.github.io/2018/11/18/npm%E6%8C%87%E5%8D%97/</a>
     </p>
-    <p class="copyright-item">
-      <span>许可协议: </span>
+
+    <p class="copyright-item lincese">
       
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
     </p>
   </div>
 
@@ -424,11 +400,13 @@
       
         <label class="qr-code-image" for="reward">
           <img class="image" src="/image/reward/wechat.png" title="wechat">
+          <div>wechat</div>
         </label>
       
       
         <label class="qr-code-image" for="reward">
           <img class="image" src="/image/reward/alipay.png" title="alipay">
+          <div>alipay</div>
         </label>
       
     </div>
@@ -477,7 +455,7 @@
   </div>
 
 
-        </div>
+        </div>  
       </main>
 
       <footer id="footer" class="footer">
@@ -486,8 +464,10 @@
     
       
         
-          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:iamfatefan@outlook.com" class="iconfont icon-email" title="email"></a>
         
+      
+    
       
     
       
@@ -502,7 +482,13 @@
     
       
         
-          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/fatefan" class="iconfont icon-github" title="github"></a>
         
       
     
@@ -520,16 +506,13 @@
     
       
     
-      
-    
-      
-    
     
     
   </div>
 
 
 <div class="copyright">
+  
   <span class="copyright-year">
     
     &copy; 
@@ -545,7 +528,6 @@
   </span>
   
 </div>
-
       </footer>
 
       <div class="back-to-top" id="back-to-top">
@@ -555,9 +537,10 @@
 
     
   
-  
 
   
+  
+
 
 
 
@@ -581,8 +564,9 @@
   
 
 
-    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+    <script type="text/javascript" src="/js/src/even.js?v=1.1.2"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1.2"></script>
 
+    
   </body>
 </html>

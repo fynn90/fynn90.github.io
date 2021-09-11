@@ -10,11 +10,6 @@
 <meta http-equiv="Cache-Control" content="no-transform" />
 <meta http-equiv="Cache-Control" content="no-siteapp" />
 
-<meta name="theme-color" content="#f8f5ec" />
-<meta name="msapplication-navbutton-color" content="#f8f5ec">
-<meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="#f8f5ec">
-
 
 
   <meta name="description" content="Node.JS自动打包部署脚本"/>
@@ -22,13 +17,7 @@
 
 
 
-  <meta name="keywords" content="TypeScript, Fynn's Blog" />
-
-
-
-
-
-
+  <meta name="keywords" content="TypeScript," />
 
 
 
@@ -38,14 +27,30 @@
 
 
 
-  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=2.6.0" />
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=1.1.2" />
 
 
 
 <link rel="canonical" href="https://fynn90.github.io/2019/07/17/Node.JS自动打包部署脚本/"/>
 
 
-<link rel="stylesheet" type="text/css" href="/css/style.css?v=2.6.0" />
+<meta name="description" content="前端工程化的一个基础能力就是自动部署前端打包后的代码到服务器.基于node和typecript写了一个自动部署的脚步. 脚本的逻辑是先将目录打包压缩包,再通过SSH上传到服务器,最后解压和备份.源码地址">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Node.JS自动打包部署脚本">
+<meta property="og:url" content="https://fynn90.github.io/2019/07/17/Node.JS%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/index.html">
+<meta property="og:site_name" content="Fynn&#39;s Blog">
+<meta property="og:description" content="前端工程化的一个基础能力就是自动部署前端打包后的代码到服务器.基于node和typecript写了一个自动部署的脚步. 脚本的逻辑是先将目录打包压缩包,再通过SSH上传到服务器,最后解压和备份.源码地址">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i.loli.net/2019/07/17/5d2ef632b8e1f76645.png">
+<meta property="article:published_time" content="2019-07-17T10:15:00.000Z">
+<meta property="article:modified_time" content="2019-11-05T02:06:58.598Z">
+<meta property="article:author" content="Fynn">
+<meta property="article:tag" content="TypeScript">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://i.loli.net/2019/07/17/5d2ef632b8e1f76645.png">
+
+
+<link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1.2" />
 
 
 
@@ -54,8 +59,21 @@
 
 
 
+
+<script>
+  var CONFIG = {
+    search: false,
+    searchPath: "/search.xml",
+    fancybox: true,
+    toc: true,
+  }
+</script>
+
+
+
+
   
-  <script id="baidu_analytics">
+  <script type="text/javascript">
     var _hmt = _hmt || [];
     (function() {
       var hm = document.createElement("script");
@@ -66,8 +84,7 @@
   </script>
 
 
-
-  <script id="google_analytics">
+  <script type="text/javascript">
     (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
         (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
         m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
@@ -78,38 +95,8 @@
   </script>
 
 
-  <script id="baidu_push">
-(function(){
-    var bp = document.createElement('script');
-    var curProtocol = window.location.protocol.split(':')[0];
-    if (curProtocol === 'https') {
-        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
-    }
-    else {
-        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
-    }
-    var s = document.getElementsByTagName("script")[0];
-    s.parentNode.insertBefore(bp, s);
-})();
-</script>
 
-
-
-
-
-  <script src="//cdn1.lncld.net/static/js/3.1.1/av-min.js"></script>
-  <script id="leancloud">
-    AV.init({
-      appId: "jH321kB4p1r5FNrL8YBCwbrG-gzGzoHsz",
-      appKey: "Q8vnaBtTzmVPbVX8tdzM7z7w"
-    });
-  </script>
-
-
-
-
-
-    <title> Node.JS自动打包部署脚本 - Fynn's Blog </title>
+    <title> Node.JS自动打包部署脚本 · Fynn's Blog </title>
   <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -130,7 +117,7 @@
         <li class="mobile-menu-item">
           
           
-            首页
+            Home
           
         </li>
       </a>
@@ -139,16 +126,16 @@
         <li class="mobile-menu-item">
           
           
-            归档
+            Archives
           
         </li>
       </a>
     
-      <a href="/categories/">
+      <a href="/tags">
         <li class="mobile-menu-item">
           
           
-            分类
+            Tags
           
         </li>
       </a>
@@ -184,13 +171,14 @@
         </li>
       
         <li class="menu-item">
-          <a class="menu-item-link" href="/categories/">
+          <a class="menu-item-link" href="/tags">
             
             
-              分类
+              标签
             
           </a>
         </li>
+      
       
     </ul>
   
@@ -213,24 +201,8 @@
 
       <div class="post-meta">
         <span class="post-time">
-          2019-07-17
+          2019年7月17日
         </span>
-        
-          <div class="post-category">
-            
-              <a href="/categories/TypeScript/">TypeScript</a>
-            
-              <a href="/categories/TypeScript/Node-js/">Node.js</a>
-            
-          </div>
-        
-        
-        <div class="post-visits"
-             data-url="/2019/07/17/Node.JS%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/"
-             data-title="Node.JS自动打包部署脚本">
-            阅读次数
-          </div>
-        
       </div>
     </header>
 
@@ -277,17 +249,21 @@
 
   <div class="post-copyright">
     <p class="copyright-item">
-      <span>原文作者: </span>
-      <a href="https://fynn90.github.io">Fynn</a>
+      <span>作者: </span>
+      <span>Fynn</span>
     </p>
     <p class="copyright-item">
-      <span>原文链接: </span>
+      <span>来源: </span>
+      <a href="https://fynn90.github.io">https://fynn90.github.io</a>
+    </p>
+    <p class="copyright-item">
+      <span>链接: </span>
       <a href="https://fynn90.github.io/2019/07/17/Node.JS%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/">https://fynn90.github.io/2019/07/17/Node.JS%E8%87%AA%E5%8A%A8%E6%89%93%E5%8C%85%E9%83%A8%E7%BD%B2%E8%84%9A%E6%9C%AC/</a>
     </p>
-    <p class="copyright-item">
-      <span>许可协议: </span>
+
+    <p class="copyright-item lincese">
       
-      <a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>
+      本文采用<a rel="license" href="http://creativecommons.org/licenses/by-nc/4.0/" target="_blank">知识共享署名-非商业性使用 4.0 国际许可协议</a>进行许可
     </p>
   </div>
 
@@ -303,11 +279,13 @@
       
         <label class="qr-code-image" for="reward">
           <img class="image" src="/image/reward/wechat.png" title="wechat">
+          <div>wechat</div>
         </label>
       
       
         <label class="qr-code-image" for="reward">
           <img class="image" src="/image/reward/alipay.png" title="alipay">
+          <div>alipay</div>
         </label>
       
     </div>
@@ -356,7 +334,7 @@
   </div>
 
 
-        </div>
+        </div>  
       </main>
 
       <footer id="footer" class="footer">
@@ -365,8 +343,10 @@
     
       
         
-          <a href="mailto:fynn.90@outlook.com" class="iconfont icon-email" title="email"></a>
+          <a href="mailto:iamfatefan@outlook.com" class="iconfont icon-email" title="email"></a>
         
+      
+    
       
     
       
@@ -381,7 +361,13 @@
     
       
         
-          <a target="_blank" rel="noopener" href="https://github.com/fynn90" class="iconfont icon-github" title="github"></a>
+          <a target="_blank" rel="noopener" href="https://plus.google.com/u/0/117459332873536225443" class="iconfont icon-google" title="google"></a>
+        
+      
+    
+      
+        
+          <a target="_blank" rel="noopener" href="https://github.com/fatefan" class="iconfont icon-github" title="github"></a>
         
       
     
@@ -399,16 +385,13 @@
     
       
     
-      
-    
-      
-    
     
     
   </div>
 
 
 <div class="copyright">
+  
   <span class="copyright-year">
     
     &copy; 
@@ -424,7 +407,6 @@
   </span>
   
 </div>
-
       </footer>
 
       <div class="back-to-top" id="back-to-top">
@@ -434,9 +416,10 @@
 
     
   
-  
 
   
+  
+
 
 
 
@@ -460,8 +443,9 @@
   
 
 
-    <script type="text/javascript" src="/js/src/even.js?v=2.6.0"></script>
-<script type="text/javascript" src="/js/src/bootstrap.js?v=2.6.0"></script>
+    <script type="text/javascript" src="/js/src/even.js?v=1.1.2"></script>
+<script type="text/javascript" src="/js/src/bootstrap.js?v=1.1.2"></script>
 
+    
   </body>
 </html>
