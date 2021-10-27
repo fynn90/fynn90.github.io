@@ -186,6 +186,64 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2020/05/16/%E7%94%A8%E4%BA%8E%E5%88%B6%E4%BD%9C%20UML(%E6%88%96%20BPMN%E3%80%81ERD%20%E7%AD%89)%E5%9B%BE%E8%A1%A8%E7%9A%84JavaScript%20%E5%BA%93/">目前比较流行的用户制作(UML、ERD、BPMN)的图表库</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020年5月16日
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <p>目前比较流行的用户制作(UML、ERD、BPMN)的图表库有:</p>
+<ul>
+<li>JointJS &amp; Rappid(商业版本)</li>
+<li>jsPlumb</li>
+<li>GoJS</li>
+<li>AntV G6</li>
+</ul>
+<h2 id="JointJS-amp-Rappid-JointJS-的商业"><a href="#JointJS-amp-Rappid-JointJS-的商业" class="headerlink" title="JointJS &amp;Rappid(JointJS 的商业)"></a><a target="_blank" rel="noopener" href="https://resources.jointjs.com/tutorial">JointJS &amp;Rappid(JointJS 的商业)</a></h2><p>JointJS图表库，通过JavaScript和SVG为所有现代浏览器创建完全交互式的图表工具。MV体系结构将图形，元素和链接模型与它们的呈现分离开来，这使将JointJS轻松插入后端应用程序变得容易。 JointJS基于Backbone MVC库构建的，并依赖于jQuery和Lodash。</p>
+<p><strong>核心概念</strong></p>
+<p>每个概念分别对应view和model两种概念（前后分别是model和view概念）：</p>
+<ul>
+<li>element,elementView 元素</li>
+<li>link,linkView 连线</li>
+<li>graph,paper 画布</li>
+</ul>
+<p><img src="https://resources.jointjs.com/tutorials/joint/tutorials/images/arch.png"></p>
+<p>jointJS中，视图和模型是分离的，不同概念的模型和视图之间是不能发生联系的，比如把元素添加到画布上，可以使用element.addTo(graph) 或者 graph.add(element) ，但是不能使用element.addTo(paper)这样的操作，因为element是model概念，而paper是视图概念，两者不能直接操作。</p>
+          <div class="read-more">
+            <a href="/2020/05/16/%E7%94%A8%E4%BA%8E%E5%88%B6%E4%BD%9C%20UML(%E6%88%96%20BPMN%E3%80%81ERD%20%E7%AD%89)%E5%9B%BE%E8%A1%A8%E7%9A%84JavaScript%20%E5%BA%93/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2020/05/10/mxGraph%E4%BB%8B%E7%BB%8D/">mxGraph介绍</a>
         
       </h1>
@@ -1122,56 +1180,6 @@
 <li>过度使用会将对象之间的联系深埋在背后,导致程序难以跟踪维护和理解.
           <div class="read-more">
             <a href="/2019/08/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8F%91%E5%B8%83_%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/">设计模式-代理模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019年8月4日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <blockquote>
-<p>代理模式:通过一个中间对象,控制对真实想要调用对象的访问.</p>
-</blockquote>
-<p>代理模式的用途:</p>
-<ol>
-<li>代理将接受的信息 加工处理后传给本体,还可以控制本体接受数据的速率.</li>
-<li>代理帮助缓存本体已经处理过的数据.</li>
-<li>代理校验是否有权限访问本体.</li>
-</ol>
-          <div class="read-more">
-            <a href="/2019/08/04/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E4%BB%A3%E7%90%86%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
           </div>
         
       

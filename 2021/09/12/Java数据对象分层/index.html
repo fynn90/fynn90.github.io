@@ -12,12 +12,12 @@
 
 
 
-  <meta name="description" content="什么是Scrum"/>
+  <meta name="description" content="后端设计分层"/>
 
 
 
 
-  <meta name="keywords" content="Scrum," />
+  <meta name="keywords" content="设计模式," />
 
 
 
@@ -31,21 +31,24 @@
 
 
 
-<link rel="canonical" href="https://fynn90.github.io/2021/10/19/什么是Scrum/"/>
+<link rel="canonical" href="https://fynn90.github.io/2021/09/12/Java数据对象分层/"/>
 
 
-<meta name="description" content="目的Scrum 快速开发和持续交付、维护复杂产品的敏捷框架。它定义了敏捷开发中的团队结构、研发过程和关键事件。 Scrum的核心目的是快速的开发和交付产品给客户，并保持产品的灵活性。 它的设计过程中并未提到如何保证产品的质量，这个很让人困惑。对于一个刚起步的团队，最大的挑战应该是产品的质量和产品方向的正确性。而不是快速的开发和交付产品。">
+<meta name="description" content="POJO（Plain Ordinary Java Object）简单的Java对象。它指的是：那些没有继承任何类、也没有实现任何接口，更没有被其它框架侵入的java对象。 POJO的所有属性都是私有的，对外提供只提供的set和get方法，并且可以被序列化。DO&#x2F;DTO&#x2F;BO&#x2F;VO都属于POJO。 常用的web 应用分层格式：">
 <meta property="og:type" content="article">
-<meta property="og:title" content="什么是Scrum">
-<meta property="og:url" content="https://fynn90.github.io/2021/10/19/%E4%BB%80%E4%B9%88%E6%98%AFScrum/index.html">
+<meta property="og:title" content="后端设计分层">
+<meta property="og:url" content="https://fynn90.github.io/2021/09/12/Java%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%88%86%E5%B1%82/index.html">
 <meta property="og:site_name" content="Fynn&#39;s Blog">
-<meta property="og:description" content="目的Scrum 快速开发和持续交付、维护复杂产品的敏捷框架。它定义了敏捷开发中的团队结构、研发过程和关键事件。 Scrum的核心目的是快速的开发和交付产品给客户，并保持产品的灵活性。 它的设计过程中并未提到如何保证产品的质量，这个很让人困惑。对于一个刚起步的团队，最大的挑战应该是产品的质量和产品方向的正确性。而不是快速的开发和交付产品。">
+<meta property="og:description" content="POJO（Plain Ordinary Java Object）简单的Java对象。它指的是：那些没有继承任何类、也没有实现任何接口，更没有被其它框架侵入的java对象。 POJO的所有属性都是私有的，对外提供只提供的set和get方法，并且可以被序列化。DO&#x2F;DTO&#x2F;BO&#x2F;VO都属于POJO。 常用的web 应用分层格式：">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2021-10-19T10:50:00.000Z">
-<meta property="article:modified_time" content="2021-10-25T04:04:56.438Z">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvtpmdoomkj30b10ilwf9.jpg">
+<meta property="og:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvtqwo8uq3j30jh0ahq3g.jpg">
+<meta property="article:published_time" content="2021-09-12T07:51:00.000Z">
+<meta property="article:modified_time" content="2021-10-27T04:20:10.330Z">
 <meta property="article:author" content="Fynn">
-<meta property="article:tag" content="Scrum">
+<meta property="article:tag" content="设计模式">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="https://tva1.sinaimg.cn/large/008i3skNly1gvtpmdoomkj30b10ilwf9.jpg">
 
 
 <link rel="stylesheet" type="text/css" href="/css/style.css?v=1.1.2" />
@@ -94,7 +97,7 @@
 
 
 
-    <title> 什么是Scrum · Fynn's Blog </title>
+    <title> 后端设计分层 · Fynn's Blog </title>
   <meta name="generator" content="Hexo 5.4.0"></head>
 
   <body><div id="mobile-navbar" class="mobile-navbar">
@@ -193,13 +196,13 @@
     <header class="post-header">
       <h1 class="post-title">
         
-          什么是Scrum
+          后端设计分层
         
       </h1>
 
       <div class="post-meta">
         <span class="post-time">
-          2021年10月19日
+          2021年9月12日
         </span>
       </div>
     </header>
@@ -209,53 +212,33 @@
   <div class="post-toc" id="post-toc">
     <h2 class="post-toc-title">文章目录</h2>
     <div class="post-toc-content">
-      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#%E7%9B%AE%E7%9A%84"><span class="toc-text">目的</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E5%85%B3%E9%94%AE%E6%A6%82%E5%BF%B5"><span class="toc-text">关键概念</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#%E6%A0%B8%E5%BF%83%E5%8E%9F%E5%88%99"><span class="toc-text">核心原则</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#%E4%BB%B7%E5%80%BC%E8%A7%82"><span class="toc-text">价值观</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#%E5%9F%BA%E7%A1%80"><span class="toc-text">基础</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Scrum-Team"><span class="toc-text">Scrum Team</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Sprint"><span class="toc-text">Sprint</span></a></li></ol></li></ol>
+      <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#VO%EF%BC%88-View-Object%EF%BC%89"><span class="toc-text">VO（ View Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DTO%EF%BC%88-Data-Transfer-Object%EF%BC%89"><span class="toc-text">DTO（ Data Transfer Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BO%EF%BC%88-Business-Object%EF%BC%89"><span class="toc-text">BO（ Business Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DO%EF%BC%88Domain-Object%EF%BC%89"><span class="toc-text">DO（Domain Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#PO%EF%BC%88Persistant-Object-%EF%BC%89"><span class="toc-text">PO（Persistant Object ）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#DAO%EF%BC%88Data-Access-Object%EF%BC%89"><span class="toc-text">DAO（Data Access Object）</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Ref"><span class="toc-text">Ref</span></a></li></ol>
     </div>
   </div>
 
 
     <div class="post-content">
       
-        <h2 id="目的"><a href="#目的" class="headerlink" title="目的"></a>目的</h2><p><a target="_blank" rel="noopener" href="https://zh.wikipedia.org/wiki/Scrum">Scrum</a> 快速开发和持续交付、维护复杂产品的敏捷框架。它定义了敏捷开发中的团队结构、研发过程和关键事件。</p>
-<p>Scrum的核心目的是快速的开发和交付产品给客户，并保持产品的灵活性。</p>
-<p>它的设计过程中并未提到如何保证产品的质量，这个很让人困惑。对于一个刚起步的团队，最大的挑战应该是产品的质量和产品方向的正确性。而不是快速的开发和交付产品。</p>
+        <p><a target="_blank" rel="noopener" href="https://baike.baidu.com/item/POJO/3311958">POJO</a>（Plain Ordinary Java Object）简单的Java对象。它指的是：那些没有继承任何类、也没有实现任何接口，更没有被其它框架侵入的java对象。</p>
+<p><code>POJO</code>的所有属性都是私有的，对外提供只提供的<code>set</code>和<code>get</code>方法，并且可以被序列化。DO/DTO/BO/VO都属于<code>POJO</code>。</p>
+<p>常用的web 应用分层格式：</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvtpmdoomkj30b10ilwf9.jpg" alt="7906797-4c1a0b0cb533792d"></p>
 <span id="more"></span>
 
-<h2 id="关键概念"><a href="#关键概念" class="headerlink" title="关键概念"></a>关键概念</h2><ul>
-<li>Scrum Team - 最小单元敏捷开发团队，含有一名 Scrum Master、一名 Product Owner和若干名 Developers。</li>
-<li>Product Owner  - 确定产品的方向和愿景，定义产品发布的内容、优先级及交付时间，为产品投资报酬率负责；</li>
-<li>Scrum Master - 敏捷教练，负责团队合理运作Scrum,扫除在Scrum中遇到的障碍</li>
-<li>Product Backlog - 产品订单。需有需求特性的粗略描述。产品订单是关于将要生产什么样的产品。产品订单是开放的，每个人都可以编辑。产品订单包括粗略的估算，通常以天为单位。估算将帮助产品负责人衡量时程表和优先级（例如，如果”增加拼写检查”特性的估计需要花3天或3个月，将影响产品负责人对该特性的渴望）。</li>
-<li>sprint backlog - 冲刺订单。细化后的文档，包含冲刺需求所需要的信息。任务应该分解成16个小时，如果超过16个小时则应该进行再拆分</li>
-<li>Definition of Done （DoD） - 在一个Sprint 中，它是一个检查清单，包含所有非功能性需要完成的事项。例如：<ul>
-<li>代码编写完成</li>
-<li>代码单元测试完成</li>
-<li>代码 检查</li>
-<li>特性分支合并</li>
-<li>部署到测试环境</li>
-<li>测试通过</li>
-</ul>
-</li>
-<li>Definition of Ready (DoR) -  它类似于 DoD，指的是在开始一轮Sprint之前需要完成的产品工作清单。例如：<ul>
-<li>PO和开发团队过一遍Story</li>
-<li>Story有明确的商业价值</li>
-<li>对Story开发时间的评估</li>
-<li>Story拆分，放入到Sprint中</li>
-<li>Story最后完成验收</li>
-</ul>
-</li>
-</ul>
-<h2 id="核心原则"><a href="#核心原则" class="headerlink" title="核心原则"></a>核心原则</h2><h3 id="价值观"><a href="#价值观" class="headerlink" title="价值观"></a>价值观</h3><p>承诺，专注，开发，尊重，勇气</p>
-<h3 id="基础"><a href="#基础" class="headerlink" title="基础"></a>基础</h3><p>Scrum Team 团队成员要互相尊重，彼此是有能力和独立的人，互相彼此尊重，成员有勇气做正确的事情并处理棘手的问题你。</p>
-<h3 id="Scrum-Team"><a href="#Scrum-Team" class="headerlink" title="Scrum Team"></a>Scrum Team</h3><p>Scrum中基本单元团队，规模应该在10人左右。它应该足够小以保持灵活，但应该足够大以便完成Sprinnt中重大的工作。Scrum Team 应该是有跨职能的人员组成，他么内部讨论决定谁做什么，何时做以及如何做。Scrum Team团队人员应该有很强的凝聚力，有良好的沟通和高效的行动力。</p>
-<h3 id="Sprint"><a href="#Sprint" class="headerlink" title="Sprint"></a>Sprint</h3><p>一次完整的Scrum活动周期，一般是两个星期或一个月一个周期。一轮Sprint结束后就开始下一轮 Sprint.</p>
-<p><strong>Sprint</strong> 活动中包含一下固定事项：</p>
-<ol>
-<li>Sprint 计划</li>
-<li>每日例会。沟通 昨天做的事情，今天计划的事情，是否存在对完成 Product Goal有风险</li>
-<li>Sprint 评审 (Sprint Review)。</li>
-<li>Sprint 回顾会 (Sprint Restrospective)。</li>
-</ol>
+<h2 id="VO（-View-Object）"><a href="#VO（-View-Object）" class="headerlink" title="VO（ View Object）"></a>VO（ View Object）</h2><p>显示层对象，通常是Web向模板渲染引擎层传输的对象。</p>
+<h2 id="DTO（-Data-Transfer-Object）"><a href="#DTO（-Data-Transfer-Object）" class="headerlink" title="DTO（ Data Transfer Object）"></a>DTO（ Data Transfer Object）</h2><p>数据传输对象，Service或Manager向外传输的对象。</p>
+<p>表里面有十几个字段：id,name,gender(M/F),age,conmpanyId(如001)…</p>
+<p>页面需要展示四个字段：name,gender(男/女),age,conmpanyName(如今日头条股份有限公司)。</p>
+<p>DTO由此产生，一是能提高数据传输的速度（减少了传输字段），二能隐藏后端表结构。</p>
+<h2 id="BO（-Business-Object）"><a href="#BO（-Business-Object）" class="headerlink" title="BO（ Business Object）"></a>BO（ Business Object）</h2><p>业务对象。 由Service层输出的封装业务逻辑的对象。主要作用是把业务逻辑封装为一个对象。这个对象可以包括一个或多个其它的对象。形象描述为一个对象的形为和动作，当然也有涉及到基它对象的一些形为和动作。</p>
+<h2 id="DO（Domain-Object）"><a href="#DO（Domain-Object）" class="headerlink" title="DO（Domain Object）"></a>DO（Domain Object）</h2><p>领域对象，就是从现实世界中抽象出来的有形或无形的业务实体。</p>
+<p>业务层DTO会转成 BO或者DO.</p>
+<h2 id="PO（Persistant-Object-）"><a href="#PO（Persistant-Object-）" class="headerlink" title="PO（Persistant Object ）"></a>PO（Persistant Object ）</h2><p>用于表示数据库中的一条记录映射成的 java 对象。PO 仅仅用于表示数据，没有任何数据操作。通常遵守 Java Bean 的规范，拥有 getter/setter 方法。</p>
+<h2 id="DAO（Data-Access-Object）"><a href="#DAO（Data-Access-Object）" class="headerlink" title="DAO（Data Access Object）"></a>DAO（Data Access Object）</h2><p>数据访问对象。用于表示一个数据访问对象。使用 DAO 访问数据库，包括插入、更新、删除、查询等操作，与 PO 一起使用。DAO 一般在持久层，完全封装数据库操作，对外暴露的方法使得上层应用不需要关注数据库相关的任何信息。</p>
+<p><img src="https://tva1.sinaimg.cn/large/008i3skNly1gvtqwo8uq3j30jh0ahq3g.jpg" alt="eo3vm5h8y4"></p>
+<h2 id="Ref"><a href="#Ref" class="headerlink" title="Ref"></a>Ref</h2><p><a target="_blank" rel="noopener" href="https://en.wikipedia.org/wiki/Plain_old_Java_object">https://en.wikipedia.org/wiki/Plain_old_Java_object</a></p>
+<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/chenchunlin526/article/details/69939337">https://blog.csdn.net/chenchunlin526/article/details/69939337</a></p>
+<p><a target="_blank" rel="noopener" href="https://cloud.tencent.com/developer/article/1658523">https://cloud.tencent.com/developer/article/1658523</a></p>
 
       
     </div>
@@ -275,7 +258,7 @@
     </p>
     <p class="copyright-item">
       <span>链接: </span>
-      <a href="https://fynn90.github.io/2021/10/19/%E4%BB%80%E4%B9%88%E6%98%AFScrum/">https://fynn90.github.io/2021/10/19/%E4%BB%80%E4%B9%88%E6%98%AFScrum/</a>
+      <a href="https://fynn90.github.io/2021/09/12/Java%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%88%86%E5%B1%82/">https://fynn90.github.io/2021/09/12/Java%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%88%86%E5%B1%82/</a>
     </p>
 
     <p class="copyright-item lincese">
@@ -315,7 +298,7 @@
         
           <div class="post-tags">
             
-              <a href="/tags/Scrum/">Scrum</a>
+              <a href="/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/">设计模式</a>
             
           </div>
         
@@ -323,15 +306,15 @@
         
   <nav class="post-nav">
     
-      <a class="prev" href="/2021/10/24/%E4%BB%80%E4%B9%88%E6%98%AF%E7%AE%97%E6%B3%95%E5%A4%8D%E6%9D%82%E5%BA%A6/">
+      <a class="prev" href="/2021/10/19/%E4%BB%80%E4%B9%88%E6%98%AFScrum/">
         <i class="iconfont icon-left"></i>
-        <span class="prev-text nav-default">什么是算法复杂度</span>
+        <span class="prev-text nav-default">什么是Scrum</span>
         <span class="prev-text nav-mobile">上一篇</span>
       </a>
     
     
-      <a class="next" href="/2021/09/12/Java%E6%95%B0%E6%8D%AE%E5%AF%B9%E8%B1%A1%E5%88%86%E5%B1%82/">
-        <span class="next-text nav-default">后端设计分层</span>
+      <a class="next" href="/2021/08/03/rollup.js%E4%BD%BF%E7%94%A8%E6%80%BB%E7%BB%93/">
+        <span class="next-text nav-default">Rollup.js配置</span>
         <span class="prev-text nav-mobile">下一篇</span>
         <i class="iconfont icon-right"></i>
       </a>
