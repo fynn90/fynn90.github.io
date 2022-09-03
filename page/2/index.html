@@ -186,6 +186,52 @@
     <header class="post-header">
       <h1 class="post-title">
         
+          <a class="post-link" href="/2020/05/23/mxGraph%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/">mxGraph开发手册</a>
+        
+      </h1>
+
+      <div class="post-meta">
+        <span class="post-time">
+          2020年5月23日
+        </span>
+      </div>
+    </header>
+
+    
+    
+
+    <div class="post-content">
+      
+        
+        
+          
+        
+
+        
+          <h2 id="mxGraph简介"><a href="#mxGraph简介" class="headerlink" title="mxGraph简介"></a><a target="_blank" rel="noopener" href="https://jgraph.github.io/mxgraph/">mxGraph简介</a></h2><blockquote>
+<p>mxGraph是使用SVG和HTML进行渲染的完全客户端JavaScript图形库。</p>
+</blockquote>
+<p><a target="_blank" rel="noopener" href="https://github.com/jgraph/mxgraph/tree/v1">mxGraph</a>支持IE 11, Chrome 43+, Firefox 45+, Safari 10 and later, Opera 30+,未使用第三方JS.mxGraph提供后端.net、java的接口,以支持在后端进行图形的修改、图形I/O、图形布局.</p>
+<h2 id="Hello-World"><a href="#Hello-World" class="headerlink" title="Hello World"></a>Hello World</h2><figure class="highlight html"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">html</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">head</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">title</span>&gt;</span>Hello, World! example for mxGraph<span class="tag">&lt;/<span class="name">title</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Sets the basepath for the library if not in same directory --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      mxBasePath = <span class="string">&#x27;../src&#x27;</span>;</span></span><br><span class="line"><span class="javascript">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Loads and initializes the library --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span> <span class="attr">src</span>=<span class="string">&quot;../src/js/mxClient.js&quot;</span>&gt;</span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Example code --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">script</span> <span class="attr">type</span>=<span class="string">&quot;text/javascript&quot;</span>&gt;</span><span class="javascript"></span></span><br><span class="line"><span class="javascript">      <span class="comment">// Program starts here. Creates a sample graph in the</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// DOM node with the specified ID. This function is invoked</span></span></span><br><span class="line"><span class="javascript">      <span class="comment">// from the onLoad event handler of the document (see below).</span></span></span><br><span class="line"><span class="javascript">      <span class="function"><span class="keyword">function</span> <span class="title">main</span>(<span class="params">container</span>)</span></span></span><br><span class="line"><span class="function"><span class="javascript">      </span>&#123;</span></span><br><span class="line"><span class="javascript">         <span class="comment">// Checks if the browser is supported</span></span></span><br><span class="line"><span class="javascript">         <span class="keyword">if</span> (!mxClient.isBrowserSupported())</span></span><br><span class="line"><span class="javascript">         &#123;</span></span><br><span class="line"><span class="javascript">            mxUtils.error(<span class="string">&#x27;Browser is not supported!&#x27;</span>, <span class="number">200</span>, <span class="literal">false</span>);</span></span><br><span class="line"><span class="javascript">         &#125;</span></span><br><span class="line"><span class="javascript">         <span class="keyword">else</span></span></span><br><span class="line"><span class="javascript">         &#123;</span></span><br><span class="line"><span class="javascript">            <span class="comment">// Creates the graph inside the given container</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> graph = <span class="keyword">new</span> mxGraph(container);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// Enables rubberband selection</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">new</span> mxRubberband(graph);</span></span><br><span class="line"><span class="javascript"></span></span><br><span class="line"><span class="javascript">            <span class="comment">// Gets the default parent for inserting new cells. This</span></span></span><br><span class="line"><span class="javascript">            <span class="comment">// is normally the first child of the root (ie. layer 0).</span></span></span><br><span class="line"><span class="javascript">            <span class="keyword">var</span> parent = graph.getDefaultParent();</span></span><br><span class="line"><span class="javascript">            <span class="comment">// 禁止容器右键事件</span></span></span><br><span class="line"><span class="javascript">            mxEvent.disableContextMenu(ele);</span></span><br><span class="line"><span class="javascript">            <span class="comment">// Adds cells to the model in a single step</span></span></span><br><span class="line"><span class="javascript">            graph.getModel().beginUpdate();</span></span><br><span class="line"><span class="javascript">            <span class="keyword">try</span></span></span><br><span class="line"><span class="javascript">            &#123;</span></span><br><span class="line"><span class="javascript">               <span class="keyword">var</span> v1 = graph.insertVertex(parent, <span class="literal">null</span>,</span></span><br><span class="line"><span class="javascript">                        <span class="string">&#x27;Hello,&#x27;</span>, <span class="number">20</span>, <span class="number">20</span>, <span class="number">80</span>, <span class="number">30</span>);</span></span><br><span class="line"><span class="javascript">               <span class="keyword">var</span> v2 = graph.insertVertex(parent, <span class="literal">null</span>,</span></span><br><span class="line"><span class="javascript">                        <span class="string">&#x27;World!&#x27;</span>, <span class="number">200</span>, <span class="number">150</span>, <span class="number">80</span>, <span class="number">30</span>);</span></span><br><span class="line"><span class="javascript">               <span class="keyword">var</span> e1 = graph.insertEdge(parent, <span class="literal">null</span>, <span class="string">&#x27;&#x27;</span>, v1, v2);</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">            <span class="keyword">finally</span></span></span><br><span class="line"><span class="javascript">            &#123;</span></span><br><span class="line"><span class="javascript">               <span class="comment">// Updates the display</span></span></span><br><span class="line"><span class="javascript">               graph.getModel().endUpdate();</span></span><br><span class="line"><span class="javascript">            &#125;</span></span><br><span class="line"><span class="javascript">         &#125;</span></span><br><span class="line"><span class="javascript">      &#125;;</span></span><br><span class="line"><span class="javascript">   </span><span class="tag">&lt;/<span class="name">script</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">head</span>&gt;</span></span><br><span class="line"></span><br><span class="line"><span class="comment">&lt;!-- Page passes the container for the graph to the program --&gt;</span></span><br><span class="line"><span class="tag">&lt;<span class="name">body</span> <span class="attr">onload</span>=<span class="string">&quot;main(document.getElementById(&#x27;graphContainer&#x27;))&quot;</span>&gt;</span></span><br><span class="line"></span><br><span class="line">   <span class="comment">&lt;!-- Creates a container for the graph with a grid wallpaper --&gt;</span></span><br><span class="line">   <span class="tag">&lt;<span class="name">div</span> <span class="attr">id</span>=<span class="string">&quot;graphContainer&quot;</span></span></span><br><span class="line"><span class="tag">      <span class="attr">style</span>=<span class="string">&quot;overflow:hidden;width:321px;height:241px;background:url(&#x27;editors/images/grid.gif&#x27;)&quot;</span>&gt;</span></span><br><span class="line">   <span class="tag">&lt;/<span class="name">div</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">body</span>&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">html</span>&gt;</span></span><br></pre></td></tr></table></figure>
+          <div class="read-more">
+            <a href="/2020/05/23/mxGraph%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97/" class="read-more-link">阅读更多</a>
+          </div>
+        
+      
+    </div>
+
+    
+
+    
+
+  </article>
+
+    
+      
+  <article class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        
           <a class="post-link" href="/2020/05/16/%E7%94%A8%E4%BA%8E%E5%88%B6%E4%BD%9C%20UML(%E6%88%96%20BPMN%E3%80%81ERD%20%E7%AD%89)%E5%9B%BE%E8%A1%A8%E7%9A%84JavaScript%20%E5%BA%93/">目前比较流行的用户制作(UML、ERD、BPMN)的图表库</a>
         
       </h1>
@@ -1130,56 +1176,6 @@
 <li>操作行为回溯(例如:象棋中的悔棋操作)
           <div class="read-more">
             <a href="/2019/08/15/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%91%BD%E4%BB%A4%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
-          </div>
-        
-      
-    </div>
-
-    
-
-    
-
-  </article>
-
-    
-      
-  <article class="post">
-    <header class="post-header">
-      <h1 class="post-title">
-        
-          <a class="post-link" href="/2019/08/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8F%91%E5%B8%83_%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/">设计模式-发布-订阅模式</a>
-        
-      </h1>
-
-      <div class="post-meta">
-        <span class="post-time">
-          2019年8月6日
-        </span>
-      </div>
-    </header>
-
-    
-    
-
-    <div class="post-content">
-      
-        
-        
-          
-        
-
-        
-          <blockquote>
-<p>发布-订阅模式.又称观察者模式(Observer).它定义了对象之间的一对一或一对多的依赖关系.当一个对象发生变化时,它会通知到依赖它的其他对象.</p>
-</blockquote>
-<p>发布-订阅模式广泛用于异步编程者中,是一种代替传递回调函数的方案.前端最典型的例子就是:<code>EventTarget.addEventListener()</code>监听DOM事件.</p>
-<p>发布-订阅模式可以取代对象之间的硬编码,让两个对象松耦合联系在一起.</p>
-<p>发布订阅模式的缺陷:</p>
-<ol>
-<li>会消耗一定的时间和内存.</li>
-<li>过度使用会将对象之间的联系深埋在背后,导致程序难以跟踪维护和理解.
-          <div class="read-more">
-            <a href="/2019/08/06/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F-%E5%8F%91%E5%B8%83_%E8%AE%A2%E9%98%85%E6%A8%A1%E5%BC%8F/" class="read-more-link">阅读更多</a>
           </div>
         
       
